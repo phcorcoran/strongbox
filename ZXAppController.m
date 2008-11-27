@@ -24,10 +24,10 @@
 {
 	ZXDocument *documentOpened = nil;
 	if([[[NSDocumentController sharedDocumentController] documents] count] == 0) {
-		NSData *fileURLData = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastFileURL"];
+		id fileURLData = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastFileURL"];
 		if(fileURLData) {
 			NSError *error;
-			NSURL *fileURL = [NSUnarchiver unarchiveObjectWithData: fileURLData];
+			NSURL *fileURL = [NSURL URLWithString:fileURLData];
 			if(fileURL != nil) {
 				documentOpened = [[NSDocumentController sharedDocumentController] openDocumentWithContentsOfURL:fileURL display:YES error:&error];
 			}

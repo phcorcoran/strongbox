@@ -7,12 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "ZXCurrencyFormatter.h"
 #import "ZXNotifications.h"
 
 
 @interface ZXAccountMO : NSManagedObject {
 }
-- (NSString *)total;
+//- (NSString *)total;
 - (void)specialSetName:(NSString *)newName;
+- (void)recalculateBalance:(NSNotification *)note;
 @end

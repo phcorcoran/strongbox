@@ -13,6 +13,7 @@
 #import "ZXLabelController.h"
 #import "ZXDocumentConfigController.h"
 #import "ZXOldCashboxImporter.h"
+#import "NSStringExportAdditions.h"
 
 @class ZXReportWindowController, ZXOldCashboxImporter;
 @interface ZXDocument : NSPersistentDocument {
@@ -29,20 +30,22 @@
 	
 	// Importer Stuff
 	IBOutlet ZXOldCashboxImporter *oldCashboxImporter;
-	NSOperationQueue *operationQueue;
 	
 	// Misc
 	ZXReportWindowController *reportWindowController;
 	IBOutlet NSArray *transactionSortDescriptors;
 	IBOutlet NSArray *nameSortDescriptors;
+	
+	NSDateFormatter *dateFormatter;
 }
 
 @property(readwrite, assign) NSWindow *cashboxWindow;
-@property(readonly) ZXAccountController *accountController;
-@property ZXTransactionController *transactionController;
-@property ZXLabelController *labelController;
+@property(readonly, assign) ZXAccountController *accountController;
+@property(assign) ZXTransactionController *transactionController;
+@property(assign) ZXLabelController *labelController;
 @property(copy) NSArray *transactionSortDescriptors;
 @property(copy) NSArray *nameSortDescriptors;
+@property(retain) NSDateFormatter *dateFormatter;
 
 - (IBAction)toggleInspector:(id)sender;
 
@@ -67,4 +70,7 @@
 	     contextInfo:(void *)contextInfo;
 
 - (IBAction)importOldCashboxStuff:(id)sender;
+
+- (IBAction)exportToCSV:(id)sender;
+- (void)savePanelDidEnd:(NSSavePanel *)sheet returnCode:(int)returnCode  contextInfo:(void  *)contextInfo;
 @end

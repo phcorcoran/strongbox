@@ -82,11 +82,10 @@
 	[textView removeAllSections];
 	
 	for(id label in [self.owner allLabels]) {
-		if([label isEqual:[ZXLabelController noLabelObjectWithMOC:self.owner.managedObjectContext]]) {
-			continue;
-		}
+		if([[label valueForKey:@"isImmutable"] boolValue]) continue;
 		id textColor = [label valueForKey:@"textColor"];
 		id labelAmount = [NSNumber numberWithInt:0];
+		id labelName = [label valueForKey:@"name"];
 		id currentAccountName;
 		
 		// Default interval is from a distant past to now
@@ -170,7 +169,6 @@
 			default:
 				break;
 		}
-		id labelName = [label valueForKey:@"name"];
 		
 		ZXReportSection *section = [ZXReportSection sectionWithColor:textColor 
 								      amount:labelAmount 
@@ -228,6 +226,12 @@
 		[reportTimePopUpButton selectItemWithTag:ZXCustomReportTime];
 		[self updateView:self];
 	}
+}
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[super dealloc];
 }
 
 @end

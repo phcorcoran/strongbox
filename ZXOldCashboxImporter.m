@@ -36,7 +36,7 @@
 {
 	NSArray *array = [NSArray arrayWithContentsOfFile:path];
 	
-	NSInteger labelCount = [array count];
+	int labelCount = [array count];
 	[importationMessage setStringValue:[NSString stringWithFormat:@"Importing Labels... 0 of %d", labelCount]];
 	[progressIndicator setMaxValue:labelCount];
 	[progressIndicator setDoubleValue:0];
@@ -60,7 +60,7 @@
 		[newLabel setValue:color forKey:@"textColor"];
 		[allNewLabels setValue:newLabel forKey:[newLabel valueForKey:@"name"]];
 	}
-	
+	[allNewLabels setValue:[[owner labelController] noLabel] forKey:@"-"];
 }
 
 - (void)importAccountFromFile:(NSString *)path
@@ -93,9 +93,9 @@
 		[newTransaction setValue:[transaction valueForKey:@"Withdrawal Column"] forKey:@"withdrawal"];
 		[newTransaction setValue:[transaction valueForKey:@"Description Column"] forKey:@"transactionDescription"];
 		[newTransaction setValue:[allNewLabels valueForKey:[transaction valueForKey:@"Label"]] forKey:@"transactionLabel"];
+		[newTransaction setValue:[allNewLabels valueForKey:[transaction valueForKey:@"Label"]] forKey:@"transactionLabel"];
 		if([transaction valueForKey:@"Label"] == nil) {
-			// FIXME: Hard-coded english
-			[newTransaction setValue:[allNewLabels valueForKey:@"No Label"] forKey:@"transactionLabel"];
+			[newTransaction setValue:[allNewLabels valueForKey:@"-"] forKey:@"transactionLabel"];
 		}
 		[newTransaction setValue:newAccount forKey:@"account"];
 	}

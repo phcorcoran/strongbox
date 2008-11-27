@@ -13,12 +13,13 @@
 
 @interface ZXAccountController : NSArrayController {
 	NSMutableDictionary *usedNames;
-	IBOutlet ZXTransactionController *transactionController;
+//	IBOutlet ZXTransactionController *transactionController;
 }
-@property (assign) NSMutableDictionary *usedNames;
+@property (retain) NSMutableDictionary *usedNames;
 
 - (void)prepareContent;
 - (void)updateUsedNames;
 - (NSString *)uniqueNewName:(NSString *)newDesiredName;
-- (void)updateTotal:(NSNotification *)note;
+//- (void)updateTotal:(NSNotification *)note;
+- (void)recalculateBalance:(NSNotification *)note;
 @end

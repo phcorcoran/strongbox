@@ -8,21 +8,17 @@
 
 #import "ZXLabelController.h"
 
+static ZXLabelMO *sharedNoLabelObject = nil;
 
 @implementation ZXLabelController
-@synthesize usedNames;
+@synthesize usedNames, noLabel;
 
-+ (id)noLabelObjectWithMOC:(NSManagedObjectContext *)moc
+- (void)setupNoLabelObject
 {
-	if(!sharedNoLabelObject || ![[sharedNoLabelObject managedObjectContext] isEqual:moc]) {
-		[sharedNoLabelObject release];
-		// FIXME: Hard-coded english
-		NSString *noLabelString = @"No Label";
-		id noLabel = [[ZXLabelMO alloc] initWithEntity:[NSEntityDescription entityForName:@"Label" inManagedObjectContext:moc] insertIntoManagedObjectContext:moc];
-		[noLabel specialSetName:noLabelString];
-		sharedNoLabelObject = noLabel;
-	}
-	return sharedNoLabelObject;
+	NSString *noLabelString = @"-";
+	noLabel = [[ZXLabelMO alloc] initWithEntity:[NSEntityDescription entityForName:@"Label" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
+	[noLabel specialSetName:noLabelString];
+	[noLabel setValue:[NSNumber numberWithBool:YES] forKey:@"isImmutable"];
 }
 
 - (id)init
@@ -50,10 +46,10 @@
 		return;
 	}
 	
-	// FIXME: Hard-coded english
-	NSString *noLabelString = @"No Label";
+	NSString *noLabelString = @"-";
 	if([array count] < 1) {
-		[self addObject:[ZXLabelController noLabelObjectWithMOC:self.managedObjectContext]];
+		[self setupNoLabelObject];
+		[self addObject:noLabel];
 	} else {
 		NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name LIKE %@)", noLabelString];
 		[fetchRequest setPredicate:pred];
@@ -61,7 +57,7 @@
 		if(array == nil) {
 			return;
 		}
-		sharedNoLabelObject = [array objectAtIndex:0];
+		noLabel = [array objectAtIndex:0];
 	}
 	
 	[self updateUsedNames];
@@ -83,6 +79,7 @@
 - (id)newObject
 {
 	id obj = [super newObject];
+	// FIXME: Hard-coded english
 	[obj specialSetName:[self uniqueNewName:@"New Label"]];
 	[self.usedNames setValue:[obj objectID] forKey:[obj valueForKey:@"name"]];
 	return obj;
@@ -115,14 +112,11 @@
 	NSError *error = nil;
 	NSArray *allLabels = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
 	if(allLabels == nil) {
-		//FIXME: What should be done here if fetch request yields nil?
 		return;
 	}
 	NSMutableDictionary *usedNamesDict = [[NSMutableDictionary alloc] initWithCapacity:[allLabels count]];
 	for(id label in allLabels) {
-		if([label valueForKey:@"name"] == nil) {
-			continue;
-		}
+		if([label valueForKey:@"name"] == nil) continue;
 		[usedNamesDict setValue:[label objectID] forKey:[label valueForKey:@"name"]];
 	}
 	self.usedNames = usedNamesDict;
@@ -132,6 +126,12 @@
 {
 	[super remove:sender];
 	[self updateUsedNames];
+}
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[super dealloc];
 }
 
 @end

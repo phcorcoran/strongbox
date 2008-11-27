@@ -13,5 +13,6 @@
 @interface ZXTransactionController : NSArrayController {
 
 }
-
+-(BOOL)isACompletion:(NSString *)aString;
+-(NSString *)completionForPrefix:(NSString *)prefix;
 @end

@@ -91,6 +91,12 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
+			<string>NSObject</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
 			<string>ZXOldCashboxImporter</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
@@ -114,7 +120,7 @@
 				<string>ZXTransactionController</string>
 			</dict>
 			<key>SUPERCLASS</key>
-			<string>NSOperation</string>
+			<string>NSObject</string>
 		</dict>
 		<dict>
 			<key>ACTIONS</key>
@@ -124,6 +130,8 @@
 				<key>endConfigSheet</key>
 				<string>id</string>
 				<key>endImporterSheet</key>
+				<string>id</string>
+				<key>exportToCSV</key>
 				<string>id</string>
 				<key>importOldCashboxStuff</key>
 				<string>id</string>
@@ -220,6 +228,11 @@
 			<string>NSObjectController</string>
 		</dict>
 		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>exportToCSV</key>
+				<string>id</string>
+			</dict>
 			<key>CLASS</key>
 			<string>ZXAppController</string>
 			<key>LANGUAGE</key>

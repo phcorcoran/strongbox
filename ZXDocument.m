@@ -10,18 +10,22 @@
 
 @implementation ZXDocument
 
-@synthesize cashboxWindow, accountController, transactionSortDescriptors, nameSortDescriptors, transactionController, labelController;
+@synthesize cashboxWindow, accountController, transactionSortDescriptors, nameSortDescriptors, transactionController, labelController, dateFormatter;
 
 - (id)init
 {
 	self = [super init];
-	if (self != nil) {
-		self.transactionSortDescriptors = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"date" 
+	self.transactionSortDescriptors = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"date" 
 										ascending:NO] autorelease]];
-		self.nameSortDescriptors = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease]];
-		operationQueue = [NSOperationQueue new];
-	}
+	self.nameSortDescriptors = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease]];
+	self.dateFormatter = nil;
 	return self;
+}
+
+- (void)windowControllerDidLoadNib:(NSWindowController *)windowController
+{
+	[super windowControllerDidLoadNib:windowController];
+	[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountControllerDidLoadNotification object:self];
 }
 
 - (NSString *)windowNibName 
@@ -77,18 +81,10 @@
 }
 
 // Write the last saved document to preference so it is opened automatically next time.
-- (BOOL)writeToURL:(NSURL *)absoluteURL
-	    ofType:(NSString *)typeName
-  forSaveOperation:(NSSaveOperationType)saveOperation
-originalContentsURL:(NSURL *)absoluteOriginalContentsURL
-	     error:(NSError **)error
+- (BOOL)writeSafelyToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError **)outError
 {
-	[[[NSUserDefaultsController sharedUserDefaultsController] values] setValue:[NSArchiver archivedDataWithRootObject:absoluteOriginalContentsURL] forKey:@"lastFileURL"];
-	return [super writeToURL:absoluteURL
-			  ofType:typeName
-		forSaveOperation:saveOperation
-	     originalContentsURL:absoluteOriginalContentsURL
-			   error:error];
+	[[[NSUserDefaultsController sharedUserDefaultsController] values] setValue:[absoluteURL absoluteString] forKey:@"lastFileURL"];
+	return [super writeSafelyToURL:absoluteURL ofType:typeName forSaveOperation:saveOperation error:outError];
 }
 
 - (IBAction)toggleInspector:(id)sender
@@ -113,7 +109,6 @@ originalContentsURL:(NSURL *)absoluteOriginalContentsURL
 	NSError *error = nil;
 	NSArray *allLabels = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
 	if(allLabels == nil) {
-//FIXME: What should be done here if fetch request yields nil?
 		return nil;
 	}
 	return allLabels;
@@ -139,17 +134,67 @@ originalContentsURL:(NSURL *)absoluteOriginalContentsURL
 }
 
 - (IBAction)importOldCashboxStuff:(id)sender
-{
-//	Tried to thread the importation, but it caused too much problems
-//	[operationQueue addOperation:oldCashboxImporter];
-	
+{	
 	[self raiseImporterSheet:self];
-	[oldCashboxImporter start];
+	[oldCashboxImporter main];
 	[self endImporterSheet:self];
+	for(id account in [accountController valueForKey:@"arrangedObjects"]) {
+		[account recalculateBalance:nil];
+	}
 }
 
 - (void)document:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)contextInfo
 {
 	return;
+}
+
+- (id)managedObjectModel
+{
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"MyModel" ofType:@"mom"];
+	NSURL *url = [NSURL fileURLWithPath:path];
+	NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:url];
+	return [model autorelease];
+}
+
+- (IBAction)exportToCSV:(id)sender
+{
+	if(!self.dateFormatter) {
+		self.dateFormatter = [[[NSDateFormatter alloc] initWithDateFormat:@"%Y-%m-%d" 
+							   allowNaturalLanguage:NO] autorelease];
+	}
+	id name = [NSString stringWithFormat:@"%@ %@", [accountController valueForKeyPath:@"selection.name"], [self.dateFormatter stringFromDate:[NSDate date]]];
+	id panel = [NSSavePanel savePanel];
+	[panel setRequiredFileType:@"csv"];
+	[panel beginSheetForDirectory:nil 
+				 file:name
+		       modalForWindow:[self cashboxWindow] 
+			modalDelegate:self 
+		       didEndSelector:@selector(savePanelDidEnd:returnCode:contextInfo:) 
+			  contextInfo:NULL];
+}
+
+- (void)savePanelDidEnd:(NSSavePanel *)sheet returnCode:(int)returnCode  contextInfo:(void  *)contextInfo
+{
+	if(returnCode != NSOKButton) return;
+	
+	NSMutableString *ret = [NSMutableString string];
+	id account = [accountController valueForKey:@"selection"];
+	[ret appendString:[NSString stringWithFormat:@"%@,%@\n", [account valueForKey:@"name"], [[self.dateFormatter stringFromDate:[NSDate date]] csvExport]]];
+	// FIXME: Hard-coded english
+	[ret appendString:@"Date,Label,Description,Withdrawal,Deposit,Balance\n"];
+	for(id tx in [transactionController valueForKey:@"arrangedObjects"]) {
+		NSString *date = [[dateFormatter stringFromDate:[tx valueForKey:@"date"]] csvExport];
+		NSString *labelName = [[tx valueForKeyPath:@"transactionLabel.name"] csvExport];
+		NSString *description = [[tx valueForKey:@"transactionDescription"] csvExport];
+		if(!labelName) labelName = @"\"\"";
+		if(!description) description = @"\"\"";
+		double withdrawal = [[tx valueForKey:@"withdrawal"] doubleValue];
+		double deposit = [[tx valueForKey:@"deposit"] doubleValue];
+		double balance = [[tx valueForKey:@"balance"] doubleValue];
+		[ret appendString:[NSString stringWithFormat:@"%@,%@,%@,%.2f,%.2f,%.2f\n", 
+				   date, labelName, description, withdrawal, deposit, balance]];
+	}
+	
+	[ret writeToURL:[sheet URL] atomically:NO encoding:NSUTF8StringEncoding error:NULL];
 }
 @end

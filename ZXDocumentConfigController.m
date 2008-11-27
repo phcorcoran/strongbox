@@ -35,7 +35,11 @@
 
 - (IBAction)setAccountSelection:(id)sender
 {
-	id arr = [accountController arrangedObjects];
+	NSError *error;
+	if(!accountController) return;
+	[accountController fetchWithRequest:nil merge:NO error:&error];
+	id arr = [accountController valueForKey:@"arrangedObjects"];
+
 	id selectedAccount = nil;
 	for(id account in arr) {
 		if([[account valueForKey:@"name"] isEqual:[[self content] valueForKey:@"currentAccountName"]]) {
@@ -54,5 +58,11 @@
 - (void)updateCurrentAccountName
 {
 	[[self content] setValue:[accountController valueForKeyPath:@"selection.name"] forKey:@"currentAccountName"];
+}
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[super dealloc];
 }
 @end

@@ -11,7 +11,6 @@
 #import "ZXNotifications.h"
 
 @interface ZXLabelMO : NSManagedObject {
-
 }
 - (void)specialSetName:(NSString *)newName;
 @end

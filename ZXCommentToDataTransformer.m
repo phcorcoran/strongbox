@@ -23,14 +23,12 @@
 - (id)transformedValue:(id)value
 {
 	
-	NSLog(@"1: %@", [value class]);
 	if (value == nil) return nil;
 	return [[[NSAttributedString alloc] initWithRTFD:value documentAttributes:nil] autorelease];
 }
 
 - (id)reverseTransformedValue:(id)value
 {
-	NSLog(@"2: %@", [value class]);
 	if (value == nil) return nil;
 	return [value RTFDFromRange:NSMakeRange(0, [value length]) documentAttributes:nil];
 	

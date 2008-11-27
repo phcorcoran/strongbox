@@ -35,36 +35,27 @@
 	[self setValue:[array objectAtIndex:0] forKey:@"transactionLabel"];
 }
 
+- (void)didChangeValueForKey:(NSString *)key
+{
+	[super didChangeValueForKey:key];
+	if([key isEqual:@"account"]) {
+		[self setValue:[self valueForKeyPath:@"account.balance"] forKey:@"balance"];
+	}
+}
 
 - (void)awakeFromInsert {
 	[self setValue:[NSDate date] forKey:@"date"];
-	[self setValue:[ZXLabelController noLabelObjectWithMOC:self.managedObjectContext] forKey:@"transactionLabel"];
+	[self setTransactionLabelName:@"-"];
 }
 
 - (void)setValue:(id)newValue forKey:(id)key
 {
 	[super setValue:newValue forKey:key];
-	if([key isEqual:@"deposit"] || [key isEqual:@"withdrawal"]) {
+	if([key isEqual:@"deposit"] || [key isEqual:@"withdrawal"] || [key isEqual:@"date"]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountTotalDidChangeNotification object:self];
 	} else if([key isEqual:@"transactionLabel"]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:ZXTransactionLabelDidChangeNotification object:self];
 	}
 }
 
-- (NSNumber *)balance
-{
-	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Transaction" 
-							     inManagedObjectContext:self.managedObjectContext];
-	NSPredicate *balancePredicate = [NSPredicate predicateWithFormat: @"(date <= %@) AND (account.name like %@)", [self valueForKey:@"date"], [self valueForKeyPath:@"account.name"]];
-	
-	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-	[fetchRequest setEntity:entityDescription];
-	[fetchRequest setPredicate:balancePredicate];
-	NSError *error = nil;
-	NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-	if(array == nil) {
-		return nil;
-	}
-	return [NSNumber numberWithDouble:[[array valueForKeyPath:@"@sum.deposit"] doubleValue] - [[array valueForKeyPath:@"@sum.withdrawal"] doubleValue]];
-}
 @end

@@ -10,7 +10,7 @@
 #import "ZXDocument.h"
 
 @class ZXDocument;
-@interface ZXOldCashboxImporter : NSOperation {
+@interface ZXOldCashboxImporter : NSObject {
 	IBOutlet ZXDocument *owner;
 	NSMutableDictionary *allNewLabels;
 	IBOutlet NSProgressIndicator *progressIndicator;
@@ -19,8 +19,9 @@
 }
 
 @property(assign) NSMutableDictionary *allNewLabels;
-@property NSWindow *importerWindow;
+@property(assign) NSWindow *importerWindow;
 
+- (void)main;
 - (void)importLabelsFromFile:(NSString *)path;
 - (void)importAccountFromFile:(NSString *)path;
 

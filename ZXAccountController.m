@@ -8,10 +8,6 @@
 
 #import "ZXAccountController.h"
 
-//! Dull subclass of NSArrayController to override methods
-/*!
- This class probably should not be instantiated by the programmer. It is intended to work with Interface Builder, for the prepareContent method.
- */
 @implementation ZXAccountController
 @synthesize usedNames;
 
@@ -23,10 +19,6 @@
 	return self;
 }
 
-//! Is responsible for last-minute preparation of the controller/entity
-/*!
- This fonction will most likely never be called by the programmer. It is called just before the controller is up and ready. It is activated when the button "Automatically prepare content" is clicked in Interface Builder. In this case, what it should do is check whether the controller's array is empty. If it is, it adds a new instance of the entity. If it isn't, it does nothing.
- */
 - (void)prepareContent
 {
 	[super prepareContent];
@@ -46,13 +38,6 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(validatesNewAccountName:) name:ZXAccountNameDidChangeNotification object:nil];
 }
 
-- (void)setContent:(id)content
-{
-	[super setContent:content];
-	[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountControllerDidLoadNotification 
-							    object:self];
-}
-
 - (void)setValue:(id)newValue forKey:(id)key
 {
 	[super setValue:newValue forKey:key];
@@ -64,23 +49,18 @@
 - (void)awakeFromNib
 {
 	[super awakeFromNib];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTotal:) name:ZXAccountTotalDidChangeNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recalculateBalance:) name:ZXAccountTotalDidChangeNotification object:nil];
 }
 
-- (void)updateTotal:(NSNotification *)note
+- (void)recalculateBalance:(NSNotification *)note
 {
-	// Forcing binding update
-	id tmpSelect = [transactionController selectedObjects];
-	id tmp = [self content];
-	[super setContent:nil];
-	[super setContent:tmp];
-	[transactionController setSelectedObjects:tmpSelect];
-	// FIXME: Here continue
+	[[self valueForKeyPath:@"selection.self"] recalculateBalance:note];
 }
 
 - (id)newObject
 {
 	id obj = [super newObject];
+	// FIXME: Hard-coded english
 	[obj specialSetName:[self uniqueNewName:@"New Account"]];
 	[self.usedNames setValue:[obj objectID] forKey:[obj valueForKey:@"name"]];
 	return obj;
@@ -113,14 +93,11 @@
 	NSError *error = nil;
 	NSArray *allAccounts = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
 	if(allAccounts == nil) {
-		//FIXME: What should be done here if fetch request yields nil?
 		return;
 	}
-	NSMutableDictionary *usedNamesDict = [[NSMutableDictionary alloc] initWithCapacity:[allAccounts count]];
+	NSMutableDictionary *usedNamesDict = [NSMutableDictionary dictionaryWithCapacity:[allAccounts count]];
 	for(id account in allAccounts) {
-		if([account valueForKey:@"name"] == nil) {
-			continue;
-		}
+		if([account valueForKey:@"name"] == nil) continue;
 		[usedNamesDict setValue:[account objectID] forKey:[account valueForKey:@"name"]];
 	}
 	self.usedNames = usedNamesDict;
@@ -130,5 +107,11 @@
 {
 	[super remove:sender];
 	[self updateUsedNames];
+}
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[super dealloc];
 }
 @end

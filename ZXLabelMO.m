@@ -12,10 +12,9 @@
 @implementation ZXLabelMO
 - (void)setValue:(id)value forKey:(NSString *)key
 {
-	// The "No Label" label name is immutable.
-	if([key isEqual:@"name"] && [self isEqual:[ZXLabelController noLabelObjectWithMOC:self.managedObjectContext]]) {
-		return;
-	}
+	// The "-" label name is immutable. Could be changed to only 
+	// "if([self valueForKey:@"isImmutable"])" to disable color change.
+	if([key isEqual:@"name"] && [[self valueForKey:@"isImmutable"] boolValue]) return;
 	[super setValue:value forKey:key];
 	if([key isEqual:@"name"]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:ZXLabelNameDidChangeNotification object:self];
