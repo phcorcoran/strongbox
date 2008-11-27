@@ -18,7 +18,6 @@
 - (void)setValue:(id)newValue forKey:(id)key
 {
 	[super setValue:newValue forKey:key];
-	NSLog(@"setValue:%@ forKey:%@", newValue, key);
 	if([key isEqual:@"deposit"] || [key isEqual:@"withdrawal"]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountTotalDidChangeNotification object:self];
 	} else if([key isEqual:@"transactionLabel"]) {
@@ -26,13 +25,6 @@
 	}
 	
 	
-}
-
-- (id)valueForUndefinedKey:(id)key
-{
-	NSLog(@"aaa");
-	[super valueForUndefinedKey:key];
-	return nil;
 }
 
 - (NSNumber *)balance

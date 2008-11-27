@@ -61,19 +61,6 @@ enum {
 	
 	IBOutlet NSNumber *detailBoxHidden;
 	IBOutlet NSBox *detailBox;
-	
-//	IBOutlet NSView *datePickerView;
-	
-//	IBOutlet NSNumber *dateRangePickerIsVisible;
-	
-/*	IBOutlet NSBox *divider;
-	IBOutlet NSView *allAccounts;
- 
-	
-	BOOL showPercents;
-	double total;
-	//NSMutableArray *totals;
-*/
 }
 
 @property (assign) ZXDocument *owner;
@@ -85,9 +72,6 @@ enum {
 - (void)showWindow;
 - (IBAction)updateView:(id)sender;
 - (void)setupNotificationObserving;
-- (IBAction)changeDollarPercent:(id)sender;
-
 - (void)resetViewsPositions;
-
-- (IBAction)toggleRangePicker:(id)sender;
+- (IBAction)toggleDetailBox:(id)sender;
 @end
