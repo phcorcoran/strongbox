@@ -60,12 +60,12 @@
 }
 
 #pragma mark Control report window
-- (IBAction)showReportWindow:(id)sender
+- (IBAction)toggleReportWindow:(id)sender
 {
 	if(!reportWindowController) {
 		reportWindowController = [[ZXReportWindowController alloc] initWithOwner:self];
 	}
-	[reportWindowController showWindow];
+	[reportWindowController toggleReportWindow:self];
 }
 
 #pragma mark Save options
@@ -93,11 +93,6 @@ originalContentsURL:(NSURL *)absoluteOriginalContentsURL
 - (IBAction)toggleInspector:(id)sender
 {
 	[inspectorDrawer toggle:self];
-}
-
-- (IBAction)logLabels:(id)sender
-{
-	NSLog(@"aO: %@", [labelController valueForKeyPath:@"arrangedObjects.name"]);
 }
 
 #pragma mark Other stuff

@@ -40,16 +40,20 @@
 	return self;
 }
 
-
-
-- (void)showWindow
+- (IBAction)toggleReportWindow:(id)sender
 {
-	if (!reportWindow) {
+	BOOL mustUpdate = NO;
+	if(!reportWindow) {
 		[NSBundle loadNibNamed:@"ReportWindow" owner:self];
+		mustUpdate = YES;
 	}
-	[self setupNotificationObserving];
-	[self updateView:self];
-	[reportWindow makeKeyAndOrderFront:nil];
+	if([reportWindow isVisible] == NO || mustUpdate) {
+		[self setupNotificationObserving];
+		[self updateView:self];
+		[reportWindow makeKeyAndOrderFront:nil];
+	} else {
+		[reportWindow performClose:self];
+	}
 }
 
 - (void)setupNotificationObserving

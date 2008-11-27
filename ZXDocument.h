@@ -28,18 +28,17 @@
 
 @property(readwrite, assign) NSWindow *cashboxWindow;
 @property(readonly) NSArrayController *accountController;
-@property(assign) NSArray *transactionSortDescriptors;
+@property(copy) NSArray *transactionSortDescriptors;
 @property(copy) NSArray *nameSortDescriptors;
 
 - (IBAction)toggleInspector:(id)sender;
 
-- (IBAction)logLabels:(id)sender;
 - (NSArray *)allLabels;
 
 - (IBAction)addTransaction:(id)sender;
 - (IBAction)removeTransaction:(id)sender;
 
-- (IBAction)showReportWindow:(id)sender;
+- (IBAction)toggleReportWindow:(id)sender;
 
 - (IBAction)raiseConfigSheet:(id)sender;
 - (IBAction)endConfigSheet:(id)sender;

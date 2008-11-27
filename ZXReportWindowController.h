@@ -69,7 +69,7 @@ enum {
 
 
 - (id)initWithOwner:(id)owner;
-- (void)showWindow;
+- (IBAction)toggleReportWindow:(id)sender;
 - (IBAction)updateView:(id)sender;
 - (void)setupNotificationObserving;
 - (void)resetViewsPositions;
