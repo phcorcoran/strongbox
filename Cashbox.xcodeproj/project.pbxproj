@@ -7,34 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		775BDEF1067A8BF0009058FE /* MyDocument.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 775BDEF0067A8BF0009058FE /* MyDocument.xcdatamodel */; };
 		775DFF38067A968500C5B868 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		8D15AC310486D014006FF6A4 /* ZXDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* ZXDocument.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		F114BB690E29C3D300154985 /* FUCK.txt in Resources */ = {isa = PBXBuildFile; fileRef = F114BB680E29C3D300154985 /* FUCK.txt */; };
 		F11534880DF5898A00723D0D /* ZXAccountController.m in Sources */ = {isa = PBXBuildFile; fileRef = F11534870DF5898A00723D0D /* ZXAccountController.m */; };
-		F125270E0E21EDB700A3D561 /* ZXTransactionOverviewTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F125270D0E21EDB700A3D561 /* ZXTransactionOverviewTransformer.m */; };
+		F11DD3190ED8D7B5003FB869 /* NSStringExportAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F11DD3180ED8D7B5003FB869 /* NSStringExportAdditions.m */; };
 		F12527770E21F6EE00A3D561 /* ZXCurrencyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F12527760E21F6EE00A3D561 /* ZXCurrencyFormatter.m */; };
 		F1258F780DF4F2C200F6BEF1 /* CashboxIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F1258F770DF4F2C200F6BEF1 /* CashboxIcon.icns */; };
 		F1258FDE0DF4F56100F6BEF1 /* GeneralIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F1258FDD0DF4F56100F6BEF1 /* GeneralIcon.icns */; };
 		F12590500DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.m in Sources */ = {isa = PBXBuildFile; fileRef = F125904F0DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.m */; };
+		F12C1CC40E4B379000F037A1 /* ZXConfigWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F12C1CC30E4B379000F037A1 /* ZXConfigWindowDelegate.m */; };
+		F14036CC0E4DE25D000FD8A5 /* ZXOldCashboxImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = F14036CB0E4DE25D000FD8A5 /* ZXOldCashboxImporter.m */; };
+		F14485120E2D3B6F000560FC /* ZXDocumentConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = F14485110E2D3B6F000560FC /* ZXDocumentConfigController.m */; };
+		F15BA3E70E4D79B400DD5F1E /* InspectorIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F15BA3E60E4D79B400DD5F1E /* InspectorIcon.png */; };
+		F170CE330E54000900CAB662 /* KFCompletingTextFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F170CE320E54000900CAB662 /* KFCompletingTextFormatter.m */; };
+		F1816B8E0ECA4ABF00022D42 /* MyModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = F1816B8D0ECA4ABF00022D42 /* MyModel.xcdatamodel */; };
 		F18171860D89FE4400482919 /* ZXAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = F18171850D89FE4400482919 /* ZXAppController.m */; };
 		F18171CA0D8A15CF00482919 /* ZXColorToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F18171C90D8A15CF00482919 /* ZXColorToDataTransformer.m */; };
 		F1A01C630E1DEC0300E3D3C7 /* ZXReportTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A01C620E1DEC0300E3D3C7 /* ZXReportTextView.m */; };
 		F1A01CE50E1DFCDD00E3D3C7 /* ZXReportSection.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A01CE40E1DFCDD00E3D3C7 /* ZXReportSection.m */; };
 		F1A578740D8641DB006720A3 /* ZXToolbarSearchField.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A578730D8641DB006720A3 /* ZXToolbarSearchField.m */; };
 		F1A6C9320E2A49BB00E2FD0F /* ReportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A6C9310E2A49BB00E2FD0F /* ReportWindow.xib */; };
+		F1ABF4670E40B6BE00ECF6D0 /* ZXLabelMO.m in Sources */ = {isa = PBXBuildFile; fileRef = F1ABF4660E40B6BE00ECF6D0 /* ZXLabelMO.m */; };
+		F1ABF46A0E40B75200ECF6D0 /* ZXLabelController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1ABF4690E40B75200ECF6D0 /* ZXLabelController.m */; };
 		F1C8C8130E2500B100D7AC42 /* ZXTransactionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C8C8120E2500B100D7AC42 /* ZXTransactionController.m */; };
-		F1CEA3660DFA505B007B913F /* WYClickView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FDCAB30DB26474003FFBAB /* WYClickView.m */; };
 		F1CEA3EB0DFA5416007B913F /* ZXReportGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1CEA3EA0DFA5416007B913F /* ZXReportGraphView.m */; };
-		F1D4B12C0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D4B12B0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.m */; };
+		F1D05D4B0E4BE1200075730E /* ZXCommentToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D05D4A0E4BE1200075730E /* ZXCommentToDataTransformer.m */; };
+		F1DA7F2C0E2E0C1600D05BB4 /* ZXAccountMO.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DA7F2B0E2E0C1600D05BB4 /* ZXAccountMO.m */; };
+		F1EB03BD0EDA3D1700921513 /* ZXReportHistView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EB03BC0EDA3D1700921513 /* ZXReportHistView.m */; };
+		F1F46A250ECAAF460092F32C /* ZXCurrencyValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F46A240ECAAF460092F32C /* ZXCurrencyValueTransformer.m */; };
 		F1F7CA8C0D7B88B600B9DD1B /* ZXDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CA8B0D7B88B600B9DD1B /* ZXDocument.xib */; };
 		F1F7CAB50D7B8C4200B9DD1B /* AddIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CAB30D7B8C4200B9DD1B /* AddIcon.png */; };
 		F1F7CAB60D7B8C4200B9DD1B /* RemoveIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CAB40D7B8C4200B9DD1B /* RemoveIcon.png */; };
-		F1F7CAE70D7B8D4700B9DD1B /* InspectorIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CAE50D7B8D4700B9DD1B /* InspectorIcon.png */; };
+		F1F7CAE70D7B8D4700B9DD1B /* InspectorIcon_old.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CAE50D7B8D4700B9DD1B /* InspectorIcon_old.png */; };
 		F1F7CAE80D7B8D4700B9DD1B /* StatIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CAE60D7B8D4700B9DD1B /* StatIcon.png */; };
 		F1F7CB940D7E101E00B9DD1B /* ZXTransactionMO.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F7CB930D7E101E00B9DD1B /* ZXTransactionMO.m */; };
 		F1FDCA820DB2620D003FFBAB /* ZXReportWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FDCA810DB2620D003FFBAB /* ZXReportWindowController.m */; };
@@ -51,21 +59,29 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Cashbox_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cashbox_Prefix.pch; sourceTree = "<group>"; };
-		775BDEF0067A8BF0009058FE /* MyDocument.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = MyDocument.xcdatamodel; sourceTree = "<group>"; };
 		7788DA0506752A1600599AAD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Cashbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cashbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F114BB680E29C3D300154985 /* FUCK.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FUCK.txt; sourceTree = "<group>"; };
 		F11534860DF5898A00723D0D /* ZXAccountController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAccountController.h; sourceTree = "<group>"; };
 		F11534870DF5898A00723D0D /* ZXAccountController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAccountController.m; sourceTree = "<group>"; };
-		F125270C0E21EDB700A3D561 /* ZXTransactionOverviewTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTransactionOverviewTransformer.h; sourceTree = "<group>"; };
-		F125270D0E21EDB700A3D561 /* ZXTransactionOverviewTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTransactionOverviewTransformer.m; sourceTree = "<group>"; };
+		F11DD3170ED8D7B5003FB869 /* NSStringExportAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringExportAdditions.h; sourceTree = "<group>"; };
+		F11DD3180ED8D7B5003FB869 /* NSStringExportAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringExportAdditions.m; sourceTree = "<group>"; };
 		F12527750E21F6EE00A3D561 /* ZXCurrencyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = ZXCurrencyFormatter.h; sourceTree = "<group>"; };
 		F12527760E21F6EE00A3D561 /* ZXCurrencyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = ZXCurrencyFormatter.m; sourceTree = "<group>"; };
 		F1258F770DF4F2C200F6BEF1 /* CashboxIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CashboxIcon.icns; sourceTree = "<group>"; };
 		F1258FDD0DF4F56100F6BEF1 /* GeneralIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = GeneralIcon.icns; sourceTree = "<group>"; };
 		F125904E0DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXToolbarAccountPopUpField.h; sourceTree = "<group>"; };
 		F125904F0DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXToolbarAccountPopUpField.m; sourceTree = "<group>"; };
+		F12C1CC20E4B379000F037A1 /* ZXConfigWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXConfigWindowDelegate.h; sourceTree = "<group>"; };
+		F12C1CC30E4B379000F037A1 /* ZXConfigWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXConfigWindowDelegate.m; sourceTree = "<group>"; };
+		F14036CA0E4DE25D000FD8A5 /* ZXOldCashboxImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXOldCashboxImporter.h; sourceTree = "<group>"; };
+		F14036CB0E4DE25D000FD8A5 /* ZXOldCashboxImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXOldCashboxImporter.m; sourceTree = "<group>"; };
+		F14485100E2D3B6F000560FC /* ZXDocumentConfigController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDocumentConfigController.h; sourceTree = "<group>"; };
+		F14485110E2D3B6F000560FC /* ZXDocumentConfigController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDocumentConfigController.m; sourceTree = "<group>"; };
+		F15BA3E60E4D79B400DD5F1E /* InspectorIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InspectorIcon.png; sourceTree = "<group>"; };
+		F170CE310E54000900CAB662 /* KFCompletingTextFormatter.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = KFCompletingTextFormatter.h; sourceTree = "<group>"; };
+		F170CE320E54000900CAB662 /* KFCompletingTextFormatter.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = KFCompletingTextFormatter.m; sourceTree = "<group>"; };
+		F1816B8D0ECA4ABF00022D42 /* MyModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = wrapper.xcdatamodel; path = MyModel.xcdatamodel; sourceTree = "<group>"; };
 		F18171840D89FE4400482919 /* ZXAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAppController.h; sourceTree = "<group>"; };
 		F18171850D89FE4400482919 /* ZXAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAppController.m; sourceTree = "<group>"; };
 		F18171C80D8A15CF00482919 /* ZXColorToDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXColorToDataTransformer.h; sourceTree = "<group>"; };
@@ -77,26 +93,32 @@
 		F1A578720D8641DB006720A3 /* ZXToolbarSearchField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXToolbarSearchField.h; sourceTree = "<group>"; };
 		F1A578730D8641DB006720A3 /* ZXToolbarSearchField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXToolbarSearchField.m; sourceTree = "<group>"; };
 		F1A6C9310E2A49BB00E2FD0F /* ReportWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportWindow.xib; sourceTree = "<group>"; };
+		F1ABF4650E40B6BE00ECF6D0 /* ZXLabelMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXLabelMO.h; sourceTree = "<group>"; };
+		F1ABF4660E40B6BE00ECF6D0 /* ZXLabelMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXLabelMO.m; sourceTree = "<group>"; };
+		F1ABF4680E40B75200ECF6D0 /* ZXLabelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXLabelController.h; sourceTree = "<group>"; };
+		F1ABF4690E40B75200ECF6D0 /* ZXLabelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXLabelController.m; sourceTree = "<group>"; };
 		F1C8C8110E2500B100D7AC42 /* ZXTransactionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTransactionController.h; sourceTree = "<group>"; };
 		F1C8C8120E2500B100D7AC42 /* ZXTransactionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTransactionController.m; sourceTree = "<group>"; };
 		F1CEA3E90DFA5416007B913F /* ZXReportGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReportGraphView.h; sourceTree = "<group>"; };
 		F1CEA3EA0DFA5416007B913F /* ZXReportGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXReportGraphView.m; sourceTree = "<group>"; };
 		F1CEA5DD0DFA6E2A007B913F /* ZXNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXNotifications.h; sourceTree = "<group>"; };
-		F1D4B12A0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXLabelNamePopUpTransformer.h; sourceTree = "<group>"; };
-		F1D4B12B0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXLabelNamePopUpTransformer.m; sourceTree = "<group>"; };
+		F1D05D490E4BE1200075730E /* ZXCommentToDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCommentToDataTransformer.h; sourceTree = "<group>"; };
+		F1D05D4A0E4BE1200075730E /* ZXCommentToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCommentToDataTransformer.m; sourceTree = "<group>"; };
+		F1DA7F2A0E2E0C1600D05BB4 /* ZXAccountMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAccountMO.h; sourceTree = "<group>"; };
+		F1DA7F2B0E2E0C1600D05BB4 /* ZXAccountMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAccountMO.m; sourceTree = "<group>"; };
+		F1EB03BB0EDA3D1700921513 /* ZXReportHistView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReportHistView.h; sourceTree = "<group>"; };
+		F1EB03BC0EDA3D1700921513 /* ZXReportHistView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXReportHistView.m; sourceTree = "<group>"; };
+		F1F46A230ECAAF460092F32C /* ZXCurrencyValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCurrencyValueTransformer.h; sourceTree = "<group>"; };
+		F1F46A240ECAAF460092F32C /* ZXCurrencyValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCurrencyValueTransformer.m; sourceTree = "<group>"; };
 		F1F7CA8B0D7B88B600B9DD1B /* ZXDocument.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZXDocument.xib; sourceTree = "<group>"; };
 		F1F7CAB30D7B8C4200B9DD1B /* AddIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddIcon.png; sourceTree = "<group>"; };
 		F1F7CAB40D7B8C4200B9DD1B /* RemoveIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RemoveIcon.png; sourceTree = "<group>"; };
-		F1F7CAE50D7B8D4700B9DD1B /* InspectorIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InspectorIcon.png; sourceTree = "<group>"; };
+		F1F7CAE50D7B8D4700B9DD1B /* InspectorIcon_old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InspectorIcon_old.png; sourceTree = "<group>"; };
 		F1F7CAE60D7B8D4700B9DD1B /* StatIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatIcon.png; sourceTree = "<group>"; };
 		F1F7CB920D7E101E00B9DD1B /* ZXTransactionMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTransactionMO.h; sourceTree = "<group>"; };
 		F1F7CB930D7E101E00B9DD1B /* ZXTransactionMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTransactionMO.m; sourceTree = "<group>"; };
 		F1FDCA800DB2620D003FFBAB /* ZXReportWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReportWindowController.h; sourceTree = "<group>"; };
 		F1FDCA810DB2620D003FFBAB /* ZXReportWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXReportWindowController.m; sourceTree = "<group>"; };
-		F1FDCAB30DB26474003FFBAB /* WYClickView.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = WYClickView.m; sourceTree = "<group>"; };
-		F1FDCABD0DB2649B003FFBAB /* ReportWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportWindowController.h; sourceTree = "<group>"; };
-		F1FDCABE0DB2649B003FFBAB /* ReportWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportWindowController.m; sourceTree = "<group>"; };
-		F1FDCABF0DB2649B003FFBAB /* WYClickView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYClickView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +162,6 @@
 		2A37F4AAFDCFA73011CA2CEA /* Cashbox */ = {
 			isa = PBXGroup;
 			children = (
-				F114BB680E29C3D300154985 /* FUCK.txt */,
 				E1B74B1A0667B4A90069E3BA /* Models */,
 				2A37F4ABFDCFA73011CA2CEA /* Classes */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
@@ -159,6 +180,10 @@
 				F1CEA3B00DFA52E4007B913F /* Account Stuff */,
 				F1CEA3B10DFA52FE007B913F /* Transaction Stuff */,
 				F1CEA3B20DFA5318007B913F /* Report Stuff */,
+				F12C1D050E4B3A1500F037A1 /* Config Window */,
+				F14036C90E4DE246000FD8A5 /* Importer */,
+				F170CE310E54000900CAB662 /* KFCompletingTextFormatter.h */,
+				F170CE320E54000900CAB662 /* KFCompletingTextFormatter.m */,
 				F18171840D89FE4400482919 /* ZXAppController.h */,
 				F18171850D89FE4400482919 /* ZXAppController.m */,
 				2A37F4AEFDCFA73011CA2CEA /* ZXDocument.h */,
@@ -182,7 +207,8 @@
 			children = (
 				F1F7CAB30D7B8C4200B9DD1B /* AddIcon.png */,
 				F1258F770DF4F2C200F6BEF1 /* CashboxIcon.icns */,
-				F1F7CAE50D7B8D4700B9DD1B /* InspectorIcon.png */,
+				F1F7CAE50D7B8D4700B9DD1B /* InspectorIcon_old.png */,
+				F15BA3E60E4D79B400DD5F1E /* InspectorIcon.png */,
 				F1F7CAE60D7B8D4700B9DD1B /* StatIcon.png */,
 				F1F7CAB40D7B8C4200B9DD1B /* RemoveIcon.png */,
 				F1258FDD0DF4F56100F6BEF1 /* GeneralIcon.icns */,
@@ -208,18 +234,36 @@
 		E1B74B1A0667B4A90069E3BA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				775BDEF0067A8BF0009058FE /* MyDocument.xcdatamodel */,
+				F1816B8D0ECA4ABF00022D42 /* MyModel.xcdatamodel */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		F12C1D050E4B3A1500F037A1 /* Config Window */ = {
+			isa = PBXGroup;
+			children = (
+				F14485100E2D3B6F000560FC /* ZXDocumentConfigController.h */,
+				F14485110E2D3B6F000560FC /* ZXDocumentConfigController.m */,
+				F12C1CC20E4B379000F037A1 /* ZXConfigWindowDelegate.h */,
+				F12C1CC30E4B379000F037A1 /* ZXConfigWindowDelegate.m */,
+			);
+			name = "Config Window";
+			sourceTree = "<group>";
+		};
+		F14036C90E4DE246000FD8A5 /* Importer */ = {
+			isa = PBXGroup;
+			children = (
+				F11DD3170ED8D7B5003FB869 /* NSStringExportAdditions.h */,
+				F11DD3180ED8D7B5003FB869 /* NSStringExportAdditions.m */,
+				F14036CA0E4DE25D000FD8A5 /* ZXOldCashboxImporter.h */,
+				F14036CB0E4DE25D000FD8A5 /* ZXOldCashboxImporter.m */,
+			);
+			name = Importer;
 			sourceTree = "<group>";
 		};
 		F1A01CE60E1DFD2900E3D3C7 /* Old Report */ = {
 			isa = PBXGroup;
 			children = (
-				F1FDCABD0DB2649B003FFBAB /* ReportWindowController.h */,
-				F1FDCABE0DB2649B003FFBAB /* ReportWindowController.m */,
-				F1FDCABF0DB2649B003FFBAB /* WYClickView.h */,
-				F1FDCAB30DB26474003FFBAB /* WYClickView.m */,
 			);
 			name = "Old Report";
 			sourceTree = "<group>";
@@ -240,8 +284,10 @@
 			children = (
 				F18171C80D8A15CF00482919 /* ZXColorToDataTransformer.h */,
 				F18171C90D8A15CF00482919 /* ZXColorToDataTransformer.m */,
-				F1D4B12A0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.h */,
-				F1D4B12B0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.m */,
+				F1ABF4650E40B6BE00ECF6D0 /* ZXLabelMO.h */,
+				F1ABF4660E40B6BE00ECF6D0 /* ZXLabelMO.m */,
+				F1ABF4680E40B75200ECF6D0 /* ZXLabelController.h */,
+				F1ABF4690E40B75200ECF6D0 /* ZXLabelController.m */,
 			);
 			name = "Label Stuff";
 			sourceTree = "<group>";
@@ -249,10 +295,12 @@
 		F1CEA3B00DFA52E4007B913F /* Account Stuff */ = {
 			isa = PBXGroup;
 			children = (
+				F1F46A230ECAAF460092F32C /* ZXCurrencyValueTransformer.h */,
+				F1F46A240ECAAF460092F32C /* ZXCurrencyValueTransformer.m */,
+				F1DA7F2A0E2E0C1600D05BB4 /* ZXAccountMO.h */,
+				F1DA7F2B0E2E0C1600D05BB4 /* ZXAccountMO.m */,
 				F11534860DF5898A00723D0D /* ZXAccountController.h */,
 				F11534870DF5898A00723D0D /* ZXAccountController.m */,
-				F125270C0E21EDB700A3D561 /* ZXTransactionOverviewTransformer.h */,
-				F125270D0E21EDB700A3D561 /* ZXTransactionOverviewTransformer.m */,
 				F12527750E21F6EE00A3D561 /* ZXCurrencyFormatter.h */,
 				F12527760E21F6EE00A3D561 /* ZXCurrencyFormatter.m */,
 			);
@@ -266,6 +314,8 @@
 				F1C8C8120E2500B100D7AC42 /* ZXTransactionController.m */,
 				F1F7CB920D7E101E00B9DD1B /* ZXTransactionMO.h */,
 				F1F7CB930D7E101E00B9DD1B /* ZXTransactionMO.m */,
+				F1D05D490E4BE1200075730E /* ZXCommentToDataTransformer.h */,
+				F1D05D4A0E4BE1200075730E /* ZXCommentToDataTransformer.m */,
 			);
 			name = "Transaction Stuff";
 			sourceTree = "<group>";
@@ -274,6 +324,8 @@
 			isa = PBXGroup;
 			children = (
 				F1A01CE60E1DFD2900E3D3C7 /* Old Report */,
+				F1EB03BB0EDA3D1700921513 /* ZXReportHistView.h */,
+				F1EB03BC0EDA3D1700921513 /* ZXReportHistView.m */,
 				F1FDCA800DB2620D003FFBAB /* ZXReportWindowController.h */,
 				F1FDCA810DB2620D003FFBAB /* ZXReportWindowController.m */,
 				F1A01CE30E1DFCDD00E3D3C7 /* ZXReportSection.h */,
@@ -335,12 +387,12 @@
 				F1F7CA8C0D7B88B600B9DD1B /* ZXDocument.xib in Resources */,
 				F1F7CAB50D7B8C4200B9DD1B /* AddIcon.png in Resources */,
 				F1F7CAB60D7B8C4200B9DD1B /* RemoveIcon.png in Resources */,
-				F1F7CAE70D7B8D4700B9DD1B /* InspectorIcon.png in Resources */,
+				F1F7CAE70D7B8D4700B9DD1B /* InspectorIcon_old.png in Resources */,
 				F1F7CAE80D7B8D4700B9DD1B /* StatIcon.png in Resources */,
 				F1258F780DF4F2C200F6BEF1 /* CashboxIcon.icns in Resources */,
 				F1258FDE0DF4F56100F6BEF1 /* GeneralIcon.icns in Resources */,
-				F114BB690E29C3D300154985 /* FUCK.txt in Resources */,
 				F1A6C9320E2A49BB00E2FD0F /* ReportWindow.xib in Resources */,
+				F15BA3E70E4D79B400DD5F1E /* InspectorIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,7 +405,6 @@
 			files = (
 				8D15AC310486D014006FF6A4 /* ZXDocument.m in Sources */,
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
-				775BDEF1067A8BF0009058FE /* MyDocument.xcdatamodel in Sources */,
 				F1F7CB940D7E101E00B9DD1B /* ZXTransactionMO.m in Sources */,
 				F1A578740D8641DB006720A3 /* ZXToolbarSearchField.m in Sources */,
 				F18171860D89FE4400482919 /* ZXAppController.m in Sources */,
@@ -361,14 +412,23 @@
 				F1FDCA820DB2620D003FFBAB /* ZXReportWindowController.m in Sources */,
 				F12590500DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.m in Sources */,
 				F11534880DF5898A00723D0D /* ZXAccountController.m in Sources */,
-				F1CEA3660DFA505B007B913F /* WYClickView.m in Sources */,
 				F1CEA3EB0DFA5416007B913F /* ZXReportGraphView.m in Sources */,
 				F1A01C630E1DEC0300E3D3C7 /* ZXReportTextView.m in Sources */,
 				F1A01CE50E1DFCDD00E3D3C7 /* ZXReportSection.m in Sources */,
-				F125270E0E21EDB700A3D561 /* ZXTransactionOverviewTransformer.m in Sources */,
 				F12527770E21F6EE00A3D561 /* ZXCurrencyFormatter.m in Sources */,
-				F1D4B12C0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.m in Sources */,
 				F1C8C8130E2500B100D7AC42 /* ZXTransactionController.m in Sources */,
+				F14485120E2D3B6F000560FC /* ZXDocumentConfigController.m in Sources */,
+				F1DA7F2C0E2E0C1600D05BB4 /* ZXAccountMO.m in Sources */,
+				F1ABF4670E40B6BE00ECF6D0 /* ZXLabelMO.m in Sources */,
+				F1ABF46A0E40B75200ECF6D0 /* ZXLabelController.m in Sources */,
+				F12C1CC40E4B379000F037A1 /* ZXConfigWindowDelegate.m in Sources */,
+				F1D05D4B0E4BE1200075730E /* ZXCommentToDataTransformer.m in Sources */,
+				F14036CC0E4DE25D000FD8A5 /* ZXOldCashboxImporter.m in Sources */,
+				F170CE330E54000900CAB662 /* KFCompletingTextFormatter.m in Sources */,
+				F1816B8E0ECA4ABF00022D42 /* MyModel.xcdatamodel in Sources */,
+				F1F46A250ECAAF460092F32C /* ZXCurrencyValueTransformer.m in Sources */,
+				F11DD3190ED8D7B5003FB869 /* NSStringExportAdditions.m in Sources */,
+				F1EB03BD0EDA3D1700921513 /* ZXReportHistView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,7 +499,7 @@
 		26FC0AAA0875C8B900E6366F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_ENABLE_OBJC_GC = required;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				PREBINDING = NO;

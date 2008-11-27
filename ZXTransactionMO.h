@@ -7,10 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ZXLabelController.h"
 #import "ZXNotifications.h"
 
 
 @interface ZXTransactionMO : NSManagedObject {
+	IBOutlet NSString *transactionLabelName;
 }
-- (NSNumber *)balance;
+@property(copy) NSString *transactionLabelName;
+//- (NSNumber *)balance;
 @end

@@ -11,6 +11,7 @@
 
 @implementation ZXTransactionController
 
+
 - (IBAction)add:(id)sender
 {
 	[super add:sender];
@@ -22,4 +23,31 @@
 	[super remove:sender];
 	[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountTotalDidChangeNotification object:self];
 }
+
+-(BOOL)isACompletion:(NSString *)aString
+{
+	for(NSString *candidate in [self valueForKeyPath:@"arrangedObjects.transactionDescription"]) {
+		if ([candidate caseInsensitiveCompare:aString] == NSOrderedSame)
+			return YES;
+	}
+	return NO;
+}
+
+-(NSString *)completionForPrefix:(NSString *)prefix
+{
+	NSString *completion = nil;
+	
+	// special case
+	if (!prefix || [prefix length] == 0)
+		return nil;
+	
+	for(NSString *candidate in [self valueForKeyPath:@"arrangedObjects.transactionDescription"]) {
+		if ([[candidate commonPrefixWithString:prefix options:NSCaseInsensitiveSearch] length] == [prefix length]) {
+			completion = candidate;
+			break;
+		}
+	}
+	return completion;
+}
+
 @end

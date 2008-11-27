@@ -2,6 +2,7 @@
 build/*
 *.pbxuser
 *.move1v3
+Cashbox.xcodeproj/phcor.mode1v3
 
 # old skool
 .svn

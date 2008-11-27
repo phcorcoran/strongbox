@@ -8,3 +8,8 @@
 
 static NSString *ZXAccountTotalDidChangeNotification = @"AccountTotalDidChange";
 static NSString *ZXTransactionLabelDidChangeNotification = @"TransactionLabelDidChange";
+static NSString *ZXActiveAccountDidChangeNotification = @"ActiveAccountDidChange";
+static NSString *ZXAccountControllerDidLoadNotification = @"AccountControllerDidLoad";
+static NSString *ZXAccountNameDidChangeNotification = @"AccountNameDidChange";
+static NSString *ZXLabelNameDidChangeNotification = @"LabelNameDidChange";
+static NSString *ZXLabelControllerDidLoadNotification = @"LabelControllerDidLoad";
