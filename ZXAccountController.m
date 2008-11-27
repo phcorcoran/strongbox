@@ -42,18 +42,4 @@
 		[[NSNotificationCenter defaultCenter] postNotificationName:ZXActiveAccountDidChangeNotification object:self];
 	}
 }
-
-- (void)awakeFromNib
-{
-	[super awakeFromNib];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateOverview:) name:ZXAccountTotalDidChangeNotification object:nil];
-}
-
-- (IBAction)updateOverview:(id)sender
-{
-	[self willChangeValueForKey:@"selection"];
-	//	selection = [self valueForKey:@"selection"];
-	[self didChangeValueForKey:@"selection"];
-	[transactionOverviewTextField display];
-}
 @end

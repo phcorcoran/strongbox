@@ -29,8 +29,8 @@
 		F1C8C8130E2500B100D7AC42 /* ZXTransactionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C8C8120E2500B100D7AC42 /* ZXTransactionController.m */; };
 		F1CEA3660DFA505B007B913F /* WYClickView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FDCAB30DB26474003FFBAB /* WYClickView.m */; };
 		F1CEA3EB0DFA5416007B913F /* ZXReportGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1CEA3EA0DFA5416007B913F /* ZXReportGraphView.m */; };
-		F1D4B12C0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D4B12B0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.m */; };
 		F1DA7F2C0E2E0C1600D05BB4 /* ZXAccountMO.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DA7F2B0E2E0C1600D05BB4 /* ZXAccountMO.m */; };
+		F1DA803B0E2E1ACB00D05BB4 /* ZXLabelMO.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DA803A0E2E1ACB00D05BB4 /* ZXLabelMO.m */; };
 		F1F7CA8C0D7B88B600B9DD1B /* ZXDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CA8B0D7B88B600B9DD1B /* ZXDocument.xib */; };
 		F1F7CAB50D7B8C4200B9DD1B /* AddIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CAB30D7B8C4200B9DD1B /* AddIcon.png */; };
 		F1F7CAB60D7B8C4200B9DD1B /* RemoveIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CAB40D7B8C4200B9DD1B /* RemoveIcon.png */; };
@@ -81,10 +81,10 @@
 		F1CEA3E90DFA5416007B913F /* ZXReportGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReportGraphView.h; sourceTree = "<group>"; };
 		F1CEA3EA0DFA5416007B913F /* ZXReportGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXReportGraphView.m; sourceTree = "<group>"; };
 		F1CEA5DD0DFA6E2A007B913F /* ZXNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXNotifications.h; sourceTree = "<group>"; };
-		F1D4B12A0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXLabelNamePopUpTransformer.h; sourceTree = "<group>"; };
-		F1D4B12B0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXLabelNamePopUpTransformer.m; sourceTree = "<group>"; };
 		F1DA7F2A0E2E0C1600D05BB4 /* ZXAccountMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAccountMO.h; sourceTree = "<group>"; };
 		F1DA7F2B0E2E0C1600D05BB4 /* ZXAccountMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAccountMO.m; sourceTree = "<group>"; };
+		F1DA80390E2E1ACB00D05BB4 /* ZXLabelMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXLabelMO.h; sourceTree = "<group>"; };
+		F1DA803A0E2E1ACB00D05BB4 /* ZXLabelMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXLabelMO.m; sourceTree = "<group>"; };
 		F1F7CA8B0D7B88B600B9DD1B /* ZXDocument.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZXDocument.xib; sourceTree = "<group>"; };
 		F1F7CAB30D7B8C4200B9DD1B /* AddIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddIcon.png; sourceTree = "<group>"; };
 		F1F7CAB40D7B8C4200B9DD1B /* RemoveIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RemoveIcon.png; sourceTree = "<group>"; };
@@ -163,9 +163,9 @@
 				F18171850D89FE4400482919 /* ZXAppController.m */,
 				2A37F4AEFDCFA73011CA2CEA /* ZXDocument.h */,
 				2A37F4ACFDCFA73011CA2CEA /* ZXDocument.m */,
-				F1CEA5DD0DFA6E2A007B913F /* ZXNotifications.h */,
 				F14485100E2D3B6F000560FC /* ZXDocumentController.h */,
 				F14485110E2D3B6F000560FC /* ZXDocumentController.m */,
+				F1CEA5DD0DFA6E2A007B913F /* ZXNotifications.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -242,8 +242,8 @@
 			children = (
 				F18171C80D8A15CF00482919 /* ZXColorToDataTransformer.h */,
 				F18171C90D8A15CF00482919 /* ZXColorToDataTransformer.m */,
-				F1D4B12A0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.h */,
-				F1D4B12B0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.m */,
+				F1DA80390E2E1ACB00D05BB4 /* ZXLabelMO.h */,
+				F1DA803A0E2E1ACB00D05BB4 /* ZXLabelMO.m */,
 			);
 			name = "Label Stuff";
 			sourceTree = "<group>";
@@ -367,10 +367,10 @@
 				F1A01C630E1DEC0300E3D3C7 /* ZXReportTextView.m in Sources */,
 				F1A01CE50E1DFCDD00E3D3C7 /* ZXReportSection.m in Sources */,
 				F12527770E21F6EE00A3D561 /* ZXCurrencyFormatter.m in Sources */,
-				F1D4B12C0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.m in Sources */,
 				F1C8C8130E2500B100D7AC42 /* ZXTransactionController.m in Sources */,
 				F14485120E2D3B6F000560FC /* ZXDocumentController.m in Sources */,
 				F1DA7F2C0E2E0C1600D05BB4 /* ZXAccountMO.m in Sources */,
+				F1DA803B0E2E1ACB00D05BB4 /* ZXLabelMO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
