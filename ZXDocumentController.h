@@ -7,12 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "ZXNotifications.h"
-#import "ZXAccountController.h"
 
 
 @interface ZXDocumentController : NSObjectController {
-	IBOutlet ZXAccountController *accountController;
+	
 }
-- (void)updateCurrentAccountName;
+
 @end

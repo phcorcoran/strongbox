@@ -11,14 +11,4 @@
 
 @implementation ZXDocumentController
 
-- (void)prepareContent
-{
-	[self setContent:[self newObject]];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCurrentAccountName) name:ZXActiveAccountDidChangeNotification object:nil];
-}
-
-- (void)updateCurrentAccountName
-{
-	[[self content] setValue:[accountController valueForKeyPath:@"selection.name"] forKey:@"currentAccountName"];
-}
 @end
