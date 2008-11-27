@@ -27,6 +27,7 @@
 #import <Cocoa/Cocoa.h>
 #import "ZXDocument.h"
 #import "ZXReportGraphView.h"
+#import "ZXReportHistView.h"
 #import "ZXReportTextView.h"
 #import "ZXLabelController.h"
 #import "ZXNotifications.h"
@@ -47,11 +48,12 @@ enum {
 	ZXCustomReportTime = 5,
 };
 
-@class ZXReportGraphView, ZXReportTextView, ZXDocument;
+@class ZXReportGraphView, ZXReportTextView, ZXDocument, ZXReportHistView;
 @interface ZXReportWindowController : NSObject {
 	ZXDocument *owner;
 	IBOutlet NSWindow *reportWindow;
 	IBOutlet ZXReportGraphView *graphView;
+	IBOutlet ZXReportHistView *histView;
 	IBOutlet ZXReportTextView *textView;
 	IBOutlet NSPopUpButton *reportTypePopUpButton;
 	IBOutlet NSPopUpButton *reportTimePopUpButton;

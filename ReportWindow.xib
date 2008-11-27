@@ -9,7 +9,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="2"/>
-			<integer value="85"/>
+			<integer value="86"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -36,6 +36,7 @@
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
+				<string key="NSWindowContentMinSize">{481, 405}</string>
 				<object class="NSView" key="NSWindowView" id="1006">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
@@ -43,7 +44,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSPopUpButton" id="517796758">
 							<reference key="NSNextResponder" ref="1006"/>
-							<int key="NSvFlags">268</int>
+							<int key="NSvFlags">266</int>
 							<string key="NSFrame">{{17, 361}, {447, 26}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<bool key="NSEnabled">YES</bool>
@@ -145,7 +146,7 @@
 						</object>
 						<object class="NSPopUpButton" id="35966476">
 							<reference key="NSNextResponder" ref="1006"/>
-							<int key="NSvFlags">268</int>
+							<int key="NSvFlags">266</int>
 							<string key="NSFrame">{{280, 331}, {184, 26}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<bool key="NSEnabled">YES</bool>
@@ -261,21 +262,21 @@
 						</object>
 						<object class="NSCustomView" id="1068925139">
 							<reference key="NSNextResponder" ref="1006"/>
-							<int key="NSvFlags">268</int>
+							<int key="NSvFlags">270</int>
 							<string key="NSFrame">{{20, 51}, {255, 264}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<string key="NSClassName">ZXReportGraphView</string>
 						</object>
 						<object class="NSCustomView" id="86924403">
 							<reference key="NSNextResponder" ref="1006"/>
-							<int key="NSvFlags">268</int>
+							<int key="NSvFlags">265</int>
 							<string key="NSFrame">{{283, 51}, {178, 264}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<string key="NSClassName">ZXReportTextView</string>
 						</object>
 						<object class="NSBox" id="48124247">
 							<reference key="NSNextResponder" ref="1006"/>
-							<int key="NSvFlags">12</int>
+							<int key="NSvFlags">10</int>
 							<string key="NSFrame">{{20, 40}, {441, 5}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<string key="NSOffsets">{0, 0}</string>
@@ -347,7 +348,7 @@ ARcABAAAAAEAAAACARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
 						</object>
 						<object class="NSBox" id="892211997">
 							<reference key="NSNextResponder" ref="1006"/>
-							<int key="NSvFlags">12</int>
+							<int key="NSvFlags">10</int>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSView" id="429689429">
@@ -549,7 +550,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						</object>
 						<object class="NSTextField" id="531710992">
 							<reference key="NSNextResponder" ref="1006"/>
-							<int key="NSvFlags">268</int>
+							<int key="NSvFlags">266</int>
 							<string key="NSFrame">{{38, 20}, {41, 14}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<bool key="NSEnabled">YES</bool>
@@ -563,18 +564,18 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 								<reference key="NSTextColor" ref="31173918"/>
 							</object>
 						</object>
-						<object class="NSButton" id="861316017">
+						<object class="NSButton" id="861346266">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{91, 317}, {96, 32}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<bool key="NSEnabled">YES</bool>
-							<object class="NSButtonCell" key="NSCell" id="652613174">
+							<object class="NSButtonCell" key="NSCell" id="950475345">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">134217728</int>
 								<string key="NSContents">Debug</string>
 								<reference key="NSSupport" ref="241886072"/>
-								<reference key="NSControlView" ref="861316017"/>
+								<reference key="NSControlView" ref="861346266"/>
 								<int key="NSButtonFlags">-2038284033</int>
 								<int key="NSButtonFlags2">129</int>
 								<string key="NSAlternateContents"/>
@@ -588,6 +589,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1280, 778}}</string>
+				<string key="NSMinSize">{481, 427}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 			</object>
 			<object class="NSNumberFormatter" id="131887460">
@@ -730,7 +732,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				<bool key="NS.localized">YES</bool>
 				<bool key="NS.allowsfloats">YES</bool>
 			</object>
-			<object class="NSWindowTemplate" id="74622662">
+			<object class="NSWindowTemplate" id="117653962">
 				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{752, 192}, {492, 323}}</string>
@@ -738,16 +740,16 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				<string key="NSWindowTitle">Window</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
-				<object class="NSView" key="NSWindowView" id="254949033">
+				<object class="NSView" key="NSWindowView" id="620970106">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSCustomView" id="553158609">
-							<reference key="NSNextResponder" ref="254949033"/>
+						<object class="NSCustomView" id="461433293">
+							<reference key="NSNextResponder" ref="620970106"/>
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{20, 20}, {452, 283}}</string>
-							<reference key="NSSuperview" ref="254949033"/>
+							<reference key="NSSuperview" ref="620970106"/>
 							<string key="NSClassName">ZXReportHistView</string>
 						</object>
 					</object>
@@ -916,10 +918,18 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">makeKeyAndOrderFront:</string>
-						<reference key="source" ref="74622662"/>
-						<reference key="destination" ref="861316017"/>
+						<reference key="source" ref="117653962"/>
+						<reference key="destination" ref="861346266"/>
 					</object>
 					<int key="connectionID">89</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">histView</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="461433293"/>
+					</object>
+					<int key="connectionID">91</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -973,7 +983,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<reference ref="30118568"/>
 							<reference ref="892211997"/>
 							<reference ref="531710992"/>
-							<reference ref="861316017"/>
+							<reference ref="861346266"/>
 						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
@@ -1256,40 +1266,40 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">85</int>
-						<reference key="object" ref="74622662"/>
+						<reference key="object" ref="117653962"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="254949033"/>
+							<reference ref="620970106"/>
 						</object>
 						<reference key="parent" ref="1002"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">86</int>
-						<reference key="object" ref="254949033"/>
+						<reference key="object" ref="620970106"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="553158609"/>
+							<reference ref="461433293"/>
 						</object>
-						<reference key="parent" ref="74622662"/>
+						<reference key="parent" ref="117653962"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">87</int>
-						<reference key="object" ref="861316017"/>
+						<reference key="object" ref="861346266"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="652613174"/>
+							<reference ref="950475345"/>
 						</object>
 						<reference key="parent" ref="1006"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">88</int>
-						<reference key="object" ref="652613174"/>
-						<reference key="parent" ref="861316017"/>
+						<reference key="object" ref="950475345"/>
+						<reference key="parent" ref="861346266"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">90</int>
-						<reference key="object" ref="553158609"/>
-						<reference key="parent" ref="254949033"/>
+						<reference key="object" ref="461433293"/>
+						<reference key="parent" ref="620970106"/>
 					</object>
 				</object>
 			</object>
@@ -1306,6 +1316,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>1.NSWindowTemplate.visibleAtLaunch</string>
 					<string>1.WindowOrigin</string>
 					<string>1.editorWindowContentRectSynchronizationRect</string>
+					<string>1.windowTemplate.hasMinSize</string>
+					<string>1.windowTemplate.minSize</string>
 					<string>10.IBPluginDependency</string>
 					<string>11.IBPluginDependency</string>
 					<string>12.IBPluginDependency</string>
@@ -1369,6 +1381,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<reference ref="9"/>
 					<string>{196, 240}</string>
 					<string>{{153, 293}, {481, 405}}</string>
+					<reference ref="5"/>
+					<string>{481, 405}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1442,7 +1456,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">90</int>
+			<int key="maxID">91</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1522,6 +1536,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>detailBox</string>
 							<string>detailBoxHidden</string>
 							<string>graphView</string>
+							<string>histView</string>
 							<string>reportEndDate</string>
 							<string>reportResultControl</string>
 							<string>reportStartDate</string>
@@ -1535,6 +1550,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>NSBox</string>
 							<string>NSNumber</string>
 							<string>ZXReportGraphView</string>
+							<string>ZXReportHistView</string>
 							<string>NSDate</string>
 							<string>NSSegmentedControl</string>
 							<string>NSDate</string>

@@ -31,14 +31,7 @@
 }
 
 - (void)drawRect:(NSRect)rect
-{
-	float radius = (rect.size.width < rect.size.height) ? rect.size.width / 2: rect.size.height / 2;
-	NSPoint center = NSMakePoint(radius, rect.size.height - radius);
-	NSBezierPath *path;
-	double currentAngle = 90;
-	
-	
-	
+{	
 	if ([allSections count] < 1)
 	{
 		//FIXME: Magic error message
@@ -49,22 +42,35 @@
 		return;
 	}
 	
-	double totalAmount = [[self valueForKeyPath:@"allSections.@sum.amount"] doubleValue];
+	double maxAmount = [[allSections valueForKeyPath:@"@max.amount"] doubleValue];
+	int h = rect.size.height - 5;
 	
-	for(ZXReportSection *section in allSections)
+	id arr = [NSMutableArray array];
+	for(id s in allSections) {
+		double a = fabs([[s amount] doubleValue]);
+		NSLog(@"%f", a/maxAmount * h);
+		if(a/maxAmount * h < 5) continue;
+		[arr addObject:s];
+	}
+	if([arr count] == 0) return;
+	
+	NSPoint curPos = NSMakePoint(10, 0);
+	NSBezierPath *path;
+	int w = (rect.size.width - 10) / [arr count];
+	
+	for(ZXReportSection *section in arr)
 	{
-		double endAngle = currentAngle - 360 * [section fractionForTotal:totalAmount];
+		double curHeigth = h * [section fractionForTotal:maxAmount];
 		[section.color set];
 		path = [NSBezierPath bezierPath];
-		[path moveToPoint:center];
-		//		NSLog(@"%f %f", currentAngle, endAngle);
-		[path appendBezierPathWithArcWithCenter:center radius:radius startAngle:currentAngle endAngle:endAngle clockwise:YES];	
+		[path moveToPoint:curPos];
+		[path appendBezierPathWithRect:NSMakeRect(curPos.x, curPos.y, w, curHeigth)];
 		[path closePath];
 		[path fill];
 		[[NSColor whiteColor] set];
 		[path setLineWidth:0.5];
 		[path stroke];
-		currentAngle = endAngle;
+		curPos = NSMakePoint(curPos.x + w, curPos.y);
 		
 	}
 }

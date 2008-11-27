@@ -26,6 +26,12 @@
 
 #import "ZXReportWindowController.h"
 
+@interface ZXReportWindowController (Private)
+- (void)parseReportDates;
+- (NSNumber *)parseLabelAmount:(id)label;
+@end
+
+
 @implementation ZXReportWindowController
 
 @synthesize owner, reportStartDate, reportEndDate, detailBoxHidden;
@@ -80,100 +86,22 @@
 
 	[graphView removeAllSections];
 	[textView removeAllSections];
+	[histView removeAllSections];
 	
 	for(id label in [self.owner allLabels]) {
 		if([[label valueForKey:@"isImmutable"] boolValue]) continue;
 		id textColor = [label valueForKey:@"textColor"];
-		id labelAmount = [NSNumber numberWithInt:0];
+		id labelAmount;
 		id labelName = [label valueForKey:@"name"];
-		id currentAccountName;
 		
-		// Default interval is from a distant past to now
-		NSCalendarDate *calendarDate = [NSCalendarDate calendarDate];
-		if([reportTimePopUpButton selectedTag] != ZXCustomReportTime) {
-			self.reportStartDate = [NSDate distantPast];
-			self.reportEndDate = [NSDate date];
-		}
-		switch([reportTimePopUpButton selectedTag]) {
-			case ZXAllReportTime:
-				break;
-			case ZXThisMonthReportTime:
-				self.reportStartDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:[calendarDate monthOfYear] day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
-				break;
-			case ZXLastMonthReportTime:
-				self.reportStartDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:[calendarDate monthOfYear] - 1 day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
-				self.reportEndDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:[calendarDate monthOfYear] day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
-				break;
-			case ZXThisYearReportTime:
-				self.reportStartDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:1 day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
-				break;
-			case ZXLastYearReportTime:
-				self.reportStartDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] - 1 month:1 day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
-				self.reportEndDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:1 day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
-				break;
-			case ZXCustomReportTime:
-			default:
-				break;
-		}
-		
-		NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Transaction" 
-								     inManagedObjectContext:self.owner.managedObjectContext];
-		NSPredicate *totalPredicate;
-		NSFetchRequest *fetchRequest;
-		NSError *error;
-		NSArray *array;
-		NSArray *dateArray = [NSArray arrayWithObjects:self.reportStartDate, self.reportEndDate, nil];
-		switch([reportTypePopUpButton selectedTag]) {
-			case ZXAllAccountsDepositsReportType:
-			case ZXAllAccountsWithdrawalsReportType:
-				totalPredicate = [NSPredicate predicateWithFormat:@"(transactionLabel.name like %@) AND (date BETWEEN %@)", [label valueForKey:@"name"], dateArray];
-				
-				fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-				[fetchRequest setEntity:entityDescription];
-				[fetchRequest setPredicate:totalPredicate];
-				error = nil;
-				array = [self.owner.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-				if(array == nil) {
-					// FIXME: Exception management to be done
-					return;
-				}
-				if([reportTypePopUpButton selectedTag] == ZXAllAccountsDepositsReportType) {
-					labelAmount = [array valueForKeyPath:@"@sum.deposit"];
-				} else {
-					labelAmount = [array valueForKeyPath:@"@sum.withdrawal"];
-				}
-				
-				break;
-
-			case ZXActiveAccountDepositsReportType:
-			case ZXActiveAccountWithdrawalsReportType:
-				currentAccountName = [self.owner.accountController valueForKeyPath:@"selection.name"];
-				
-				totalPredicate = [NSPredicate predicateWithFormat:@"(account.name like %@) AND (transactionLabel.name like %@) AND (date BETWEEN %@)", currentAccountName, [label valueForKey:@"name"], dateArray];
-				
-				fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-				[fetchRequest setEntity:entityDescription];
-				[fetchRequest setPredicate:totalPredicate];
-				error = nil;
-				array = [self.owner.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-				if(array == nil) {
-					// FIXME: Exception management to be done
-					return;
-				}
-				if([reportTypePopUpButton selectedTag] == ZXActiveAccountDepositsReportType) {
-					labelAmount = [array valueForKeyPath:@"@sum.deposit"];
-				} else {
-					labelAmount = [array valueForKeyPath:@"@sum.withdrawal"];
-				}
-				break;
-			default:
-				break;
-		}
+		[self parseReportDates];
+		labelAmount = [self parseLabelAmount:label];
 		
 		ZXReportSection *section = [ZXReportSection sectionWithColor:textColor 
 								      amount:labelAmount 
 									name:labelName];
 		[graphView addSection:section];
+		[histView addSection:section];
 		[textView addSection:section];
 		
 		NSRect frame = [graphView frame];
@@ -181,12 +109,103 @@
 		frame.size.width -= textView.lastWidthModification.doubleValue;
 		textView.lastWidthModification = [NSNumber numberWithInt:0];
 		[graphView setFrame:frame];
-		
 	}
 	
 	[textView display];
 	[graphView display];
+	[histView display];
 	
+}
+
+- (NSNumber *)parseLabelAmount:(id)label
+{
+	id currentAccountName;
+	id labelAmount = [NSNumber numberWithInt:0];
+	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Transaction" 
+							     inManagedObjectContext:self.owner.managedObjectContext];
+	NSPredicate *totalPredicate;
+	NSFetchRequest *fetchRequest;
+	NSError *error;
+	NSArray *array;
+	NSArray *dateArray = [NSArray arrayWithObjects:self.reportStartDate, self.reportEndDate, nil];
+	switch([reportTypePopUpButton selectedTag]) {
+		case ZXAllAccountsDepositsReportType:
+		case ZXAllAccountsWithdrawalsReportType:
+			totalPredicate = [NSPredicate predicateWithFormat:@"(transactionLabel.name like %@) AND (date BETWEEN %@)", [label valueForKey:@"name"], dateArray];
+			
+			fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+			[fetchRequest setEntity:entityDescription];
+			[fetchRequest setPredicate:totalPredicate];
+			error = nil;
+			array = [self.owner.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+			if(array == nil) {
+				// FIXME: Exception management to be done
+				return nil;
+			}
+			if([reportTypePopUpButton selectedTag] == ZXAllAccountsDepositsReportType) {
+				labelAmount = [array valueForKeyPath:@"@sum.deposit"];
+			} else {
+				labelAmount = [array valueForKeyPath:@"@sum.withdrawal"];
+			}
+			
+			break;
+			
+		case ZXActiveAccountDepositsReportType:
+		case ZXActiveAccountWithdrawalsReportType:
+			currentAccountName = [self.owner.accountController valueForKeyPath:@"selection.name"];
+			
+			totalPredicate = [NSPredicate predicateWithFormat:@"(account.name like %@) AND (transactionLabel.name like %@) AND (date BETWEEN %@)", currentAccountName, [label valueForKey:@"name"], dateArray];
+			
+			fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+			[fetchRequest setEntity:entityDescription];
+			[fetchRequest setPredicate:totalPredicate];
+			error = nil;
+			array = [self.owner.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+			if(array == nil) {
+				// FIXME: Exception management to be done
+				return nil;
+			}
+			if([reportTypePopUpButton selectedTag] == ZXActiveAccountDepositsReportType) {
+				labelAmount = [array valueForKeyPath:@"@sum.deposit"];
+			} else {
+				labelAmount = [array valueForKeyPath:@"@sum.withdrawal"];
+			}
+			break;
+		default:
+			break;
+	}
+	return labelAmount;
+}
+
+- (void)parseReportDates
+{
+	// Default interval is from a distant past to now
+	NSCalendarDate *calendarDate = [NSCalendarDate calendarDate];
+	if([reportTimePopUpButton selectedTag] != ZXCustomReportTime) {
+		self.reportStartDate = [NSDate distantPast];
+		self.reportEndDate = [NSDate date];
+	}
+	switch([reportTimePopUpButton selectedTag]) {
+	case ZXAllReportTime:
+		break;
+	case ZXThisMonthReportTime:
+		self.reportStartDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:[calendarDate monthOfYear] day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
+		break;
+	case ZXLastMonthReportTime:
+		self.reportStartDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:[calendarDate monthOfYear] - 1 day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
+		self.reportEndDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:[calendarDate monthOfYear] day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
+		break;
+	case ZXThisYearReportTime:
+		self.reportStartDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:1 day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
+		break;
+	case ZXLastYearReportTime:
+		self.reportStartDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] - 1 month:1 day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
+		self.reportEndDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:1 day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
+		break;
+	case ZXCustomReportTime:
+	default:
+		break;
+	}
 }
 
 // FIXME: Code from original Cashbox application. To be revised.
