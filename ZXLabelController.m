@@ -1,18 +1,16 @@
 //
-//  ZXAccountController.m
+//  ZXLabelController.m
 //  Cashbox
 //
-//  Created by Pierre-Hans on 03/06/08.
+//  Created by Pierre-Hans on 30/07/08.
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "ZXAccountController.h"
+#import "ZXLabelController.h"
+#import "ZXLabelMO.h"
 
-//! Dull subclass of NSArrayController to override methods
-/*!
- This class probably should not be instantiated by the programmer. It is intended to work with Interface Builder, for the prepareContent method.
- */
-@implementation ZXAccountController
+
+@implementation ZXLabelController
 @synthesize usedNames;
 
 - (id)init
@@ -30,35 +28,15 @@
 - (void)prepareContent
 {
 	[super prepareContent];
-	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-	[fetchRequest setEntity:[NSEntityDescription entityForName:@"Account" 
-					    inManagedObjectContext:self.managedObjectContext]];
-	
-	NSError *error = nil;
-	NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-	if(array == nil) {
-		return;
-	}
-	if([array count] < 1) {
-		[self add:self];
-	}
 	[self updateUsedNames];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(validatesNewAccountName:) name:ZXAccountNameDidChangeNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(validatesNewLabelName:) name:ZXLabelNameDidChangeNotification object:nil];
 }
 
 - (void)setContent:(id)content
 {
 	[super setContent:content];
-	[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountControllerDidLoadNotification 
+	[[NSNotificationCenter defaultCenter] postNotificationName:ZXLabelControllerDidLoadNotification 
 							    object:self];
-}
-
-- (void)setValue:(id)newValue forKey:(id)key
-{
-	[super setValue:newValue forKey:key];
-	if([key isEqual:@"selectionIndex"] || [key isEqual:@"selectionIndexes"]) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:ZXActiveAccountDidChangeNotification object:self];
-	}
 }
 
 - (void)awakeFromNib
@@ -69,12 +47,12 @@
 - (id)newObject
 {
 	id obj = [super newObject];
-	[obj specialSetName:[self uniqueNewName:@"New Account"]];
+	[obj specialSetName:[self uniqueNewName:@"New Label"]];
 	[self.usedNames setValue:[obj objectID] forKey:[obj valueForKey:@"name"]];
 	return obj;
 }
 
-- (void)validatesNewAccountName:(NSNotification *)aNotification
+- (void)validatesNewLabelName:(NSNotification *)aNotification
 {
 	id obj = [aNotification object];
 	[obj specialSetName:[self uniqueNewName:[obj valueForKey:@"name"]]];
@@ -93,23 +71,23 @@
 
 - (void)updateUsedNames
 {
-	NSEntityDescription *desc = [NSEntityDescription entityForName:@"Account" 
+	NSEntityDescription *desc = [NSEntityDescription entityForName:@"Label" 
 						inManagedObjectContext:self.managedObjectContext];
 	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 	[fetchRequest setEntity:desc];
 	
 	NSError *error = nil;
-	NSArray *allAccounts = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-	if(allAccounts == nil) {
+	NSArray *allLabels = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	if(allLabels == nil) {
 		//FIXME: What should be done here if fetch request yields nil?
 		return;
 	}
-	NSMutableDictionary *usedNamesDict = [[NSMutableDictionary alloc] initWithCapacity:[allAccounts count]];
-	for(id account in allAccounts) {
-		if([account valueForKey:@"name"] == nil) {
+	NSMutableDictionary *usedNamesDict = [[NSMutableDictionary alloc] initWithCapacity:[allLabels count]];
+	for(id label in allLabels) {
+		if([label valueForKey:@"name"] == nil) {
 			continue;
 		}
-		[usedNamesDict setValue:[account objectID] forKey:[account valueForKey:@"name"]];
+		[usedNamesDict setValue:[label objectID] forKey:[label valueForKey:@"name"]];
 	}
 	self.usedNames = usedNamesDict;
 }
@@ -119,4 +97,5 @@
 	[super remove:sender];
 	[self updateUsedNames];
 }
+
 @end

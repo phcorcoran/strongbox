@@ -19,6 +19,7 @@
 		F1258F780DF4F2C200F6BEF1 /* CashboxIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F1258F770DF4F2C200F6BEF1 /* CashboxIcon.icns */; };
 		F1258FDE0DF4F56100F6BEF1 /* GeneralIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F1258FDD0DF4F56100F6BEF1 /* GeneralIcon.icns */; };
 		F12590500DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.m in Sources */ = {isa = PBXBuildFile; fileRef = F125904F0DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.m */; };
+		F12C1CC40E4B379000F037A1 /* ZXConfigWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F12C1CC30E4B379000F037A1 /* ZXConfigWindowDelegate.m */; };
 		F14485120E2D3B6F000560FC /* ZXDocumentConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = F14485110E2D3B6F000560FC /* ZXDocumentConfigController.m */; };
 		F18171860D89FE4400482919 /* ZXAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = F18171850D89FE4400482919 /* ZXAppController.m */; };
 		F18171CA0D8A15CF00482919 /* ZXColorToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F18171C90D8A15CF00482919 /* ZXColorToDataTransformer.m */; };
@@ -26,7 +27,8 @@
 		F1A01CE50E1DFCDD00E3D3C7 /* ZXReportSection.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A01CE40E1DFCDD00E3D3C7 /* ZXReportSection.m */; };
 		F1A578740D8641DB006720A3 /* ZXToolbarSearchField.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A578730D8641DB006720A3 /* ZXToolbarSearchField.m */; };
 		F1A6C9320E2A49BB00E2FD0F /* ReportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A6C9310E2A49BB00E2FD0F /* ReportWindow.xib */; };
-		F1B9A9590E3DA05C0080538B /* TODO.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F1B9A9580E3DA05C0080538B /* TODO.rtf */; };
+		F1ABF4670E40B6BE00ECF6D0 /* ZXLabelMO.m in Sources */ = {isa = PBXBuildFile; fileRef = F1ABF4660E40B6BE00ECF6D0 /* ZXLabelMO.m */; };
+		F1ABF46A0E40B75200ECF6D0 /* ZXLabelController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1ABF4690E40B75200ECF6D0 /* ZXLabelController.m */; };
 		F1C8C8130E2500B100D7AC42 /* ZXTransactionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C8C8120E2500B100D7AC42 /* ZXTransactionController.m */; };
 		F1CEA3660DFA505B007B913F /* WYClickView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FDCAB30DB26474003FFBAB /* WYClickView.m */; };
 		F1CEA3EB0DFA5416007B913F /* ZXReportGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1CEA3EA0DFA5416007B913F /* ZXReportGraphView.m */; };
@@ -64,6 +66,8 @@
 		F1258FDD0DF4F56100F6BEF1 /* GeneralIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = GeneralIcon.icns; sourceTree = "<group>"; };
 		F125904E0DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXToolbarAccountPopUpField.h; sourceTree = "<group>"; };
 		F125904F0DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXToolbarAccountPopUpField.m; sourceTree = "<group>"; };
+		F12C1CC20E4B379000F037A1 /* ZXConfigWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXConfigWindowDelegate.h; sourceTree = "<group>"; };
+		F12C1CC30E4B379000F037A1 /* ZXConfigWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXConfigWindowDelegate.m; sourceTree = "<group>"; };
 		F14485100E2D3B6F000560FC /* ZXDocumentConfigController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDocumentConfigController.h; sourceTree = "<group>"; };
 		F14485110E2D3B6F000560FC /* ZXDocumentConfigController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDocumentConfigController.m; sourceTree = "<group>"; };
 		F18171840D89FE4400482919 /* ZXAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAppController.h; sourceTree = "<group>"; };
@@ -77,7 +81,10 @@
 		F1A578720D8641DB006720A3 /* ZXToolbarSearchField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXToolbarSearchField.h; sourceTree = "<group>"; };
 		F1A578730D8641DB006720A3 /* ZXToolbarSearchField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXToolbarSearchField.m; sourceTree = "<group>"; };
 		F1A6C9310E2A49BB00E2FD0F /* ReportWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportWindow.xib; sourceTree = "<group>"; };
-		F1B9A9580E3DA05C0080538B /* TODO.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = TODO.rtf; sourceTree = "<group>"; };
+		F1ABF4650E40B6BE00ECF6D0 /* ZXLabelMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXLabelMO.h; sourceTree = "<group>"; };
+		F1ABF4660E40B6BE00ECF6D0 /* ZXLabelMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXLabelMO.m; sourceTree = "<group>"; };
+		F1ABF4680E40B75200ECF6D0 /* ZXLabelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXLabelController.h; sourceTree = "<group>"; };
+		F1ABF4690E40B75200ECF6D0 /* ZXLabelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXLabelController.m; sourceTree = "<group>"; };
 		F1C8C8110E2500B100D7AC42 /* ZXTransactionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTransactionController.h; sourceTree = "<group>"; };
 		F1C8C8120E2500B100D7AC42 /* ZXTransactionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTransactionController.m; sourceTree = "<group>"; };
 		F1CEA3E90DFA5416007B913F /* ZXReportGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReportGraphView.h; sourceTree = "<group>"; };
@@ -161,13 +168,12 @@
 				F1CEA3B00DFA52E4007B913F /* Account Stuff */,
 				F1CEA3B10DFA52FE007B913F /* Transaction Stuff */,
 				F1CEA3B20DFA5318007B913F /* Report Stuff */,
+				F12C1D050E4B3A1500F037A1 /* Config Window */,
 				F18171840D89FE4400482919 /* ZXAppController.h */,
 				F18171850D89FE4400482919 /* ZXAppController.m */,
 				2A37F4AEFDCFA73011CA2CEA /* ZXDocument.h */,
 				2A37F4ACFDCFA73011CA2CEA /* ZXDocument.m */,
 				F1CEA5DD0DFA6E2A007B913F /* ZXNotifications.h */,
-				F14485100E2D3B6F000560FC /* ZXDocumentConfigController.h */,
-				F14485110E2D3B6F000560FC /* ZXDocumentConfigController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -191,7 +197,6 @@
 				F1F7CAB40D7B8C4200B9DD1B /* RemoveIcon.png */,
 				F1258FDD0DF4F56100F6BEF1 /* GeneralIcon.icns */,
 				F1F7CA8B0D7B88B600B9DD1B /* ZXDocument.xib */,
-				F1B9A9580E3DA05C0080538B /* TODO.rtf */,
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
 				2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */,
 				F1A6C9310E2A49BB00E2FD0F /* ReportWindow.xib */,
@@ -216,6 +221,17 @@
 				775BDEF0067A8BF0009058FE /* MyDocument.xcdatamodel */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		F12C1D050E4B3A1500F037A1 /* Config Window */ = {
+			isa = PBXGroup;
+			children = (
+				F14485100E2D3B6F000560FC /* ZXDocumentConfigController.h */,
+				F14485110E2D3B6F000560FC /* ZXDocumentConfigController.m */,
+				F12C1CC20E4B379000F037A1 /* ZXConfigWindowDelegate.h */,
+				F12C1CC30E4B379000F037A1 /* ZXConfigWindowDelegate.m */,
+			);
+			name = "Config Window";
 			sourceTree = "<group>";
 		};
 		F1A01CE60E1DFD2900E3D3C7 /* Old Report */ = {
@@ -247,6 +263,10 @@
 				F18171C90D8A15CF00482919 /* ZXColorToDataTransformer.m */,
 				F1D4B12A0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.h */,
 				F1D4B12B0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.m */,
+				F1ABF4650E40B6BE00ECF6D0 /* ZXLabelMO.h */,
+				F1ABF4660E40B6BE00ECF6D0 /* ZXLabelMO.m */,
+				F1ABF4680E40B75200ECF6D0 /* ZXLabelController.h */,
+				F1ABF4690E40B75200ECF6D0 /* ZXLabelController.m */,
 			);
 			name = "Label Stuff";
 			sourceTree = "<group>";
@@ -345,7 +365,6 @@
 				F1258F780DF4F2C200F6BEF1 /* CashboxIcon.icns in Resources */,
 				F1258FDE0DF4F56100F6BEF1 /* GeneralIcon.icns in Resources */,
 				F1A6C9320E2A49BB00E2FD0F /* ReportWindow.xib in Resources */,
-				F1B9A9590E3DA05C0080538B /* TODO.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +394,9 @@
 				F1C8C8130E2500B100D7AC42 /* ZXTransactionController.m in Sources */,
 				F14485120E2D3B6F000560FC /* ZXDocumentConfigController.m in Sources */,
 				F1DA7F2C0E2E0C1600D05BB4 /* ZXAccountMO.m in Sources */,
+				F1ABF4670E40B6BE00ECF6D0 /* ZXLabelMO.m in Sources */,
+				F1ABF46A0E40B75200ECF6D0 /* ZXLabelController.m in Sources */,
+				F12C1CC40E4B379000F037A1 /* ZXConfigWindowDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
