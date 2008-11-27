@@ -86,7 +86,7 @@
 
 	[graphView removeAllSections];
 	[textView removeAllSections];
-	[histView removeAllSections];
+//	[histView removeAllSections];
 	
 	for(id label in [self.owner allLabels]) {
 		if([[label valueForKey:@"isImmutable"] boolValue]) continue;
@@ -101,7 +101,7 @@
 								      amount:labelAmount 
 									name:labelName];
 		[graphView addSection:section];
-		[histView addSection:section];
+		//[histView addSection:section];
 		[textView addSection:section];
 		
 		NSRect frame = [graphView frame];
@@ -113,7 +113,7 @@
 	
 	[textView display];
 	[graphView display];
-	[histView display];
+	//[histView display];
 	
 }
 
