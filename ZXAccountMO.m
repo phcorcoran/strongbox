@@ -13,45 +13,15 @@
 
 - (void)setValue:(id)value forKey:(NSString *)key
 {
-	if([key isEqual:@"name"]) {
-		value = [self uniqueNewName:value];
-	}
 	[super setValue:value forKey:key];
+	if([key isEqual:@"name"]) {
+		[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountNameDidChangeNotification object:self];
+	}
 }
 
-- (NSString *)uniqueNewName:(NSString *)newDesiredName
+- (void)specialSetName:(NSString *)newName
 {
-	NSString *allowedName = newDesiredName;
-	int counter = 1;
-	NSDictionary *usedNames = [self usedNames];
-	NSLog(@"uN = %@", usedNames);
-	while([usedNames valueForKey:allowedName]) {
-		allowedName = [NSString stringWithFormat:@"%@ %d", newDesiredName, counter++];
-	}
-	return allowedName;
-}
-
-- (NSDictionary *)usedNames
-{
-	NSEntityDescription *desc = [NSEntityDescription entityForName:@"Account" 
-						inManagedObjectContext:self.managedObjectContext];
-	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-	[fetchRequest setEntity:desc];
-	
-	NSError *error = nil;
-	NSArray *allAccounts = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-	if(allAccounts == nil) {
-		//FIXME: What should be done here if fetch request yields nil?
-		return nil;
-	}
-	NSMutableDictionary *usedNamesDict = [[NSMutableDictionary alloc] initWithCapacity:[allAccounts count]];
-	for(id account in allAccounts) {
-		if([account valueForKey:@"name"] == nil) {
-			continue;
-		}
-		[usedNamesDict setValue:[account objectID] forKey:[account valueForKey:@"name"]];
-	}
-	return usedNamesDict;
+	[super setValue:newName forKey:@"name"];
 }
 
 - (NSString *)total

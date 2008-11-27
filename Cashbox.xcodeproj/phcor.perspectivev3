@@ -310,8 +310,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -329,7 +327,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F152B92C0E3F93D000AB87D9</string>
+										<string>F152B9C60E3FA89C00AB87D9</string>
 										<key>history</key>
 										<array>
 											<string>F11534EA0DF590DA00723D0D</string>
@@ -369,16 +367,12 @@
 											<string>F1B9A97B0E3DA2460080538B</string>
 											<string>F1B9A97D0E3DA2460080538B</string>
 											<string>F19DAFE10E3E4B90007EB526</string>
-											<string>F19DAFE20E3E4B90007EB526</string>
 											<string>F19DB0030E3E4C8B007EB526</string>
 											<string>F19DB0260E3E50F2007EB526</string>
 											<string>F15211510E3EF4A0005BCB92</string>
 											<string>F15211520E3EF4A0005BCB92</string>
-											<string>F15211570E3EF4A0005BCB92</string>
 											<string>F15211980E3EF9A9005BCB92</string>
 											<string>F152B8960E3F875400AB87D9</string>
-											<string>F152B8970E3F875400AB87D9</string>
-											<string>F152B8B80E3F8D1300AB87D9</string>
 											<string>F152B8BC0E3F8D1300AB87D9</string>
 											<string>F152B8BD0E3F8D1300AB87D9</string>
 											<string>F152B8BE0E3F8D1300AB87D9</string>
@@ -386,11 +380,15 @@
 											<string>F152B8D50E3F8E8800AB87D9</string>
 											<string>F152B8D60E3F8E8800AB87D9</string>
 											<string>F152B8D70E3F8E8800AB87D9</string>
-											<string>F152B8F60E3F908A00AB87D9</string>
 											<string>F152B90A0E3F918900AB87D9</string>
-											<string>F152B91E0E3F92D300AB87D9</string>
-											<string>F152B9290E3F93D000AB87D9</string>
-											<string>F152B92A0E3F93D000AB87D9</string>
+											<string>F152B9660E3F991F00AB87D9</string>
+											<string>F152B9690E3F991F00AB87D9</string>
+											<string>F152B97F0E3F99CC00AB87D9</string>
+											<string>F152B9800E3F99CC00AB87D9</string>
+											<string>F152B9B60E3FA87100AB87D9</string>
+											<string>F152B9C00E3FA89C00AB87D9</string>
+											<string>F152B9C10E3FA89C00AB87D9</string>
+											<string>F152B9C20E3FA89C00AB87D9</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -494,6 +492,41 @@
 											<string>F152B9210E3F92D300AB87D9</string>
 											<string>F152B9220E3F92D300AB87D9</string>
 											<string>F152B92B0E3F93D000AB87D9</string>
+											<string>F152B9330E3F944800AB87D9</string>
+											<string>F152B9340E3F944800AB87D9</string>
+											<string>F152B9350E3F944800AB87D9</string>
+											<string>F152B9360E3F944800AB87D9</string>
+											<string>F152B9370E3F944800AB87D9</string>
+											<string>F152B9380E3F944800AB87D9</string>
+											<string>F152B9390E3F944800AB87D9</string>
+											<string>F152B9450E3F95AE00AB87D9</string>
+											<string>F152B9460E3F95AE00AB87D9</string>
+											<string>F152B9470E3F95AE00AB87D9</string>
+											<string>F152B9480E3F95AE00AB87D9</string>
+											<string>F152B96C0E3F991F00AB87D9</string>
+											<string>F152B96D0E3F991F00AB87D9</string>
+											<string>F152B96E0E3F991F00AB87D9</string>
+											<string>F152B96F0E3F991F00AB87D9</string>
+											<string>F152B9700E3F991F00AB87D9</string>
+											<string>F152B9710E3F991F00AB87D9</string>
+											<string>F152B9720E3F991F00AB87D9</string>
+											<string>F152B9730E3F991F00AB87D9</string>
+											<string>F152B9740E3F991F00AB87D9</string>
+											<string>F152B9750E3F991F00AB87D9</string>
+											<string>F152B9760E3F991F00AB87D9</string>
+											<string>F152B9820E3F99CC00AB87D9</string>
+											<string>F152B9830E3F99CC00AB87D9</string>
+											<string>F152B9840E3F99CC00AB87D9</string>
+											<string>F152B9890E3F9A2800AB87D9</string>
+											<string>F152B9990E3F9AAC00AB87D9</string>
+											<string>F152B9A00E3F9B5E00AB87D9</string>
+											<string>F152B9A10E3F9B5E00AB87D9</string>
+											<string>F152B9B80E3FA87100AB87D9</string>
+											<string>F152B9B90E3FA87100AB87D9</string>
+											<string>F152B9BA0E3FA87100AB87D9</string>
+											<string>F152B9C30E3FA89C00AB87D9</string>
+											<string>F152B9C40E3FA89C00AB87D9</string>
+											<string>F152B9C50E3FA89C00AB87D9</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -522,6 +555,8 @@
 							<key>Tabs</key>
 							<array>
 								<dict>
+									<key>BecomeActive</key>
+									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
@@ -695,7 +730,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>F1F7CAD40D7B8D1000B9DD1B</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ZXAccountController.m</string>
+								<string>ZXAccountController.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -703,11 +738,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>F1F7CAD50D7B8D1000B9DD1B</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ZXAccountController.m</string>
+										<string>ZXAccountController.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F152B92D0E3F93D000AB87D9</string>
+										<string>F152B9C70E3FA89C00AB87D9</string>
 										<key>history</key>
 										<array>
 											<string>F11534EA0DF590DA00723D0D</string>
@@ -757,7 +792,6 @@
 											<string>F177B6950E3D62A0004DB7AD</string>
 											<string>F177B7120E3D6FFF004DB7AD</string>
 											<string>F177B73D0E3D7242004DB7AD</string>
-											<string>F177B7910E3D74BA004DB7AD</string>
 											<string>F177B7A00E3D7504004DB7AD</string>
 											<string>F177B7A10E3D7504004DB7AD</string>
 											<string>F177B7A20E3D7504004DB7AD</string>
@@ -768,7 +802,8 @@
 											<string>F15211510E3EF4A0005BCB92</string>
 											<string>F152B8E70E3F8E9C00AB87D9</string>
 											<string>F152B8FE0E3F90B100AB87D9</string>
-											<string>F152B8FD0E3F90AF00AB87D9</string>
+											<string>F152B98F0E3F9A3B00AB87D9</string>
+											<string>F152B9900E3F9A3B00AB87D9</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -831,6 +866,8 @@
 											<string>F1B9A9700E3DA1290080538B</string>
 											<string>F152B8E80E3F8E9C00AB87D9</string>
 											<string>F152B8E90E3F8E9C00AB87D9</string>
+											<string>F152B9910E3F9A3B00AB87D9</string>
+											<string>F152B9920E3F9A3B00AB87D9</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -1078,6 +1115,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>F12590130DF510A300F6BEF1</string>
 		<string>F152B7C10E3F787D00AB87D9</string>
 		<string>F152B7C20E3F787D00AB87D9</string>
 		<string>/Users/phcor/lib/Cashbox/Cashbox.xcodeproj</string>
@@ -1963,7 +2001,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>F12590130DF510A300F6BEF1</string>
-				<string>F19DAFFC0E3E4B90007EB526</string>
+				<string>F152B94B0E3F95AE00AB87D9</string>
 				<string>F12590120DF510A300F6BEF1</string>
 			</array>
 			<key>WindowString</key>

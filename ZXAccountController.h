@@ -8,8 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ZXNotifications.h"
+#import "ZXAccountMO.h"
 
 @interface ZXAccountController : NSArrayController {
+	NSMutableDictionary *usedNames;
 }
+@property (assign) NSMutableDictionary *usedNames;
+
 - (void)prepareContent;
+- (void)updateUsedNames;
+- (NSString *)uniqueNewName:(NSString *)newDesiredName;
 @end

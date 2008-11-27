@@ -13,6 +13,15 @@
  This class probably should not be instantiated by the programmer. It is intended to work with Interface Builder, for the prepareContent method.
  */
 @implementation ZXAccountController
+@synthesize usedNames;
+
+- (id)init
+{
+	if(self = [super init]) {
+		self.usedNames = [NSMutableDictionary dictionary];
+	}
+	return self;
+}
 
 //! Is responsible for last-minute preparation of the controller/entity
 /*!
@@ -33,7 +42,8 @@
 	if([array count] < 1) {
 		[self add:self];
 	}
-	
+	[self updateUsedNames];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(validatesNewAccountName:) name:ZXAccountNameDidChangeNotification object:nil];
 }
 
 - (void)setContent:(id)content
@@ -59,8 +69,56 @@
 - (id)newObject
 {
 	id obj = [super newObject];
-	[obj setValue:@"New Account" forKey:@"name"];
+	[obj specialSetName:[self uniqueNewName:@"New Account"]];
+	[self.usedNames setValue:[obj objectID] forKey:[obj valueForKey:@"name"]];
 	return obj;
 }
 
+- (void)validatesNewAccountName:(NSNotification *)aNotification
+{
+	id obj = [aNotification object];
+	[obj specialSetName:[self uniqueNewName:[obj valueForKey:@"name"]]];
+	[self updateUsedNames];
+}
+
+- (NSString *)uniqueNewName:(NSString *)newDesiredName
+{
+	NSString *allowedName = newDesiredName;
+	int counter = 1;
+	while([self.usedNames valueForKey:allowedName]) {
+		allowedName = [NSString stringWithFormat:@"%@ %d", newDesiredName, counter++];
+	}
+	return allowedName;
+}
+
+- (void)updateUsedNames
+{
+	NSEntityDescription *desc = [NSEntityDescription entityForName:@"Account" 
+						inManagedObjectContext:self.managedObjectContext];
+	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+	[fetchRequest setEntity:desc];
+	
+	NSError *error = nil;
+	NSArray *allAccounts = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	if(allAccounts == nil) {
+		//FIXME: What should be done here if fetch request yields nil?
+		return;
+	}
+	NSMutableDictionary *usedNamesDict = [[NSMutableDictionary alloc] initWithCapacity:[allAccounts count]];
+	for(id account in allAccounts) {
+		if([account valueForKey:@"name"] == nil) {
+			continue;
+		}
+		[usedNamesDict setValue:[account objectID] forKey:[account valueForKey:@"name"]];
+	}
+	self.usedNames = usedNamesDict;
+	NSLog(@"uUN: %@", self.usedNames);
+}
+
+- (IBAction)remove:(id)sender
+{
+	NSLog(@"POW");
+	[super remove:sender];
+	[self updateUsedNames];
+}
 @end

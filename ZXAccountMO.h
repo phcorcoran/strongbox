@@ -8,11 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ZXCurrencyFormatter.h"
+#import "ZXNotifications.h"
 
 
 @interface ZXAccountMO : NSManagedObject {
 }
 - (NSString *)total;
-- (NSDictionary *)usedNames;
-- (NSString *)uniqueNewName:(NSString *)newDesiredName;
+- (void)specialSetName:(NSString *)newName;
 @end
