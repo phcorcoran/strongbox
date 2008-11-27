@@ -9,9 +9,11 @@
 #import <Cocoa/Cocoa.h>
 #import "ZXNotifications.h"
 #import "ZXAccountMO.h"
+#import "ZXTransactionController.h"
 
 @interface ZXAccountController : NSArrayController {
 	NSMutableDictionary *usedNames;
+	IBOutlet ZXTransactionController *transactionController;
 }
 @property (assign) NSMutableDictionary *usedNames;
 

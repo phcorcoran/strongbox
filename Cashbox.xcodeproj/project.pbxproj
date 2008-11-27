@@ -21,6 +21,7 @@
 		F12590500DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.m in Sources */ = {isa = PBXBuildFile; fileRef = F125904F0DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.m */; };
 		F12C1CC40E4B379000F037A1 /* ZXConfigWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F12C1CC30E4B379000F037A1 /* ZXConfigWindowDelegate.m */; };
 		F14485120E2D3B6F000560FC /* ZXDocumentConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = F14485110E2D3B6F000560FC /* ZXDocumentConfigController.m */; };
+		F15BA3E70E4D79B400DD5F1E /* InspectorIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F15BA3E60E4D79B400DD5F1E /* InspectorIcon.png */; };
 		F18171860D89FE4400482919 /* ZXAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = F18171850D89FE4400482919 /* ZXAppController.m */; };
 		F18171CA0D8A15CF00482919 /* ZXColorToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F18171C90D8A15CF00482919 /* ZXColorToDataTransformer.m */; };
 		F1A01C630E1DEC0300E3D3C7 /* ZXReportTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A01C620E1DEC0300E3D3C7 /* ZXReportTextView.m */; };
@@ -37,7 +38,7 @@
 		F1F7CA8C0D7B88B600B9DD1B /* ZXDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CA8B0D7B88B600B9DD1B /* ZXDocument.xib */; };
 		F1F7CAB50D7B8C4200B9DD1B /* AddIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CAB30D7B8C4200B9DD1B /* AddIcon.png */; };
 		F1F7CAB60D7B8C4200B9DD1B /* RemoveIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CAB40D7B8C4200B9DD1B /* RemoveIcon.png */; };
-		F1F7CAE70D7B8D4700B9DD1B /* InspectorIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CAE50D7B8D4700B9DD1B /* InspectorIcon.png */; };
+		F1F7CAE70D7B8D4700B9DD1B /* InspectorIcon_old.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CAE50D7B8D4700B9DD1B /* InspectorIcon_old.png */; };
 		F1F7CAE80D7B8D4700B9DD1B /* StatIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CAE60D7B8D4700B9DD1B /* StatIcon.png */; };
 		F1F7CB940D7E101E00B9DD1B /* ZXTransactionMO.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F7CB930D7E101E00B9DD1B /* ZXTransactionMO.m */; };
 		F1FDCA820DB2620D003FFBAB /* ZXReportWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FDCA810DB2620D003FFBAB /* ZXReportWindowController.m */; };
@@ -70,6 +71,7 @@
 		F12C1CC30E4B379000F037A1 /* ZXConfigWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXConfigWindowDelegate.m; sourceTree = "<group>"; };
 		F14485100E2D3B6F000560FC /* ZXDocumentConfigController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDocumentConfigController.h; sourceTree = "<group>"; };
 		F14485110E2D3B6F000560FC /* ZXDocumentConfigController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDocumentConfigController.m; sourceTree = "<group>"; };
+		F15BA3E60E4D79B400DD5F1E /* InspectorIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InspectorIcon.png; sourceTree = "<group>"; };
 		F18171840D89FE4400482919 /* ZXAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAppController.h; sourceTree = "<group>"; };
 		F18171850D89FE4400482919 /* ZXAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAppController.m; sourceTree = "<group>"; };
 		F18171C80D8A15CF00482919 /* ZXColorToDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXColorToDataTransformer.h; sourceTree = "<group>"; };
@@ -99,7 +101,7 @@
 		F1F7CA8B0D7B88B600B9DD1B /* ZXDocument.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZXDocument.xib; sourceTree = "<group>"; };
 		F1F7CAB30D7B8C4200B9DD1B /* AddIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddIcon.png; sourceTree = "<group>"; };
 		F1F7CAB40D7B8C4200B9DD1B /* RemoveIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RemoveIcon.png; sourceTree = "<group>"; };
-		F1F7CAE50D7B8D4700B9DD1B /* InspectorIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InspectorIcon.png; sourceTree = "<group>"; };
+		F1F7CAE50D7B8D4700B9DD1B /* InspectorIcon_old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InspectorIcon_old.png; sourceTree = "<group>"; };
 		F1F7CAE60D7B8D4700B9DD1B /* StatIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatIcon.png; sourceTree = "<group>"; };
 		F1F7CB920D7E101E00B9DD1B /* ZXTransactionMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTransactionMO.h; sourceTree = "<group>"; };
 		F1F7CB930D7E101E00B9DD1B /* ZXTransactionMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTransactionMO.m; sourceTree = "<group>"; };
@@ -190,7 +192,8 @@
 			children = (
 				F1F7CAB30D7B8C4200B9DD1B /* AddIcon.png */,
 				F1258F770DF4F2C200F6BEF1 /* CashboxIcon.icns */,
-				F1F7CAE50D7B8D4700B9DD1B /* InspectorIcon.png */,
+				F1F7CAE50D7B8D4700B9DD1B /* InspectorIcon_old.png */,
+				F15BA3E60E4D79B400DD5F1E /* InspectorIcon.png */,
 				F1F7CAE60D7B8D4700B9DD1B /* StatIcon.png */,
 				F1F7CAB40D7B8C4200B9DD1B /* RemoveIcon.png */,
 				F1258FDD0DF4F56100F6BEF1 /* GeneralIcon.icns */,
@@ -356,11 +359,12 @@
 				F1F7CA8C0D7B88B600B9DD1B /* ZXDocument.xib in Resources */,
 				F1F7CAB50D7B8C4200B9DD1B /* AddIcon.png in Resources */,
 				F1F7CAB60D7B8C4200B9DD1B /* RemoveIcon.png in Resources */,
-				F1F7CAE70D7B8D4700B9DD1B /* InspectorIcon.png in Resources */,
+				F1F7CAE70D7B8D4700B9DD1B /* InspectorIcon_old.png in Resources */,
 				F1F7CAE80D7B8D4700B9DD1B /* StatIcon.png in Resources */,
 				F1258F780DF4F2C200F6BEF1 /* CashboxIcon.icns in Resources */,
 				F1258FDE0DF4F56100F6BEF1 /* GeneralIcon.icns in Resources */,
 				F1A6C9320E2A49BB00E2FD0F /* ReportWindow.xib in Resources */,
+				F15BA3E70E4D79B400DD5F1E /* InspectorIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

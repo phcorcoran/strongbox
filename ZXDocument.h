@@ -28,6 +28,7 @@
 
 @property(readwrite, assign) NSWindow *cashboxWindow;
 @property(readonly) NSArrayController *accountController;
+@property ZXTransactionController *transactionController;
 @property(copy) NSArray *transactionSortDescriptors;
 @property(copy) NSArray *nameSortDescriptors;
 

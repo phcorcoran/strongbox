@@ -10,7 +10,7 @@
 
 @implementation ZXDocument
 
-@synthesize cashboxWindow, accountController, transactionSortDescriptors, nameSortDescriptors;
+@synthesize cashboxWindow, accountController, transactionSortDescriptors, nameSortDescriptors, transactionController;
 
 - (id)init
 {

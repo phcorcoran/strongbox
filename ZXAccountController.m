@@ -70,9 +70,12 @@
 - (void)updateTotal:(NSNotification *)note
 {
 	// Forcing binding update
+	id tmpSelect = [transactionController selectedObjects];
 	id tmp = [self content];
 	[super setContent:nil];
 	[super setContent:tmp];
+	[transactionController setSelectedObjects:tmpSelect];
+	// FIXME: Here continue
 }
 
 - (id)newObject
