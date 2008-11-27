@@ -8,7 +8,6 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="26"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -701,7 +700,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<string key="NSWindowContentMinSize">{368, 199}</string>
 				<object class="NSView" key="NSWindowView" id="241804222">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1190,7 +1189,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 									</object>
 									<string key="NSFrame">{{1, 17}, {655, 509}}</string>
 									<reference key="NSSuperview" ref="267351861"/>
-									<reference key="NSNextKeyView" ref="392554798"/>
 									<reference key="NSDocView" ref="392554798"/>
 									<reference key="NSBGColor" ref="974927555"/>
 									<int key="NScvFlags">4</int>
@@ -1223,7 +1221,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 									</object>
 									<string key="NSFrame">{{1, 0}, {655, 17}}</string>
 									<reference key="NSSuperview" ref="267351861"/>
-									<reference key="NSNextKeyView" ref="989765287"/>
 									<reference key="NSDocView" ref="989765287"/>
 									<reference key="NSBGColor" ref="974927555"/>
 									<int key="NScvFlags">4</int>
@@ -1232,7 +1229,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<string key="NSFrameSize">{657, 527}</string>
 							<reference key="NSSuperview" ref="241804222"/>
-							<reference key="NSNextKeyView" ref="744172602"/>
 							<int key="NSsFlags">562</int>
 							<reference key="NSVScroller" ref="443410712"/>
 							<reference key="NSHScroller" ref="157825687"/>
@@ -1264,7 +1260,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						</object>
 					</object>
 					<string key="NSFrameSize">{657, 542}</string>
-					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1280, 778}}</string>
 				<string key="NSMinSize">{368, 276}</string>
@@ -1348,6 +1343,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<bool key="NSSelectsInsertedObjects">YES</bool>
 				<bool key="NSFilterRestrictsInsertion">YES</bool>
 				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
+				<bool key="NSAutomaticallyRearrangesObjects">YES</bool>
 			</object>
 			<object class="NSWindowTemplate" id="131971500">
 				<int key="NSWindowStyleMask">15</int>
@@ -1430,7 +1426,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 									</object>
 									<string key="NSFrame">{{1, 1}, {131, 112}}</string>
 									<reference key="NSSuperview" ref="268137768"/>
-									<reference key="NSNextKeyView" ref="234387812"/>
 									<reference key="NSDocView" ref="234387812"/>
 									<reference key="NSBGColor" ref="974927555"/>
 									<int key="NScvFlags">4</int>
@@ -1457,7 +1452,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<string key="NSFrame">{{28, 58}, {148, 129}}</string>
 							<reference key="NSSuperview" ref="996505795"/>
-							<reference key="NSNextKeyView" ref="179683310"/>
 							<int key="NSsFlags">50</int>
 							<reference key="NSVScroller" ref="376291981"/>
 							<reference key="NSHScroller" ref="532548776"/>
@@ -1806,7 +1800,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 									</object>
 									<string key="NSFrame">{{1, 17}, {135, 160}}</string>
 									<reference key="NSSuperview" ref="772878100"/>
-									<reference key="NSNextKeyView" ref="857204198"/>
 									<reference key="NSDocView" ref="857204198"/>
 									<reference key="NSBGColor" ref="974927555"/>
 									<int key="NScvFlags">4</int>
@@ -1840,7 +1833,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 									</object>
 									<string key="NSFrame">{{1, 0}, {135, 17}}</string>
 									<reference key="NSSuperview" ref="772878100"/>
-									<reference key="NSNextKeyView" ref="511732701"/>
 									<reference key="NSDocView" ref="511732701"/>
 									<reference key="NSBGColor" ref="974927555"/>
 									<int key="NScvFlags">4</int>
@@ -1849,7 +1841,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							</object>
 							<string key="NSFrame">{{28, 260}, {152, 193}}</string>
 							<reference key="NSSuperview" ref="996505795"/>
-							<reference key="NSNextKeyView" ref="335312736"/>
 							<int key="NSsFlags">50</int>
 							<reference key="NSVScroller" ref="655711752"/>
 							<reference key="NSHScroller" ref="1047200745"/>
@@ -3718,19 +3709,43 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">sortDescriptors: labelSortDescriptors</string>
+						<string key="label">sortDescriptors: nameSortDescriptors</string>
 						<reference key="source" ref="739887505"/>
 						<reference key="destination" ref="425176548"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="739887505"/>
 							<reference key="NSDestination" ref="425176548"/>
-							<string key="NSLabel">sortDescriptors: labelSortDescriptors</string>
+							<string key="NSLabel">sortDescriptors: nameSortDescriptors</string>
 							<string key="NSBinding">sortDescriptors</string>
-							<string key="NSKeyPath">labelSortDescriptors</string>
+							<string key="NSKeyPath">nameSortDescriptors</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
 					<int key="connectionID">651</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">sortDescriptors: nameSortDescriptors</string>
+						<reference key="source" ref="498068412"/>
+						<reference key="destination" ref="425176548"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="498068412"/>
+							<reference key="NSDestination" ref="425176548"/>
+							<string key="NSLabel">sortDescriptors: nameSortDescriptors</string>
+							<string key="NSBinding">sortDescriptors</string>
+							<string key="NSKeyPath">nameSortDescriptors</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">653</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">inspectorDrawer</string>
+						<reference key="source" ref="425176548"/>
+						<reference key="destination" ref="1034057304"/>
+					</object>
+					<int key="connectionID">656</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -5177,7 +5192,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">651</int>
+			<int key="maxID">656</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -5238,9 +5253,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>raiseConfigSheet:</string>
 							<string>removeTransaction:</string>
 							<string>showReportWindow:</string>
+							<string>toggleInspector:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -5257,8 +5274,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>cashboxWindow</string>
 							<string>configSheet</string>
 							<string>documentConfigController</string>
+							<string>inspectorDrawer</string>
 							<string>labelController</string>
-							<string>labelSortDescriptors</string>
+							<string>nameSortDescriptors</string>
 							<string>transactionController</string>
 							<string>transactionSortDescriptors</string>
 						</object>
@@ -5268,6 +5286,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>NSWindow</string>
 							<string>NSWindow</string>
 							<string>ZXDocumentConfigController</string>
+							<string>NSDrawer</string>
 							<string>NSArrayController</string>
 							<string>NSArray</string>
 							<string>ZXTransactionController</string>

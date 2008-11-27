@@ -34,6 +34,8 @@
 				<string>id</string>
 				<key>showReportWindow</key>
 				<string>id</string>
+				<key>toggleInspector</key>
+				<string>id</string>
 			</dict>
 			<key>CLASS</key>
 			<string>ZXDocument</string>
@@ -49,9 +51,11 @@
 				<string>NSWindow</string>
 				<key>documentConfigController</key>
 				<string>ZXDocumentConfigController</string>
+				<key>inspectorDrawer</key>
+				<string>NSDrawer</string>
 				<key>labelController</key>
 				<string>NSArrayController</string>
-				<key>labelSortDescriptors</key>
+				<key>nameSortDescriptors</key>
 				<string>NSArray</string>
 				<key>transactionController</key>
 				<string>ZXTransactionController</string>
