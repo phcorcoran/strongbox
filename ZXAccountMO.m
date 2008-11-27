@@ -10,13 +10,6 @@
 
 
 @implementation ZXAccountMO
-- (void)awakeFromInsert
-{
-	[super awakeFromInsert];
-	NSString *name = [self valueForKey:@"name"];
-	[super setValue:@"" forKey:@"name"];
-	[self setValue:name forKey:@"name"];
-}
 
 - (void)setValue:(id)value forKey:(NSString *)key
 {
@@ -32,7 +25,7 @@
 	int counter = 1;
 	NSDictionary *usedNames = [self usedNames];
 	NSLog(@"uN = %@", usedNames);
-	while([usedNames valueForKey:allowedName] != nil) {
+	while([usedNames valueForKey:allowedName]) {
 		allowedName = [NSString stringWithFormat:@"%@ %d", newDesiredName, counter++];
 	}
 	return allowedName;
@@ -53,6 +46,9 @@
 	}
 	NSMutableDictionary *usedNamesDict = [[NSMutableDictionary alloc] initWithCapacity:[allAccounts count]];
 	for(id account in allAccounts) {
+		if([account valueForKey:@"name"] == nil) {
+			continue;
+		}
 		[usedNamesDict setValue:[account objectID] forKey:[account valueForKey:@"name"]];
 	}
 	return usedNamesDict;

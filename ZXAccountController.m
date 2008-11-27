@@ -56,4 +56,11 @@
 	[super awakeFromNib];
 }
 
+- (id)newObject
+{
+	id obj = [super newObject];
+	[obj setValue:@"New Account" forKey:@"name"];
+	return obj;
+}
+
 @end
