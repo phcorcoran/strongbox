@@ -13,4 +13,6 @@
 @interface ZXAccountMO : NSManagedObject {
 }
 - (NSString *)total;
+- (NSDictionary *)usedNames;
+- (NSString *)uniqueNewName:(NSString *)newDesiredName;
 @end
