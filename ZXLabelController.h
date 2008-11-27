@@ -8,12 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
+static id sharedNoLabelObject = nil;
 
 @interface ZXLabelController : NSArrayController {
 	NSMutableDictionary *usedNames;
 }
 @property (assign) NSMutableDictionary *usedNames;
-
++ (id)noLabelObject;
 - (void)validatesNewLabelName:(NSNotification *)aNotification;
 - (NSString *)uniqueNewName:(NSString *)newDesiredName;
 - (void)updateUsedNames;

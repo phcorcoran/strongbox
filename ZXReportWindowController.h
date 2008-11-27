@@ -28,6 +28,7 @@
 #import "ZXDocument.h"
 #import "ZXReportGraphView.h"
 #import "ZXReportTextView.h"
+#import "ZXLabelController.h"
 #import "ZXNotifications.h"
 
 enum {

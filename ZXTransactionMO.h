@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ZXLabelController.h"
 #import "ZXNotifications.h"
 
 

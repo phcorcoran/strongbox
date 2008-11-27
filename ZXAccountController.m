@@ -64,6 +64,12 @@
 - (void)awakeFromNib
 {
 	[super awakeFromNib];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTotal:) name:ZXAccountTotalDidChangeNotification object:nil];
+}
+
+- (void)updateTotal:(NSNotification *)note
+{
+	[[self valueForKey:@"selection"] didChangeValueForKey:@"total"];
 }
 
 - (id)newObject

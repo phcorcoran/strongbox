@@ -38,6 +38,7 @@
 
 - (void)awakeFromInsert {
 	[self setValue:[NSDate date] forKey:@"date"];
+	[self setValue:[ZXLabelController noLabelObject] forKey:@"transactionLabel"];
 }
 
 - (void)setValue:(id)newValue forKey:(id)key

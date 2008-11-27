@@ -13,6 +13,11 @@
 @implementation ZXLabelController
 @synthesize usedNames;
 
++ (id)noLabelObject
+{
+	return sharedNoLabelObject;
+}
+
 - (id)init
 {
 	if(self = [super init]) {
@@ -28,6 +33,31 @@
 - (void)prepareContent
 {
 	[super prepareContent];
+	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+	[fetchRequest setEntity:[NSEntityDescription entityForName:@"Label" 
+					    inManagedObjectContext:self.managedObjectContext]];
+	
+	NSError *error = nil;
+	NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	if(array == nil) {
+		return;
+	}
+	NSString *noLabelString = @"No Label";
+	if([array count] < 1) {
+		id noLabel = [self newObject];
+		[noLabel setValue:noLabelString forKey:@"name"];
+		sharedNoLabelObject = noLabel;
+		[self addObject:noLabel];
+	} else {
+		NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name LIKE %@)", noLabelString];
+		[fetchRequest setPredicate:pred];
+		array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+		if(array == nil) {
+			return;
+		}
+		sharedNoLabelObject = [array objectAtIndex:0];
+	}
+	
 	[self updateUsedNames];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(validatesNewLabelName:) name:ZXLabelNameDidChangeNotification object:nil];
 }

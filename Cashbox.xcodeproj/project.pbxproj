@@ -30,8 +30,8 @@
 		F1ABF4670E40B6BE00ECF6D0 /* ZXLabelMO.m in Sources */ = {isa = PBXBuildFile; fileRef = F1ABF4660E40B6BE00ECF6D0 /* ZXLabelMO.m */; };
 		F1ABF46A0E40B75200ECF6D0 /* ZXLabelController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1ABF4690E40B75200ECF6D0 /* ZXLabelController.m */; };
 		F1C8C8130E2500B100D7AC42 /* ZXTransactionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C8C8120E2500B100D7AC42 /* ZXTransactionController.m */; };
-		F1CEA3660DFA505B007B913F /* WYClickView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FDCAB30DB26474003FFBAB /* WYClickView.m */; };
 		F1CEA3EB0DFA5416007B913F /* ZXReportGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1CEA3EA0DFA5416007B913F /* ZXReportGraphView.m */; };
+		F1D05D4B0E4BE1200075730E /* ZXCommentToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D05D4A0E4BE1200075730E /* ZXCommentToDataTransformer.m */; };
 		F1D4B12C0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D4B12B0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.m */; };
 		F1DA7F2C0E2E0C1600D05BB4 /* ZXAccountMO.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DA7F2B0E2E0C1600D05BB4 /* ZXAccountMO.m */; };
 		F1F7CA8C0D7B88B600B9DD1B /* ZXDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CA8B0D7B88B600B9DD1B /* ZXDocument.xib */; };
@@ -90,6 +90,8 @@
 		F1CEA3E90DFA5416007B913F /* ZXReportGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReportGraphView.h; sourceTree = "<group>"; };
 		F1CEA3EA0DFA5416007B913F /* ZXReportGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXReportGraphView.m; sourceTree = "<group>"; };
 		F1CEA5DD0DFA6E2A007B913F /* ZXNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXNotifications.h; sourceTree = "<group>"; };
+		F1D05D490E4BE1200075730E /* ZXCommentToDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCommentToDataTransformer.h; sourceTree = "<group>"; };
+		F1D05D4A0E4BE1200075730E /* ZXCommentToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCommentToDataTransformer.m; sourceTree = "<group>"; };
 		F1D4B12A0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXLabelNamePopUpTransformer.h; sourceTree = "<group>"; };
 		F1D4B12B0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXLabelNamePopUpTransformer.m; sourceTree = "<group>"; };
 		F1DA7F2A0E2E0C1600D05BB4 /* ZXAccountMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAccountMO.h; sourceTree = "<group>"; };
@@ -103,10 +105,6 @@
 		F1F7CB930D7E101E00B9DD1B /* ZXTransactionMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTransactionMO.m; sourceTree = "<group>"; };
 		F1FDCA800DB2620D003FFBAB /* ZXReportWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReportWindowController.h; sourceTree = "<group>"; };
 		F1FDCA810DB2620D003FFBAB /* ZXReportWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXReportWindowController.m; sourceTree = "<group>"; };
-		F1FDCAB30DB26474003FFBAB /* WYClickView.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = WYClickView.m; sourceTree = "<group>"; };
-		F1FDCABD0DB2649B003FFBAB /* ReportWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportWindowController.h; sourceTree = "<group>"; };
-		F1FDCABE0DB2649B003FFBAB /* ReportWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportWindowController.m; sourceTree = "<group>"; };
-		F1FDCABF0DB2649B003FFBAB /* WYClickView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYClickView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,10 +235,6 @@
 		F1A01CE60E1DFD2900E3D3C7 /* Old Report */ = {
 			isa = PBXGroup;
 			children = (
-				F1FDCABD0DB2649B003FFBAB /* ReportWindowController.h */,
-				F1FDCABE0DB2649B003FFBAB /* ReportWindowController.m */,
-				F1FDCABF0DB2649B003FFBAB /* WYClickView.h */,
-				F1FDCAB30DB26474003FFBAB /* WYClickView.m */,
 			);
 			name = "Old Report";
 			sourceTree = "<group>";
@@ -291,6 +285,8 @@
 				F1C8C8120E2500B100D7AC42 /* ZXTransactionController.m */,
 				F1F7CB920D7E101E00B9DD1B /* ZXTransactionMO.h */,
 				F1F7CB930D7E101E00B9DD1B /* ZXTransactionMO.m */,
+				F1D05D490E4BE1200075730E /* ZXCommentToDataTransformer.h */,
+				F1D05D4A0E4BE1200075730E /* ZXCommentToDataTransformer.m */,
 			);
 			name = "Transaction Stuff";
 			sourceTree = "<group>";
@@ -385,7 +381,6 @@
 				F1FDCA820DB2620D003FFBAB /* ZXReportWindowController.m in Sources */,
 				F12590500DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.m in Sources */,
 				F11534880DF5898A00723D0D /* ZXAccountController.m in Sources */,
-				F1CEA3660DFA505B007B913F /* WYClickView.m in Sources */,
 				F1CEA3EB0DFA5416007B913F /* ZXReportGraphView.m in Sources */,
 				F1A01C630E1DEC0300E3D3C7 /* ZXReportTextView.m in Sources */,
 				F1A01CE50E1DFCDD00E3D3C7 /* ZXReportSection.m in Sources */,
@@ -397,6 +392,7 @@
 				F1ABF4670E40B6BE00ECF6D0 /* ZXLabelMO.m in Sources */,
 				F1ABF46A0E40B75200ECF6D0 /* ZXLabelController.m in Sources */,
 				F12C1CC40E4B379000F037A1 /* ZXConfigWindowDelegate.m in Sources */,
+				F1D05D4B0E4BE1200075730E /* ZXCommentToDataTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,10 @@
 @implementation ZXLabelMO
 - (void)setValue:(id)value forKey:(NSString *)key
 {
+	// The "No Label" label name is immutable.
+	if([key isEqual:@"name"] && [self isEqual:[ZXLabelController noLabelObject]]) {
+		return;
+	}
 	[super setValue:value forKey:key];
 	if([key isEqual:@"name"]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:ZXLabelNameDidChangeNotification object:self];
@@ -20,7 +24,6 @@
 
 - (void)specialSetName:(NSString *)newName
 {
-	NSLog(@"Bang.");
 	[super setValue:newName forKey:@"name"];
 }
 @end

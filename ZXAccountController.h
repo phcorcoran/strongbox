@@ -18,4 +18,5 @@
 - (void)prepareContent;
 - (void)updateUsedNames;
 - (NSString *)uniqueNewName:(NSString *)newDesiredName;
+- (void)updateTotal:(NSNotification *)note;
 @end

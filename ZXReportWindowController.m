@@ -82,6 +82,9 @@
 	[textView removeAllSections];
 	
 	for(id label in [self.owner allLabels]) {
+		if([label isEqual:[ZXLabelController noLabelObject]]) {
+			continue;
+		}
 		id textColor = [label valueForKey:@"textColor"];
 		id labelAmount = [NSNumber numberWithInt:0];
 		id currentAccountName;
