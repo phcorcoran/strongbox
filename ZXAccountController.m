@@ -69,7 +69,10 @@
 
 - (void)updateTotal:(NSNotification *)note
 {
-	[[self valueForKey:@"selection"] didChangeValueForKey:@"total"];
+	// Forcing binding update
+	id tmp = [self content];
+	[super setContent:nil];
+	[super setContent:tmp];
 }
 
 - (id)newObject
