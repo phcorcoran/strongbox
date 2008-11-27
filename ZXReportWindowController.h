@@ -54,6 +54,12 @@ enum {
 	IBOutlet NSPopUpButton *reportTypePopUpButton;
 	IBOutlet NSPopUpButton *reportTimePopUpButton;
 	
+	IBOutlet NSDate *reportStartDate;
+	IBOutlet NSDate *reportEndDate;
+	
+	IBOutlet NSNumber *detailBoxHidden;
+	IBOutlet NSBox *detailBox;
+	
 //	IBOutlet NSView *datePickerView;
 	
 //	IBOutlet NSNumber *dateRangePickerIsVisible;
@@ -68,7 +74,10 @@ enum {
 */
 }
 
-@property ZXDocument *owner;
+@property (assign) ZXDocument *owner;
+@property (copy) NSDate *reportStartDate, *reportEndDate;
+@property (assign) NSNumber *detailBoxHidden;
+
 
 - (id)initWithOwner:(id)owner;
 - (void)showWindow;
@@ -78,5 +87,5 @@ enum {
 
 - (void)resetViewsPositions;
 
-//- (IBAction)toggleRangePicker:(id)sender;
+- (IBAction)toggleRangePicker:(id)sender;
 @end

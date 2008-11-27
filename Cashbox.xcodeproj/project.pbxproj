@@ -14,7 +14,6 @@
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		8D15AC310486D014006FF6A4 /* ZXDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* ZXDocument.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		F114BB690E29C3D300154985 /* FUCK.txt in Resources */ = {isa = PBXBuildFile; fileRef = F114BB680E29C3D300154985 /* FUCK.txt */; };
 		F11534880DF5898A00723D0D /* ZXAccountController.m in Sources */ = {isa = PBXBuildFile; fileRef = F11534870DF5898A00723D0D /* ZXAccountController.m */; };
 		F125270E0E21EDB700A3D561 /* ZXTransactionOverviewTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F125270D0E21EDB700A3D561 /* ZXTransactionOverviewTransformer.m */; };
 		F12527770E21F6EE00A3D561 /* ZXCurrencyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F12527760E21F6EE00A3D561 /* ZXCurrencyFormatter.m */; };
@@ -55,7 +54,6 @@
 		7788DA0506752A1600599AAD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Cashbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cashbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F114BB680E29C3D300154985 /* FUCK.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FUCK.txt; sourceTree = "<group>"; };
 		F11534860DF5898A00723D0D /* ZXAccountController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAccountController.h; sourceTree = "<group>"; };
 		F11534870DF5898A00723D0D /* ZXAccountController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAccountController.m; sourceTree = "<group>"; };
 		F125270C0E21EDB700A3D561 /* ZXTransactionOverviewTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTransactionOverviewTransformer.h; sourceTree = "<group>"; };
@@ -140,7 +138,6 @@
 		2A37F4AAFDCFA73011CA2CEA /* Cashbox */ = {
 			isa = PBXGroup;
 			children = (
-				F114BB680E29C3D300154985 /* FUCK.txt */,
 				E1B74B1A0667B4A90069E3BA /* Models */,
 				2A37F4ABFDCFA73011CA2CEA /* Classes */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
@@ -339,7 +336,6 @@
 				F1F7CAE80D7B8D4700B9DD1B /* StatIcon.png in Resources */,
 				F1258F780DF4F2C200F6BEF1 /* CashboxIcon.icns in Resources */,
 				F1258FDE0DF4F56100F6BEF1 /* GeneralIcon.icns in Resources */,
-				F114BB690E29C3D300154985 /* FUCK.txt in Resources */,
 				F1A6C9320E2A49BB00E2FD0F /* ReportWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

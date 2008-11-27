@@ -26,16 +26,17 @@
 
 #import "ZXReportWindowController.h"
 
-// Test
-
 @implementation ZXReportWindowController
 
-@synthesize owner;
+@synthesize owner, reportStartDate, reportEndDate, detailBoxHidden;
 
 - (id)initWithOwner:(id)newOwner;
 {
 	self = [super init];
 	self.owner = newOwner;
+	self.reportStartDate = [NSDate distantPast];
+	self.reportEndDate = [NSDate date];
+	self.detailBoxHidden = [NSNumber numberWithBool:YES];
 	return self;
 }
 
@@ -75,24 +76,25 @@
 		id currentAccountName;
 		
 		// Default interval is from a distant past to now
-		NSDate *startDate = [NSDate distantPast], *endDate = [NSDate date];
-		NSCalendarDate *calendarDate = [NSCalendarDate calendarDate];		
+		NSCalendarDate *calendarDate = [NSCalendarDate calendarDate];
+		self.reportStartDate = [NSDate distantPast];
+		self.reportEndDate = [NSDate date];
 		switch([reportTimePopUpButton selectedTag]) {
 			case ZXAllReportTime:
 				break;
 			case ZXThisMonthReportTime:
-				startDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:[calendarDate monthOfYear] day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
+				self.reportStartDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:[calendarDate monthOfYear] day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
 				break;
 			case ZXLastMonthReportTime:
-				startDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:[calendarDate monthOfYear] - 1 day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
-				endDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:[calendarDate monthOfYear] day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
+				self.reportStartDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:[calendarDate monthOfYear] - 1 day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
+				self.reportEndDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:[calendarDate monthOfYear] day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
 				break;
 			case ZXThisYearReportTime:
-				startDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:1 day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
+				self.reportStartDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:1 day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
 				break;
 			case ZXLastYearReportTime:
-				startDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] - 1 month:1 day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
-				endDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:1 day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
+				self.reportStartDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] - 1 month:1 day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
+				self.reportEndDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:1 day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
 				break;
 			default:
 				break;
@@ -104,10 +106,11 @@
 		NSFetchRequest *fetchRequest;
 		NSError *error;
 		NSArray *array;
+		NSArray *dateArray = [NSArray arrayWithObjects:self.reportStartDate, self.reportEndDate, nil];
 		switch([reportTypePopUpButton selectedTag]) {
 			case ZXAllAccountsDepositsReportType:
 			case ZXAllAccountsWithdrawalsReportType:
-				totalPredicate = [NSPredicate predicateWithFormat:@"(transactionLabel.name like %@) AND (date BETWEEN %@)", [label valueForKey:@"name"], [NSArray arrayWithObjects:startDate, endDate, nil]];
+				totalPredicate = [NSPredicate predicateWithFormat:@"(transactionLabel.name like %@) AND (date BETWEEN %@)", [label valueForKey:@"name"], dateArray];
 				
 				fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 				[fetchRequest setEntity:entityDescription];
@@ -130,7 +133,7 @@
 			case ZXActiveAccountWithdrawalsReportType:
 				currentAccountName = [self.owner.accountController valueForKeyPath:@"selection.name"];
 				
-				totalPredicate = [NSPredicate predicateWithFormat:@"(account.name like %@) AND (transactionLabel.name like %@) AND (date BETWEEN %@)", currentAccountName, [label valueForKey:@"name"], [NSArray arrayWithObjects:startDate, endDate, nil]];
+				totalPredicate = [NSPredicate predicateWithFormat:@"(account.name like %@) AND (transactionLabel.name like %@) AND (date BETWEEN %@)", currentAccountName, [label valueForKey:@"name"], dateArray];
 				
 				fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 				[fetchRequest setEntity:entityDescription];
@@ -195,22 +198,14 @@
 	// The graph fills the freed space
 }
 
-/*- (IBAction)toggleRangePicker:(id)sender
-{
-	NSRect newFrame = [reportWindow frame];
-	if([datePickerView isHidden]) {
-		newFrame.size.height += datePickerView.frame.size.height;
-		[datePickerView setHidden:NO];
-		[[reportWindow animator] setFrame:newFrame];
-	} else {
-		newFrame.size.height -= datePickerView.frame.size.height;
-		[datePickerView setHidden:YES];
-		[[reportWindow animator] setFrame:newFrame];
-	}
+- (IBAction)toggleRangePicker:(id)sender
+{	
+	NSRect frame = [reportWindow frame];
+	frame.size.height += ([self.detailBoxHidden boolValue] ? 1: -1) * [detailBox frame].size.height;
+	[[reportWindow animator] setFrame:frame display:YES];
 	
-	newFrame.size.height += datePickerView.frame.size.height;
-	[[reportWindow animator] setFrame:newFrame];
-}*/
+	self.detailBoxHidden = [NSNumber numberWithBool:([self.detailBoxHidden boolValue] ? NO: YES)];
+}
 
 /*
 - (void)accountTotalDidChange
