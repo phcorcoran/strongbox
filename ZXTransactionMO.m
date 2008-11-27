@@ -11,6 +11,31 @@
 
 @implementation ZXTransactionMO
 
+@dynamic transactionLabelName;
+
+- (NSString *)transactionLabelName
+{
+	return [self valueForKeyPath:@"transactionLabel.name"];
+}
+
+- (void)setTransactionLabelName:(NSString *)newLabelName
+{
+	NSEntityDescription *labelDescription = [NSEntityDescription entityForName:@"Label" 
+							    inManagedObjectContext:self.managedObjectContext];
+	NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"(name like %@)", newLabelName];
+	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+	[fetchRequest setEntity:labelDescription];
+	[fetchRequest setPredicate:namePredicate];
+	[fetchRequest setFetchLimit:1];
+	NSError *error = nil;
+	NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	if(array == nil) {
+		return;
+	}
+	[self setValue:[array objectAtIndex:0] forKey:@"transactionLabel"];
+}
+
+
 - (void)awakeFromInsert {
 	[self setValue:[NSDate date] forKey:@"date"];
 }
@@ -23,8 +48,6 @@
 	} else if([key isEqual:@"transactionLabel"]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:ZXTransactionLabelDidChangeNotification object:self];
 	}
-	
-	
 }
 
 - (NSNumber *)balance

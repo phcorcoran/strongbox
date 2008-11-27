@@ -11,6 +11,8 @@
 
 
 @interface ZXTransactionMO : NSManagedObject {
+	IBOutlet NSString *transactionLabelName;
 }
+@property(copy) NSString *transactionLabelName;
 - (NSNumber *)balance;
 @end
