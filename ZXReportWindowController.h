@@ -27,9 +27,7 @@
 #import <Cocoa/Cocoa.h>
 #import "ZXDocument.h"
 #import "ZXReportGraphView.h"
-#import "ZXReportHistView.h"
 #import "ZXReportTextView.h"
-#import "ZXLabelController.h"
 #import "ZXNotifications.h"
 
 enum {
@@ -45,36 +43,40 @@ enum {
 	ZXLastMonthReportTime = 2,
 	ZXThisYearReportTime = 3,
 	ZXLastYearReportTime = 4,
-	ZXCustomReportTime = 5,
 };
 
-@class ZXReportGraphView, ZXReportTextView, ZXDocument, ZXReportHistView;
+@class ZXReportGraphView, ZXReportTextView, ZXDocument;
 @interface ZXReportWindowController : NSObject {
 	ZXDocument *owner;
 	IBOutlet NSWindow *reportWindow;
 	IBOutlet ZXReportGraphView *graphView;
-	IBOutlet ZXReportHistView *histView;
 	IBOutlet ZXReportTextView *textView;
 	IBOutlet NSPopUpButton *reportTypePopUpButton;
 	IBOutlet NSPopUpButton *reportTimePopUpButton;
-	IBOutlet NSSegmentedControl *reportResultControl;
 	
-	IBOutlet NSDate *reportStartDate;
-	IBOutlet NSDate *reportEndDate;
+//	IBOutlet NSView *datePickerView;
 	
-	IBOutlet NSNumber *detailBoxHidden;
-	IBOutlet NSBox *detailBox;
+//	IBOutlet NSNumber *dateRangePickerIsVisible;
+	
+/*	IBOutlet NSBox *divider;
+	IBOutlet NSView *allAccounts;
+ 
+	
+	BOOL showPercents;
+	double total;
+	//NSMutableArray *totals;
+*/
 }
 
-@property (assign) ZXDocument *owner;
-@property (copy) NSDate *reportStartDate, *reportEndDate;
-@property (assign) NSNumber *detailBoxHidden;
-
+@property ZXDocument *owner;
 
 - (id)initWithOwner:(id)owner;
-- (IBAction)toggleReportWindow:(id)sender;
+- (void)showWindow;
 - (IBAction)updateView:(id)sender;
 - (void)setupNotificationObserving;
+- (IBAction)changeDollarPercent:(id)sender;
+
 - (void)resetViewsPositions;
-- (IBAction)toggleDetailBox:(id)sender;
+
+//- (IBAction)toggleRangePicker:(id)sender;
 @end

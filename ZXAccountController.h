@@ -8,18 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ZXNotifications.h"
-#import "ZXAccountMO.h"
-#import "ZXTransactionController.h"
 
 @interface ZXAccountController : NSArrayController {
-	NSMutableDictionary *usedNames;
-//	IBOutlet ZXTransactionController *transactionController;
+	IBOutlet NSTextField *transactionOverviewTextField;
 }
-@property (retain) NSMutableDictionary *usedNames;
-
 - (void)prepareContent;
-- (void)updateUsedNames;
-- (NSString *)uniqueNewName:(NSString *)newDesiredName;
-//- (void)updateTotal:(NSNotification *)note;
-- (void)recalculateBalance:(NSNotification *)note;
+- (IBAction)updateOverview:(id)sender;
 @end

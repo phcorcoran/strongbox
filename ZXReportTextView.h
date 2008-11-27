@@ -9,23 +9,25 @@
 #import <Cocoa/Cocoa.h>
 #import "ZXReportSection.h"
 
-enum {
-	ZXMoneyReportResult = 0,
-	ZXPercentReportResult = 1,
-};
 
 @interface ZXReportTextView : NSControl {
+	id _target;
+	SEL _action;
 	NSMutableArray *allSections;
 	IBOutlet NSNumberFormatter *currencyFormatter;
-	IBOutlet NSNumberFormatter *percentFormatter;
-	IBOutlet NSSegmentedControl *reportResultControl;
 	NSNumber *lastWidthModification;
 }
 
 @property(retain) NSNumber *lastWidthModification;
-@property(assign) NSSegmentedControl *reportResultControl;
 
 - (void)addSection:(ZXReportSection *)section;
 - (void)removeAllSections;
-- (IBAction)updateView:(id)sender;
+
+- (void)mouseDown:(NSEvent *)theEvent;
+
+// overriden because there's no cell to handle these
+- (void)setTarget:(id)target;
+- (id)target;
+- (void)setAction:(SEL)action;
+- (SEL)action;
 @end

@@ -8,69 +8,32 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ZXReportWindowController.h"
-#import "ZXAccountController.h"
-#import "ZXTransactionController.h"
-#import "ZXLabelController.h"
-#import "ZXDocumentConfigController.h"
-#import "ZXOldCashboxImporter.h"
-#import "NSStringExportAdditions.h"
 
-@class ZXReportWindowController, ZXOldCashboxImporter;
+@class ZXReportWindowController;
 @interface ZXDocument : NSPersistentDocument {
-	// Core Data Controllers
-	IBOutlet ZXTransactionController *transactionController;
-	IBOutlet ZXAccountController *accountController;
-	IBOutlet ZXLabelController *labelController;
-	IBOutlet ZXDocumentConfigController *documentConfigController;
-	
-	// Windows
+	IBOutlet NSArrayController *transactionController;
+	IBOutlet NSArrayController *accountController;
+	IBOutlet NSArrayController *labelController;
 	IBOutlet NSWindow *configSheet;
 	IBOutlet NSWindow *cashboxWindow;
-	IBOutlet NSPanel *inspectorPanel;
-	
-	// Importer Stuff
-	IBOutlet ZXOldCashboxImporter *oldCashboxImporter;
-	
-	// Misc
 	ZXReportWindowController *reportWindowController;
-	IBOutlet NSArray *transactionSortDescriptors;
-	IBOutlet NSArray *nameSortDescriptors;
-	
-	NSDateFormatter *dateFormatter;
+	IBOutlet NSArray *sortDescriptors;
 }
 
 @property(readwrite, assign) NSWindow *cashboxWindow;
-@property(readonly, assign) ZXAccountController *accountController;
-@property(assign) ZXTransactionController *transactionController;
-@property(assign) ZXLabelController *labelController;
-@property(copy) NSArray *transactionSortDescriptors;
-@property(copy) NSArray *nameSortDescriptors;
-@property(retain) NSDateFormatter *dateFormatter;
-
-- (IBAction)toggleInspector:(id)sender;
+@property(readonly) NSArrayController *accountController;
+@property(assign) NSArray *sortDescriptors;
 
 - (NSArray *)allLabels;
 
 - (IBAction)addTransaction:(id)sender;
 - (IBAction)removeTransaction:(id)sender;
 
-- (IBAction)toggleReportWindow:(id)sender;
+- (IBAction)showReportWindow:(id)sender;
 
 - (IBAction)raiseConfigSheet:(id)sender;
 - (IBAction)endConfigSheet:(id)sender;
 - (void)endConfigSheet:(NSWindow *)sender 
 	   returnCode:(int)returnCode 
 	  contextInfo:(void *)contextInfo;
-
-
-- (IBAction)raiseImporterSheet:(id)sender;
-- (IBAction)endImporterSheet:(id)sender;
-- (void)endImporterSheet:(NSWindow *)sender 
-	      returnCode:(int)returnCode 
-	     contextInfo:(void *)contextInfo;
-
-- (IBAction)importOldCashboxStuff:(id)sender;
-
-- (IBAction)exportToCSV:(id)sender;
-- (void)savePanelDidEnd:(NSSavePanel *)sheet returnCode:(int)returnCode  contextInfo:(void  *)contextInfo;
 @end
