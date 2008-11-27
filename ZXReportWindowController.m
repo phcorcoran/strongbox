@@ -40,6 +40,8 @@
 	return self;
 }
 
+
+
 - (void)showWindow
 {
 	if (!reportWindow) {
@@ -52,14 +54,22 @@
 
 - (void)setupNotificationObserving
 {
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateView:) name:ZXAccountTotalDidChangeNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateView:) name:ZXTransactionLabelDidChangeNotification object:nil];
+	id defaultCenter = [NSNotificationCenter defaultCenter];
+	[defaultCenter addObserver:self 
+			  selector:@selector(updateView:) 
+			      name:ZXAccountTotalDidChangeNotification 
+			    object:nil];
+	[defaultCenter addObserver:self 
+			  selector:@selector(updateView:) 
+			      name:ZXTransactionLabelDidChangeNotification 
+			    object:nil];
+	[defaultCenter addObserver:self 
+			  selector:@selector(updateView:) 
+			      name:ZXActiveAccountDidChangeNotification 
+			    object:nil];
 	
 //       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateView) name:ZXAllAccountsDidChangeNotification object:nil];
-//       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateView) name:ZXAccountNameDidChangeNotification object:nil];
-	
-//      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateView) name:ZXActiveAccountDidChangeNotification object:nil];
-        
+//       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateView) name:ZXAccountNameDidChangeNotification object:nil];        
 }
 
 - (IBAction)updateView:(id)sender
@@ -77,8 +87,10 @@
 		
 		// Default interval is from a distant past to now
 		NSCalendarDate *calendarDate = [NSCalendarDate calendarDate];
-		self.reportStartDate = [NSDate distantPast];
-		self.reportEndDate = [NSDate date];
+		if([reportTimePopUpButton selectedTag] != ZXCustomReportTime) {
+			self.reportStartDate = [NSDate distantPast];
+			self.reportEndDate = [NSDate date];
+		}
 		switch([reportTimePopUpButton selectedTag]) {
 			case ZXAllReportTime:
 				break;
@@ -96,6 +108,7 @@
 				self.reportStartDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] - 1 month:1 day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
 				self.reportEndDate = [NSCalendarDate dateWithYear:[calendarDate yearOfCommonEra] month:1 day:1 hour:0 minute:0 second:0 timeZone:[calendarDate timeZone]];
 				break;
+			case ZXCustomReportTime:
 			default:
 				break;
 		}
@@ -169,13 +182,14 @@
 		
 	}
 	
-	[graphView display];
 	[textView display];
+	[graphView display];
+	
 }
 
 - (IBAction)changeDollarPercent:(id)sender
 {
-	
+	NSLog(@"Bleu");
 }
 
 // FIXME: Code from original Cashbox application. To be revised.
@@ -202,9 +216,19 @@
 {	
 	NSRect frame = [reportWindow frame];
 	frame.size.height += ([self.detailBoxHidden boolValue] ? 1: -1) * [detailBox frame].size.height;
+	frame.origin.y += ([self.detailBoxHidden boolValue] ? -1: 1) * [detailBox frame].size.height;
 	[[reportWindow animator] setFrame:frame display:YES];
 	
 	self.detailBoxHidden = [NSNumber numberWithBool:([self.detailBoxHidden boolValue] ? NO: YES)];
+}
+
+- (void)setValue:(id)newValue forKey:(id)key
+{
+	[super setValue:newValue forKey:key];
+	if([key isEqual:@"reportStartDate"] || [key isEqual:@"reportEndDate"]) {
+		[reportTimePopUpButton selectItemWithTag:ZXCustomReportTime];
+		[self updateView:self];
+	}
 }
 
 /*

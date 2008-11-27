@@ -43,6 +43,7 @@ enum {
 	ZXLastMonthReportTime = 2,
 	ZXThisYearReportTime = 3,
 	ZXLastYearReportTime = 4,
+	ZXCustomReportTime = 5,
 };
 
 @class ZXReportGraphView, ZXReportTextView, ZXDocument;
@@ -53,6 +54,7 @@ enum {
 	IBOutlet ZXReportTextView *textView;
 	IBOutlet NSPopUpButton *reportTypePopUpButton;
 	IBOutlet NSPopUpButton *reportTimePopUpButton;
+	IBOutlet NSSegmentedControl *reportResultControl;
 	
 	IBOutlet NSDate *reportStartDate;
 	IBOutlet NSDate *reportEndDate;

@@ -35,6 +35,14 @@
 	}
 }
 
+- (void)setValue:(id)newValue forKey:(id)key
+{
+	[super setValue:newValue forKey:key];
+	if([key isEqual:@"selectionIndex"]) {
+		[[NSNotificationCenter defaultCenter] postNotificationName:ZXActiveAccountDidChangeNotification object:self];
+	}
+}
+
 - (void)awakeFromNib
 {
 	[super awakeFromNib];
