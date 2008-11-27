@@ -22,7 +22,7 @@
 // Load previously saved document if none is to be loaded
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	id documentOpened = nil;
+	ZXDocument *documentOpened = nil;
 	if([[[NSDocumentController sharedDocumentController] documents] count] == 0) {
 		NSData *fileURLData = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastFileURL"];
 		if(fileURLData) {
@@ -30,7 +30,6 @@
 			NSURL *fileURL = [NSUnarchiver unarchiveObjectWithData: fileURLData];
 			if(fileURL != nil) {
 				documentOpened = [[NSDocumentController sharedDocumentController] openDocumentWithContentsOfURL:fileURL display:YES error:&error];
-
 			}
 		}
 		if(documentOpened == nil) {

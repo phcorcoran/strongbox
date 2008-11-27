@@ -19,7 +19,7 @@
 		F1258F780DF4F2C200F6BEF1 /* CashboxIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F1258F770DF4F2C200F6BEF1 /* CashboxIcon.icns */; };
 		F1258FDE0DF4F56100F6BEF1 /* GeneralIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F1258FDD0DF4F56100F6BEF1 /* GeneralIcon.icns */; };
 		F12590500DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.m in Sources */ = {isa = PBXBuildFile; fileRef = F125904F0DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.m */; };
-		F14485120E2D3B6F000560FC /* ZXDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = F14485110E2D3B6F000560FC /* ZXDocumentController.m */; };
+		F14485120E2D3B6F000560FC /* ZXDocumentConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = F14485110E2D3B6F000560FC /* ZXDocumentConfigController.m */; };
 		F18171860D89FE4400482919 /* ZXAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = F18171850D89FE4400482919 /* ZXAppController.m */; };
 		F18171CA0D8A15CF00482919 /* ZXColorToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F18171C90D8A15CF00482919 /* ZXColorToDataTransformer.m */; };
 		F1A01C630E1DEC0300E3D3C7 /* ZXReportTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A01C620E1DEC0300E3D3C7 /* ZXReportTextView.m */; };
@@ -63,8 +63,8 @@
 		F1258FDD0DF4F56100F6BEF1 /* GeneralIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = GeneralIcon.icns; sourceTree = "<group>"; };
 		F125904E0DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXToolbarAccountPopUpField.h; sourceTree = "<group>"; };
 		F125904F0DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXToolbarAccountPopUpField.m; sourceTree = "<group>"; };
-		F14485100E2D3B6F000560FC /* ZXDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDocumentController.h; sourceTree = "<group>"; };
-		F14485110E2D3B6F000560FC /* ZXDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDocumentController.m; sourceTree = "<group>"; };
+		F14485100E2D3B6F000560FC /* ZXDocumentConfigController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDocumentConfigController.h; sourceTree = "<group>"; };
+		F14485110E2D3B6F000560FC /* ZXDocumentConfigController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDocumentConfigController.m; sourceTree = "<group>"; };
 		F18171840D89FE4400482919 /* ZXAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAppController.h; sourceTree = "<group>"; };
 		F18171850D89FE4400482919 /* ZXAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAppController.m; sourceTree = "<group>"; };
 		F18171C80D8A15CF00482919 /* ZXColorToDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXColorToDataTransformer.h; sourceTree = "<group>"; };
@@ -164,8 +164,8 @@
 				2A37F4AEFDCFA73011CA2CEA /* ZXDocument.h */,
 				2A37F4ACFDCFA73011CA2CEA /* ZXDocument.m */,
 				F1CEA5DD0DFA6E2A007B913F /* ZXNotifications.h */,
-				F14485100E2D3B6F000560FC /* ZXDocumentController.h */,
-				F14485110E2D3B6F000560FC /* ZXDocumentController.m */,
+				F14485100E2D3B6F000560FC /* ZXDocumentConfigController.h */,
+				F14485110E2D3B6F000560FC /* ZXDocumentConfigController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -369,7 +369,7 @@
 				F12527770E21F6EE00A3D561 /* ZXCurrencyFormatter.m in Sources */,
 				F1D4B12C0E2285E00038D5E2 /* ZXLabelNamePopUpTransformer.m in Sources */,
 				F1C8C8130E2500B100D7AC42 /* ZXTransactionController.m in Sources */,
-				F14485120E2D3B6F000560FC /* ZXDocumentController.m in Sources */,
+				F14485120E2D3B6F000560FC /* ZXDocumentConfigController.m in Sources */,
 				F1DA7F2C0E2E0C1600D05BB4 /* ZXAccountMO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

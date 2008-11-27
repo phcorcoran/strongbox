@@ -8,12 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ZXReportWindowController.h"
+#import "ZXAccountController.h"
+#import "ZXTransactionController.h"
+#import "ZXDocumentConfigController.h"
 
 @class ZXReportWindowController;
 @interface ZXDocument : NSPersistentDocument {
-	IBOutlet NSArrayController *transactionController;
-	IBOutlet NSArrayController *accountController;
+	IBOutlet ZXTransactionController *transactionController;
+	IBOutlet ZXAccountController *accountController;
 	IBOutlet NSArrayController *labelController;
+	IBOutlet ZXDocumentConfigController *documentConfigController;
 	IBOutlet NSWindow *configSheet;
 	IBOutlet NSWindow *cashboxWindow;
 	ZXReportWindowController *reportWindowController;

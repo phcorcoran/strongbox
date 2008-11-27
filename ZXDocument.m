@@ -8,16 +8,6 @@
 
 #import "ZXDocument.h"
 
-#if PATATE
-@implementation NSManagedObject (DEBUG)
-- (id)valueForUndefinedKey:(id)key
-{
-	NSLog(@"self = %@, key = %@", self, key);
-}
-@end
-#endif
-
-
 @implementation ZXDocument
 
 @synthesize cashboxWindow, accountController, sortDescriptors;
@@ -36,6 +26,8 @@
 {
 	return @"ZXDocument";
 }
+
+#pragma mark Menu items actions
 
 - (IBAction)addTransaction:(id)sender
 {
@@ -73,6 +65,13 @@
 		reportWindowController = [[ZXReportWindowController alloc] initWithOwner:self];
 	}
 	[reportWindowController showWindow];
+}
+
+#pragma mark Save options
+- (IBAction)saveDocument:(id)sender
+{
+	[documentConfigController updateCurrentAccountName];
+	[super saveDocument:sender];
 }
 
 // Write the last saved document to preference so it is opened automatically next time.

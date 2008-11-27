@@ -33,12 +33,20 @@
 	if([array count] < 1) {
 		[self add:self];
 	}
+	
+}
+
+- (void)setContent:(id)content
+{
+	[super setContent:content];
+	[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountControllerDidLoadNotification 
+							    object:self];
 }
 
 - (void)setValue:(id)newValue forKey:(id)key
 {
 	[super setValue:newValue forKey:key];
-	if([key isEqual:@"selectionIndex"]) {
+	if([key isEqual:@"selectionIndex"] || [key isEqual:@"selectionIndexes"]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:ZXActiveAccountDidChangeNotification object:self];
 	}
 }
@@ -46,14 +54,6 @@
 - (void)awakeFromNib
 {
 	[super awakeFromNib];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateOverview:) name:ZXAccountTotalDidChangeNotification object:nil];
 }
 
-- (IBAction)updateOverview:(id)sender
-{
-	[self willChangeValueForKey:@"selection"];
-	//	selection = [self valueForKey:@"selection"];
-	[self didChangeValueForKey:@"selection"];
-	[transactionOverviewTextField display];
-}
 @end

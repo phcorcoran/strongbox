@@ -10,8 +10,6 @@
 #import "ZXNotifications.h"
 
 @interface ZXAccountController : NSArrayController {
-	IBOutlet NSTextField *transactionOverviewTextField;
 }
 - (void)prepareContent;
-- (IBAction)updateOverview:(id)sender;
 @end
