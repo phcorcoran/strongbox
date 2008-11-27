@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ZXLabelMO.h"
 
 static id sharedNoLabelObject = nil;
 
@@ -14,7 +15,7 @@ static id sharedNoLabelObject = nil;
 	NSMutableDictionary *usedNames;
 }
 @property (assign) NSMutableDictionary *usedNames;
-+ (id)noLabelObject;
++ (id)noLabelObjectWithMOC:(NSManagedObjectContext *)moc;
 - (void)validatesNewLabelName:(NSNotification *)aNotification;
 - (NSString *)uniqueNewName:(NSString *)newDesiredName;
 - (void)updateUsedNames;

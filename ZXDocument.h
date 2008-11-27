@@ -10,25 +10,37 @@
 #import "ZXReportWindowController.h"
 #import "ZXAccountController.h"
 #import "ZXTransactionController.h"
+#import "ZXLabelController.h"
 #import "ZXDocumentConfigController.h"
+#import "ZXOldCashboxImporter.h"
 
-@class ZXReportWindowController;
+@class ZXReportWindowController, ZXOldCashboxImporter;
 @interface ZXDocument : NSPersistentDocument {
+	// Core Data Controllers
 	IBOutlet ZXTransactionController *transactionController;
 	IBOutlet ZXAccountController *accountController;
-	IBOutlet NSArrayController *labelController;
+	IBOutlet ZXLabelController *labelController;
 	IBOutlet ZXDocumentConfigController *documentConfigController;
+	
+	// Windows
 	IBOutlet NSWindow *configSheet;
 	IBOutlet NSWindow *cashboxWindow;
+	IBOutlet NSPanel *inspectorPanel;
+	
+	// Importer Stuff
+	IBOutlet ZXOldCashboxImporter *oldCashboxImporter;
+	NSOperationQueue *operationQueue;
+	
+	// Misc
 	ZXReportWindowController *reportWindowController;
 	IBOutlet NSArray *transactionSortDescriptors;
 	IBOutlet NSArray *nameSortDescriptors;
-	IBOutlet NSDrawer *inspectorDrawer;
 }
 
 @property(readwrite, assign) NSWindow *cashboxWindow;
-@property(readonly) NSArrayController *accountController;
+@property(readonly) ZXAccountController *accountController;
 @property ZXTransactionController *transactionController;
+@property ZXLabelController *labelController;
 @property(copy) NSArray *transactionSortDescriptors;
 @property(copy) NSArray *nameSortDescriptors;
 
@@ -46,4 +58,13 @@
 - (void)endConfigSheet:(NSWindow *)sender 
 	   returnCode:(int)returnCode 
 	  contextInfo:(void *)contextInfo;
+
+
+- (IBAction)raiseImporterSheet:(id)sender;
+- (IBAction)endImporterSheet:(id)sender;
+- (void)endImporterSheet:(NSWindow *)sender 
+	      returnCode:(int)returnCode 
+	     contextInfo:(void *)contextInfo;
+
+- (IBAction)importOldCashboxStuff:(id)sender;
 @end

@@ -10,7 +10,7 @@
 
 @implementation ZXDocument
 
-@synthesize cashboxWindow, accountController, transactionSortDescriptors, nameSortDescriptors, transactionController;
+@synthesize cashboxWindow, accountController, transactionSortDescriptors, nameSortDescriptors, transactionController, labelController;
 
 - (id)init
 {
@@ -19,6 +19,7 @@
 		self.transactionSortDescriptors = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"date" 
 										ascending:NO] autorelease]];
 		self.nameSortDescriptors = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease]];
+		operationQueue = [NSOperationQueue new];
 	}
 	return self;
 }
@@ -92,7 +93,11 @@ originalContentsURL:(NSURL *)absoluteOriginalContentsURL
 
 - (IBAction)toggleInspector:(id)sender
 {
-	[inspectorDrawer toggle:self];
+	if([inspectorPanel isVisible]) {
+		[inspectorPanel orderOut:self];
+	} else {
+		[inspectorPanel makeKeyAndOrderFront:self];
+	}
 }
 
 #pragma mark Other stuff
@@ -114,4 +119,37 @@ originalContentsURL:(NSURL *)absoluteOriginalContentsURL
 	return allLabels;
 }
 
+#pragma mark Control importer window
+- (IBAction)raiseImporterSheet:(id)sender
+{
+	[NSApp beginSheet:oldCashboxImporter.importerWindow modalForWindow:[self cashboxWindow] modalDelegate:self didEndSelector:@selector(endImporterSheet:returnCode:contextInfo:) contextInfo:NULL];
+}
+
+- (IBAction)endImporterSheet:(id)sender
+{
+	[oldCashboxImporter.importerWindow orderOut:sender];
+	[NSApp endSheet:oldCashboxImporter.importerWindow returnCode:1];
+}
+
+- (void)endImporterSheet:(NSWindow *)sender 
+	    returnCode:(int)returnCode 
+	   contextInfo:(void *)contextInfo
+{
+	return;
+}
+
+- (IBAction)importOldCashboxStuff:(id)sender
+{
+//	Tried to thread the importation, but it caused too much problems
+//	[operationQueue addOperation:oldCashboxImporter];
+	
+	[self raiseImporterSheet:self];
+	[oldCashboxImporter start];
+	[self endImporterSheet:self];
+}
+
+- (void)document:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)contextInfo
+{
+	return;
+}
 @end

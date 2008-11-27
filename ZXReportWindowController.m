@@ -82,7 +82,7 @@
 	[textView removeAllSections];
 	
 	for(id label in [self.owner allLabels]) {
-		if([label isEqual:[ZXLabelController noLabelObject]]) {
+		if([label isEqual:[ZXLabelController noLabelObjectWithMOC:self.owner.managedObjectContext]]) {
 			continue;
 		}
 		id textColor = [label valueForKey:@"textColor"];

@@ -13,7 +13,7 @@
 - (void)setValue:(id)value forKey:(NSString *)key
 {
 	// The "No Label" label name is immutable.
-	if([key isEqual:@"name"] && [self isEqual:[ZXLabelController noLabelObject]]) {
+	if([key isEqual:@"name"] && [self isEqual:[ZXLabelController noLabelObjectWithMOC:self.managedObjectContext]]) {
 		return;
 	}
 	[super setValue:value forKey:key];

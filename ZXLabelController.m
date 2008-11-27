@@ -7,14 +7,21 @@
 //
 
 #import "ZXLabelController.h"
-#import "ZXLabelMO.h"
 
 
 @implementation ZXLabelController
 @synthesize usedNames;
 
-+ (id)noLabelObject
++ (id)noLabelObjectWithMOC:(NSManagedObjectContext *)moc
 {
+	if(!sharedNoLabelObject || ![[sharedNoLabelObject managedObjectContext] isEqual:moc]) {
+		[sharedNoLabelObject release];
+		// FIXME: Hard-coded english
+		NSString *noLabelString = @"No Label";
+		id noLabel = [[ZXLabelMO alloc] initWithEntity:[NSEntityDescription entityForName:@"Label" inManagedObjectContext:moc] insertIntoManagedObjectContext:moc];
+		[noLabel specialSetName:noLabelString];
+		sharedNoLabelObject = noLabel;
+	}
 	return sharedNoLabelObject;
 }
 
@@ -42,12 +49,11 @@
 	if(array == nil) {
 		return;
 	}
+	
+	// FIXME: Hard-coded english
 	NSString *noLabelString = @"No Label";
 	if([array count] < 1) {
-		id noLabel = [self newObject];
-		[noLabel setValue:noLabelString forKey:@"name"];
-		sharedNoLabelObject = noLabel;
-		[self addObject:noLabel];
+		[self addObject:[ZXLabelController noLabelObjectWithMOC:self.managedObjectContext]];
 	} else {
 		NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name LIKE %@)", noLabelString];
 		[fetchRequest setPredicate:pred];

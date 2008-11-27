@@ -90,15 +90,48 @@
 			<string>NSControl</string>
 		</dict>
 		<dict>
+			<key>CLASS</key>
+			<string>ZXOldCashboxImporter</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>accountController</key>
+				<string>ZXAccountController</string>
+				<key>importationMessage</key>
+				<string>NSTextField</string>
+				<key>importerWindow</key>
+				<string>NSWindow</string>
+				<key>labelController</key>
+				<string>ZXLabelController</string>
+				<key>mainWindow</key>
+				<string>NSWindow</string>
+				<key>owner</key>
+				<string>ZXDocument</string>
+				<key>progressIndicator</key>
+				<string>NSProgressIndicator</string>
+				<key>transactionController</key>
+				<string>ZXTransactionController</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSOperation</string>
+		</dict>
+		<dict>
 			<key>ACTIONS</key>
 			<dict>
 				<key>addTransaction</key>
 				<string>id</string>
 				<key>endConfigSheet</key>
 				<string>id</string>
+				<key>endImporterSheet</key>
+				<string>id</string>
+				<key>importOldCashboxStuff</key>
+				<string>id</string>
 				<key>logLabels</key>
 				<string>id</string>
 				<key>raiseConfigSheet</key>
+				<string>id</string>
+				<key>raiseImporterSheet</key>
 				<string>id</string>
 				<key>removeTransaction</key>
 				<string>id</string>
@@ -123,10 +156,14 @@
 				<string>ZXDocumentConfigController</string>
 				<key>inspectorDrawer</key>
 				<string>NSDrawer</string>
+				<key>inspectorPanel</key>
+				<string>NSPanel</string>
 				<key>labelController</key>
-				<string>NSArrayController</string>
+				<string>ZXLabelController</string>
 				<key>nameSortDescriptors</key>
 				<string>NSArray</string>
+				<key>oldCashboxImporter</key>
+				<string>ZXOldCashboxImporter</string>
 				<key>transactionController</key>
 				<string>ZXTransactionController</string>
 				<key>transactionSortDescriptors</key>
@@ -137,9 +174,22 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
+			<string>ZXLabelController</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSArrayController</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
 			<string>ZXAccountController</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>transactionController</key>
+				<string>ZXTransactionController</string>
+			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSArrayController</string>
 		</dict>
