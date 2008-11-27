@@ -10,14 +10,15 @@
 
 @implementation ZXDocument
 
-@synthesize cashboxWindow, accountController, sortDescriptors;
+@synthesize cashboxWindow, accountController, transactionSortDescriptors, labelSortDescriptors;
 
 - (id)init
 {
 	self = [super init];
 	if (self != nil) {
-		self.sortDescriptors = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"date" 
+		self.transactionSortDescriptors = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"date" 
 										ascending:NO] autorelease]];
+		self.labelSortDescriptors = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease]];
 	}
 	return self;
 }
@@ -89,6 +90,11 @@ originalContentsURL:(NSURL *)absoluteOriginalContentsURL
 			   error:error];
 }
 
+- (IBAction)logLabels:(id)sender
+{
+	NSLog(@"aO: %@", [labelController valueForKeyPath:@"arrangedObjects.name"]);
+}
+
 #pragma mark Other stuff
 
 - (NSArray *)allLabels
@@ -97,6 +103,7 @@ originalContentsURL:(NSURL *)absoluteOriginalContentsURL
 							    inManagedObjectContext:self.managedObjectContext];
 	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 	[fetchRequest setEntity:labelDescription];
+	[fetchRequest setSortDescriptors:self.labelSortDescriptors];
 	
 	NSError *error = nil;
 	NSArray *allLabels = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];

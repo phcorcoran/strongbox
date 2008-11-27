@@ -21,13 +21,16 @@
 	IBOutlet NSWindow *configSheet;
 	IBOutlet NSWindow *cashboxWindow;
 	ZXReportWindowController *reportWindowController;
-	IBOutlet NSArray *sortDescriptors;
+	IBOutlet NSArray *transactionSortDescriptors;
+	IBOutlet NSArray *labelSortDescriptors;
 }
 
 @property(readwrite, assign) NSWindow *cashboxWindow;
 @property(readonly) NSArrayController *accountController;
-@property(assign) NSArray *sortDescriptors;
+@property(assign) NSArray *transactionSortDescriptors;
+@property(copy) NSArray *labelSortDescriptors;
 
+- (IBAction)logLabels:(id)sender;
 - (NSArray *)allLabels;
 
 - (IBAction)addTransaction:(id)sender;

@@ -35,25 +35,18 @@
 
 - (IBAction)setAccountSelection:(id)sender
 {
-	NSLog(@"au moins... %@", accountController);
 	id arr = [accountController arrangedObjects];
-	NSLog(@"arrCount = %d", [arr count]);
 	id selectedAccount = nil;
 	for(id account in arr) {
-		NSLog(@"n = %@", [account valueForKey:@"name"]);
 		if([[account valueForKey:@"name"] isEqual:[[self content] valueForKey:@"currentAccountName"]]) {
-			NSLog(@"that's surprising");
 			selectedAccount = account;
 			break;
 		}
 	}
 	
 	if(selectedAccount == nil) {
-		NSLog(@"as predicted");
-		NSLog(@"--------------");
 		return;
 	}
-	NSLog(@"--------------");
 	[accountController setSelectionIndexes:[NSIndexSet indexSet]]; // Clear selection
 	[accountController addSelectedObjects:[NSArray arrayWithObject:selectedAccount]];
 }

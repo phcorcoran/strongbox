@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="25"/>
+			<integer value="26"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1325,6 +1325,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<bool key="NSSelectsInsertedObjects">YES</bool>
 				<bool key="NSFilterRestrictsInsertion">YES</bool>
 				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
+				<bool key="NSAutomaticallyRearrangesObjects">YES</bool>
 			</object>
 			<object class="NSArrayController" id="498068412">
 				<object class="NSMutableArray" key="NSDeclaredKeys">
@@ -3431,15 +3432,15 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">sortDescriptors: sortDescriptors</string>
+						<string key="label">sortDescriptors: transactionSortDescriptors</string>
 						<reference key="source" ref="392554798"/>
 						<reference key="destination" ref="425176548"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="392554798"/>
 							<reference key="NSDestination" ref="425176548"/>
-							<string key="NSLabel">sortDescriptors: sortDescriptors</string>
+							<string key="NSLabel">sortDescriptors: transactionSortDescriptors</string>
 							<string key="NSBinding">sortDescriptors</string>
-							<string key="NSKeyPath">sortDescriptors</string>
+							<string key="NSKeyPath">transactionSortDescriptors</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3447,15 +3448,15 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">sortDescriptors: sortDescriptors</string>
+						<string key="label">sortDescriptors: transactionSortDescriptors</string>
 						<reference key="source" ref="246696340"/>
 						<reference key="destination" ref="425176548"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="246696340"/>
 							<reference key="NSDestination" ref="425176548"/>
-							<string key="NSLabel">sortDescriptors: sortDescriptors</string>
+							<string key="NSLabel">sortDescriptors: transactionSortDescriptors</string>
 							<string key="NSBinding">sortDescriptors</string>
-							<string key="NSKeyPath">sortDescriptors</string>
+							<string key="NSKeyPath">transactionSortDescriptors</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -3714,6 +3715,22 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<reference key="destination" ref="230172144"/>
 					</object>
 					<int key="connectionID">649</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">sortDescriptors: labelSortDescriptors</string>
+						<reference key="source" ref="739887505"/>
+						<reference key="destination" ref="425176548"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="739887505"/>
+							<reference key="NSDestination" ref="425176548"/>
+							<string key="NSLabel">sortDescriptors: labelSortDescriptors</string>
+							<string key="NSBinding">sortDescriptors</string>
+							<string key="NSKeyPath">labelSortDescriptors</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">651</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -5160,7 +5177,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">649</int>
+			<int key="maxID">651</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -5217,12 +5234,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addTransaction:</string>
 							<string>endConfigSheet:</string>
+							<string>logLabels:</string>
 							<string>raiseConfigSheet:</string>
 							<string>removeTransaction:</string>
 							<string>showReportWindow:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -5239,8 +5258,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>configSheet</string>
 							<string>documentConfigController</string>
 							<string>labelController</string>
-							<string>sortDescriptors</string>
+							<string>labelSortDescriptors</string>
 							<string>transactionController</string>
+							<string>transactionSortDescriptors</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -5251,6 +5271,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>NSArrayController</string>
 							<string>NSArray</string>
 							<string>ZXTransactionController</string>
+							<string>NSArray</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
