@@ -27,6 +27,7 @@
 	IBOutlet NSWindow *configSheet;
 	IBOutlet NSWindow *cashboxWindow;
 	IBOutlet NSPanel *inspectorPanel;
+	IBOutlet NSTableView *transactionsView;
 	
 	// Importer Stuff
 	IBOutlet ZXOldCashboxImporter *oldCashboxImporter;

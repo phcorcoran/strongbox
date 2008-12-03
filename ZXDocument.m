@@ -7,6 +7,7 @@
 //
 
 #import "ZXDocument.h"
+#import "ZXPrintTransactionView.h"
 
 @implementation ZXDocument
 
@@ -18,7 +19,8 @@
 	self.transactionSortDescriptors = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"date" 
 										ascending:NO] autorelease]];
 	self.nameSortDescriptors = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease]];
-	self.dateFormatter = nil;
+	self.dateFormatter = [[[NSDateFormatter alloc] initWithDateFormat:@"%Y-%m-%d" 
+						     allowNaturalLanguage:NO] autorelease];
 	return self;
 }
 
@@ -195,6 +197,26 @@
 				   date, labelName, description, withdrawal, deposit, balance]];
 	}
 	
-	[ret writeToURL:[sheet URL] atomically:NO encoding:NSUTF8StringEncoding error:NULL];
+	[ret writeToURL:[sheet URL] 
+	     atomically:NO 
+	       encoding:NSUTF8StringEncoding 
+		  error:NULL];
 }
+
+- (void)printShowingPrintPanel:(BOOL)flag
+{
+	NSPrintInfo *printInfo = [self printInfo];
+	NSPrintOperation *printOp;
+	
+	id printView = [[ZXPrintTransactionView alloc] initWithOwner:self];
+	
+	printOp = [NSPrintOperation printOperationWithView:printView
+						 printInfo:printInfo];
+	[printOp setShowPanels:flag];
+	[self runModalPrintOperation:printOp 
+			    delegate:nil 
+		      didRunSelector:NULL 
+			 contextInfo:NULL];
+}
+
 @end
