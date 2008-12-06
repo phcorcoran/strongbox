@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXToolbarSearchField.h
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-03-11
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran
@@ -20,9 +20,17 @@
 
 #import <Cocoa/Cocoa.h>
 
-
+//! Custom toolbar search field
+/*!
+ Display a search field in the ZXDocument toolbar. Filters the visible transactions
+ based on name and label.
+ */
 @interface ZXToolbarSearchField : NSToolbarItem {
+	//! Link to the custom view in the XIB file
+	/*! The custom view is in the ZXDocument.xib file, in a dummy window. */
 	IBOutlet NSSearchField *customSearchField;
 }
+//! Automatically called when waking the view
+/*! Sets up the view, specifying hard-coded custom size */
 - (void)awakeFromNib;
 @end

@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXColorToDataTransformer.m
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-03-13
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran
@@ -22,25 +22,12 @@
 
 
 @implementation ZXColorToDataTransformer
-+ (Class)transformedValueClass
-{
-	return [NSData class];
++ (Class)transformedValueClass { return [NSData class]; }
++ (BOOL)allowsReverseTransformation { return YES; }
+- (id)transformedValue:(id)value {
+	return (value == nil) ? nil: [NSArchiver archivedDataWithRootObject:value];
 }
-
-+ (BOOL)allowsReverseTransformation
-{
-	return YES;
-}
-
-- (id)transformedValue:(id)value
-{
-	if (value == nil) return nil;
-	return [NSArchiver archivedDataWithRootObject:value];
-}
-
-- (id)reverseTransformedValue:(id)value
-{
-	if (value == nil) return nil;
-	return [NSUnarchiver unarchiveObjectWithData:value];
+- (id)reverseTransformedValue:(id)value {
+	return (value == nil) ? nil: [NSUnarchiver unarchiveObjectWithData:value];
 }
 @end

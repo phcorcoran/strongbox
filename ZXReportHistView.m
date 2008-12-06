@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXReportHistView.m
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-11-23
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran
@@ -60,7 +60,6 @@
 	id arr = [NSMutableArray array];
 	for(id s in allSections) {
 		double a = fabs([[s amount] doubleValue]);
-		NSLog(@"%f", a/maxAmount * h);
 		if(a/maxAmount * h < 5) continue;
 		[arr addObject:s];
 	}

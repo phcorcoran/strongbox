@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXLabelMO.h
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-07-30
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran
@@ -22,7 +22,14 @@
 #import "ZXLabelController.h"
 #import "ZXNotifications.h"
 
+//! Label managed object
+/*!
+ Verify that no two labels have the same name by posting notifications upon name
+ change.
+ */
 @interface ZXLabelMO : NSManagedObject {
 }
+
+//! Used to set a label name without posting notification.
 - (void)specialSetName:(NSString *)newName;
 @end

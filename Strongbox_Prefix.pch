@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'Cashbox' target in the 'Cashbox' project
+// Prefix header for all source files of the 'Strongbox' target in the 'Strongbox' project
 //
 
 #ifdef __OBJC__

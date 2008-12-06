@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXDocument.m
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-03-02
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran
@@ -23,7 +23,7 @@
 
 @implementation ZXDocument
 
-@synthesize cashboxWindow, accountController, transactionSortDescriptors, nameSortDescriptors, transactionController, labelController, dateFormatter;
+@synthesize strongboxWindow, accountController, transactionSortDescriptors, nameSortDescriptors, transactionController, labelController, dateFormatter;
 
 - (id)init
 {
@@ -62,7 +62,7 @@
 #pragma mark Control config window
 - (IBAction)raiseConfigSheet:(id)sender
 {
-	[NSApp beginSheet:configSheet modalForWindow:[self cashboxWindow] modalDelegate:self didEndSelector:@selector(endConfigSheet:returnCode:contextInfo:) contextInfo:NULL];
+	[NSApp beginSheet:configSheet modalForWindow:[self strongboxWindow] modalDelegate:self didEndSelector:@selector(endConfigSheet:returnCode:contextInfo:) contextInfo:NULL];
 }
 
 - (IBAction)endConfigSheet:(id)sender
@@ -131,7 +131,7 @@
 #pragma mark Control importer window
 - (IBAction)raiseImporterSheet:(id)sender
 {
-	[NSApp beginSheet:oldCashboxImporter.importerWindow modalForWindow:[self cashboxWindow] modalDelegate:self didEndSelector:@selector(endImporterSheet:returnCode:contextInfo:) contextInfo:NULL];
+	[NSApp beginSheet:oldCashboxImporter.importerWindow modalForWindow:[self strongboxWindow] modalDelegate:self didEndSelector:@selector(endImporterSheet:returnCode:contextInfo:) contextInfo:NULL];
 }
 
 - (IBAction)endImporterSheet:(id)sender
@@ -181,7 +181,7 @@
 	[panel setRequiredFileType:@"csv"];
 	[panel beginSheetForDirectory:nil 
 				 file:name
-		       modalForWindow:[self cashboxWindow] 
+		       modalForWindow:[self strongboxWindow] 
 			modalDelegate:self 
 		       didEndSelector:@selector(savePanelDidEnd:returnCode:contextInfo:) 
 			  contextInfo:NULL];

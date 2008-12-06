@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXReportWindowController.h
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-04-13
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran

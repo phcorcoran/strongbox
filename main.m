@@ -1,6 +1,6 @@
 /*
  * Name: 	main.m
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-03-02
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran

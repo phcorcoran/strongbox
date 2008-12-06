@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXColorToDataTransformer.h
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-03-13
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran
@@ -20,9 +20,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-
+//! Transformer used to store colors as data for CoreData
+/*!
+ Quick and easy subclass of NSValueTransformer. Can be used to encode and decode 
+ colors (or any other object for that matter) into NSData. Uses NSArchiver.
+ */
 @interface ZXColorToDataTransformer : NSValueTransformer {
-
 }
-
 @end

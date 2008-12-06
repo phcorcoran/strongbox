@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXAccountController.m
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-06-03
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran

@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXAccountController.h
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-06-03
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran
@@ -19,19 +19,18 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "ZXNotifications.h"
 #import "ZXAccountMO.h"
+#import "ZXNotifications.h"
 #import "ZXTransactionController.h"
+
 
 @interface ZXAccountController : NSArrayController {
 	NSMutableDictionary *usedNames;
-//	IBOutlet ZXTransactionController *transactionController;
 }
 @property (retain) NSMutableDictionary *usedNames;
 
 - (void)prepareContent;
 - (void)updateUsedNames;
 - (NSString *)uniqueNewName:(NSString *)newDesiredName;
-//- (void)updateTotal:(NSNotification *)note;
 - (void)recalculateBalance:(NSNotification *)note;
 @end

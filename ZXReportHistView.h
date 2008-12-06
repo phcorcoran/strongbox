@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXReportHistView.h
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-11-23
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran

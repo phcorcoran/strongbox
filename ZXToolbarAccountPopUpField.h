@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXToolbarAccountPopUpField.h
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-06-03
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran
@@ -20,10 +20,18 @@
 
 #import <Cocoa/Cocoa.h>
 
-
+//! Custom toolbar item for accounts display in main window toolbar
+/*!
+ A subclass of NSToolbarItem to integrate a pop-up view in the toolbar, containing
+ all the accounts by name. The actual view is in the XIB file.
+ */
 @interface ZXToolbarAccountPopUpField : NSToolbarItem {
+	//! Link to the custom view in the XIB file
+	/*! The custom view is in the ZXDocument.xib file, in a dummy window. */
 	IBOutlet NSPopUpButton *customPopUp;
 }
+//! Automatically called when waking the view
+/*! Sets up the view, specifying hard-coded custom size */
 - (void)awakeFromNib;
 @end
 

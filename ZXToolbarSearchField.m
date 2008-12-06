@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXToolbarSearchField.m
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-03-11
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran
@@ -22,12 +22,10 @@
 
 
 @implementation ZXToolbarSearchField
-
 - (void)awakeFromNib
 {
 	[self setView:customSearchField];
 	[self setMinSize:NSMakeSize(100, NSHeight([customSearchField frame]))];
 	[self setMaxSize:NSMakeSize(150, NSHeight([customSearchField frame]))];
 }
-
 @end

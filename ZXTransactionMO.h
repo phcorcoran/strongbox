@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXTransactionMO.h
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-03-04
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran
@@ -27,5 +27,4 @@
 	IBOutlet NSString *transactionLabelName;
 }
 @property(copy) NSString *transactionLabelName;
-//- (NSNumber *)balance;
 @end

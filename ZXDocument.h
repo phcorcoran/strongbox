@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXDocument.h
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-03-02
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran
@@ -19,13 +19,13 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "ZXReportWindowController.h"
-#import "ZXAccountController.h"
-#import "ZXTransactionController.h"
-#import "ZXLabelController.h"
-#import "ZXDocumentConfigController.h"
-#import "ZXOldCashboxImporter.h"
 #import "NSStringExportAdditions.h"
+#import "ZXAccountController.h"
+#import "ZXDocumentConfigController.h"
+#import "ZXLabelController.h"
+#import "ZXOldCashboxImporter.h"
+#import "ZXReportWindowController.h"
+#import "ZXTransactionController.h"
 
 @class ZXReportWindowController, ZXOldCashboxImporter;
 @interface ZXDocument : NSPersistentDocument {
@@ -37,7 +37,7 @@
 	
 	// Windows
 	IBOutlet NSWindow *configSheet;
-	IBOutlet NSWindow *cashboxWindow;
+	IBOutlet NSWindow *strongboxWindow;
 	IBOutlet NSPanel *inspectorPanel;
 	IBOutlet NSTableView *transactionsView;
 	
@@ -52,7 +52,7 @@
 	NSDateFormatter *dateFormatter;
 }
 
-@property(readwrite, assign) NSWindow *cashboxWindow;
+@property(readwrite, assign) NSWindow *strongboxWindow;
 @property(readonly, assign) ZXAccountController *accountController;
 @property(assign) ZXTransactionController *transactionController;
 @property(assign) ZXLabelController *labelController;

@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXTransactionController.m
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-07-09
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran

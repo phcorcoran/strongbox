@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXNotifications.h
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-06-07
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran

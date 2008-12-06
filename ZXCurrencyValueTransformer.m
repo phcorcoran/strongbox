@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXCurrencyValueTransformer.m
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-11-12
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran

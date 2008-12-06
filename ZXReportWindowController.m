@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXReportWindowController.m
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-04-13
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran
@@ -80,16 +80,18 @@
 
 	[graphView removeAllSections];
 	[textView removeAllSections];
-//	[histView removeAllSections];
+	//[histView removeAllSections];
 	
+	[self parseReportDates];
 	for(id label in [self.owner allLabels]) {
 		if([[label valueForKey:@"isImmutable"] boolValue]) continue;
 		id textColor = [label valueForKey:@"textColor"];
 		id labelAmount;
 		id labelName = [label valueForKey:@"name"];
 		
-		[self parseReportDates];
 		labelAmount = [self parseLabelAmount:label];
+		double v = [labelAmount doubleValue];
+		if(-0.001 < v && v < 0.001) continue;
 		
 		ZXReportSection *section = [ZXReportSection sectionWithColor:textColor 
 								      amount:labelAmount 
@@ -108,12 +110,11 @@
 	[textView display];
 	[graphView display];
 	//[histView display];
-	
 }
 
 - (NSNumber *)parseLabelAmount:(id)label
 {
-	id currentAccountName;
+	id currentAccountName, curAccount;
 	id labelAmount = [NSNumber numberWithInt:0];
 	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Transaction" 
 							     inManagedObjectContext:self.owner.managedObjectContext];
@@ -125,7 +126,7 @@
 	switch([reportTypePopUpButton selectedTag]) {
 		case ZXAllAccountsDepositsReportType:
 		case ZXAllAccountsWithdrawalsReportType:
-			totalPredicate = [NSPredicate predicateWithFormat:@"(transactionLabel.name like %@) AND (date BETWEEN %@)", [label valueForKey:@"name"], dateArray];
+			totalPredicate = [NSPredicate predicateWithFormat:@"(transactionLabel == %@) AND (date BETWEEN %@)", label, dateArray];
 			
 			fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 			[fetchRequest setEntity:entityDescription];
@@ -146,9 +147,10 @@
 			
 		case ZXActiveAccountDepositsReportType:
 		case ZXActiveAccountWithdrawalsReportType:
-			currentAccountName = [self.owner.accountController valueForKeyPath:@"selection.name"];
+			curAccount = [self.owner.accountController valueForKeyPath:@"selection.self"];
+			currentAccountName = [curAccount valueForKey:@"name"];
 			
-			totalPredicate = [NSPredicate predicateWithFormat:@"(account.name like %@) AND (transactionLabel.name like %@) AND (date BETWEEN %@)", currentAccountName, [label valueForKey:@"name"], dateArray];
+			totalPredicate = [NSPredicate predicateWithFormat:@"(account == %@) AND (transactionLabel == %@) AND (date BETWEEN %@)", curAccount, label, dateArray];
 			
 			fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 			[fetchRequest setEntity:entityDescription];

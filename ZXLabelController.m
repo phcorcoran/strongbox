@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXLabelController.m
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-07-30
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran
@@ -81,11 +81,6 @@ static ZXLabelMO *sharedNoLabelObject = nil;
 	[super setContent:content];
 	[[NSNotificationCenter defaultCenter] postNotificationName:ZXLabelControllerDidLoadNotification 
 							    object:self];
-}
-
-- (void)awakeFromNib
-{
-	[super awakeFromNib];
 }
 
 - (id)newObject

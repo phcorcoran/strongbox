@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXPrintTransactionView.h
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-11-30
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran

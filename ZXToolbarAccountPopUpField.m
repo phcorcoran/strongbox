@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXToolbarAccountPopUpField.m
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-06-03
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran
@@ -22,12 +22,10 @@
 
 
 @implementation ZXToolbarAccountPopUpField
-
 - (void)awakeFromNib
 {
 	[self setView:customPopUp];
 	[self setMinSize:NSMakeSize(100, NSHeight([customPopUp frame]))];
 	[self setMaxSize:NSMakeSize(150, NSHeight([customPopUp frame]))];
 }
-
 @end

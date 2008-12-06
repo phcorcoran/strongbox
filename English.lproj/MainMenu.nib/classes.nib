@@ -34,6 +34,8 @@
 				<string>NSNumber</string>
 				<key>graphView</key>
 				<string>ZXReportGraphView</string>
+				<key>histView</key>
+				<string>ZXReportHistView</string>
 				<key>reportEndDate</key>
 				<string>NSDate</string>
 				<key>reportResultControl</key>
@@ -49,21 +51,6 @@
 				<key>textView</key>
 				<string>ZXReportTextView</string>
 			</dict>
-			<key>SUPERCLASS</key>
-			<string>NSObject</string>
-		</dict>
-		<dict>
-			<key>ACTIONS</key>
-			<dict>
-				<key>addTransaction</key>
-				<string>id</string>
-				<key>removeTransaction</key>
-				<string>id</string>
-			</dict>
-			<key>CLASS</key>
-			<string>FirstResponder</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
 			<key>SUPERCLASS</key>
 			<string>NSObject</string>
 		</dict>
@@ -88,6 +75,21 @@
 			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSControl</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>addTransaction</key>
+				<string>id</string>
+				<key>removeTransaction</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>FirstResponder</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
 		</dict>
 		<dict>
 			<key>CLASS</key>
@@ -156,8 +158,6 @@
 			<dict>
 				<key>accountController</key>
 				<string>ZXAccountController</string>
-				<key>cashboxWindow</key>
-				<string>NSWindow</string>
 				<key>configSheet</key>
 				<string>NSWindow</string>
 				<key>documentConfigController</key>
@@ -172,21 +172,17 @@
 				<string>NSArray</string>
 				<key>oldCashboxImporter</key>
 				<string>ZXOldCashboxImporter</string>
+				<key>strongboxWindow</key>
+				<string>NSWindow</string>
 				<key>transactionController</key>
 				<string>ZXTransactionController</string>
 				<key>transactionSortDescriptors</key>
 				<string>NSArray</string>
+				<key>transactionsView</key>
+				<string>NSTableView</string>
 			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSPersistentDocument</string>
-		</dict>
-		<dict>
-			<key>CLASS</key>
-			<string>ZXLabelController</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
-			<key>SUPERCLASS</key>
-			<string>NSArrayController</string>
 		</dict>
 		<dict>
 			<key>CLASS</key>
@@ -200,6 +196,22 @@
 			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSArrayController</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>ZXLabelController</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSArrayController</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>ZXReportHistView</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSView</string>
 		</dict>
 		<dict>
 			<key>CLASS</key>

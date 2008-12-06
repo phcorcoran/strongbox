@@ -1,6 +1,6 @@
 /*
  * Name: 	ZXCurrencyFormatter.h
- * Project:	Cashbox
+ * Project:	Strongbox
  * Created on:	2008-07-16
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran
