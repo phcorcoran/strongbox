@@ -1,0 +1,48 @@
+\hypertarget{interface_z_x_app_controller}{
+\section{ZXAppController Class Reference}
+\label{interface_z_x_app_controller}\index{ZXAppController@{ZXAppController}}
+}
+General Application Controller.  
+
+
+{\tt \#import $<$ZXAppController.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+(BOOL) - \hyperlink{interface_z_x_app_controller_6ced841705b02c4f5b6866dd381edc8e}{applicationShouldOpenUntitledFile:}{\tt  \mbox{[}implementation\mbox{]}}
+\begin{CompactList}\small\item\em Handles application behavior concerning untitled documents. \item\end{CompactList}\item 
+(void) - \hyperlink{interface_z_x_app_controller_90d233c6214bc6fc1f88192f6d94e92a}{applicationDidFinishLaunching:}{\tt  \mbox{[}implementation\mbox{]}}
+\begin{CompactList}\small\item\em Basic initialization of application. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+General Application Controller. 
+
+Handles basic initialization, loads previously saved document if possible. Otherwise, loads a new document. 
+
+\subsection{Member Function Documentation}
+\hypertarget{interface_z_x_app_controller_90d233c6214bc6fc1f88192f6d94e92a}{
+\index{ZXAppController@{ZXAppController}!applicationDidFinishLaunching:@{applicationDidFinishLaunching:}}
+\index{applicationDidFinishLaunching:@{applicationDidFinishLaunching:}!ZXAppController@{ZXAppController}}
+\subsubsection[{applicationDidFinishLaunching:}]{\setlength{\rightskip}{0pt plus 5cm}- (void) applicationDidFinishLaunching: (NSNotification $\ast$) {\em aNotification}\hspace{0.3cm}{\tt  \mbox{[}implementation\mbox{]}}}}
+\label{interface_z_x_app_controller_90d233c6214bc6fc1f88192f6d94e92a}
+
+
+Basic initialization of application. 
+
+Load previously saved document if none is to be loaded \hypertarget{interface_z_x_app_controller_6ced841705b02c4f5b6866dd381edc8e}{
+\index{ZXAppController@{ZXAppController}!applicationShouldOpenUntitledFile:@{applicationShouldOpenUntitledFile:}}
+\index{applicationShouldOpenUntitledFile:@{applicationShouldOpenUntitledFile:}!ZXAppController@{ZXAppController}}
+\subsubsection[{applicationShouldOpenUntitledFile:}]{\setlength{\rightskip}{0pt plus 5cm}- (BOOL) applicationShouldOpenUntitledFile: (NSApplication $\ast$) {\em sender}\hspace{0.3cm}{\tt  \mbox{[}implementation\mbox{]}}}}
+\label{interface_z_x_app_controller_6ced841705b02c4f5b6866dd381edc8e}
+
+
+Handles application behavior concerning untitled documents. 
+
+If a document was previously saved, should respond not to open an untitled document 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/Users/phcor/lib/Strongbox/ZXAppController.h\item 
+/Users/phcor/lib/Strongbox/ZXAppController.m\end{CompactItemize}

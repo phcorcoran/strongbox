@@ -19,7 +19,7 @@
  */
 
 #import "ZXReportHistView.h"
-
+#import "ZXReportSection.h"
 
 @implementation ZXReportHistView
 

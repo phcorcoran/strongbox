@@ -18,10 +18,10 @@
  * --------------------------------------------------------------------------
  */
 
-static NSString *ZXAccountTotalDidChangeNotification = @"AccountTotalDidChange";
-static NSString *ZXTransactionLabelDidChangeNotification = @"TransactionLabelDidChange";
-static NSString *ZXActiveAccountDidChangeNotification = @"ActiveAccountDidChange";
 static NSString *ZXAccountControllerDidLoadNotification = @"AccountControllerDidLoad";
 static NSString *ZXAccountNameDidChangeNotification = @"AccountNameDidChange";
-static NSString *ZXLabelNameDidChangeNotification = @"LabelNameDidChange";
+static NSString *ZXAccountTotalDidChangeNotification = @"AccountTotalDidChange";
+static NSString *ZXActiveAccountDidChangeNotification = @"ActiveAccountDidChange";
 static NSString *ZXLabelControllerDidLoadNotification = @"LabelControllerDidLoad";
+static NSString *ZXLabelNameDidChangeNotification = @"LabelNameDidChange";
+static NSString *ZXTransactionLabelDidChangeNotification = @"TransactionLabelDidChange";

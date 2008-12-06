@@ -34,14 +34,49 @@
 (void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_label_m_o.html#dc62383d23935f9cd45897d5835181dc">specialSetName:</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used to set a label name without posting notification. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_label_m_o.html#1f64b30333ddb010cf343336cf32d3f1">setValue:forKey:</a><code> [implementation]</code></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Controls special cases of key-value changes.  <a href="#1f64b30333ddb010cf343336cf32d3f1"></a><br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Label managed object. 
 <p>
-Verify that no two labels have the same name by posting notifications upon name change. <hr>The documentation for this class was generated from the following files:<ul>
+Verify that no two labels have the same name by posting notifications upon name change. <hr><h2>Member Function Documentation</h2>
+<a class="anchor" name="1f64b30333ddb010cf343336cf32d3f1"></a><!-- doxytag: member="ZXLabelMO::setValue:forKey:" ref="1f64b30333ddb010cf343336cf32d3f1" args="(id value,[forKey] NSString *key)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) setValue:           </td>
+          <td></td>
+          <td class="paramtype">(id)&nbsp;</td>
+          <td class="paramname"> <em>value</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">forKey:</td>
+          <td></td>
+          <td class="paramtype">(NSString *)&nbsp;</td>
+          <td class="paramname"> <em>key</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Controls special cases of key-value changes. 
+<p>
+Prevents the name change of immutable labels (e.g. "no-label" label). Posts a ZXLabelNameDidChangeNotification after label name is changed. 
+</div>
+</div><p>
+<hr>The documentation for this class was generated from the following files:<ul>
 <li>/Users/phcor/lib/Strongbox/ZXLabelMO.h<li>/Users/phcor/lib/Strongbox/ZXLabelMO.m</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Dec 6 02:54:29 2008 for Strongbox by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Dec 6 18:09:04 2008 for Strongbox by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.7.1 </small></address>
 </body>

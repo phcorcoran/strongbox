@@ -21,6 +21,10 @@
 #import <Cocoa/Cocoa.h>
 
 @class ZXDocument;
+//! Config window delegate
+/*!
+ Enables undo operation in the configuration window.
+ */
 @interface ZXConfigWindowDelegate : NSObject {
 	IBOutlet ZXDocument *owner;
 }

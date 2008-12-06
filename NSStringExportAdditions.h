@@ -22,5 +22,10 @@
 #import <Foundation/NSString.h>
 
 @interface NSString (ExportAdditions)
+//! Export a string in CSV format
+/*!
+ Escapes double-quote (with double-quotes), and encloses the string in double-quotes.
+ \return Exported string
+ */
 - (NSString *)csvExport;
 @end

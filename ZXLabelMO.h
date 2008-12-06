@@ -19,8 +19,6 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "ZXLabelController.h"
-#import "ZXNotifications.h"
 
 //! Label managed object
 /*!
@@ -29,7 +27,6 @@
  */
 @interface ZXLabelMO : NSManagedObject {
 }
-
 //! Used to set a label name without posting notification.
 - (void)specialSetName:(NSString *)newName;
 @end

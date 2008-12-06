@@ -19,15 +19,13 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "NSStringExportAdditions.h"
-#import "ZXAccountController.h"
-#import "ZXDocumentConfigController.h"
-#import "ZXLabelController.h"
-#import "ZXOldCashboxImporter.h"
-#import "ZXReportWindowController.h"
-#import "ZXTransactionController.h"
 
-@class ZXReportWindowController, ZXOldCashboxImporter;
+@class ZXReportWindowController, ZXOldCashboxImporter, ZXTransactionController, ZXAccountController, ZXLabelController, ZXDocumentConfigController;
+
+//! Central class of document architecture
+/*!
+ Handles almost all interface events. Is the owner of all other controllers.
+ */
 @interface ZXDocument : NSPersistentDocument {
 	// Core Data Controllers
 	IBOutlet ZXTransactionController *transactionController;

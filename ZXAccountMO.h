@@ -19,12 +19,23 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "ZXNotifications.h"
 
-
+//! Account managed object
+/*! 
+ Prevents duplicate names in accounts. Also manages the balance calculation.
+ */
 @interface ZXAccountMO : NSManagedObject {
 }
-//- (NSString *)total;
+//! Sets the name of the account avoiding verification
+/*! 
+ Verify that no duplicates exist in the controller before using that method.
+ \param newName New name for account.
+ */
 - (void)specialSetName:(NSString *)newName;
+
+//! Recalculate the balance for the account
+/*!
+ Sets the new balance for the account AND for each transactions.
+ */
 - (void)recalculateBalance:(NSNotification *)note;
 @end

@@ -19,10 +19,14 @@
  */
 
 #import "ZXAccountMO.h"
-
+#import "ZXNotifications.h"
 
 @implementation ZXAccountMO
-
+//! Posts a notification if name is changed
+/*!
+ Use specialSetName: to avoid notification posting.
+ \sa specialSetName:
+ */
 - (void)setValue:(id)value forKey:(NSString *)key
 {
 	[super setValue:value forKey:key];
@@ -61,5 +65,4 @@
 	}
 	[self setValue:[NSNumber numberWithDouble:balance] forKey:@"balance"];
 }
-
 @end

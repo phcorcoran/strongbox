@@ -19,12 +19,13 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "ZXReportSection.h"
 
 enum {
 	ZXMoneyReportResult = 0,
 	ZXPercentReportResult = 1,
 };
+
+@class ZXReportSection;
 
 @interface ZXReportTextView : NSControl {
 	NSMutableArray *allSections;

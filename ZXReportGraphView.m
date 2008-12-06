@@ -19,6 +19,7 @@
  */
 
 #import "ZXReportGraphView.h"
+#import "ZXReportSection.h"
 
 @implementation ZXReportGraphView
 

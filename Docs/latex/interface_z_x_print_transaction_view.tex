@@ -1,0 +1,83 @@
+\hypertarget{interface_z_x_print_transaction_view}{
+\section{ZXPrintTransactionView Class Reference}
+\label{interface_z_x_print_transaction_view}\index{ZXPrintTransactionView@{ZXPrintTransactionView}}
+}
+Generates the view for printing.  
+
+
+{\tt \#import $<$ZXPrintTransactionView.h$>$}
+
+Collaboration diagram for ZXPrintTransactionView:\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+(id) - \hyperlink{interface_z_x_print_transaction_view_78bbca384b07eeb77a7aaba3b81e473b}{initWithOwner:}
+\begin{CompactList}\small\item\em Initialize the print view with given document. \item\end{CompactList}\item 
+\hypertarget{interface_z_x_print_transaction_view_a907517604f0c9dc5c69fe193b37638c}{
+(BOOL) - \hyperlink{interface_z_x_print_transaction_view_a907517604f0c9dc5c69fe193b37638c}{isFlipped}{\tt  \mbox{[}implementation\mbox{]}}}
+\label{interface_z_x_print_transaction_view_a907517604f0c9dc5c69fe193b37638c}
+
+\begin{CompactList}\small\item\em Returns YES. View is from top to bottom. \item\end{CompactList}\item 
+\hypertarget{interface_z_x_print_transaction_view_b00f9ba359ff0c6c37e0b0e595d1bea6}{
+(NSRect) - \hyperlink{interface_z_x_print_transaction_view_b00f9ba359ff0c6c37e0b0e595d1bea6}{rectForPage:}{\tt  \mbox{[}implementation\mbox{]}}}
+\label{interface_z_x_print_transaction_view_b00f9ba359ff0c6c37e0b0e595d1bea6}
+
+\begin{CompactList}\small\item\em Calculates the rectangle for a given page. \item\end{CompactList}\item 
+(int) - \hyperlink{interface_z_x_print_transaction_view_d60b05e1c3fb49619c603ae70489f422}{transactionsPerPage}{\tt  \mbox{[}implementation\mbox{]}}
+\begin{CompactList}\small\item\em Calculates the number of transactions per page. \item\end{CompactList}\item 
+(NSRect) - \hyperlink{interface_z_x_print_transaction_view_7f719de4df038472fe764489e782605c}{rectForTransaction:}{\tt  \mbox{[}implementation\mbox{]}}
+\begin{CompactList}\small\item\em Calculates the required rect for given transaction. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Generates the view for printing. 
+
+Does not print background colors. Date and amounts are fixed-size, while label is given 2/5 of rest, and description 3/5. 
+
+\subsection{Member Function Documentation}
+\hypertarget{interface_z_x_print_transaction_view_78bbca384b07eeb77a7aaba3b81e473b}{
+\index{ZXPrintTransactionView@{ZXPrintTransactionView}!initWithOwner:@{initWithOwner:}}
+\index{initWithOwner:@{initWithOwner:}!ZXPrintTransactionView@{ZXPrintTransactionView}}
+\subsubsection[{initWithOwner:}]{\setlength{\rightskip}{0pt plus 5cm}- (id) initWithOwner: ({\bf ZXDocument} $\ast$) {\em owner}}}
+\label{interface_z_x_print_transaction_view_78bbca384b07eeb77a7aaba3b81e473b}
+
+
+Initialize the print view with given document. 
+
+Given document is normally the currently opened frontmost document \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em owner}]Owner of the print view, i.e. document to be printed. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]New print view \end{Desc}
+\hypertarget{interface_z_x_print_transaction_view_7f719de4df038472fe764489e782605c}{
+\index{ZXPrintTransactionView@{ZXPrintTransactionView}!rectForTransaction:@{rectForTransaction:}}
+\index{rectForTransaction:@{rectForTransaction:}!ZXPrintTransactionView@{ZXPrintTransactionView}}
+\subsubsection[{rectForTransaction:}]{\setlength{\rightskip}{0pt plus 5cm}- (NSRect) rectForTransaction: (int) {\em i}\hspace{0.3cm}{\tt  \mbox{[}implementation\mbox{]}}}}
+\label{interface_z_x_print_transaction_view_7f719de4df038472fe764489e782605c}
+
+
+Calculates the required rect for given transaction. 
+
+Given document is normally the currently opened frontmost document \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em i}]Position ID of the transaction (e.g. 3rd, 4th, etc). \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]A rectangle corresponding to the required view. \end{Desc}
+\hypertarget{interface_z_x_print_transaction_view_d60b05e1c3fb49619c603ae70489f422}{
+\index{ZXPrintTransactionView@{ZXPrintTransactionView}!transactionsPerPage@{transactionsPerPage}}
+\index{transactionsPerPage@{transactionsPerPage}!ZXPrintTransactionView@{ZXPrintTransactionView}}
+\subsubsection[{transactionsPerPage}]{\setlength{\rightskip}{0pt plus 5cm}- (int) transactionsPerPage \hspace{0.3cm}{\tt  \mbox{[}implementation\mbox{]}}}}
+\label{interface_z_x_print_transaction_view_d60b05e1c3fb49619c603ae70489f422}
+
+
+Calculates the number of transactions per page. 
+
+This calculation is based of hard-coded value of the vertical height for each transaction 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/Users/phcor/lib/Strongbox/ZXPrintTransactionView.h\item 
+/Users/phcor/lib/Strongbox/ZXPrintTransactionView.m\end{CompactItemize}

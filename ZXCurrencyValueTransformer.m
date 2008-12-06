@@ -19,6 +19,7 @@
  */
 
 #import "ZXCurrencyValueTransformer.h"
+#import "ZXCurrencyFormatter.h"
 
 @implementation ZXCurrencyValueTransformer
 - (Class)transformedValueClass { return [NSString class]; }

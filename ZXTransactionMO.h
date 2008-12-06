@@ -19,11 +19,17 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "ZXLabelController.h"
-#import "ZXNotifications.h"
 
-
+//! Transaction managed object
+/*!
+ Handles basic initialization and notifying for transactions.
+ */
 @interface ZXTransactionMO : NSManagedObject {
+	//! Forward variable for transactionLabel.name
+	/*!
+	 Some problems where encountered when trying to use a key path somewhere.
+	 This solved the problem.
+	 */
 	IBOutlet NSString *transactionLabelName;
 }
 @property(copy) NSString *transactionLabelName;

@@ -19,12 +19,27 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "ZXNotifications.h"
 
-
+//! General controller code for transactions
+/*!
+ Manages completion, and posts ZXAccountTotalDidChangeNotification on add/remove.
+ */
 @interface ZXTransactionController : NSArrayController {
-
 }
+//! Delegate method for text completion
+/*!
+ Checks if aString is a completion.
+ \param aString String containing the current description
+ \return YES if aString is a completion.
+ \sa completionForPrefix:
+ */
 -(BOOL)isACompletion:(NSString *)aString;
+//! Delegate method for text completion
+/*!
+ Scan through the _arrangedObjects_ That means if a search is in progress, it 
+ will not look for names in the rest of the data for completion.
+ \param prefix Current prefix needing completion
+ \return Completed string
+ */
 -(NSString *)completionForPrefix:(NSString *)prefix;
 @end

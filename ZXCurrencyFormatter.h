@@ -20,8 +20,18 @@
 
 #import <Cocoa/Cocoa.h>
 
+//! Shared currency formatter
+/*! 
+ Stores a shared instance of a currency formatter defined in XIB. Let all
+ class convert numbers to currency in a consistent fashion.
+ */
 @interface ZXCurrencyFormatter : NSObject {
+	//! Links the class with the XIB formatter
+	/*!
+	 Customization should be done when handling translation of XIB.
+	 */
 	IBOutlet NSNumberFormatter *currencyFormatter;
 }
+//! Returns the shared currency formatter
 + (NSNumberFormatter *)currencyFormatter;
 @end

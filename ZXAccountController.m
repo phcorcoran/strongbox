@@ -17,7 +17,18 @@
  *  Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * --------------------------------------------------------------------------
  */
+
 #import "ZXAccountController.h"
+#import "ZXAccountMO.h"
+#import "ZXNotifications.h"
+#import "ZXTransactionController.h"
+
+@interface ZXAccountController (Private)
+- (NSString *)uniqueNewName:(NSString *)newDesiredName;
+- (void)updateUsedNames;
+- (void)validatesNewAccountName:(NSNotification *)aNotification;
+@end
+
 
 @implementation ZXAccountController
 @synthesize usedNames;
@@ -30,6 +41,12 @@
 	return self;
 }
 
+//! Prepares the content of the controller
+/*!
+ If there is no accounts, adds one. Registers to validate name change, and sets 
+ up used names dictionary.
+ \sa updateUsedNames, validatesNewAccountName:
+ */
 - (void)prepareContent
 {
 	[super prepareContent];
@@ -49,6 +66,10 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(validatesNewAccountName:) name:ZXAccountNameDidChangeNotification object:nil];
 }
 
+//! Controls special cases of key-value changes
+/*!
+ Posts a ZXActiveAccountDidChangeNotification upon selection change.
+ */
 - (void)setValue:(id)newValue forKey:(id)key
 {
 	[super setValue:newValue forKey:key];
@@ -57,6 +78,11 @@
 	}
 }
 
+//! Basic initialization
+/*!
+ Registers to recalculate balances of selection when account total changes.
+ \sa recalculateBalance:
+ */
 - (void)awakeFromNib
 {
 	[super awakeFromNib];
@@ -68,6 +94,10 @@
 	[[self valueForKeyPath:@"selection.self"] recalculateBalance:note];
 }
 
+//! Creates a new object
+/*! 
+ Sets up new name to hard-coded "New Account" (to fix)
+ */
 - (id)newObject
 {
 	id obj = [super newObject];
@@ -77,6 +107,13 @@
 	return obj;
 }
 
+//! Sets the name of the account in the notification to avoid conflicts.
+/*! 
+ This function changes the name of the account in the notification if there is
+ a duplicate with existing labels.
+ \param aNotification NSNotification containing the new account as object.
+ \sa uniqueNewName:
+ */
 - (void)validatesNewAccountName:(NSNotification *)aNotification
 {
 	id obj = [aNotification object];
@@ -84,6 +121,13 @@
 	[self updateUsedNames];
 }
 
+//! Generates a non-conflicting name from given name
+/*! 
+ Returns a new name from the given so that no conflict arises inserting a new 
+ account with that name. Appends a number after the name if already exists.
+ \param newDesiredName String containing the desired name of the account.
+ \return Same or modified name depending on if conflict was found. 
+ */
 - (NSString *)uniqueNewName:(NSString *)newDesiredName
 {
 	NSString *allowedName = newDesiredName;
@@ -94,6 +138,11 @@
 	return allowedName;
 }
 
+//! Updates the dictionary containing the used names
+/*!
+ Is an expensive method. Uses Core Data fetches to get used names and reconstruct
+ the dictionary from scratch.
+ */
 - (void)updateUsedNames
 {
 	NSEntityDescription *desc = [NSEntityDescription entityForName:@"Account" 

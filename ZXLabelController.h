@@ -19,7 +19,6 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "ZXLabelMO.h"
 
 @class ZXLabelMO;
 
@@ -44,34 +43,6 @@
 	 */
 	ZXLabelMO *noLabel;
 }
-@property (assign) NSMutableDictionary *usedNames;
+@property (retain) NSMutableDictionary *usedNames;
 @property (retain) ZXLabelMO *noLabel;
-
-//! Sets the name of the label in the notification to avoid conflicts.
-/*! 
- This function changes the name of the label in the notification if there is
- a duplicate with existing labels.
- \param aNotification NSNotification containing the new label as object.
- \sa uniqueNewName:
- */
-- (void)validatesNewLabelName:(NSNotification *)aNotification;
-
-//! Generates a non-conflicting name from given name
-/*! 
- Returns a new name from the given so that no conflict arises inserting a new 
- label with that name. Appends a number after the name if already exists.
- \param newDesiredName String containing the desired name of the label.
- \return Same or modified name depending on if conflict was found. 
- */
-- (NSString *)uniqueNewName:(NSString *)newDesiredName;
-
-//! Update the dictionary of used names to reflect current state
-/*! 
- Used when change is done on controlled objects. Costly operation, uses fetch in
- CoreData store to retrieve names.
- */
-- (void)updateUsedNames;
-
-//! Initialization of the "no-label" object
-- (void)setupNoLabelObject;
 @end

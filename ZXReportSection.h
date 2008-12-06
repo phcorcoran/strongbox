@@ -20,7 +20,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface ZXReportSection : NSObject {
 	NSString *name;
 	NSColor *color;

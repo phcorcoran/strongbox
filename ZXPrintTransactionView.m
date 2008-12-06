@@ -22,6 +22,10 @@
 #import "ZXDocument.h"
 #import "ZXCurrencyFormatter.h"
 
+@interface ZXPrintTransactionView (Private)
+- (NSRect)rectForTransaction:(int)i;
+- (int)transactionsPerPage;
+@end
 
 #define VSPACE 14.0
 
@@ -57,11 +61,10 @@
 	return self;	
 }
 
-- (BOOL)isFlipped
-{
-	return YES;
-}
+//! Returns YES. View is from top to bottom.
+- (BOOL)isFlipped { return YES; }
 
+//! Calculates the rectangle for a given page
 - (NSRect)rectForPage:(int)page
 {
 	NSRect result;
@@ -72,6 +75,11 @@
 	return result;
 }
 
+//! Calculates the number of transactions per page
+/*! 
+ This calculation is based of hard-coded value of the vertical height for each 
+ transaction
+ */
 - (int)transactionsPerPage
 {
 	float tpp = (paperSize.height - (2.0 * topMargin)) / VSPACE;
@@ -91,6 +99,12 @@
 	
 }
 
+//! Calculates the required rect for given transaction
+/*!
+ Given document is normally the currently opened frontmost document
+ \param i Position ID of the transaction (e.g. 3rd, 4th, etc).
+ \return A rectangle corresponding to the required view.
+ */
 - (NSRect)rectForTransaction:(int)i
 {
 	NSRect result;
@@ -208,112 +222,4 @@
 	[rightStyle release];
 	[super dealloc];
 }
-
-/*
-- (void)print:(id)sender
-{
-	NSTextField *text = [[[NSTextField alloc] init] autorelease];
-	[text setBordered:NO];
-	[text setEditable:NO];
-	[text setSelectable:NO];
-	[text setDrawsBackground:NO];
-	[text setFont:[NSFont systemFontOfSize:24]];
-	[text setStringValue:[[[AccountController sharedInstance] activeAccount] name]];
-	[text sizeToFit];
-	
-	NSTextField *text_two = [[[NSTextField alloc] init] autorelease];
-	[text_two setBordered:NO];
-	[text_two setEditable:NO];
-	[text_two setSelectable:NO];
-	[text_two setDrawsBackground:NO];
-	[text_two setStringValue:@"As of"];
-	[text_two sizeToFit];
-	
-	NSTextField *date = [[[NSTextField alloc] init] autorelease];
-	[date setBordered:NO];
-	[date setEditable:NO];
-	[date setSelectable:NO];
-	[date setDrawsBackground:NO];
-	[date setFormatter:[[PreferenceController sharedInstance] objectForKey:WYDateFormatter]];
-	[date setObjectValue:[NSCalendarDate calendarDate]];
-	[date sizeToFit];
-	
-	NSTableView *table = [[[NSTableView alloc] init] autorelease];
-	[table setDelegate:self];
-	[table setDataSource:self];
-	[table setIntercellSpacing:NSMakeSize(0,[table intercellSpacing].height)];
-	
-	int counter;
-	float total_width = 0;
-	for (counter = 0; counter < [[view tableColumns] count]; counter ++)
-	{
-		if (![[[[view tableColumns] objectAtIndex:counter] identifier] isEqualToString:RECONCILED_COL])
-		{
-			NSTableColumn *user_def = [[view tableColumns] objectAtIndex:counter];
-			NSTableColumn *col = [[NSTableColumn alloc] initWithIdentifier:[[user_def identifier] copy]];
-			[table addTableColumn:col];
-			[col release];
-			[col setWidth:[user_def width]];
-			[col setMinWidth:[user_def minWidth]];
-			[col setMaxWidth:[user_def maxWidth]];
-			total_width += [user_def width];
-			if ([[user_def dataCell] isKindOfClass:[WYOvalTextFieldCell class]]) // don't draw labels while printing
-			{
-				[col setDataCell:[[NSTextFieldCell alloc] init]];
-				[[col dataCell] release];
-				[[col dataCell] setFormatter:[[user_def dataCell] formatter]];
-				[[col dataCell] setAlignment:[[user_def dataCell] alignment]];
-				[[col dataCell] setFont:[[user_def dataCell] font]];
-			} else {
-				[col setDataCell:[[user_def dataCell] copy]];
-				[[col dataCell] release];
-			}
-		} else {
-			NSTableColumn *user_def = [[view tableColumns] objectAtIndex:counter];
-			NSTableColumn *col = [[NSTableColumn alloc] initWithIdentifier:RECONCILED_PRINT_COL];
-			[table addTableColumn:col];
-			[col release];
-			[col setWidth:[user_def width]];
-			[col setMinWidth:[user_def minWidth]];
-			[col setMaxWidth:[user_def maxWidth]];
-			total_width += [user_def width];
-			[[col dataCell] setAlignment:NSCenterTextAlignment];
-			[[col dataCell] setFont:[NSFont systemFontOfSize:11]];
-		}
-	}
-	for (counter = 0; counter < [[table tableColumns] count]; counter++)
-	{
-		NSTableColumn *col = [[table tableColumns] objectAtIndex:counter];
-		[col setWidth:[col width] * (550 / total_width)];
-	}
-	
-	[table reloadData];
-	
-	NSView *print_view = [[[NSView alloc] init] autorelease];
-	[print_view setFrame:NSMakeRect(0,0,600,18*[table_contents count] + 80)];
-	
-	[print_view addSubview:table];
-	[print_view addSubview:text];
-	[print_view addSubview:text_two];
-	[print_view addSubview:date];
-	[text setFrame:NSMakeRect((600 - [text frame].size.width) / 2, 18*[table_contents count] + 42, [text frame].size.width, [text frame].size.height)];
-	[text_two setFrame:NSMakeRect((600 - [text_two frame].size.width - [date frame].size.width) / 2, 18*[table_contents count] + 24, [text_two frame].size.width, [text_two frame].size.height)];
-	[date setFrame:NSMakeRect([text_two frame].origin.x + [text_two frame].size.width, 18*[table_contents count] + 11, [text frame].size.width, [text frame].size.height)];
-	
-	[table setFrame:NSMakeRect(10,10,600,18*[table_contents count])];
-	
-	NSPrintInfo *printInfo = [NSPrintInfo sharedPrintInfo];
-	[printInfo setHorizontalPagination:NSFitPagination];
-	[printInfo setHorizontallyCentered:NO];
-	[printInfo setVerticallyCentered:NO];
-	[printInfo setLeftMargin:72.0];
-	[printInfo setRightMargin:72.0];
-	[printInfo setTopMargin:73.0];
-	[printInfo setBottomMargin:73.0];
-	
-	NSPrintOperation *op = [NSPrintOperation printOperationWithView:print_view printInfo:printInfo];
-	[op setShowPanels:YES];
-	[op runOperationModalForWindow:[[MainWindowController sharedInstance] window] delegate:nil didRunSelector:NULL contextInfo:nil];
-}
-*/
 @end

@@ -19,22 +19,28 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "ZXDocument.h"
 
 @class ZXDocument;
+
+//! Data importer from the old cashbox application
+/*! 
+ Imports data from the old cashbox application into curren document. Does not 
+ overwrite any currently present data, simply adds new accounts and puts
+ transactions in them.
+ */
 @interface ZXOldCashboxImporter : NSObject {
+	//! Front-most document
 	IBOutlet ZXDocument *owner;
+	//! Stores all the new labels
 	NSMutableDictionary *allNewLabels;
+	
 	IBOutlet NSProgressIndicator *progressIndicator;
 	IBOutlet NSTextField *importationMessage;
 	IBOutlet NSWindow *importerWindow;
 }
-
 @property(assign) NSMutableDictionary *allNewLabels;
 @property(assign) NSWindow *importerWindow;
 
+//! Launches the import procedure
 - (void)main;
-- (void)importLabelsFromFile:(NSString *)path;
-- (void)importAccountFromFile:(NSString *)path;
-
 @end

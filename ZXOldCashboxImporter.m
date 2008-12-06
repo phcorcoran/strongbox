@@ -19,7 +19,15 @@
  */
 
 #import "ZXOldCashboxImporter.h"
+#import "ZXDocument.h"
+#import "ZXLabelController.h"
 
+static NSString *sharedNoLabelString = @"-";
+
+@interface ZXOldCashboxImporter (Private)
+- (void)importLabelsFromFile:(NSString *)path;
+- (void)importAccountFromFile:(NSString *)path;
+@end
 
 @implementation ZXOldCashboxImporter
 @synthesize allNewLabels, importerWindow;
@@ -44,11 +52,16 @@
 	}
 }
 
+//! Imports labels from old cashbox app.
+/*!
+ Updates the progress indicator while doing so.
+ */
 - (void)importLabelsFromFile:(NSString *)path
 {
 	NSArray *array = [NSArray arrayWithContentsOfFile:path];
 	
 	int labelCount = [array count];
+	// FIXME: Hard-coded english
 	[importationMessage setStringValue:[NSString stringWithFormat:@"Importing Labels... 0 of %d", labelCount]];
 	[progressIndicator setMaxValue:labelCount];
 	[progressIndicator setDoubleValue:0];
@@ -56,6 +69,7 @@
 	
 	int i = 0;
 	for(id label in array) {
+		// FIXME: Hard-coded english
 		[importationMessage setStringValue:[NSString stringWithFormat:@"Importing Labels... %d of %d", ++i, labelCount]];
 		[progressIndicator setDoubleValue:i];
 		[importerWindow display];
@@ -72,9 +86,13 @@
 		[newLabel setValue:color forKey:@"textColor"];
 		[allNewLabels setValue:newLabel forKey:[newLabel valueForKey:@"name"]];
 	}
-	[allNewLabels setValue:[[owner labelController] noLabel] forKey:@"-"];
+	[allNewLabels setValue:[[owner labelController] noLabel] forKey:sharedNoLabelString];
 }
 
+//! Imports the account from old cashbox app.
+/*!
+ Updates the progress indicator while doing so.
+ */
 - (void)importAccountFromFile:(NSString *)path
 {
 	NSDictionary *account = [NSDictionary dictionaryWithContentsOfFile:path];
@@ -86,6 +104,7 @@
 	NSString *accountName = [newAccount valueForKey:@"name"];
 	
 	NSInteger txCount = [array count];
+	// FIXME: Hard-coded english
 	[importationMessage setStringValue:[NSString stringWithFormat:@"Importing %@ ... 0 of %d transactions", accountName, txCount]];
 	[progressIndicator setMaxValue:txCount];
 	[progressIndicator setDoubleValue:0];
@@ -94,7 +113,7 @@
 	int i = 0;
 	NSMutableArray *transactions = [account valueForKey:@"Transactions"];
 	for(id transaction in transactions) {
-		
+		// FIXME: Hard-coded english
 		[importationMessage setStringValue:[NSString stringWithFormat:@"Importing %@ ... %d of %d transactions", accountName, ++i, txCount]];
 		[progressIndicator setDoubleValue:i];
 		[importerWindow display];
@@ -107,7 +126,7 @@
 		[newTransaction setValue:[allNewLabels valueForKey:[transaction valueForKey:@"Label"]] forKey:@"transactionLabel"];
 		[newTransaction setValue:[allNewLabels valueForKey:[transaction valueForKey:@"Label"]] forKey:@"transactionLabel"];
 		if([transaction valueForKey:@"Label"] == nil) {
-			[newTransaction setValue:[allNewLabels valueForKey:@"-"] forKey:@"transactionLabel"];
+			[newTransaction setValue:[allNewLabels valueForKey:sharedNoLabelString] forKey:@"transactionLabel"];
 		}
 		[newTransaction setValue:newAccount forKey:@"account"];
 	}

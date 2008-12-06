@@ -19,17 +19,21 @@
  */
 
 #import "ZXTransactionMO.h"
+#import "ZXLabelController.h"
+#import "ZXNotifications.h"
 
+static NSString *sharedNoLabelString = @"-";
 
 @implementation ZXTransactionMO
-
 @dynamic transactionLabelName;
 
-- (NSString *)transactionLabelName
-{
-	return [self valueForKeyPath:@"transactionLabel.name"];
-}
+//! Forward method for transactionLabel.name
+- (NSString *)transactionLabelName { return [self valueForKeyPath:@"transactionLabel.name"]; }
 
+//! Sets new _label_ for transaction, based on name.
+/*!
+ Fetch the required label based on name, and sets new label for transaction.
+ */
 - (void)setTransactionLabelName:(NSString *)newLabelName
 {
 	NSEntityDescription *labelDescription = [NSEntityDescription entityForName:@"Label" 
@@ -47,6 +51,11 @@
 	[self setValue:[array objectAtIndex:0] forKey:@"transactionLabel"];
 }
 
+//! Initialization of the balance
+/*! 
+ Upon insertion, sets the balance of the new transaction to the current 
+ balance of the account. 
+ */
 - (void)didChangeValueForKey:(NSString *)key
 {
 	[super didChangeValueForKey:key];
@@ -55,11 +64,22 @@
 	}
 }
 
+//! Initialization of the account
+/*! 
+ Sets current date and no-label.
+ */
 - (void)awakeFromInsert {
 	[self setValue:[NSDate date] forKey:@"date"];
-	[self setTransactionLabelName:@"-"];
+	[self setTransactionLabelName:sharedNoLabelString];
 }
 
+//! Controls special cases of key-value changes
+/*!
+ Posts a ZXAccountTotalDidChangeNotification upon amount change or date change 
+ in transaction. Posts a ZXTransactionLabelDidChangeNotification if label did 
+ change. The latter is useful for reports, while the former is useful for 
+ various updating.
+ */
 - (void)setValue:(id)newValue forKey:(id)key
 {
 	[super setValue:newValue forKey:key];

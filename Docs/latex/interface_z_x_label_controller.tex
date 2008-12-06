@@ -10,17 +10,18 @@ General controller code for labels.
 \subsection*{Public Member Functions}
 \begin{CompactItemize}
 \item 
-(void) - \hyperlink{interface_z_x_label_controller_50d77144c9045b2f125604b699d474fb}{validatesNewLabelName:}
+(void) - \hyperlink{interface_z_x_label_controller_30de273ba04ff277ed54ad72762febbf}{setupNoLabelObject}{\tt  \mbox{[}implementation\mbox{]}}
+\begin{CompactList}\small\item\em Initialization of the \char`\"{}no-label\char`\"{} object. \item\end{CompactList}\item 
+(void) - \hyperlink{interface_z_x_label_controller_4ea2295ba1a5c882725dade2e2bc3e34}{prepareContent}{\tt  \mbox{[}implementation\mbox{]}}
+\begin{CompactList}\small\item\em Prepares the content of the controller. \item\end{CompactList}\item 
+(id) - \hyperlink{interface_z_x_label_controller_08a73cbea0039d0c0e84d41af8bafb7d}{newObject}{\tt  \mbox{[}implementation\mbox{]}}
+\begin{CompactList}\small\item\em Creates a new object. \item\end{CompactList}\item 
+(void) - \hyperlink{interface_z_x_label_controller_50d77144c9045b2f125604b699d474fb}{validatesNewLabelName:}{\tt  \mbox{[}implementation\mbox{]}}
 \begin{CompactList}\small\item\em Sets the name of the label in the notification to avoid conflicts. \item\end{CompactList}\item 
-(NSString $\ast$) - \hyperlink{interface_z_x_label_controller_e223bf8f8bc63f53f0790b34050fee97}{uniqueNewName:}
+(NSString $\ast$) - \hyperlink{interface_z_x_label_controller_e223bf8f8bc63f53f0790b34050fee97}{uniqueNewName:}{\tt  \mbox{[}implementation\mbox{]}}
 \begin{CompactList}\small\item\em Generates a non-conflicting name from given name. \item\end{CompactList}\item 
-(void) - \hyperlink{interface_z_x_label_controller_f3fb09172b4b1ba2bc6ca4a0317ed201}{updateUsedNames}
-\begin{CompactList}\small\item\em Update the dictionary of used names to reflect current state. \item\end{CompactList}\item 
-\hypertarget{interface_z_x_label_controller_30de273ba04ff277ed54ad72762febbf}{
-(void) - \hyperlink{interface_z_x_label_controller_30de273ba04ff277ed54ad72762febbf}{setupNoLabelObject}}
-\label{interface_z_x_label_controller_30de273ba04ff277ed54ad72762febbf}
-
-\begin{CompactList}\small\item\em Initialization of the \char`\"{}no-label\char`\"{} object. \item\end{CompactList}\end{CompactItemize}
+(void) - \hyperlink{interface_z_x_label_controller_f3fb09172b4b1ba2bc6ca4a0317ed201}{updateUsedNames}{\tt  \mbox{[}implementation\mbox{]}}
+\begin{CompactList}\small\item\em Update the dictionary of used names to reflect current state. \item\end{CompactList}\end{CompactItemize}
 \subsection*{Properties}
 \begin{CompactItemize}
 \item 
@@ -36,10 +37,37 @@ General controller code for labels.
 Subclass of NSArrayController. Contains all the labels, ensures no duplicate names and provides a \char`\"{}no-label\char`\"{} label. Upon insertion of a new object, name is checked for conflict. Will append a non-conflicting number if problems arise, e.g. \char`\"{}New Label\char`\"{} -$>$ \char`\"{}New Label 1\char`\"{}. 
 
 \subsection{Member Function Documentation}
-\hypertarget{interface_z_x_label_controller_e223bf8f8bc63f53f0790b34050fee97}{
+\hypertarget{interface_z_x_label_controller_08a73cbea0039d0c0e84d41af8bafb7d}{
+\index{ZXLabelController@{ZXLabelController}!newObject@{newObject}}
+\index{newObject@{newObject}!ZXLabelController@{ZXLabelController}}
+\subsubsection[{newObject}]{\setlength{\rightskip}{0pt plus 5cm}- (id) newObject \hspace{0.3cm}{\tt  \mbox{[}implementation\mbox{]}}}}
+\label{interface_z_x_label_controller_08a73cbea0039d0c0e84d41af8bafb7d}
+
+
+Creates a new object. 
+
+Sets up new name to hard-coded \char`\"{}New Label\char`\"{} (to fix) \hypertarget{interface_z_x_label_controller_4ea2295ba1a5c882725dade2e2bc3e34}{
+\index{ZXLabelController@{ZXLabelController}!prepareContent@{prepareContent}}
+\index{prepareContent@{prepareContent}!ZXLabelController@{ZXLabelController}}
+\subsubsection[{prepareContent}]{\setlength{\rightskip}{0pt plus 5cm}- (void) prepareContent \hspace{0.3cm}{\tt  \mbox{[}implementation\mbox{]}}}}
+\label{interface_z_x_label_controller_4ea2295ba1a5c882725dade2e2bc3e34}
+
+
+Prepares the content of the controller. 
+
+Sets up the noLabel object, updates the used names. \hypertarget{interface_z_x_label_controller_30de273ba04ff277ed54ad72762febbf}{
+\index{ZXLabelController@{ZXLabelController}!setupNoLabelObject@{setupNoLabelObject}}
+\index{setupNoLabelObject@{setupNoLabelObject}!ZXLabelController@{ZXLabelController}}
+\subsubsection[{setupNoLabelObject}]{\setlength{\rightskip}{0pt plus 5cm}- (void) setupNoLabelObject \hspace{0.3cm}{\tt  \mbox{[}implementation\mbox{]}}}}
+\label{interface_z_x_label_controller_30de273ba04ff277ed54ad72762febbf}
+
+
+Initialization of the \char`\"{}no-label\char`\"{} object. 
+
+This object is unique for each document \hypertarget{interface_z_x_label_controller_e223bf8f8bc63f53f0790b34050fee97}{
 \index{ZXLabelController@{ZXLabelController}!uniqueNewName:@{uniqueNewName:}}
 \index{uniqueNewName:@{uniqueNewName:}!ZXLabelController@{ZXLabelController}}
-\subsubsection[{uniqueNewName:}]{\setlength{\rightskip}{0pt plus 5cm}- (NSString $\ast$) uniqueNewName: (NSString $\ast$) {\em newDesiredName}}}
+\subsubsection[{uniqueNewName:}]{\setlength{\rightskip}{0pt plus 5cm}- (NSString $\ast$) uniqueNewName: (NSString $\ast$) {\em newDesiredName}\hspace{0.3cm}{\tt  \mbox{[}implementation\mbox{]}}}}
 \label{interface_z_x_label_controller_e223bf8f8bc63f53f0790b34050fee97}
 
 
@@ -55,7 +83,7 @@ Returns a new name from the given so that no conflict arises inserting a new lab
 \hypertarget{interface_z_x_label_controller_f3fb09172b4b1ba2bc6ca4a0317ed201}{
 \index{ZXLabelController@{ZXLabelController}!updateUsedNames@{updateUsedNames}}
 \index{updateUsedNames@{updateUsedNames}!ZXLabelController@{ZXLabelController}}
-\subsubsection[{updateUsedNames}]{\setlength{\rightskip}{0pt plus 5cm}- (void) updateUsedNames }}
+\subsubsection[{updateUsedNames}]{\setlength{\rightskip}{0pt plus 5cm}- (void) updateUsedNames \hspace{0.3cm}{\tt  \mbox{[}implementation\mbox{]}}}}
 \label{interface_z_x_label_controller_f3fb09172b4b1ba2bc6ca4a0317ed201}
 
 
@@ -64,7 +92,7 @@ Update the dictionary of used names to reflect current state.
 Used when change is done on controlled objects. Costly operation, uses fetch in CoreData store to retrieve names. \hypertarget{interface_z_x_label_controller_50d77144c9045b2f125604b699d474fb}{
 \index{ZXLabelController@{ZXLabelController}!validatesNewLabelName:@{validatesNewLabelName:}}
 \index{validatesNewLabelName:@{validatesNewLabelName:}!ZXLabelController@{ZXLabelController}}
-\subsubsection[{validatesNewLabelName:}]{\setlength{\rightskip}{0pt plus 5cm}- (void) validatesNewLabelName: (NSNotification $\ast$) {\em aNotification}}}
+\subsubsection[{validatesNewLabelName:}]{\setlength{\rightskip}{0pt plus 5cm}- (void) validatesNewLabelName: (NSNotification $\ast$) {\em aNotification}\hspace{0.3cm}{\tt  \mbox{[}implementation\mbox{]}}}}
 \label{interface_z_x_label_controller_50d77144c9045b2f125604b699d474fb}
 
 
@@ -92,7 +120,7 @@ Unique \char`\"{}no-label\char`\"{} label.
 New transactions will automatically be assigned a \char`\"{}no-label\char`\"{} value. The name of this label is actually \char`\"{}-\char`\"{}, and is hard-coded. \hypertarget{interface_z_x_label_controller_3ccce02a168774242989b7c30294660e}{
 \index{ZXLabelController@{ZXLabelController}!usedNames@{usedNames}}
 \index{usedNames@{usedNames}!ZXLabelController@{ZXLabelController}}
-\subsubsection[{usedNames}]{\setlength{\rightskip}{0pt plus 5cm}- (NSMutableDictionary $\ast$) usedNames\hspace{0.3cm}{\tt  \mbox{[}read, write, assign\mbox{]}}}}
+\subsubsection[{usedNames}]{\setlength{\rightskip}{0pt plus 5cm}- (NSMutableDictionary $\ast$) usedNames\hspace{0.3cm}{\tt  \mbox{[}read, write, retain\mbox{]}}}}
 \label{interface_z_x_label_controller_3ccce02a168774242989b7c30294660e}
 
 

@@ -20,7 +20,6 @@
 
 #import "NSStringExportAdditions.h"
 
-
 @implementation NSString (ExportAdditions)
 - (NSString *)csvExport
 {

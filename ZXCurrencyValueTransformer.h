@@ -19,8 +19,12 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "ZXCurrencyFormatter.h"
 
+//! Value transformer from number to currency representation
+/*!
+ Uses the shared ZXCurrencyFormatter to convert a NSNumber into a string 
+ representing a currency amount.
+ */
 @interface ZXCurrencyValueTransformer : NSValueTransformer {
 }
 @end

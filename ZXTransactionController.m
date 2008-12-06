@@ -19,19 +19,14 @@
  */
 
 #import "ZXTransactionController.h"
-
+#import "ZXNotifications.h"
 
 @implementation ZXTransactionController
-
-
-- (IBAction)add:(id)sender
-{
+- (IBAction)add:(id)sender {
 	[super add:sender];
 	[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountTotalDidChangeNotification object:self];
 }
-
-- (IBAction)remove:(id)sender
-{
+- (IBAction)remove:(id)sender {
 	[super remove:sender];
 	[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountTotalDidChangeNotification object:self];
 }

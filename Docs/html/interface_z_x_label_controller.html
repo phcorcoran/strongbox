@@ -30,19 +30,24 @@
 <a href="class_z_x_label_controller-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_label_controller.html#50d77144c9045b2f125604b699d474fb">validatesNewLabelName:</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_label_controller.html#30de273ba04ff277ed54ad72762febbf">setupNoLabelObject</a><code> [implementation]</code></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialization of the "no-label" object.  <a href="#30de273ba04ff277ed54ad72762febbf"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_label_controller.html#4ea2295ba1a5c882725dade2e2bc3e34">prepareContent</a><code> [implementation]</code></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prepares the content of the controller.  <a href="#4ea2295ba1a5c882725dade2e2bc3e34"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">(id)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_label_controller.html#08a73cbea0039d0c0e84d41af8bafb7d">newObject</a><code> [implementation]</code></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a new object.  <a href="#08a73cbea0039d0c0e84d41af8bafb7d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_label_controller.html#50d77144c9045b2f125604b699d474fb">validatesNewLabelName:</a><code> [implementation]</code></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the name of the label in the notification to avoid conflicts.  <a href="#50d77144c9045b2f125604b699d474fb"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">(NSString *)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_label_controller.html#e223bf8f8bc63f53f0790b34050fee97">uniqueNewName:</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">(NSString *)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_label_controller.html#e223bf8f8bc63f53f0790b34050fee97">uniqueNewName:</a><code> [implementation]</code></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generates a non-conflicting name from given name.  <a href="#e223bf8f8bc63f53f0790b34050fee97"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_label_controller.html#f3fb09172b4b1ba2bc6ca4a0317ed201">updateUsedNames</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_label_controller.html#f3fb09172b4b1ba2bc6ca4a0317ed201">updateUsedNames</a><code> [implementation]</code></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Update the dictionary of used names to reflect current state.  <a href="#f3fb09172b4b1ba2bc6ca4a0317ed201"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="30de273ba04ff277ed54ad72762febbf"></a><!-- doxytag: member="ZXLabelController::setupNoLabelObject" ref="30de273ba04ff277ed54ad72762febbf" args="()" -->
-(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_label_controller.html#30de273ba04ff277ed54ad72762febbf">setupNoLabelObject</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialization of the "no-label" object. <br></td></tr>
 <tr><td colspan="2"><br><h2>Properties</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">NSMutableDictionary *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_z_x_label_controller.html#3ccce02a168774242989b7c30294660e">usedNames</a></td></tr>
 
@@ -55,6 +60,69 @@
 General controller code for labels. 
 <p>
 Subclass of NSArrayController. Contains all the labels, ensures no duplicate names and provides a "no-label" label. Upon insertion of a new object, name is checked for conflict. Will append a non-conflicting number if problems arise, e.g. "New Label" -&gt; "New Label 1". <hr><h2>Member Function Documentation</h2>
+<a class="anchor" name="08a73cbea0039d0c0e84d41af8bafb7d"></a><!-- doxytag: member="ZXLabelController::newObject" ref="08a73cbea0039d0c0e84d41af8bafb7d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (id) newObject           </td>
+          <td></td>
+          <td class="paramname">          </td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Creates a new object. 
+<p>
+Sets up new name to hard-coded "New Label" (to fix) 
+</div>
+</div><p>
+<a class="anchor" name="4ea2295ba1a5c882725dade2e2bc3e34"></a><!-- doxytag: member="ZXLabelController::prepareContent" ref="4ea2295ba1a5c882725dade2e2bc3e34" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) prepareContent           </td>
+          <td></td>
+          <td class="paramname">          </td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Prepares the content of the controller. 
+<p>
+Sets up the noLabel object, updates the used names. 
+</div>
+</div><p>
+<a class="anchor" name="30de273ba04ff277ed54ad72762febbf"></a><!-- doxytag: member="ZXLabelController::setupNoLabelObject" ref="30de273ba04ff277ed54ad72762febbf" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) setupNoLabelObject           </td>
+          <td></td>
+          <td class="paramname">          </td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialization of the "no-label" object. 
+<p>
+This object is unique for each document 
+</div>
+</div><p>
 <a class="anchor" name="e223bf8f8bc63f53f0790b34050fee97"></a><!-- doxytag: member="ZXLabelController::uniqueNewName:" ref="e223bf8f8bc63f53f0790b34050fee97" args="(NSString *newDesiredName)" -->
 <div class="memitem">
 <div class="memproto">
@@ -65,7 +133,7 @@ Subclass of NSArrayController. Contains all the labels, ensures no duplicate nam
           <td class="paramtype">(NSString *)&nbsp;</td>
           <td class="paramname"> <em>newDesiredName</em>          </td>
           <td>&nbsp;</td>
-          <td></td>
+          <td><code> [implementation]</code></td>
         </tr>
       </table>
 </div>
@@ -92,7 +160,7 @@ Returns a new name from the given so that no conflict arises inserting a new lab
           <td></td>
           <td class="paramname">          </td>
           <td>&nbsp;</td>
-          <td></td>
+          <td><code> [implementation]</code></td>
         </tr>
       </table>
 </div>
@@ -114,7 +182,7 @@ Used when change is done on controlled objects. Costly operation, uses fetch in 
           <td class="paramtype">(NSNotification *)&nbsp;</td>
           <td class="paramname"> <em>aNotification</em>          </td>
           <td>&nbsp;</td>
-          <td></td>
+          <td><code> [implementation]</code></td>
         </tr>
       </table>
 </div>
@@ -155,7 +223,7 @@ New transactions will automatically be assigned a "no-label" value. The name of 
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">- (NSMutableDictionary *) usedNames<code> [read, write, assign]</code>          </td>
+          <td class="memname">- (NSMutableDictionary *) usedNames<code> [read, write, retain]</code>          </td>
         </tr>
       </table>
 </div>
@@ -170,7 +238,7 @@ Variable used to check quickly for conflicts. As label names are unique, they ar
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>/Users/phcor/lib/Strongbox/ZXLabelController.h<li>/Users/phcor/lib/Strongbox/ZXLabelController.m</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Dec 6 02:54:29 2008 for Strongbox by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Dec 6 18:09:04 2008 for Strongbox by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.7.1 </small></address>
 </body>

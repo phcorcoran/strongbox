@@ -19,18 +19,28 @@
  */
 
 #import "ZXLabelController.h"
+#import "ZXLabelMO.h"
+#import "ZXNotifications.h"
 
 static ZXLabelMO *sharedNoLabelObject = nil;
+static NSString *sharedNoLabelString = @"-";
+
+@interface ZXLabelController (Private)
+- (void)validatesNewLabelName:(NSNotification *)aNotification;
+- (void)setupNoLabelObject;
+- (NSString *)uniqueNewName:(NSString *)newDesiredName;
+- (void)updateUsedNames;
+@end
 
 @implementation ZXLabelController
 @synthesize usedNames, noLabel;
-
+//! Initialization of the "no-label" object
+/*! This object is unique for each document */
 - (void)setupNoLabelObject
 {
-	NSString *noLabelString = @"-";
-	noLabel = [[ZXLabelMO alloc] initWithEntity:[NSEntityDescription entityForName:@"Label" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
-	[noLabel specialSetName:noLabelString];
-	[noLabel setValue:[NSNumber numberWithBool:YES] forKey:@"isImmutable"];
+	self.noLabel = [[[ZXLabelMO alloc] initWithEntity:[NSEntityDescription entityForName:@"Label" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext] autorelease];
+	[self.noLabel specialSetName:sharedNoLabelString];
+	[self.noLabel setValue:[NSNumber numberWithBool:YES] forKey:@"isImmutable"];
 }
 
 - (id)init
@@ -41,9 +51,9 @@ static ZXLabelMO *sharedNoLabelObject = nil;
 	return self;
 }
 
-//! Is responsible for last-minute preparation of the controller/entity
+//! Prepares the content of the controller
 /*!
- This fonction will most likely never be called by the programmer. It is called just before the controller is up and ready. It is activated when the button "Automatically prepare content" is clicked in Interface Builder. In this case, what it should do is check whether the controller's array is empty. If it is, it adds a new instance of the entity. If it isn't, it does nothing.
+ Sets up the noLabel object, updates the used names.
  */
 - (void)prepareContent
 {
@@ -58,12 +68,11 @@ static ZXLabelMO *sharedNoLabelObject = nil;
 		return;
 	}
 	
-	NSString *noLabelString = @"-";
 	if([array count] < 1) {
 		[self setupNoLabelObject];
 		[self addObject:noLabel];
 	} else {
-		NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name LIKE %@)", noLabelString];
+		NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name LIKE %@)", sharedNoLabelString];
 		[fetchRequest setPredicate:pred];
 		array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
 		if(array == nil) {
@@ -76,13 +85,17 @@ static ZXLabelMO *sharedNoLabelObject = nil;
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(validatesNewLabelName:) name:ZXLabelNameDidChangeNotification object:nil];
 }
 
-- (void)setContent:(id)content
-{
-	[super setContent:content];
-	[[NSNotificationCenter defaultCenter] postNotificationName:ZXLabelControllerDidLoadNotification 
-							    object:self];
-}
+//- (void)setContent:(id)content
+//{
+//	[super setContent:content];
+//	[[NSNotificationCenter defaultCenter] postNotificationName:ZXLabelControllerDidLoadNotification 
+//							    object:self];
+//}
 
+//! Creates a new object
+/*! 
+ Sets up new name to hard-coded "New Label" (to fix)
+ */
 - (id)newObject
 {
 	id obj = [super newObject];
@@ -92,6 +105,13 @@ static ZXLabelMO *sharedNoLabelObject = nil;
 	return obj;
 }
 
+//! Sets the name of the label in the notification to avoid conflicts.
+/*! 
+ This function changes the name of the label in the notification if there is
+ a duplicate with existing labels.
+ \param aNotification NSNotification containing the new label as object.
+ \sa uniqueNewName:
+ */
 - (void)validatesNewLabelName:(NSNotification *)aNotification
 {
 	id obj = [aNotification object];
@@ -99,6 +119,13 @@ static ZXLabelMO *sharedNoLabelObject = nil;
 	[self updateUsedNames];
 }
 
+//! Generates a non-conflicting name from given name
+/*! 
+ Returns a new name from the given so that no conflict arises inserting a new 
+ label with that name. Appends a number after the name if already exists.
+ \param newDesiredName String containing the desired name of the label.
+ \return Same or modified name depending on if conflict was found. 
+ */
 - (NSString *)uniqueNewName:(NSString *)newDesiredName
 {
 	NSString *allowedName = newDesiredName;
@@ -109,6 +136,11 @@ static ZXLabelMO *sharedNoLabelObject = nil;
 	return allowedName;
 }
 
+//! Update the dictionary of used names to reflect current state
+/*! 
+ Used when change is done on controlled objects. Costly operation, uses fetch in
+ CoreData store to retrieve names.
+ */
 - (void)updateUsedNames
 {
 	NSEntityDescription *desc = [NSEntityDescription entityForName:@"Label" 
@@ -121,7 +153,7 @@ static ZXLabelMO *sharedNoLabelObject = nil;
 	if(allLabels == nil) {
 		return;
 	}
-	NSMutableDictionary *usedNamesDict = [[NSMutableDictionary alloc] initWithCapacity:[allLabels count]];
+	NSMutableDictionary *usedNamesDict = [NSMutableDictionary dictionaryWithCapacity:[allLabels count]];
 	for(id label in allLabels) {
 		if([label valueForKey:@"name"] == nil) continue;
 		[usedNamesDict setValue:[label objectID] forKey:[label valueForKey:@"name"]];

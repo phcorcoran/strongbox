@@ -20,10 +20,8 @@
 
 #import "ZXConfigWindowDelegate.h"
 
-
 @implementation ZXConfigWindowDelegate
-- (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window
-{
+- (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window {
 	return [owner undoManager];
 }
 @end

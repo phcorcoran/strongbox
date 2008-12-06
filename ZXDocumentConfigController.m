@@ -19,9 +19,19 @@
  */
 
 #import "ZXDocumentConfigController.h"
+#import "ZXNotifications.h"
+#import "ZXAccountController.h"
 
+@interface ZXDocumentConfigController (Private)
+- (void)setAccountSelection:(NSNotification *)note;
+@end
 
 @implementation ZXDocumentConfigController
+//! Prepares content of the controller
+/*!
+ Fetches and sets content from saved data. Registers to set selection when 
+ accountController is ready.
+ */
 - (void)prepareContent
 {
 	[super prepareContent];
@@ -45,7 +55,11 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setAccountSelection:) name:ZXAccountControllerDidLoadNotification object:nil];
 }
 
-- (IBAction)setAccountSelection:(id)sender
+//! Restores previously saved selection upon initialization
+/*!
+ Fetch the account by name and sets selection in accountController.
+ */
+- (void)setAccountSelection:(NSNotification *)note
 {
 	NSError *error;
 	if(!accountController) return;

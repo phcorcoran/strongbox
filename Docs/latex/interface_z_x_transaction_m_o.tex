@@ -1,0 +1,89 @@
+\hypertarget{interface_z_x_transaction_m_o}{
+\section{ZXTransactionMO Class Reference}
+\label{interface_z_x_transaction_m_o}\index{ZXTransactionMO@{ZXTransactionMO}}
+}
+Transaction managed object.  
+
+
+{\tt \#import $<$ZXTransactionMO.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+(void) - \hyperlink{interface_z_x_transaction_m_o_faa2aa9521435114abca89cb0bbd23e5}{setTransactionLabelName:}{\tt  \mbox{[}implementation\mbox{]}}
+\begin{CompactList}\small\item\em Sets new \_\-label\_\- for transaction, based on name. \item\end{CompactList}\item 
+(void) - \hyperlink{interface_z_x_transaction_m_o_e9fe1fcc56305cf1457db7404eb485dc}{didChangeValueForKey:}{\tt  \mbox{[}implementation\mbox{]}}
+\begin{CompactList}\small\item\em Initialization of the balance. \item\end{CompactList}\item 
+(void) - \hyperlink{interface_z_x_transaction_m_o_a2f4e9d356ac363d2cee7ad11ec990b0}{awakeFromInsert}{\tt  \mbox{[}implementation\mbox{]}}
+\begin{CompactList}\small\item\em Initialization of the account. \item\end{CompactList}\item 
+(void) - \hyperlink{interface_z_x_transaction_m_o_146047cdc02454b553bfcbbeb5b200ba}{setValue:forKey:}{\tt  \mbox{[}implementation\mbox{]}}
+\begin{CompactList}\small\item\em Controls special cases of key-value changes. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+IBOutlet NSString $\ast$ \hyperlink{interface_z_x_transaction_m_o_1aa04c3a4903ba99f666a55868cd8d5a}{transactionLabelName}
+\begin{CompactList}\small\item\em Forward variable for transactionLabel.name. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Transaction managed object. 
+
+Handles basic initialization and notifying for transactions. 
+
+\subsection{Member Function Documentation}
+\hypertarget{interface_z_x_transaction_m_o_a2f4e9d356ac363d2cee7ad11ec990b0}{
+\index{ZXTransactionMO@{ZXTransactionMO}!awakeFromInsert@{awakeFromInsert}}
+\index{awakeFromInsert@{awakeFromInsert}!ZXTransactionMO@{ZXTransactionMO}}
+\subsubsection[{awakeFromInsert}]{\setlength{\rightskip}{0pt plus 5cm}- (void) awakeFromInsert \hspace{0.3cm}{\tt  \mbox{[}implementation\mbox{]}}}}
+\label{interface_z_x_transaction_m_o_a2f4e9d356ac363d2cee7ad11ec990b0}
+
+
+Initialization of the account. 
+
+Sets current date and no-label. \hypertarget{interface_z_x_transaction_m_o_e9fe1fcc56305cf1457db7404eb485dc}{
+\index{ZXTransactionMO@{ZXTransactionMO}!didChangeValueForKey:@{didChangeValueForKey:}}
+\index{didChangeValueForKey:@{didChangeValueForKey:}!ZXTransactionMO@{ZXTransactionMO}}
+\subsubsection[{didChangeValueForKey:}]{\setlength{\rightskip}{0pt plus 5cm}- (void) didChangeValueForKey: (NSString $\ast$) {\em key}\hspace{0.3cm}{\tt  \mbox{[}implementation\mbox{]}}}}
+\label{interface_z_x_transaction_m_o_e9fe1fcc56305cf1457db7404eb485dc}
+
+
+Initialization of the balance. 
+
+Upon insertion, sets the balance of the new transaction to the current balance of the account. \hypertarget{interface_z_x_transaction_m_o_faa2aa9521435114abca89cb0bbd23e5}{
+\index{ZXTransactionMO@{ZXTransactionMO}!setTransactionLabelName:@{setTransactionLabelName:}}
+\index{setTransactionLabelName:@{setTransactionLabelName:}!ZXTransactionMO@{ZXTransactionMO}}
+\subsubsection[{setTransactionLabelName:}]{\setlength{\rightskip}{0pt plus 5cm}- (void) setTransactionLabelName: (NSString $\ast$) {\em newLabelName}\hspace{0.3cm}{\tt  \mbox{[}implementation\mbox{]}}}}
+\label{interface_z_x_transaction_m_o_faa2aa9521435114abca89cb0bbd23e5}
+
+
+Sets new \_\-label\_\- for transaction, based on name. 
+
+Fetch the required label based on name, and sets new label for transaction. \hypertarget{interface_z_x_transaction_m_o_146047cdc02454b553bfcbbeb5b200ba}{
+\index{ZXTransactionMO@{ZXTransactionMO}!setValue:forKey:@{setValue:forKey:}}
+\index{setValue:forKey:@{setValue:forKey:}!ZXTransactionMO@{ZXTransactionMO}}
+\subsubsection[{setValue:forKey:}]{\setlength{\rightskip}{0pt plus 5cm}- (void) setValue: (id) {\em newValue}\/ forKey: (id) {\em key}\hspace{0.3cm}{\tt  \mbox{[}implementation\mbox{]}}}}
+\label{interface_z_x_transaction_m_o_146047cdc02454b553bfcbbeb5b200ba}
+
+
+Controls special cases of key-value changes. 
+
+Posts a ZXAccountTotalDidChangeNotification upon amount change or date change in transaction. Posts a ZXTransactionLabelDidChangeNotification if label did change. The latter is useful for reports, while the former is useful for various updating. 
+
+\subsection{Member Data Documentation}
+\hypertarget{interface_z_x_transaction_m_o_1aa04c3a4903ba99f666a55868cd8d5a}{
+\index{ZXTransactionMO@{ZXTransactionMO}!transactionLabelName@{transactionLabelName}}
+\index{transactionLabelName@{transactionLabelName}!ZXTransactionMO@{ZXTransactionMO}}
+\subsubsection[{transactionLabelName}]{\setlength{\rightskip}{0pt plus 5cm}- (NSString $\ast$) {\bf transactionLabelName}\hspace{0.3cm}{\tt  \mbox{[}protected\mbox{]}}}}
+\label{interface_z_x_transaction_m_o_1aa04c3a4903ba99f666a55868cd8d5a}
+
+
+Forward variable for transactionLabel.name. 
+
+Forward method for transactionLabel.name.
+
+Some problems where encountered when trying to use a key path somewhere. This solved the problem. 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/Users/phcor/lib/Strongbox/ZXTransactionMO.h\item 
+/Users/phcor/lib/Strongbox/ZXTransactionMO.m\end{CompactItemize}

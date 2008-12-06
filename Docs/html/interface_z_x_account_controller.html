@@ -20,18 +20,245 @@
   </div>
 </div>
 <div class="contents">
-<h1>ZXAccountController Class Reference</h1><!-- doxytag: class="ZXAccountController" --><code>#import &lt;ZXAccountController.h&gt;</code>
+<h1>ZXAccountController Class Reference</h1><!-- doxytag: class="ZXAccountController" -->General controller code for accounts.  
+<a href="#_details">More...</a>
+<p>
+<code>#import &lt;ZXAccountController.h&gt;</code>
 <p>
 
 <p>
 <a href="class_z_x_account_controller-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5fb3f31204f14f03e841ad1c428839ac"></a><!-- doxytag: member="ZXAccountController::recalculateBalance:" ref="5fb3f31204f14f03e841ad1c428839ac" args="(NSNotification *note)" -->
+(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_account_controller.html#5fb3f31204f14f03e841ad1c428839ac">recalculateBalance:</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Forward recalculateBalance: message to selected account. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_account_controller.html#b1403533592d33b6fc3a43c7153c27b4">prepareContent</a><code> [implementation]</code></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prepares the content of the controller.  <a href="#b1403533592d33b6fc3a43c7153c27b4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_account_controller.html#275e5ff12dad8038bf3ed96a19aac65e">setValue:forKey:</a><code> [implementation]</code></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Controls special cases of key-value changes.  <a href="#275e5ff12dad8038bf3ed96a19aac65e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_account_controller.html#9bde4a1f4ab0fdc0b18a190f4573977a">awakeFromNib</a><code> [implementation]</code></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Basic initialization.  <a href="#9bde4a1f4ab0fdc0b18a190f4573977a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">(id)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_account_controller.html#7c2d8697d2ed15c4fbc55d670564e751">newObject</a><code> [implementation]</code></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a new object.  <a href="#7c2d8697d2ed15c4fbc55d670564e751"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_account_controller.html#765323e412d28612c9737af99becf5c8">validatesNewAccountName:</a><code> [implementation]</code></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the name of the account in the notification to avoid conflicts.  <a href="#765323e412d28612c9737af99becf5c8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">(NSString *)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_account_controller.html#0efcea0525fa3f4d189fd52592fab996">uniqueNewName:</a><code> [implementation]</code></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generates a non-conflicting name from given name.  <a href="#0efcea0525fa3f4d189fd52592fab996"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_z_x_account_controller.html#489f46d9731a5b0737b028ea9063e202">updateUsedNames</a><code> [implementation]</code></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updates the dictionary containing the used names.  <a href="#489f46d9731a5b0737b028ea9063e202"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Properties</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">NSMutableDictionary *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_z_x_account_controller.html#a7bdd570e90b4302106f265e73721a56">usedNames</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Dictionary of used names.  <a href="#a7bdd570e90b4302106f265e73721a56"></a><br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
-Blablabla  blalblalbalbalbvlabal <hr>The documentation for this class was generated from the following files:<ul>
+General controller code for accounts. 
+<p>
+Subclass of NSArrayController. Contains all the accounts and ensures no duplicate names. Upon insertion of a new object, name is checked for conflict. Will append a non-conflicting number if problems arise, e.g. "New Account" -&gt; "New Account 1". <hr><h2>Member Function Documentation</h2>
+<a class="anchor" name="9bde4a1f4ab0fdc0b18a190f4573977a"></a><!-- doxytag: member="ZXAccountController::awakeFromNib" ref="9bde4a1f4ab0fdc0b18a190f4573977a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) awakeFromNib           </td>
+          <td></td>
+          <td class="paramname">          </td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Basic initialization. 
+<p>
+Registers to recalculate balances of selection when account total changes. <dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="interface_z_x_account_controller.html#5fb3f31204f14f03e841ad1c428839ac" title="Forward recalculateBalance: message to selected account.">- recalculateBalance:</a> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="7c2d8697d2ed15c4fbc55d670564e751"></a><!-- doxytag: member="ZXAccountController::newObject" ref="7c2d8697d2ed15c4fbc55d670564e751" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (id) newObject           </td>
+          <td></td>
+          <td class="paramname">          </td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Creates a new object. 
+<p>
+Sets up new name to hard-coded "New Account" (to fix) 
+</div>
+</div><p>
+<a class="anchor" name="b1403533592d33b6fc3a43c7153c27b4"></a><!-- doxytag: member="ZXAccountController::prepareContent" ref="b1403533592d33b6fc3a43c7153c27b4" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) prepareContent           </td>
+          <td></td>
+          <td class="paramname">          </td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Prepares the content of the controller. 
+<p>
+If there is no accounts, adds one. Registers to validate name change, and sets up used names dictionary. <dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="interface_z_x_account_controller.html#489f46d9731a5b0737b028ea9063e202" title="Updates the dictionary containing the used names.">- updateUsedNames</a>, <a class="el" href="interface_z_x_account_controller.html#765323e412d28612c9737af99becf5c8" title="Sets the name of the account in the notification to avoid conflicts.">- validatesNewAccountName:</a> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="275e5ff12dad8038bf3ed96a19aac65e"></a><!-- doxytag: member="ZXAccountController::setValue:forKey:" ref="275e5ff12dad8038bf3ed96a19aac65e" args="(id newValue,[forKey] id key)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) setValue:           </td>
+          <td></td>
+          <td class="paramtype">(id)&nbsp;</td>
+          <td class="paramname"> <em>newValue</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">forKey:</td>
+          <td></td>
+          <td class="paramtype">(id)&nbsp;</td>
+          <td class="paramname"> <em>key</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Controls special cases of key-value changes. 
+<p>
+Posts a ZXActiveAccountDidChangeNotification upon selection change. 
+</div>
+</div><p>
+<a class="anchor" name="0efcea0525fa3f4d189fd52592fab996"></a><!-- doxytag: member="ZXAccountController::uniqueNewName:" ref="0efcea0525fa3f4d189fd52592fab996" args="(NSString *newDesiredName)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSString *) uniqueNewName:           </td>
+          <td></td>
+          <td class="paramtype">(NSString *)&nbsp;</td>
+          <td class="paramname"> <em>newDesiredName</em>          </td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Generates a non-conflicting name from given name. 
+<p>
+Returns a new name from the given so that no conflict arises inserting a new account with that name. Appends a number after the name if already exists. <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>newDesiredName</em>&nbsp;</td><td>String containing the desired name of the account. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>Same or modified name depending on if conflict was found. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="489f46d9731a5b0737b028ea9063e202"></a><!-- doxytag: member="ZXAccountController::updateUsedNames" ref="489f46d9731a5b0737b028ea9063e202" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) updateUsedNames           </td>
+          <td></td>
+          <td class="paramname">          </td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Updates the dictionary containing the used names. 
+<p>
+Is an expensive method. Uses Core Data fetches to get used names and reconstruct the dictionary from scratch. 
+</div>
+</div><p>
+<a class="anchor" name="765323e412d28612c9737af99becf5c8"></a><!-- doxytag: member="ZXAccountController::validatesNewAccountName:" ref="765323e412d28612c9737af99becf5c8" args="(NSNotification *aNotification)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) validatesNewAccountName:           </td>
+          <td></td>
+          <td class="paramtype">(NSNotification *)&nbsp;</td>
+          <td class="paramname"> <em>aNotification</em>          </td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Sets the name of the account in the notification to avoid conflicts. 
+<p>
+This function changes the name of the account in the notification if there is a duplicate with existing labels. <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>aNotification</em>&nbsp;</td><td>NSNotification containing the new account as object. </td></tr>
+  </table>
+</dl>
+<dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="interface_z_x_account_controller.html#0efcea0525fa3f4d189fd52592fab996" title="Generates a non-conflicting name from given name.">- uniqueNewName:</a> </dd></dl>
+
+</div>
+</div><p>
+<hr><h2>Property Documentation</h2>
+<a class="anchor" name="a7bdd570e90b4302106f265e73721a56"></a><!-- doxytag: member="ZXAccountController::usedNames" ref="a7bdd570e90b4302106f265e73721a56" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSMutableDictionary *) usedNames<code> [read, write, retain]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Dictionary of used names. 
+<p>
+Variable used to check quickly for conflicts. As account names are unique, they are stored as dictionary keys, ensuring no duplicates. 
+</div>
+</div><p>
+<hr>The documentation for this class was generated from the following files:<ul>
 <li>/Users/phcor/lib/Strongbox/ZXAccountController.h<li>/Users/phcor/lib/Strongbox/ZXAccountController.m</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Dec 6 02:54:09 2008 for Strongbox by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Dec 6 18:09:04 2008 for Strongbox by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.7.1 </small></address>
 </body>

@@ -19,18 +19,24 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "ZXAccountMO.h"
-#import "ZXNotifications.h"
-#import "ZXTransactionController.h"
 
-
+//! General controller code for accounts.
+/*!
+ Subclass of NSArrayController. Contains all the accounts and ensures no duplicate
+ names. Upon insertion of a new object, name is checked for conflict. Will append 
+ a non-conflicting number if problems arise, 
+ e.g. "New Account" -> "New Account 1".
+ */
 @interface ZXAccountController : NSArrayController {
+	//! Dictionary of used names
+	/*! 
+	 Variable used to check quickly for conflicts. As account names are 
+	 unique, they are stored as dictionary keys, ensuring no duplicates.
+	 */
 	NSMutableDictionary *usedNames;
 }
 @property (retain) NSMutableDictionary *usedNames;
 
-- (void)prepareContent;
-- (void)updateUsedNames;
-- (NSString *)uniqueNewName:(NSString *)newDesiredName;
+//! Forward recalculateBalance: message to selected account
 - (void)recalculateBalance:(NSNotification *)note;
 @end

@@ -194,12 +194,12 @@
 				F11584FE0EE71BAE0036CFF8 /* Exporter */,
 				F14036C90E4DE246000FD8A5 /* Importer */,
 				F11583460EE394E00036CFF8 /* Print */,
-				F170CE310E54000900CAB662 /* KFCompletingTextFormatter.h */,
 				F170CE320E54000900CAB662 /* KFCompletingTextFormatter.m */,
-				F18171840D89FE4400482919 /* ZXAppController.h */,
+				F170CE310E54000900CAB662 /* KFCompletingTextFormatter.h */,
 				F18171850D89FE4400482919 /* ZXAppController.m */,
-				2A37F4AEFDCFA73011CA2CEA /* ZXDocument.h */,
+				F18171840D89FE4400482919 /* ZXAppController.h */,
 				2A37F4ACFDCFA73011CA2CEA /* ZXDocument.m */,
+				2A37F4AEFDCFA73011CA2CEA /* ZXDocument.h */,
 				F1CEA5DD0DFA6E2A007B913F /* ZXNotifications.h */,
 			);
 			name = Classes;
@@ -255,8 +255,8 @@
 		F11583460EE394E00036CFF8 /* Print */ = {
 			isa = PBXGroup;
 			children = (
-				F11583470EE395010036CFF8 /* ZXPrintTransactionView.h */,
 				F11583480EE395010036CFF8 /* ZXPrintTransactionView.m */,
+				F11583470EE395010036CFF8 /* ZXPrintTransactionView.h */,
 			);
 			name = Print;
 			sourceTree = "<group>";

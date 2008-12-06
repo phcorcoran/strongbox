@@ -19,6 +19,7 @@
  */
 
 #import "ZXReportTextView.h"
+#import "ZXReportSection.h"
 
 @interface ZXReportTextView (Private)
 - (void)clearAllSubviews;

@@ -19,7 +19,16 @@
  */
 
 #import "ZXDocument.h"
+#import "NSStringExportAdditions.h"
+#import "ZXAccountController.h"
+#import "ZXDocumentConfigController.h"
+#import "ZXLabelController.h"
+#import "ZXNotifications.h"
+#import "ZXOldCashboxImporter.h"
 #import "ZXPrintTransactionView.h"
+#import "ZXReportWindowController.h"
+#import "ZXTransactionController.h"
+
 
 @implementation ZXDocument
 
@@ -101,6 +110,8 @@
 	return [super writeSafelyToURL:absoluteURL ofType:typeName forSaveOperation:saveOperation error:outError];
 }
 
+#pragma mark Other stuff
+
 - (IBAction)toggleInspector:(id)sender
 {
 	if([inspectorPanel isVisible]) {
@@ -109,8 +120,6 @@
 		[inspectorPanel makeKeyAndOrderFront:self];
 	}
 }
-
-#pragma mark Other stuff
 
 - (NSArray *)allLabels
 {
@@ -170,6 +179,8 @@
 	return [model autorelease];
 }
 
+#pragma mark Exporter stuff
+
 - (IBAction)exportToCSV:(id)sender
 {
 	if(!self.dateFormatter) {
@@ -214,6 +225,8 @@
 	       encoding:NSUTF8StringEncoding 
 		  error:NULL];
 }
+
+#pragma mark Printing stuff
 
 - (void)printShowingPrintPanel:(BOOL)flag
 {

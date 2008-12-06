@@ -19,10 +19,14 @@
  */
 
 #import "ZXAppController.h"
+#import "ZXDocument.h"
 
 @implementation ZXAppController
 
-// If a document was previously saved, should respond not to open an untitled document
+//! Handles application behavior concerning untitled documents
+/*! 
+ If a document was previously saved, should respond not to open an untitled document
+ */
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender
 {
 	if([[NSUserDefaults standardUserDefaults] objectForKey:@"lastFileURL"]) {
@@ -31,7 +35,10 @@
 	return YES;
 }
 
-// Load previously saved document if none is to be loaded
+//! Basic initialization of application
+/*! 
+ Load previously saved document if none is to be loaded 
+ */
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	ZXDocument *documentOpened = nil;

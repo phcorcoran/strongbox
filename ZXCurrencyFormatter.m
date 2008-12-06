@@ -23,20 +23,12 @@
 static ZXCurrencyFormatter *sharedInstance;
 
 @implementation ZXCurrencyFormatter
+- (void)awakeFromNib { sharedInstance = self; }
 + (ZXCurrencyFormatter *)sharedInstance {
-	if(!sharedInstance) {
-		sharedInstance = [[ZXCurrencyFormatter alloc] init];
-	}
+	if(!sharedInstance) { sharedInstance = [[ZXCurrencyFormatter alloc] init]; }
 	return sharedInstance;
-	
 }
-+ (NSNumberFormatter *)currencyFormatter
-{
++ (NSNumberFormatter *)currencyFormatter {
 	return [[ZXCurrencyFormatter sharedInstance] valueForKey:@"currencyFormatter"];
-}
-
-- (void)awakeFromNib
-{
-	sharedInstance = self;
 }
 @end

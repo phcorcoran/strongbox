@@ -21,18 +21,26 @@
 #import <Cocoa/Cocoa.h>
 
 @class ZXDocument;
+
+//! Generates the view for printing
+/*! 
+ Does not print background colors. Date and amounts are fixed-size, while label
+ is given 2/5 of rest, and description 3/5.
+ */
 @interface ZXPrintTransactionView : NSView {
 	ZXDocument *owner;
 	NSMutableDictionary *attributes;
-	NSMutableParagraphStyle *centeredStyle;
-	NSMutableParagraphStyle *rightStyle;
+	
+	NSMutableParagraphStyle *centeredStyle, *rightStyle;
 	NSSize paperSize;
-	float topMargin;
-	float leftMargin;
-	NSRect titleRect;
-	NSRect subtitleRect;
+	float topMargin, leftMargin;
+	NSRect titleRect, subtitleRect;
 }
+//! Initialize the print view with given document
+/*!
+ Given document is normally the currently opened frontmost document
+ \param owner Owner of the print view, i.e. document to be printed.
+ \return New print view
+ */
 - (id)initWithOwner:(ZXDocument *)owner;
-- (NSRect)rectForTransaction:(int)i;
-- (int)transactionsPerPage;
 @end

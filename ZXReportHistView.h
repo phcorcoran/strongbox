@@ -19,7 +19,8 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "ZXReportSection.h"
+
+@class ZXReportSection;
 
 // FIXME: Do something when there is no section
 @interface ZXReportHistView : NSView {

@@ -19,12 +19,37 @@
  */
 
 #import "ZXReportWindowController.h"
+#import "ZXDocument.h"
+#import "ZXLabelController.h"
+#import "ZXNotifications.h"
+#import "ZXReportGraphView.h"
+#import "ZXReportHistView.h"
+#import "ZXReportSection.h"
+#import "ZXReportTextView.h"
+
 
 @interface ZXReportWindowController (Private)
 - (void)parseReportDates;
 - (NSNumber *)parseLabelAmount:(id)label;
+- (void)setupNotificationObserving;
+- (void)resetViewsPositions;
 @end
 
+enum {
+	ZXAllAccountsDepositsReportType = 0,
+	ZXAllAccountsWithdrawalsReportType = 1,
+	ZXActiveAccountDepositsReportType = 2,
+	ZXActiveAccountWithdrawalsReportType = 3,
+};
+
+enum {
+	ZXAllReportTime = 0,
+	ZXThisMonthReportTime = 1,
+	ZXLastMonthReportTime = 2,
+	ZXThisYearReportTime = 3,
+	ZXLastYearReportTime = 4,
+	ZXCustomReportTime = 5,
+};
 
 @implementation ZXReportWindowController
 

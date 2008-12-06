@@ -19,13 +19,21 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "ZXNotifications.h"
-#import "ZXAccountController.h"
 
+@class ZXAccountController;
 
+//! Controller code for DocumentConfig object
+/*!
+ The document config currently is only useful to store the value of the selected 
+ account, so that next time the document is opened this selection remains.
+ */
 @interface ZXDocumentConfigController : NSObjectController {
 	IBOutlet ZXAccountController *accountController;
 }
+//! Updates the name of the current account name
+/*!
+ Stores the name of the currently selected account name in the core data
+ representation.
+ */
 - (void)updateCurrentAccountName;
-- (IBAction)setAccountSelection:(id)sender;
 @end

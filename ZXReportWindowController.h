@@ -19,28 +19,6 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "ZXDocument.h"
-#import "ZXReportGraphView.h"
-#import "ZXReportHistView.h"
-#import "ZXReportTextView.h"
-#import "ZXLabelController.h"
-#import "ZXNotifications.h"
-
-enum {
-	ZXAllAccountsDepositsReportType = 0,
-	ZXAllAccountsWithdrawalsReportType = 1,
-	ZXActiveAccountDepositsReportType = 2,
-	ZXActiveAccountWithdrawalsReportType = 3,
-};
-
-enum {
-	ZXAllReportTime = 0,
-	ZXThisMonthReportTime = 1,
-	ZXLastMonthReportTime = 2,
-	ZXThisYearReportTime = 3,
-	ZXLastYearReportTime = 4,
-	ZXCustomReportTime = 5,
-};
 
 @class ZXReportGraphView, ZXReportTextView, ZXDocument, ZXReportHistView;
 @interface ZXReportWindowController : NSObject {
@@ -68,7 +46,5 @@ enum {
 - (id)initWithOwner:(id)owner;
 - (IBAction)toggleReportWindow:(id)sender;
 - (IBAction)updateView:(id)sender;
-- (void)setupNotificationObserving;
-- (void)resetViewsPositions;
 - (IBAction)toggleDetailBox:(id)sender;
 @end

@@ -1,0 +1,19 @@
+digraph G
+{
+  edge [fontname="FreeSans",fontsize="10",labelfontname="FreeSans",labelfontsize="10"];
+  node [fontname="FreeSans",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="ZXOldCashboxImporter",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="owner",fontname="FreeSans"];
+  Node2 [label="ZXDocument",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interface_z_x_document.html",tooltip="Central class of document architecture."];
+  Node3 -> Node2 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="documentConfigController",fontname="FreeSans"];
+  Node3 [label="ZXDocumentConfigController",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interface_z_x_document_config_controller.html",tooltip="Controller code for DocumentConfig object."];
+  Node4 -> Node3 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="accountController",fontname="FreeSans"];
+  Node4 [label="ZXAccountController",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interface_z_x_account_controller.html",tooltip="General controller code for accounts."];
+  Node5 -> Node2 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="labelController",fontname="FreeSans"];
+  Node5 [label="ZXLabelController",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interface_z_x_label_controller.html",tooltip="General controller code for labels."];
+  Node1 -> Node2 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="oldCashboxImporter",fontname="FreeSans"];
+  Node6 -> Node2 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="transactionController",fontname="FreeSans"];
+  Node6 [label="ZXTransactionController",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interface_z_x_transaction_controller.html",tooltip="General controller code for transactions."];
+  Node4 -> Node2 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="accountController",fontname="FreeSans"];
+}

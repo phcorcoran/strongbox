@@ -19,11 +19,16 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "ZXDocument.h"
 
+/*! \mainpage Strongbox Developer Documentation
+ Classes can be inspected in the "Classes" Tab
+ */
 
+//! General Application Controller
+/*!
+ Handles basic initialization, loads previously saved document if possible.
+ Otherwise, loads a new document.
+ */
 @interface ZXAppController : NSObject {
 }
-- (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender;
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification;
 @end
