@@ -22,7 +22,6 @@
 #import "ZXLabelMO.h"
 #import "ZXNotifications.h"
 
-static ZXLabelMO *sharedNoLabelObject = nil;
 static NSString *sharedNoLabelString = @"-";
 
 @interface ZXLabelController (Private)
@@ -34,6 +33,25 @@ static NSString *sharedNoLabelString = @"-";
 
 @implementation ZXLabelController
 @synthesize usedNames, noLabel;
+
+- (ZXLabelMO *)noLabel 
+{
+	if(!noLabel) {
+		id array;
+		NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+		[fetchRequest setEntity:[NSEntityDescription entityForName:@"Label" 
+						    inManagedObjectContext:self.managedObjectContext]];
+		
+		NSError *error = nil;
+		NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name LIKE %@)", sharedNoLabelString];
+		[fetchRequest setPredicate:pred];
+		array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+		if(array == nil) return nil;
+		self.noLabel = [array objectAtIndex:0];
+	}
+	return noLabel;
+}
+
 //! Initialization of the "no-label" object
 /*! This object is unique for each document */
 - (void)setupNoLabelObject
@@ -41,6 +59,7 @@ static NSString *sharedNoLabelString = @"-";
 	self.noLabel = [[[ZXLabelMO alloc] initWithEntity:[NSEntityDescription entityForName:@"Label" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext] autorelease];
 	[self.noLabel specialSetName:sharedNoLabelString];
 	[self.noLabel setValue:[NSNumber numberWithBool:YES] forKey:@"isImmutable"];
+	
 }
 
 - (id)init
@@ -67,18 +86,10 @@ static NSString *sharedNoLabelString = @"-";
 	if(array == nil) {
 		return;
 	}
-	
+		
 	if([array count] < 1) {
 		[self setupNoLabelObject];
 		[self addObject:noLabel];
-	} else {
-		NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name LIKE %@)", sharedNoLabelString];
-		[fetchRequest setPredicate:pred];
-		array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-		if(array == nil) {
-			return;
-		}
-		noLabel = [array objectAtIndex:0];
 	}
 	
 	[self updateUsedNames];
@@ -115,6 +126,8 @@ static NSString *sharedNoLabelString = @"-";
 - (void)validatesNewLabelName:(NSNotification *)aNotification
 {
 	id obj = [aNotification object];
+	NSLog(@"%@", [self content]);
+	if(![[self content] containsObject:obj]) return;
 	[obj specialSetName:[self uniqueNewName:[obj valueForKey:@"name"]]];
 	[self updateUsedNames];
 }

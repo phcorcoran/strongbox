@@ -30,7 +30,7 @@
  */
 @interface ZXOldCashboxImporter : NSObject {
 	//! Front-most document
-	IBOutlet ZXDocument *owner;
+	ZXDocument *owner;
 	//! Stores all the new labels
 	NSMutableDictionary *allNewLabels;
 	
@@ -40,6 +40,10 @@
 }
 @property(assign) NSMutableDictionary *allNewLabels;
 @property(assign) NSWindow *importerWindow;
+
+- (id)initWithOwner:(id)owner;
+- (void)raiseImporterSheet;
+- (void)endImporterSheet;
 
 //! Launches the import procedure
 - (void)main;

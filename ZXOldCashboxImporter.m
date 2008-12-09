@@ -20,7 +20,6 @@
 
 #import "ZXOldCashboxImporter.h"
 #import "ZXDocument.h"
-#import "ZXLabelController.h"
 
 static NSString *sharedNoLabelString = @"-";
 
@@ -32,8 +31,33 @@ static NSString *sharedNoLabelString = @"-";
 @implementation ZXOldCashboxImporter
 @synthesize allNewLabels, importerWindow;
 
+- (id)initWithOwner:(id)newOwner
+{
+	self = [super init];
+	owner = newOwner;
+	[NSBundle loadNibNamed:@"CashboxImporter" owner:self];
+	[progressIndicator setUsesThreadedAnimation:YES];
+	return self;
+}
+
+- (void)raiseImporterSheet
+{
+	[NSApp beginSheet:importerWindow 
+	   modalForWindow:[owner strongboxWindow] 
+	    modalDelegate:self 
+	   didEndSelector:nil 
+	      contextInfo:NULL];
+}
+
+- (void)endImporterSheet
+{
+	[importerWindow orderOut:self];
+	[NSApp endSheet:importerWindow returnCode:1];
+}
+
 - (void)main
 {
+	[self raiseImporterSheet];
 	allNewLabels = [NSMutableDictionary dictionary];
 	NSString *labelsPath = [NSString stringWithFormat:@"%@/Library/Application Support/Cashbox/Labels.plist", NSHomeDirectory()];
 	NSString *accountsPath = [NSString stringWithFormat:@"%@/Library/Application Support/Cashbox/Accounts/", NSHomeDirectory()];
@@ -50,6 +74,7 @@ static NSString *sharedNoLabelString = @"-";
 			[self importAccountFromFile:[NSString stringWithFormat:@"%@%@", accountsPath, pname]];
 		}
 	}
+	[self endImporterSheet];
 }
 
 //! Imports labels from old cashbox app.
@@ -66,13 +91,18 @@ static NSString *sharedNoLabelString = @"-";
 	[progressIndicator setMaxValue:labelCount];
 	[progressIndicator setDoubleValue:0];
 	[importerWindow display];
+	[[owner strongboxWindow] display];
 	
 	int i = 0;
 	for(id label in array) {
-		// FIXME: Hard-coded english
-		[importationMessage setStringValue:[NSString stringWithFormat:@"Importing Labels... %d of %d", ++i, labelCount]];
-		[progressIndicator setDoubleValue:i];
-		[importerWindow display];
+		i += 1;
+		if(i % 5 == 0) {
+			// FIXME: Hard-coded english
+			[importationMessage setStringValue:[NSString stringWithFormat:@"Importing Labels... %d of %d", i, labelCount]];
+			[progressIndicator setDoubleValue:i];
+			[importerWindow display];
+			[[owner strongboxWindow] display];
+		}
 		
 		id newLabel = [[owner labelController] newObject];
 		[newLabel setValue:[label valueForKey:@"Name of Label"] forKey:@"name"];
@@ -86,7 +116,7 @@ static NSString *sharedNoLabelString = @"-";
 		[newLabel setValue:color forKey:@"textColor"];
 		[allNewLabels setValue:newLabel forKey:[newLabel valueForKey:@"name"]];
 	}
-	[allNewLabels setValue:[[owner labelController] noLabel] forKey:sharedNoLabelString];
+	[allNewLabels setValue:[owner.labelController valueForKey:@"noLabel"] forKey:sharedNoLabelString];
 }
 
 //! Imports the account from old cashbox app.
@@ -100,23 +130,27 @@ static NSString *sharedNoLabelString = @"-";
 	id newAccount = [[owner accountController] newObject];
 	[newAccount setValue:[account valueForKey:@"Account Name"] forKey:@"name"];
 	
-	NSArray *array = [account valueForKey:@"Transactions"];
+	NSArray *transactions = [account valueForKey:@"Transactions"];
 	NSString *accountName = [newAccount valueForKey:@"name"];
 	
-	NSInteger txCount = [array count];
+	NSInteger txCount = [transactions count];
 	// FIXME: Hard-coded english
 	[importationMessage setStringValue:[NSString stringWithFormat:@"Importing %@ ... 0 of %d transactions", accountName, txCount]];
 	[progressIndicator setMaxValue:txCount];
 	[progressIndicator setDoubleValue:0];
 	[importerWindow display];
+	[[owner strongboxWindow] display];
 	
 	int i = 0;
-	NSMutableArray *transactions = [account valueForKey:@"Transactions"];
 	for(id transaction in transactions) {
-		// FIXME: Hard-coded english
-		[importationMessage setStringValue:[NSString stringWithFormat:@"Importing %@ ... %d of %d transactions", accountName, ++i, txCount]];
-		[progressIndicator setDoubleValue:i];
-		[importerWindow display];
+		i += 1;
+		if(i % 20 == 0) {
+			// FIXME: Hard-coded english
+			[importationMessage setStringValue:[NSString stringWithFormat:@"Importing %@ ... %d of %d transactions", accountName, i, txCount]];
+			[progressIndicator setDoubleValue:i];
+			[importerWindow display];
+			[[owner strongboxWindow] display];
+		}
 		
 		id newTransaction = [[owner transactionController] newObject];
 		[newTransaction setValue:[transaction valueForKey:@"Date Column"] forKey:@"date"];
@@ -135,5 +169,6 @@ static NSString *sharedNoLabelString = @"-";
 	[progressIndicator setMaxValue:1];
 	[importationMessage setStringValue:@"Importation Message"];
 	[importerWindow display];
+	[[owner strongboxWindow] display];
 }
 @end

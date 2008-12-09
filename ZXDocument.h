@@ -40,7 +40,7 @@
 	IBOutlet NSTableView *transactionsView;
 	
 	// Importer Stuff
-	IBOutlet ZXOldCashboxImporter *oldCashboxImporter;
+	ZXOldCashboxImporter *oldCashboxImporter;
 	
 	// Misc
 	ZXReportWindowController *reportWindowController;
@@ -72,13 +72,6 @@
 - (void)endConfigSheet:(NSWindow *)sender 
 	   returnCode:(int)returnCode 
 	  contextInfo:(void *)contextInfo;
-
-
-- (IBAction)raiseImporterSheet:(id)sender;
-- (IBAction)endImporterSheet:(id)sender;
-- (void)endImporterSheet:(NSWindow *)sender 
-	      returnCode:(int)returnCode 
-	     contextInfo:(void *)contextInfo;
 
 - (IBAction)importOldCashboxStuff:(id)sender;
 

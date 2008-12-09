@@ -29,6 +29,7 @@
 		F15BA3E70E4D79B400DD5F1E /* InspectorIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F15BA3E60E4D79B400DD5F1E /* InspectorIcon.png */; };
 		F170CE330E54000900CAB662 /* KFCompletingTextFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F170CE320E54000900CAB662 /* KFCompletingTextFormatter.m */; };
 		F1730C490EEA65EF0031FEE3 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = F1730C310EEA65EF0031FEE3 /* index.html */; };
+		F179F56A0EEE986200A32029 /* CashboxImporter.xib in Resources */ = {isa = PBXBuildFile; fileRef = F179F5680EEE986200A32029 /* CashboxImporter.xib */; };
 		F1816B8E0ECA4ABF00022D42 /* MyModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = F1816B8D0ECA4ABF00022D42 /* MyModel.xcdatamodel */; };
 		F18171860D89FE4400482919 /* ZXAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = F18171850D89FE4400482919 /* ZXAppController.m */; };
 		F18171CA0D8A15CF00482919 /* ZXColorToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F18171C90D8A15CF00482919 /* ZXColorToDataTransformer.m */; };
@@ -94,6 +95,7 @@
 		F170CE310E54000900CAB662 /* KFCompletingTextFormatter.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = KFCompletingTextFormatter.h; sourceTree = "<group>"; };
 		F170CE320E54000900CAB662 /* KFCompletingTextFormatter.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = KFCompletingTextFormatter.m; sourceTree = "<group>"; };
 		F1730C310EEA65EF0031FEE3 /* index.html */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text.html; name = index.html; path = Docs/html/index.html; sourceTree = "<group>"; };
+		F179F5690EEE986200A32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/CashboxImporter.xib; sourceTree = "<group>"; };
 		F1816B8D0ECA4ABF00022D42 /* MyModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = wrapper.xcdatamodel; path = MyModel.xcdatamodel; sourceTree = "<group>"; };
 		F18171840D89FE4400482919 /* ZXAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAppController.h; sourceTree = "<group>"; };
 		F18171850D89FE4400482919 /* ZXAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAppController.m; sourceTree = "<group>"; };
@@ -191,8 +193,7 @@
 				F1CEA3B10DFA52FE007B913F /* Transaction Stuff */,
 				F1CEA3B20DFA5318007B913F /* Report Stuff */,
 				F12C1D050E4B3A1500F037A1 /* Config Window */,
-				F11584FE0EE71BAE0036CFF8 /* Exporter */,
-				F14036C90E4DE246000FD8A5 /* Importer */,
+				F14036C90E4DE246000FD8A5 /* Importer-Exporter */,
 				F11583460EE394E00036CFF8 /* Print */,
 				F170CE320E54000900CAB662 /* KFCompletingTextFormatter.m */,
 				F170CE310E54000900CAB662 /* KFCompletingTextFormatter.h */,
@@ -217,6 +218,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F179F5680EEE986200A32029 /* CashboxImporter.xib */,
 				F11584A90EE65D990036CFF8 /* gpl.txt */,
 				F1F7CAB30D7B8C4200B9DD1B /* AddIcon.png */,
 				F1258F770DF4F2C200F6BEF1 /* StrongboxIcon.icns */,
@@ -261,15 +263,6 @@
 			name = Print;
 			sourceTree = "<group>";
 		};
-		F11584FE0EE71BAE0036CFF8 /* Exporter */ = {
-			isa = PBXGroup;
-			children = (
-				F11DD3170ED8D7B5003FB869 /* NSStringExportAdditions.h */,
-				F11DD3180ED8D7B5003FB869 /* NSStringExportAdditions.m */,
-			);
-			name = Exporter;
-			sourceTree = "<group>";
-		};
 		F12C1D050E4B3A1500F037A1 /* Config Window */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,9 +274,11 @@
 			name = "Config Window";
 			sourceTree = "<group>";
 		};
-		F14036C90E4DE246000FD8A5 /* Importer */ = {
+		F14036C90E4DE246000FD8A5 /* Importer-Exporter */ = {
 			isa = PBXGroup;
 			children = (
+				F11DD3180ED8D7B5003FB869 /* NSStringExportAdditions.m */,
+				F11DD3170ED8D7B5003FB869 /* NSStringExportAdditions.h */,
 				F11585690EE71BFE0036CFF8 /* ZXQIFImporter.h */,
 				F115856A0EE71BFE0036CFF8 /* ZXQIFImporter.m */,
 				F11584FB0EE71BA20036CFF8 /* WYQIFImporter.h */,
@@ -291,7 +286,7 @@
 				F14036CA0E4DE25D000FD8A5 /* ZXOldCashboxImporter.h */,
 				F14036CB0E4DE25D000FD8A5 /* ZXOldCashboxImporter.m */,
 			);
-			name = Importer;
+			name = "Importer-Exporter";
 			sourceTree = "<group>";
 		};
 		F1730C210EEA65DE0031FEE3 /* Docs */ = {
@@ -427,6 +422,7 @@
 				F15BA3E70E4D79B400DD5F1E /* InspectorIcon.png in Resources */,
 				F11584AA0EE65D990036CFF8 /* gpl.txt in Resources */,
 				F1730C490EEA65EF0031FEE3 /* index.html in Resources */,
+				F179F56A0EEE986200A32029 /* CashboxImporter.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +504,14 @@
 				2A37F4BAFDCFA73011CA2CEA /* English */,
 			);
 			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		F179F5680EEE986200A32029 /* CashboxImporter.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F179F5690EEE986200A32029 /* English */,
+			);
+			name = CashboxImporter.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

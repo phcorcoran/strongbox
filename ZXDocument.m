@@ -137,35 +137,6 @@
 	return allLabels;
 }
 
-#pragma mark Control importer window
-- (IBAction)raiseImporterSheet:(id)sender
-{
-	[NSApp beginSheet:oldCashboxImporter.importerWindow modalForWindow:[self strongboxWindow] modalDelegate:self didEndSelector:@selector(endImporterSheet:returnCode:contextInfo:) contextInfo:NULL];
-}
-
-- (IBAction)endImporterSheet:(id)sender
-{
-	[oldCashboxImporter.importerWindow orderOut:sender];
-	[NSApp endSheet:oldCashboxImporter.importerWindow returnCode:1];
-}
-
-- (void)endImporterSheet:(NSWindow *)sender 
-	    returnCode:(int)returnCode 
-	   contextInfo:(void *)contextInfo
-{
-	return;
-}
-
-- (IBAction)importOldCashboxStuff:(id)sender
-{	
-	[self raiseImporterSheet:self];
-	[oldCashboxImporter main];
-	[self endImporterSheet:self];
-	for(id account in [accountController valueForKey:@"arrangedObjects"]) {
-		[account recalculateBalance:nil];
-	}
-}
-
 - (void)document:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)contextInfo
 {
 	return;
@@ -177,6 +148,16 @@
 	NSURL *url = [NSURL fileURLWithPath:path];
 	NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:url];
 	return [model autorelease];
+}
+
+#pragma mark Control importer window
+- (IBAction)importOldCashboxStuff:(id)sender
+{
+	oldCashboxImporter = [[[ZXOldCashboxImporter alloc] initWithOwner:self] autorelease];
+	[oldCashboxImporter main];
+	for(id account in [accountController valueForKey:@"arrangedObjects"]) {
+		[account recalculateBalance:nil];
+	}
 }
 
 #pragma mark Exporter stuff

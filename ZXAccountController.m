@@ -117,6 +117,7 @@
 - (void)validatesNewAccountName:(NSNotification *)aNotification
 {
 	id obj = [aNotification object];
+	if(![[self content] containsObject:obj]) return;
 	[obj specialSetName:[self uniqueNewName:[obj valueForKey:@"name"]]];
 	[self updateUsedNames];
 }
