@@ -22,26 +22,6 @@
 #import "ZXReportSection.h"
 
 @implementation ZXReportGraphView
-
-- (id)initWithFrame:(NSRect)frameRect
-{
-	if ((self = [super initWithFrame:frameRect]) != nil) {
-		allSections = [[NSMutableArray alloc] init];
-	}
-	return self;
-}
-
-- (void)dealloc
-{
-	[allSections release];
-	[super dealloc];
-}
-
-- (void)addSection:(ZXReportSection *)section
-{
-	[allSections addObject:section];
-}
-
 - (void)drawRect:(NSRect)rect
 {
 	float radius = (rect.size.width < rect.size.height) ? rect.size.width / 2: rect.size.height / 2;
@@ -69,7 +49,6 @@
 		[section.color set];
 		path = [NSBezierPath bezierPath];
 		[path moveToPoint:center];
-//		NSLog(@"%f %f", currentAngle, endAngle);
 		[path appendBezierPathWithArcWithCenter:center radius:radius startAngle:currentAngle endAngle:endAngle clockwise:YES];	
 		[path closePath];
 		[path fill];
@@ -80,11 +59,4 @@
 		
 	}
 }
-
-- (void)removeAllSections
-{
-	[allSections removeAllObjects];
-}
-
-
 @end

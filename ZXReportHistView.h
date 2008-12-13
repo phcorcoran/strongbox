@@ -19,13 +19,9 @@
  */
 
 #import <Cocoa/Cocoa.h>
-
-@class ZXReportSection;
+#import "ZXReportView.h"
 
 // FIXME: Do something when there is no section
-@interface ZXReportHistView : NSView {
-	NSMutableArray *allSections;
+@interface ZXReportHistView : ZXReportView {
 }
-- (void)addSection:(ZXReportSection *)section;
-- (void)removeAllSections;
 @end

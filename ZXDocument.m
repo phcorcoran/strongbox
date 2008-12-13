@@ -112,15 +112,6 @@
 
 #pragma mark Other stuff
 
-- (IBAction)toggleInspector:(id)sender
-{
-	if([inspectorPanel isVisible]) {
-		[inspectorPanel orderOut:self];
-	} else {
-		[inspectorPanel makeKeyAndOrderFront:self];
-	}
-}
-
 - (NSArray *)allLabels
 {
 	NSEntityDescription *labelDescription = [NSEntityDescription entityForName:@"Label" 

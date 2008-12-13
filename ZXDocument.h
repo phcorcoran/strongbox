@@ -36,7 +36,7 @@
 	// Windows
 	IBOutlet NSWindow *configSheet;
 	IBOutlet NSWindow *strongboxWindow;
-	IBOutlet NSPanel *inspectorPanel;
+	IBOutlet NSDrawer *drawer;
 	IBOutlet NSTableView *transactionsView;
 	
 	// Importer Stuff

@@ -22,26 +22,6 @@
 #import "ZXReportSection.h"
 
 @implementation ZXReportHistView
-
-- (id)initWithFrame:(NSRect)frameRect
-{
-	if ((self = [super initWithFrame:frameRect]) != nil) {
-		allSections = [[NSMutableArray alloc] init];
-	}
-	return self;
-}
-
-- (void)dealloc
-{
-	[allSections release];
-	[super dealloc];
-}
-
-- (void)addSection:(ZXReportSection *)section
-{
-	[allSections addObject:section];
-}
-
 - (void)drawRect:(NSRect)rect
 {	
 	if ([allSections count] < 1)
@@ -85,10 +65,4 @@
 		
 	}
 }
-
-- (void)removeAllSections
-{
-	[allSections removeAllObjects];
-}
-
 @end

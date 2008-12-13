@@ -19,26 +19,15 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import "ZXReportView.h"
 
-enum {
-	ZXMoneyReportResult = 0,
-	ZXPercentReportResult = 1,
-};
-
-@class ZXReportSection;
-
-@interface ZXReportTextView : NSControl {
-	NSMutableArray *allSections;
+@interface ZXReportTextView : ZXReportView {
 	IBOutlet NSNumberFormatter *currencyFormatter;
 	IBOutlet NSNumberFormatter *percentFormatter;
 	IBOutlet NSSegmentedControl *reportResultControl;
 	NSNumber *lastWidthModification;
 }
-
 @property(retain) NSNumber *lastWidthModification;
 @property(assign) NSSegmentedControl *reportResultControl;
-
-- (void)addSection:(ZXReportSection *)section;
-- (void)removeAllSections;
 - (IBAction)updateView:(id)sender;
 @end

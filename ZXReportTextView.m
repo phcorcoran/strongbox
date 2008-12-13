@@ -21,6 +21,11 @@
 #import "ZXReportTextView.h"
 #import "ZXReportSection.h"
 
+enum {
+	ZXMoneyReportResult = 0,
+	ZXPercentReportResult = 1,
+};
+
 @interface ZXReportTextView (Private)
 - (void)clearAllSubviews;
 - (NSAttributedString *)attributedStringForSection:(ZXReportSection *)section;
@@ -35,21 +40,9 @@
 {
 	
 	if ((self = [super initWithFrame:frameRect]) != nil) {
-		allSections = [[NSMutableArray alloc] init];
 		self.lastWidthModification = [NSNumber numberWithInt:0];
 	}
 	return self;
-}
-
-- (void)dealloc
-{
-	[allSections release];
-	[super dealloc];
-}
-
-- (void)addSection:(ZXReportSection *)section
-{
-	[allSections addObject:section];
 }
 
 - (void)drawRect:(NSRect)frame
@@ -84,8 +77,7 @@
 		[text setAutoresizingMask:NSViewMinYMargin | NSViewMinXMargin];
 		
 		// If allowed space is smaller than required.
-		if ([self frame].size.width < [text frame].size.width)
-		{
+		if ([self frame].size.width < [text frame].size.width) {
 			float difference = [text frame].size.width - [self frame].size.width;
 			frame = [self frame];
 			frame.size.width += difference;
@@ -100,15 +92,14 @@
 
 - (void)clearAllSubviews
 {
-	while ([[self subviews] count] > 0)
-	{
+	while ([[self subviews] count] > 0) {
 		[[[self subviews] objectAtIndex:0] removeFromSuperview];
 	}
 }
 
 - (void)removeAllSections
 {
-	[allSections removeAllObjects];
+	[super removeAllSections];
 	[self clearAllSubviews];
 }
 
