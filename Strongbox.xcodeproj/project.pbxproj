@@ -40,7 +40,6 @@
 		F1A6C9320E2A49BB00E2FD0F /* ReportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A6C9310E2A49BB00E2FD0F /* ReportWindow.xib */; };
 		F1ABF4670E40B6BE00ECF6D0 /* ZXLabelMO.m in Sources */ = {isa = PBXBuildFile; fileRef = F1ABF4660E40B6BE00ECF6D0 /* ZXLabelMO.m */; };
 		F1ABF46A0E40B75200ECF6D0 /* ZXLabelController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1ABF4690E40B75200ECF6D0 /* ZXLabelController.m */; };
-		F1BD06F60EF368E7003020AB /* CurrencyFormatter.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1BD06F40EF368E7003020AB /* CurrencyFormatter.xib */; };
 		F1C8C8130E2500B100D7AC42 /* ZXTransactionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C8C8120E2500B100D7AC42 /* ZXTransactionController.m */; };
 		F1CEA3EB0DFA5416007B913F /* ZXReportGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1CEA3EA0DFA5416007B913F /* ZXReportGraphView.m */; };
 		F1DA7F2C0E2E0C1600D05BB4 /* ZXAccountMO.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DA7F2B0E2E0C1600D05BB4 /* ZXAccountMO.m */; };
@@ -116,7 +115,6 @@
 		F1ABF4660E40B6BE00ECF6D0 /* ZXLabelMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXLabelMO.m; sourceTree = "<group>"; };
 		F1ABF4680E40B75200ECF6D0 /* ZXLabelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXLabelController.h; sourceTree = "<group>"; };
 		F1ABF4690E40B75200ECF6D0 /* ZXLabelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXLabelController.m; sourceTree = "<group>"; };
-		F1BD06F50EF368E7003020AB /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/CurrencyFormatter.xib; sourceTree = "<group>"; };
 		F1C8C8110E2500B100D7AC42 /* ZXTransactionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTransactionController.h; sourceTree = "<group>"; };
 		F1C8C8120E2500B100D7AC42 /* ZXTransactionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTransactionController.m; sourceTree = "<group>"; };
 		F1CEA3E90DFA5416007B913F /* ZXReportGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReportGraphView.h; sourceTree = "<group>"; };
@@ -185,7 +183,6 @@
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
-				F1BD06F40EF368E7003020AB /* CurrencyFormatter.xib */,
 			);
 			name = Strongbox;
 			sourceTree = "<group>";
@@ -431,7 +428,6 @@
 				F11584AA0EE65D990036CFF8 /* gpl.txt in Resources */,
 				F1730C490EEA65EF0031FEE3 /* index.html in Resources */,
 				F179F56A0EEE986200A32029 /* CashboxImporter.xib in Resources */,
-				F1BD06F60EF368E7003020AB /* CurrencyFormatter.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,14 +518,6 @@
 				F179F5690EEE986200A32029 /* English */,
 			);
 			name = CashboxImporter.xib;
-			sourceTree = "<group>";
-		};
-		F1BD06F40EF368E7003020AB /* CurrencyFormatter.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F1BD06F50EF368E7003020AB /* English */,
-			);
-			name = CurrencyFormatter.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
