@@ -274,12 +274,17 @@
 								<string>F1730C210EEA65DE0031FEE3</string>
 								<string>E1B74B1A0667B4A90069E3BA</string>
 								<string>2A37F4ABFDCFA73011CA2CEA</string>
+								<string>1C37FBAC04509CD000000102</string>
+								<string>F18517E70EFCC61400C310F5</string>
+								<string>F18517E80EFCC61400C310F5</string>
 								<string>1CC0EA4004350EF90041110B</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
 									<integer>25</integer>
+									<integer>24</integer>
+									<integer>23</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -325,10 +330,6 @@
 										<string>F1EE9C260C10B30500A51B19</string>
 										<key>PBXProjectModuleLabel</key>
 										<string>MyModel.xcdatamodel</string>
-										<key>_historyCapacity</key>
-										<integer>0</integer>
-										<key>bookmark</key>
-										<string>F18517C70EFCC30400C310F5</string>
 										<key>history</key>
 										<array>
 											<string>F179F5720EEE9A8F00A32029</string>
@@ -394,7 +395,6 @@
 											<string>F1BD07250EF440FA003020AB</string>
 											<string>F1BD07300EF440FA003020AB</string>
 											<string>F1BD07310EF440FA003020AB</string>
-											<string>F18517C60EFCC30400C310F5</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -496,11 +496,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>F18517B50EFCB4AD00C310F5</string>
+				<string>F18517E90EFCC61400C310F5</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>F18517B60EFCB4AD00C310F5</string>
+				<string>F18517EA0EFCC61400C310F5</string>
 				<string>F1EE9C250C10B30500A51B19</string>
-				<string>F18517B70EFCB4AD00C310F5</string>
+				<string>F18517EB0EFCC61400C310F5</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>

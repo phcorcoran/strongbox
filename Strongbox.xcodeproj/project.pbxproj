@@ -6,6 +6,21 @@
 	objectVersion = 44;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		F18517E10EFCC5E300C310F5 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = F18517E40EFCC60100C310F5 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				F18517E00EFCC5E300C310F5 /* ShellScript */,
+				F18517E60EFCC61200C310F5 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		775DFF38067A968500C5B868 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
@@ -379,7 +394,6 @@
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
-				F1730C540EEA662F0031FEE3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -404,6 +418,7 @@
 			projectRoot = "";
 			targets = (
 				8D15AC270486D014006FF6A4 /* Strongbox */,
+				F18517E10EFCC5E300C310F5 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -434,7 +449,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F1730C540EEA662F0031FEE3 /* ShellScript */ = {
+		F18517E00EFCC5E300C310F5 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -446,6 +461,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/Applications/Doxygen.app/Contents/Resources/doxygen Doxyfile";
+		};
+		F18517E60EFCC61200C310F5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ~/lib/Strongbox/Docs/html\nftp -i dravick@ftp.ironie.org:/www/docs/ < ~/lib/Strongbox/ftpCommands.txt";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -583,6 +611,27 @@
 			};
 			name = Release;
 		};
+		F18517E20EFCC5E300C310F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Documentation;
+			};
+			name = Debug;
+		};
+		F18517E30EFCC5E300C310F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = Documentation;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -600,6 +649,15 @@
 			buildConfigurations = (
 				26FC0AAA0875C8B900E6366F /* Debug */,
 				26FC0AAB0875C8B900E6366F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F18517E40EFCC60100C310F5 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F18517E20EFCC5E300C310F5 /* Debug */,
+				F18517E30EFCC5E300C310F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
