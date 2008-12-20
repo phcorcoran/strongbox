@@ -279,7 +279,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>0</integer>
+									<integer>25</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -316,7 +316,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>F1EE9C250C10B30500A51B19</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ZXAppController.m</string>
+								<string>MyModel.xcdatamodel</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -324,11 +324,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>F1EE9C260C10B30500A51B19</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ZXAppController.m</string>
+										<string>MyModel.xcdatamodel</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F18517B40EFCB4AD00C310F5</string>
+										<string>F18517C70EFCC30400C310F5</string>
 										<key>history</key>
 										<array>
 											<string>F179F5720EEE9A8F00A32029</string>
@@ -341,8 +341,6 @@
 											<string>F179F71E0EEEF01900A32029</string>
 											<string>F179F72D0EEF46FC00A32029</string>
 											<string>F179F72E0EEF46FC00A32029</string>
-											<string>F183352A0EF0847B0075A7C5</string>
-											<string>F183354A0EF09CA60075A7C5</string>
 											<string>F183354C0EF09CA60075A7C5</string>
 											<string>F18335500EF09CA60075A7C5</string>
 											<string>F18335510EF09CA60075A7C5</string>
@@ -361,7 +359,8 @@
 											<string>F1BD071F0EF440FA003020AB</string>
 											<string>F1BD07200EF440FA003020AB</string>
 											<string>F1BD07210EF440FA003020AB</string>
-											<string>F179268A0EF96F8600277A52</string>
+											<string>F18517C40EFCC30400C310F5</string>
+											<string>F18517C50EFCC30400C310F5</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -380,7 +379,6 @@
 											<string>F179F7330EEF46FC00A32029</string>
 											<string>F179F7340EEF46FC00A32029</string>
 											<string>F179F7360EEF46FC00A32029</string>
-											<string>F18335570EF09CA60075A7C5</string>
 											<string>F18335590EF09CA60075A7C5</string>
 											<string>F183355A0EF09CA60075A7C5</string>
 											<string>F183355B0EF09CA60075A7C5</string>
@@ -396,6 +394,7 @@
 											<string>F1BD07250EF440FA003020AB</string>
 											<string>F1BD07300EF440FA003020AB</string>
 											<string>F1BD07310EF440FA003020AB</string>
+											<string>F18517C60EFCC30400C310F5</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
