@@ -20,7 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class ZXReportWindowController, ZXOldCashboxImporter, ZXTransactionController, ZXAccountController, ZXLabelController, ZXDocumentConfigController;
+@class ZXReportWindowController, ZXOldCashboxImporter, ZXTransactionController, ZXAccountController, ZXLabelController, ZXAccountMergeController, ZXDocumentConfigController;
 
 //! Central class of document architecture
 /*!
@@ -42,6 +42,9 @@
 	// Importer Stuff
 	ZXOldCashboxImporter *oldCashboxImporter;
 	
+	// Merge Stuff
+	ZXAccountMergeController *mergeController;
+	
 	// Misc
 	ZXReportWindowController *reportWindowController;
 	IBOutlet NSArray *transactionSortDescriptors;
@@ -58,8 +61,6 @@
 @property(copy) NSArray *nameSortDescriptors;
 @property(retain) NSDateFormatter *dateFormatter;
 
-- (IBAction)toggleInspector:(id)sender;
-
 - (NSArray *)allLabels;
 
 - (IBAction)addTransaction:(id)sender;
@@ -69,9 +70,8 @@
 
 - (IBAction)raiseConfigSheet:(id)sender;
 - (IBAction)endConfigSheet:(id)sender;
-- (void)endConfigSheet:(NSWindow *)sender 
-	   returnCode:(int)returnCode 
-	  contextInfo:(void *)contextInfo;
+
+- (IBAction)raiseMergeSheet:(id)sender;
 
 - (IBAction)importOldCashboxStuff:(id)sender;
 

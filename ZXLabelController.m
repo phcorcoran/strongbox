@@ -126,7 +126,6 @@ static NSString *sharedNoLabelString = @"-";
 - (void)validatesNewLabelName:(NSNotification *)aNotification
 {
 	id obj = [aNotification object];
-	NSLog(@"%@", [self content]);
 	if(![[self content] containsObject:obj]) return;
 	[obj specialSetName:[self uniqueNewName:[obj valueForKey:@"name"]]];
 	[self updateUsedNames];

@@ -10,7 +10,15 @@
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
 			<key>SUPERCLASS</key>
-			<string>NSView</string>
+			<string>ZXReportView</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>ZXReportView</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSControl</string>
 		</dict>
 		<dict>
 			<key>ACTIONS</key>
@@ -57,6 +65,21 @@
 		<dict>
 			<key>ACTIONS</key>
 			<dict>
+				<key>addTransaction</key>
+				<string>id</string>
+				<key>removeTransaction</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>FirstResponder</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
 				<key>updateView</key>
 				<string>id</string>
 			</dict>
@@ -74,22 +97,7 @@
 				<string>NSSegmentedControl</string>
 			</dict>
 			<key>SUPERCLASS</key>
-			<string>NSControl</string>
-		</dict>
-		<dict>
-			<key>ACTIONS</key>
-			<dict>
-				<key>addTransaction</key>
-				<string>id</string>
-				<key>removeTransaction</key>
-				<string>id</string>
-			</dict>
-			<key>CLASS</key>
-			<string>FirstResponder</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
-			<key>SUPERCLASS</key>
-			<string>NSObject</string>
+			<string>ZXReportView</string>
 		</dict>
 		<dict>
 			<key>CLASS</key>
@@ -133,15 +141,21 @@
 				<string>id</string>
 				<key>endImporterSheet</key>
 				<string>id</string>
+				<key>endMergeSheet</key>
+				<string>id</string>
 				<key>exportToCSV</key>
 				<string>id</string>
 				<key>importOldCashboxStuff</key>
 				<string>id</string>
 				<key>logLabels</key>
 				<string>id</string>
+				<key>merge</key>
+				<string>id</string>
 				<key>raiseConfigSheet</key>
 				<string>id</string>
 				<key>raiseImporterSheet</key>
+				<string>id</string>
+				<key>raiseMergeSheet</key>
 				<string>id</string>
 				<key>removeTransaction</key>
 				<string>id</string>
@@ -162,12 +176,18 @@
 				<string>NSWindow</string>
 				<key>documentConfigController</key>
 				<string>ZXDocumentConfigController</string>
+				<key>drawer</key>
+				<string>NSDrawer</string>
 				<key>inspectorDrawer</key>
 				<string>NSDrawer</string>
 				<key>inspectorPanel</key>
 				<string>NSPanel</string>
 				<key>labelController</key>
 				<string>ZXLabelController</string>
+				<key>mergeAccountController</key>
+				<string>NSArrayController</string>
+				<key>mergeSheet</key>
+				<string>NSWindow</string>
 				<key>nameSortDescriptors</key>
 				<string>NSArray</string>
 				<key>oldCashboxImporter</key>
@@ -186,6 +206,14 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
+			<string>ZXLabelController</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSArrayController</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
 			<string>ZXAccountController</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
@@ -199,19 +227,11 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
-			<string>ZXLabelController</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
-			<key>SUPERCLASS</key>
-			<string>NSArrayController</string>
-		</dict>
-		<dict>
-			<key>CLASS</key>
 			<string>ZXReportHistView</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
 			<key>SUPERCLASS</key>
-			<string>NSView</string>
+			<string>ZXReportView</string>
 		</dict>
 		<dict>
 			<key>CLASS</key>

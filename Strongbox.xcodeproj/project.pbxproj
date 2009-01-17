@@ -42,6 +42,9 @@
 		F14036CC0E4DE25D000FD8A5 /* ZXOldCashboxImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = F14036CB0E4DE25D000FD8A5 /* ZXOldCashboxImporter.m */; };
 		F14485120E2D3B6F000560FC /* ZXDocumentConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = F14485110E2D3B6F000560FC /* ZXDocumentConfigController.m */; };
 		F15BA3E70E4D79B400DD5F1E /* InspectorIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F15BA3E60E4D79B400DD5F1E /* InspectorIcon.png */; };
+		F16A95C60F218D3600DA4EAF /* MergeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F16A95C50F218D3600DA4EAF /* MergeWindow.xib */; };
+		F16A95CC0F218FB300DA4EAF /* ZXAccountToNameTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F16A95CB0F218FB300DA4EAF /* ZXAccountToNameTransformer.m */; };
+		F16A96A90F21B7B500DA4EAF /* ZXAccountMergeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F16A96A80F21B7B500DA4EAF /* ZXAccountMergeController.m */; };
 		F170CE330E54000900CAB662 /* KFCompletingTextFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F170CE320E54000900CAB662 /* KFCompletingTextFormatter.m */; };
 		F1730C490EEA65EF0031FEE3 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = F1730C310EEA65EF0031FEE3 /* index.html */; };
 		F179F56A0EEE986200A32029 /* CashboxImporter.xib in Resources */ = {isa = PBXBuildFile; fileRef = F179F5680EEE986200A32029 /* CashboxImporter.xib */; };
@@ -108,6 +111,11 @@
 		F14485100E2D3B6F000560FC /* ZXDocumentConfigController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDocumentConfigController.h; sourceTree = "<group>"; };
 		F14485110E2D3B6F000560FC /* ZXDocumentConfigController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDocumentConfigController.m; sourceTree = "<group>"; };
 		F15BA3E60E4D79B400DD5F1E /* InspectorIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InspectorIcon.png; sourceTree = "<group>"; };
+		F16A95C50F218D3600DA4EAF /* MergeWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MergeWindow.xib; sourceTree = "<group>"; };
+		F16A95CA0F218FB300DA4EAF /* ZXAccountToNameTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAccountToNameTransformer.h; sourceTree = "<group>"; };
+		F16A95CB0F218FB300DA4EAF /* ZXAccountToNameTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAccountToNameTransformer.m; sourceTree = "<group>"; };
+		F16A96A70F21B7B500DA4EAF /* ZXAccountMergeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAccountMergeController.h; sourceTree = "<group>"; };
+		F16A96A80F21B7B500DA4EAF /* ZXAccountMergeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAccountMergeController.m; sourceTree = "<group>"; };
 		F170CE310E54000900CAB662 /* KFCompletingTextFormatter.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = KFCompletingTextFormatter.h; sourceTree = "<group>"; };
 		F170CE320E54000900CAB662 /* KFCompletingTextFormatter.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = KFCompletingTextFormatter.m; sourceTree = "<group>"; };
 		F1730C310EEA65EF0031FEE3 /* index.html */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text.html; name = index.html; path = Docs/html/index.html; sourceTree = "<group>"; };
@@ -234,6 +242,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F16A95C50F218D3600DA4EAF /* MergeWindow.xib */,
 				F179F5680EEE986200A32029 /* CashboxImporter.xib */,
 				F11584A90EE65D990036CFF8 /* gpl.txt */,
 				F1F7CAB30D7B8C4200B9DD1B /* AddIcon.png */,
@@ -350,6 +359,10 @@
 				F11534870DF5898A00723D0D /* ZXAccountController.m */,
 				F11584DB0EE65FAD0036CFF8 /* ZXCurrencyValueTransformer.h */,
 				F11584DC0EE65FAD0036CFF8 /* ZXCurrencyValueTransformer.m */,
+				F16A95CA0F218FB300DA4EAF /* ZXAccountToNameTransformer.h */,
+				F16A95CB0F218FB300DA4EAF /* ZXAccountToNameTransformer.m */,
+				F16A96A70F21B7B500DA4EAF /* ZXAccountMergeController.h */,
+				F16A96A80F21B7B500DA4EAF /* ZXAccountMergeController.m */,
 			);
 			name = "Account Stuff";
 			sourceTree = "<group>";
@@ -443,6 +456,7 @@
 				F11584AA0EE65D990036CFF8 /* gpl.txt in Resources */,
 				F1730C490EEA65EF0031FEE3 /* index.html in Resources */,
 				F179F56A0EEE986200A32029 /* CashboxImporter.xib in Resources */,
+				F16A95C60F218D3600DA4EAF /* MergeWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +524,8 @@
 				F11584DD0EE65FAD0036CFF8 /* ZXCurrencyValueTransformer.m in Sources */,
 				F115856B0EE71BFE0036CFF8 /* ZXQIFImporter.m in Sources */,
 				F183353C0EF08BA60075A7C5 /* ZXReportView.m in Sources */,
+				F16A95CC0F218FB300DA4EAF /* ZXAccountToNameTransformer.m in Sources */,
+				F16A96A90F21B7B500DA4EAF /* ZXAccountMergeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

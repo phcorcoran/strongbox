@@ -262,9 +262,11 @@ enum {
 - (void)setValue:(id)newValue forKey:(id)key
 {
 	[super setValue:newValue forKey:key];
+	NSLog(@"Setting %@", key);
 	if([key isEqual:@"reportStartDate"] || [key isEqual:@"reportEndDate"]) {
 		[reportTimePopUpButton selectItemWithTag:ZXCustomReportTime];
 		[self updateView:self];
+		NSLog(@"Updating.");
 	}
 }
 

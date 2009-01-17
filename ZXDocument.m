@@ -28,6 +28,7 @@
 #import "ZXPrintTransactionView.h"
 #import "ZXReportWindowController.h"
 #import "ZXTransactionController.h"
+#import "ZXAccountMergeController.h"
 
 
 @implementation ZXDocument
@@ -71,7 +72,11 @@
 #pragma mark Control config window
 - (IBAction)raiseConfigSheet:(id)sender
 {
-	[NSApp beginSheet:configSheet modalForWindow:[self strongboxWindow] modalDelegate:self didEndSelector:@selector(endConfigSheet:returnCode:contextInfo:) contextInfo:NULL];
+	[NSApp beginSheet:configSheet 
+	   modalForWindow:[self strongboxWindow] 
+	    modalDelegate:self 
+	   didEndSelector:nil 
+	      contextInfo:NULL];
 }
 
 - (IBAction)endConfigSheet:(id)sender
@@ -80,12 +85,13 @@
 	[NSApp endSheet:configSheet returnCode:1];
 }
 
-- (void)endConfigSheet:(NSWindow *)sender 
-	   returnCode:(int)returnCode 
-	  contextInfo:(void *)contextInfo
+#pragma mark Control merge window
+- (IBAction)raiseMergeSheet:(id)sender
 {
-	return;
+	mergeController = [[[ZXAccountMergeController alloc] initWithOwner:self] autorelease];
+	[mergeController raiseMergeSheet:sender];
 }
+
 
 #pragma mark Control report window
 - (IBAction)toggleReportWindow:(id)sender
