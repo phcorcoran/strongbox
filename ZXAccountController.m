@@ -21,6 +21,7 @@
 #import "ZXAccountController.h"
 #import "ZXAccountMO.h"
 #import "ZXCurrencyFormatter.h"
+#import "ZXDocument.h"
 #import "ZXNotifications.h"
 #import "ZXTransactionController.h"
 
@@ -96,7 +97,9 @@
 
 - (void)recalculateBalance:(NSNotification *)note
 {
-	[[self valueForKeyPath:@"selection.self"] recalculateBalance:note];
+	if([self valueForKeyPath:@"selection.self"] != NSNoSelectionMarker) {
+		[[self valueForKeyPath:@"selection.self"] recalculateBalance:note];
+	}
 }
 
 //! Creates a new object
@@ -177,13 +180,23 @@
 
 - (void)updateGeneralMessage:(NSNotification *)note
 {
+	static BOOL infiniteLoopBreaker = YES;
+	if([self valueForKeyPath:@"selection.self"] == NSNoSelectionMarker) {
+		if(infiniteLoopBreaker) {
+			infiniteLoopBreaker = NO;
+			[[NSNotificationQueue defaultQueue] enqueueNotification:note postingStyle:NSPostWhenIdle];
+		}
+		return;
+	}
+	infiniteLoopBreaker = YES;
+	
 	id count, name;
 	count = [self valueForKeyPath:@"selection.transactions.@count"];
 	name = [self valueForKeyPath:@"selection.name"];
-	if(note != nil && [[[note object] valueForKeyPath:@"selectionIndexes.count"] intValue] > 1) {
+	if(note != nil && [[[owner transactionController] valueForKeyPath:@"selectionIndexes.count"] intValue] > 1) {
 		id partial, sum;
-		partial = [[note object] valueForKeyPath:@"selectionIndexes.count"];
-		int intSum = [[[note object] valueForKeyPath:@"selectedObjects.@sum.deposit"] intValue] - [[[note object] valueForKeyPath:@"selectedObjects.@sum.withdrawal"] intValue];
+		partial = [[owner transactionController] valueForKeyPath:@"selectionIndexes.count"];
+		int intSum = [[[owner transactionController] valueForKeyPath:@"selectedObjects.@sum.deposit"] intValue] - [[[owner transactionController] valueForKeyPath:@"selectedObjects.@sum.withdrawal"] intValue];
 		sum = [[ZXCurrencyFormatter currencyFormatter] stringFromNumber:[NSNumber numberWithInt:intSum]];
 		// FIXME: Hard-coded english
 		[self setValue:[NSString stringWithFormat:@"%@ of %@ transactions in %@. Subtotal: %@", partial, count, name, sum]
@@ -191,6 +204,7 @@
 	} else {
 		id balance;
 		balance = [self valueForKeyPath:@"selection.balance"];
+		if(!balance) balance = [NSNumber numberWithInt:0];
 		balance = [[ZXCurrencyFormatter currencyFormatter] stringFromNumber:balance];
 		// FIXME: Hard-coded english
 		[self setValue:[NSString stringWithFormat:@"%@ transactions in %@. Total: %@", count, name, balance]

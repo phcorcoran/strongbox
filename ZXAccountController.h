@@ -20,6 +20,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ZXDocument;
+
 //! General controller code for accounts.
 /*!
  Subclass of NSArrayController. Contains all the accounts and ensures no duplicate
@@ -35,6 +37,7 @@
 	 */
 	NSMutableDictionary *usedNames;
 	IBOutlet NSString *generalMessage;
+	IBOutlet ZXDocument *owner;
 }
 @property (retain) NSMutableDictionary *usedNames;
 @property(assign) NSString *generalMessage;

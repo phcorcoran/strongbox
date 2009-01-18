@@ -57,6 +57,8 @@
 {
 	[super windowControllerDidLoadNib:windowController];
 	[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountControllerDidLoadNotification object:self];
+	id note = [NSNotification notificationWithName:ZXAccountTotalDidChangeNotification object:nil];
+	[[NSNotificationQueue defaultQueue] enqueueNotification:note postingStyle:NSPostWhenIdle];
 }
 
 - (NSString *)windowNibName 

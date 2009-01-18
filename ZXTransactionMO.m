@@ -84,7 +84,7 @@ static NSString *sharedNoLabelString = @"-";
 {
 	[super setValue:newValue forKey:key];
 	if([key isEqual:@"deposit"] || [key isEqual:@"withdrawal"] || [key isEqual:@"date"]) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountTotalDidChangeNotification object:self];
+		[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountTotalDidChangeNotification object:nil];
 	} else if([key isEqual:@"transactionLabel"]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:ZXTransactionLabelDidChangeNotification object:self];
 	}
