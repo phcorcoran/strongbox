@@ -24,11 +24,13 @@
 @implementation ZXTransactionController
 - (IBAction)add:(id)sender {
 	[super add:sender];
-	[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountTotalDidChangeNotification object:self];
+	id note = [NSNotification notificationWithName:ZXAccountTotalDidChangeNotification object:nil];
+	[[NSNotificationQueue defaultQueue] enqueueNotification:note postingStyle:NSPostWhenIdle];
 }
 - (IBAction)remove:(id)sender {
 	[super remove:sender];
-	[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountTotalDidChangeNotification object:self];
+	id note = [NSNotification notificationWithName:ZXAccountTotalDidChangeNotification object:nil];
+	[[NSNotificationQueue defaultQueue] enqueueNotification:note postingStyle:NSPostWhenIdle];
 }
 
 -(BOOL)isACompletion:(NSString *)aString
@@ -55,6 +57,18 @@
 		}
 	}
 	return completion;
+}
+
+//! Controls special cases of key-value changes
+/*!
+ Posts a ZXTransactionSelectionDidChangeNotification upon selection change.
+ */
+- (void)setValue:(id)newValue forKey:(id)key
+{
+	[super setValue:newValue forKey:key];
+	if([key isEqual:@"selectionIndex"] || [key isEqual:@"selectionIndexes"]) {
+		[[NSNotificationCenter defaultCenter] postNotificationName:ZXTransactionSelectionDidChangeNotification object:self];
+	}
 }
 
 @end

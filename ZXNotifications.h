@@ -25,3 +25,5 @@ static NSString *ZXActiveAccountDidChangeNotification = @"ActiveAccountDidChange
 static NSString *ZXLabelControllerDidLoadNotification = @"LabelControllerDidLoad";
 static NSString *ZXLabelNameDidChangeNotification = @"LabelNameDidChange";
 static NSString *ZXTransactionLabelDidChangeNotification = @"TransactionLabelDidChange";
+static NSString *ZXTransactionSelectionDidChangeNotification = @"TransactionSelectionDidChange";
+

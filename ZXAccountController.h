@@ -34,9 +34,13 @@
 	 unique, they are stored as dictionary keys, ensuring no duplicates.
 	 */
 	NSMutableDictionary *usedNames;
+	IBOutlet NSString *generalMessage;
 }
 @property (retain) NSMutableDictionary *usedNames;
+@property(assign) NSString *generalMessage;
 
 //! Forward recalculateBalance: message to selected account
 - (void)recalculateBalance:(NSNotification *)note;
+//! Update message on top of transaction table.
+- (void)updateGeneralMessage:(NSNotification *)note;
 @end

@@ -79,6 +79,7 @@
 	}
 	[accountController setSelectionIndexes:[NSIndexSet indexSet]]; // Clear selection
 	[accountController addSelectedObjects:[NSArray arrayWithObject:selectedAccount]];
+	[accountController updateGeneralMessage:nil];
 }
 
 - (void)updateCurrentAccountName

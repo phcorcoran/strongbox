@@ -20,6 +20,7 @@
 
 #import "ZXAccountController.h"
 #import "ZXAccountMO.h"
+#import "ZXCurrencyFormatter.h"
 #import "ZXNotifications.h"
 #import "ZXTransactionController.h"
 
@@ -31,7 +32,7 @@
 
 
 @implementation ZXAccountController
-@synthesize usedNames;
+@synthesize usedNames, generalMessage;
 
 - (id)init
 {
@@ -87,6 +88,10 @@
 {
 	[super awakeFromNib];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recalculateBalance:) name:ZXAccountTotalDidChangeNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateGeneralMessage:) name:ZXAccountTotalDidChangeNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateGeneralMessage:) name:ZXActiveAccountDidChangeNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateGeneralMessage:) name:ZXAccountNameDidChangeNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateGeneralMessage:) name:ZXTransactionSelectionDidChangeNotification object:nil];
 }
 
 - (void)recalculateBalance:(NSNotification *)note
@@ -168,6 +173,29 @@
 {
 	[super remove:sender];
 	[self updateUsedNames];
+}
+
+- (void)updateGeneralMessage:(NSNotification *)note
+{
+	id count, name;
+	count = [self valueForKeyPath:@"selection.transactions.@count"];
+	name = [self valueForKeyPath:@"selection.name"];
+	if(note != nil && [[[note object] valueForKeyPath:@"selectionIndexes.count"] intValue] > 1) {
+		id partial, sum;
+		partial = [[note object] valueForKeyPath:@"selectionIndexes.count"];
+		int intSum = [[[note object] valueForKeyPath:@"selectedObjects.@sum.deposit"] intValue] - [[[note object] valueForKeyPath:@"selectedObjects.@sum.withdrawal"] intValue];
+		sum = [[ZXCurrencyFormatter currencyFormatter] stringFromNumber:[NSNumber numberWithInt:intSum]];
+		// FIXME: Hard-coded english
+		[self setValue:[NSString stringWithFormat:@"%@ of %@ transactions in %@. Subtotal: %@", partial, count, name, sum]
+			forKey:@"generalMessage"];
+	} else {
+		id balance;
+		balance = [self valueForKeyPath:@"selection.balance"];
+		balance = [[ZXCurrencyFormatter currencyFormatter] stringFromNumber:balance];
+		// FIXME: Hard-coded english
+		[self setValue:[NSString stringWithFormat:@"%@ transactions in %@. Total: %@", count, name, balance]
+			forKey:@"generalMessage"];
+	}
 }
 
 - (void)dealloc

@@ -21,6 +21,7 @@
 #import "ZXDocument.h"
 #import "NSStringExportAdditions.h"
 #import "ZXAccountController.h"
+#import "ZXAccountMergeController.h"
 #import "ZXDocumentConfigController.h"
 #import "ZXLabelController.h"
 #import "ZXNotifications.h"
@@ -28,7 +29,7 @@
 #import "ZXPrintTransactionView.h"
 #import "ZXReportWindowController.h"
 #import "ZXTransactionController.h"
-#import "ZXAccountMergeController.h"
+
 
 
 @implementation ZXDocument
@@ -44,6 +45,12 @@
 	self.dateFormatter = [[[NSDateFormatter alloc] initWithDateFormat:@"%Y-%m-%d" 
 						     allowNaturalLanguage:NO] autorelease];
 	return self;
+}
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[super dealloc];
 }
 
 - (void)windowControllerDidLoadNib:(NSWindowController *)windowController
@@ -72,6 +79,9 @@
 #pragma mark Control config window
 - (IBAction)raiseConfigSheet:(id)sender
 {
+	if(!configSheet) {
+		[NSBundle loadNibNamed:@"ConfigWindow" owner:self];
+	}
 	[NSApp beginSheet:configSheet 
 	   modalForWindow:[self strongboxWindow] 
 	    modalDelegate:self 
