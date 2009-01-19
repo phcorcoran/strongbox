@@ -410,6 +410,7 @@
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
+				F1C9F25A0F24155200BEFF3B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -492,6 +493,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd ~/lib/Strongbox/Docs/html\nftp -i dravick@ftp.ironie.org:/www/docs/ < ~/lib/Strongbox/ftpCommands.txt";
+		};
+		F1C9F25A0F24155200BEFF3B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ./versionUpdater.sh;
 		};
 /* End PBXShellScriptBuildPhase section */
 

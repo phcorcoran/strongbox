@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ActivePerspectiveName</key>
-	<string>Debug</string>
+	<string>Project</string>
 	<key>AllowedModules</key>
 	<array>
 		<dict>
@@ -274,19 +274,18 @@
 								<string>2A37F4ABFDCFA73011CA2CEA</string>
 								<string>F1CEA3B00DFA52E4007B913F</string>
 								<string>1C37FBAC04509CD000000102</string>
+								<string>F1C9F25C0F24158B00BEFF3B</string>
 								<string>1CC0EA4004350EF90041110B</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>12</integer>
-									<integer>8</integer>
-									<integer>5</integer>
+									<integer>30</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 77}, {248, 604}}</string>
+							<string>{{0, 117}, {248, 604}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -302,6 +301,8 @@
 							<string>MainColumn</string>
 							<real>248</real>
 						</array>
+						<key>RubberWindowFrame</key>
+						<string>51 99 1079 663 0 0 1280 778 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -317,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>F1EE9C250C10B30500A51B19</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ZXAccountController.m</string>
+								<string>Info.plist</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -325,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>F1EE9C260C10B30500A51B19</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ZXAccountController.m</string>
+										<string>Info.plist</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F1C9F2440F23DD0100BEFF3B</string>
+										<string>F1C9F2670F24158B00BEFF3B</string>
 										<key>history</key>
 										<array>
 											<string>F179F5720EEE9A8F00A32029</string>
@@ -346,7 +347,6 @@
 											<string>F1BD07160EF440FA003020AB</string>
 											<string>F1BD07170EF440FA003020AB</string>
 											<string>F1BD07180EF440FA003020AB</string>
-											<string>F1BD071A0EF440FA003020AB</string>
 											<string>F1BD071B0EF440FA003020AB</string>
 											<string>F1BD071D0EF440FA003020AB</string>
 											<string>F1BD071E0EF440FA003020AB</string>
@@ -367,21 +367,24 @@
 											<string>F1C9F06A0F23A2B100BEFF3B</string>
 											<string>F1C9F12D0F23B6C100BEFF3B</string>
 											<string>F1C9F1300F23B6C100BEFF3B</string>
-											<string>F1C9F1CE0F23D80800BEFF3B</string>
 											<string>F1C9F1CF0F23D80800BEFF3B</string>
 											<string>F1C9F1D10F23D80800BEFF3B</string>
-											<string>F1C9F1D30F23D80800BEFF3B</string>
 											<string>F1C9F1E80F23D87200BEFF3B</string>
 											<string>F1C9F1EB0F23D87200BEFF3B</string>
 											<string>F1C9F2030F23D9FD00BEFF3B</string>
 											<string>F1C9F2040F23D9FD00BEFF3B</string>
 											<string>F1C9F2050F23D9FD00BEFF3B</string>
-											<string>F1C9F2060F23D9FD00BEFF3B</string>
 											<string>F1C9F21D0F23DA6900BEFF3B</string>
 											<string>F1C9F21E0F23DA6900BEFF3B</string>
 											<string>F1C9F21F0F23DA6900BEFF3B</string>
 											<string>F1C9F22E0F23DAF100BEFF3B</string>
-											<string>F1C9F22F0F23DAF100BEFF3B</string>
+											<string>F1C9F24F0F23E31000BEFF3B</string>
+											<string>F1C9F2500F23E31000BEFF3B</string>
+											<string>F1C9F25D0F24158B00BEFF3B</string>
+											<string>F1C9F25E0F24158B00BEFF3B</string>
+											<string>F1C9F25F0F24158B00BEFF3B</string>
+											<string>F1C9F2600F24158B00BEFF3B</string>
+											<string>F1C9F2610F24158B00BEFF3B</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -577,6 +580,13 @@
 											<string>F1C9F2240F23DA6900BEFF3B</string>
 											<string>F1C9F22A0F23DA8E00BEFF3B</string>
 											<string>F1C9F2300F23DAF100BEFF3B</string>
+											<string>F1C9F2520F23E31000BEFF3B</string>
+											<string>F1C9F2530F23E31000BEFF3B</string>
+											<string>F1C9F2620F24158B00BEFF3B</string>
+											<string>F1C9F2630F24158B00BEFF3B</string>
+											<string>F1C9F2640F24158B00BEFF3B</string>
+											<string>F1C9F2650F24158B00BEFF3B</string>
+											<string>F1C9F2660F24158B00BEFF3B</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -591,6 +601,8 @@
 							<dict>
 								<key>Frame</key>
 								<string>{{0, 0}, {809, 316}}</string>
+								<key>RubberWindowFrame</key>
+								<string>51 99 1079 663 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -614,6 +626,8 @@
 									<dict>
 										<key>Frame</key>
 										<string>{{10, 27}, {809, 274}}</string>
+										<key>RubberWindowFrame</key>
+										<string>51 99 1079 663 0 0 1280 778 </string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -786,7 +800,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F1C9F2450F23DD0100BEFF3B</string>
+										<string>F1C9F2680F24158B00BEFF3B</string>
 										<key>history</key>
 										<array>
 											<string>F179F5720EEE9A8F00A32029</string>
@@ -1009,8 +1023,6 @@
 					<dict>
 						<key>Frame</key>
 						<string>{{0, 0}, {1079, 168}}</string>
-						<key>RubberWindowFrame</key>
-						<string>51 99 1079 663 0 0 1280 778 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXDebugCLIModule</string>
@@ -1085,11 +1097,7 @@
 							</array>
 							<key>Frame</key>
 							<string>{{527, 0}, {552, 214}}</string>
-							<key>RubberWindowFrame</key>
-							<string>51 99 1079 663 0 0 1280 778 </string>
 						</dict>
-						<key>RubberWindowFrame</key>
-						<string>51 99 1079 663 0 0 1280 778 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXDebugSessionModule</string>
