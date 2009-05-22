@@ -1,9 +1,9 @@
 /*
- * Name: 	ZXReportSection.m
+ * Name: 	ZXOvalTextFieldCell.h
  * Project:	Strongbox
- * Created on:	2008-07-04
+ * Created on:	2009-05-22
  *
- * Copyright (C) 2008 Pierre-Hans Corcoran
+ * Copyright (C) 2009 Pierre-Hans Corcoran
  *
  * --------------------------------------------------------------------------
  *  This program is  free software;  you can redistribute  it and/or modify it
@@ -18,33 +18,30 @@
  * --------------------------------------------------------------------------
  */
 
-#import "ZXReportSection.h"
+/*
+ * Original File WYOvalTextFieldCell.h by Whitney Young
+ * Copyright (C) 2004  Whitney Young
+ */
 
+#import <Cocoa/Cocoa.h>
 
-@implementation ZXReportSection
+@interface NSActionCell(OvalCellAdditions) 
+- (BOOL)isOvalCell;
+@end
 
-@synthesize color, amount, name;
-
-+ (ZXReportSection *)sectionWithColor:(NSColor *)newColor amount:(NSNumber *)newAmount name:(NSString *)newName
-{
-	return [[[ZXReportSection alloc] initWithColor:newColor amount:newAmount name:newName] autorelease];
+@interface ZXOvalTextFieldCell : NSTextFieldCell {
+	NSNumber *shouldDrawOval;
+	NSNumber *shouldDrawBorder;
+	NSNumber *shouldDrawRightOval;
+	NSNumber *shouldDrawLeftOval;
+	NSColor *ovalColor;
+	NSColor *borderColor;
+	float borderWidth;
 }
-
-- (ZXReportSection *)initWithColor:(NSColor *)newColor amount:(NSNumber *)newAmount name:(NSString *)newName
-{
-	if(self = [super init]) {
-		self.color = newColor;
-		self.amount = newAmount;
-		self.name = newName;
-	}
-	return self;
-}
-
-- (double)fractionForTotal:(double)totalAmount
-{
-	if(!((-0.0001 < totalAmount) && (totalAmount < 0.0001))) {
-		return self.amount.doubleValue / totalAmount;
-	}
-	return 0.0;
-}
+@property(copy) NSNumber *shouldDrawOval;
+@property(copy) NSNumber *shouldDrawBorder;
+@property(copy) NSNumber *shouldDrawRightOval;
+@property(copy) NSNumber *shouldDrawLeftOval;
+@property(copy) NSColor *ovalColor;
+@property(copy) NSColor *borderColor;
 @end

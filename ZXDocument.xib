@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.02">
+<archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.03">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">9G55</string>
-		<string key="IBDocument.InterfaceBuilderVersion">672</string>
-		<string key="IBDocument.AppKitVersion">949.43</string>
+		<string key="IBDocument.SystemVersion">9J61</string>
+		<string key="IBDocument.InterfaceBuilderVersion">677</string>
+		<string key="IBDocument.AppKitVersion">949.46</string>
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="25"/>
 			<integer value="171"/>
 			<integer value="1091"/>
+			<integer value="37"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+		</object>
+		<object class="NSMutableDictionary" key="IBDocument.Metadata">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.RootObjects" id="223766845">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -739,6 +748,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 											<object class="NSMutableArray" key="NSTableColumns">
 												<bool key="EncodedWithXMLCoder">YES</bool>
 												<object class="NSTableColumn" id="370761472">
+													<string key="NSIdentifier">date</string>
 													<double key="NSWidth">1.010000e+02</double>
 													<double key="NSMinWidth">4.000000e+01</double>
 													<double key="NSMaxWidth">1.000000e+03</double>
@@ -822,6 +832,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 													<reference key="NSTableView" ref="392554798"/>
 												</object>
 												<object class="NSTableColumn" id="773313243">
+													<string key="NSIdentifier">label</string>
 													<double key="NSWidth">9.000000e+01</double>
 													<double key="NSMinWidth">4.000000e+01</double>
 													<double key="NSMaxWidth">1.000000e+03</double>
@@ -844,26 +855,15 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 														<string key="NSKeyEquivalent"/>
 														<int key="NSPeriodicDelay">400</int>
 														<int key="NSPeriodicInterval">75</int>
-														<object class="NSMenuItem" key="NSMenuItem" id="321169676">
-															<reference key="NSMenu" ref="204175822"/>
-															<string key="NSTitle">Pop Up</string>
-															<string key="NSKeyEquiv"/>
-															<int key="NSKeyEquivModMask">1048576</int>
-															<int key="NSMnemonicLoc">2147483647</int>
-															<int key="NSState">1</int>
-															<reference key="NSOnImage" ref="923600720"/>
-															<reference key="NSMixedImage" ref="938035003"/>
-															<string key="NSAction">_popUpItemAction:</string>
-															<reference key="NSTarget" ref="753156352"/>
-														</object>
+														<nil key="NSMenuItem"/>
 														<bool key="NSMenuItemRespectAlignment">YES</bool>
 														<object class="NSMenu" key="NSMenu" id="204175822">
 															<string key="NSTitle">OtherViews</string>
 															<object class="NSMutableArray" key="NSMenuItems">
 																<bool key="EncodedWithXMLCoder">YES</bool>
-																<reference ref="321169676"/>
 															</object>
 														</object>
+														<int key="NSSelectedIndex">-1</int>
 														<int key="NSPreferredEdge">3</int>
 														<bool key="NSUsesItemFromMenu">YES</bool>
 														<bool key="NSAltersState">YES</bool>
@@ -875,6 +875,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 													<reference key="NSTableView" ref="392554798"/>
 												</object>
 												<object class="NSTableColumn" id="1031714570">
+													<string key="NSIdentifier">desc</string>
 													<double key="NSWidth">1.590000e+02</double>
 													<double key="NSMinWidth">1.000000e+01</double>
 													<double key="NSMaxWidth">3.402823e+38</double>
@@ -909,6 +910,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 													<reference key="NSTableView" ref="392554798"/>
 												</object>
 												<object class="NSTableColumn" id="1036197077">
+													<string key="NSIdentifier">withdrawal</string>
 													<double key="NSWidth">6.700000e+01</double>
 													<double key="NSMinWidth">1.000000e+01</double>
 													<double key="NSMaxWidth">3.402823e+38</double>
@@ -958,7 +960,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 																			<bytes key="NSRGB">MSAwIDAAA</bytes>
 																		</object>
 																	</object>
-																	<integer value="1" id="5"/>
+																	<boolean value="YES" id="5"/>
 																</object>
 															</object>
 															<string key="NS.positiveformat">$ #,##0.00</string>
@@ -1007,6 +1009,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 													<reference key="NSTableView" ref="392554798"/>
 												</object>
 												<object class="NSTableColumn" id="484678085">
+													<string key="NSIdentifier">deposit</string>
 													<double key="NSWidth">6.400000e+01</double>
 													<double key="NSMinWidth">1.000000e+01</double>
 													<double key="NSMaxWidth">3.402823e+38</double>
@@ -1087,6 +1090,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 													<reference key="NSTableView" ref="392554798"/>
 												</object>
 												<object class="NSTableColumn" id="204423670">
+													<string key="NSIdentifier">balance</string>
 													<double key="NSWidth">1.560000e+02</double>
 													<double key="NSMinWidth">1.000000e+01</double>
 													<double key="NSMaxWidth">3.402823e+38</double>
@@ -1230,7 +1234,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								</object>
 								<reference ref="723702448"/>
 							</object>
-							<string key="NSFrameSize">{657, 511}</string>
+							<string key="NSFrame">{{0, -1}, {657, 511}}</string>
 							<reference key="NSSuperview" ref="241804222"/>
 							<reference key="NSNextKeyView" ref="744172602"/>
 							<int key="NSsFlags">562</int>
@@ -1289,6 +1293,9 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>transactionLabel.name</string>
 					<string>transactionLabelName</string>
 					<string>comment</string>
+					<object class="NSMutableString">
+						<characters key="NS.bytes">self</characters>
+					</object>
 				</object>
 				<bool key="NSEditable">YES</bool>
 				<bool key="NSAutomaticallyPreparesContent">YES</bool>
@@ -2567,39 +2574,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<int key="connectionID">549</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentValues: arrangedObjects.name</string>
-						<reference key="source" ref="773313243"/>
-						<reference key="destination" ref="739887505"/>
-						<object class="NSNibBindingConnector" key="connector" id="781021525">
-							<reference key="NSSource" ref="773313243"/>
-							<reference key="NSDestination" ref="739887505"/>
-							<string key="NSLabel">contentValues: arrangedObjects.name</string>
-							<string key="NSBinding">contentValues</string>
-							<string key="NSKeyPath">arrangedObjects.name</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">633</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">selectedValue: arrangedObjects.transactionLabelName</string>
-						<reference key="source" ref="773313243"/>
-						<reference key="destination" ref="246696340"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="773313243"/>
-							<reference key="NSDestination" ref="246696340"/>
-							<string key="NSLabel">selectedValue: arrangedObjects.transactionLabelName</string>
-							<string key="NSBinding">selectedValue</string>
-							<string key="NSKeyPath">arrangedObjects.transactionLabelName</string>
-							<reference key="NSPreviousConnector" ref="781021525"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">642</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">accountController</string>
 						<reference key="source" ref="230172144"/>
@@ -2922,6 +2896,63 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					</object>
 					<int key="connectionID">1160</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">labelCell</string>
+						<reference key="source" ref="425176548"/>
+						<reference key="destination" ref="753156352"/>
+					</object>
+					<int key="connectionID">1230</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">owner</string>
+						<reference key="source" ref="739887505"/>
+						<reference key="destination" ref="425176548"/>
+					</object>
+					<int key="connectionID">1231</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentValues: arrangedObjects.name</string>
+						<reference key="source" ref="773313243"/>
+						<reference key="destination" ref="739887505"/>
+						<object class="NSNibBindingConnector" key="connector" id="319537193">
+							<reference key="NSSource" ref="773313243"/>
+							<reference key="NSDestination" ref="739887505"/>
+							<string key="NSLabel">contentValues: arrangedObjects.name</string>
+							<string key="NSBinding">contentValues</string>
+							<string key="NSKeyPath">arrangedObjects.name</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1232</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedValue: arrangedObjects.transactionLabelName</string>
+						<reference key="source" ref="773313243"/>
+						<reference key="destination" ref="246696340"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="773313243"/>
+							<reference key="NSDestination" ref="246696340"/>
+							<string key="NSLabel">selectedValue: arrangedObjects.transactionLabelName</string>
+							<string key="NSBinding">selectedValue</string>
+							<string key="NSKeyPath">arrangedObjects.transactionLabelName</string>
+							<reference key="NSPreviousConnector" ref="319537193"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1233</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="392554798"/>
+						<reference key="destination" ref="425176548"/>
+					</object>
+					<int key="connectionID">1234</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2989,8 +3020,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<reference key="object" ref="241804222"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="267351861"/>
 							<reference ref="581697531"/>
+							<reference ref="267351861"/>
 						</object>
 						<reference key="parent" ref="193157813"/>
 					</object>
@@ -3346,14 +3377,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<reference key="object" ref="204175822"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="321169676"/>
 						</object>
 						<reference key="parent" ref="753156352"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">186</int>
-						<reference key="object" ref="321169676"/>
-						<reference key="parent" ref="204175822"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">428</int>
@@ -3715,7 +3740,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>169.CustomClassName</string>
 					<string>169.IBPluginDependency</string>
 					<string>170.IBEditorWindowLastContentRect</string>
-					<string>170.IBPluginDependency</string>
 					<string>170.IBWindowTemplateEditedContentRect</string>
 					<string>170.NSWindowTemplate.visibleAtLaunch</string>
 					<string>170.editorWindowContentRectSynchronizationRect</string>
@@ -3723,13 +3747,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>171.IBPluginDependency</string>
 					<string>172.IBPluginDependency</string>
 					<string>173.IBPluginDependency</string>
+					<string>184.CustomClassName</string>
 					<string>184.IBPluginDependency</string>
 					<string>185.IBEditorWindowLastContentRect</string>
 					<string>185.IBPluginDependency</string>
 					<string>185.editorWindowContentRectSynchronizationRect</string>
-					<string>186.IBPluginDependency</string>
 					<string>23.IBEditorWindowLastContentRect</string>
-					<string>23.IBPluginDependency</string>
 					<string>23.IBWindowTemplateEditedContentRect</string>
 					<string>23.NSWindowTemplate.visibleAtLaunch</string>
 					<string>23.WindowOrigin</string>
@@ -3747,6 +3770,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>30.IBPluginDependency</string>
 					<string>31.IBPluginDependency</string>
 					<string>32.IBPluginDependency</string>
+					<string>33.IBPluginDependency</string>
+					<string>34.IBPluginDependency</string>
+					<string>35.IBPluginDependency</string>
 					<string>351.CustomClassName</string>
 					<string>351.IBPluginDependency</string>
 					<string>354.IBPluginDependency</string>
@@ -3757,18 +3783,25 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>357.IBPluginDependency</string>
 					<string>358.IBPluginDependency</string>
 					<string>359.IBPluginDependency</string>
+					<string>36.IBPluginDependency</string>
 					<string>360.CustomClassName</string>
 					<string>360.IBPluginDependency</string>
 					<string>37.IBPluginDependency</string>
 					<string>38.IBPluginDependency</string>
+					<string>39.CustomClassName</string>
 					<string>39.IBPluginDependency</string>
 					<string>40.IBPluginDependency</string>
+					<string>42.CustomClassName</string>
+					<string>42.IBPluginDependency</string>
 					<string>422.IBPluginDependency</string>
 					<string>428.IBPluginDependency</string>
+					<string>43.IBPluginDependency</string>
 					<string>438.IBPluginDependency</string>
 					<string>439.IBPluginDependency</string>
 					<string>440.IBPluginDependency</string>
 					<string>443.IBPluginDependency</string>
+					<string>45.IBPluginDependency</string>
+					<string>47.IBPluginDependency</string>
 					<string>49.IBPluginDependency</string>
 					<string>50.IBPluginDependency</string>
 					<string>51.IBPluginDependency</string>
@@ -3778,10 +3811,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>548.CustomClassName</string>
 					<string>548.IBPluginDependency</string>
 					<string>55.IBPluginDependency</string>
-					<string>56.IBPluginDependency</string>
-					<string>57.IBPluginDependency</string>
 					<string>58.IBPluginDependency</string>
-					<string>59.IBPluginDependency</string>
 					<string>60.CustomClassName</string>
 					<string>60.IBPluginDependency</string>
 					<string>659.IBPluginDependency</string>
@@ -3838,23 +3868,21 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>ZXToolbarSearchField</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{63, 384}, {480, 270}}</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{63, 384}, {480, 270}}</string>
+					<string>{{148, 279}, {480, 270}}</string>
+					<string>{{148, 279}, {480, 270}}</string>
 					<reference ref="8"/>
 					<string>{{155, 348}, {480, 270}}</string>
 					<string>{3.40282e+38, 3.40282e+38}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>ZXOvalPopUpButtonCell</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{90, 604}, {655, 20}}</string>
+					<string>{{33, 664}, {655, 4}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{12, 587}, {655, 20}}</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{43, 175}, {657, 526}}</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{43, 175}, {657, 526}}</string>
+					<string>{{9, 175}, {657, 526}}</string>
+					<string>{{9, 175}, {657, 526}}</string>
 					<reference ref="9"/>
 					<string>{196, 240}</string>
 					<string>{{22, 97}, {657, 542}}</string>
@@ -3871,6 +3899,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>ZXToolbarAccountPopUpField</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3881,8 +3912,15 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>ZXAccountController</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>ZXOvalTextFieldCell</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>ZXOvalTextFieldCell</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3900,9 +3938,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>ZXDocumentConfigController</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3934,7 +3969,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1160</int>
+			<int key="maxID">1234</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3957,6 +3992,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="672015398">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">KFCompletingTextFormatter.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSActionCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="832955296">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">ZXOvalTextFieldCell.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -3998,7 +4040,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSString</string>
-							<string>id</string>
+							<string>ZXDocument</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -4037,17 +4079,25 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>addAccount:</string>
+							<string>addLabel:</string>
 							<string>addTransaction:</string>
 							<string>endConfigSheet:</string>
 							<string>exportToCSV:</string>
 							<string>importOldCashboxStuff:</string>
 							<string>raiseConfigSheet:</string>
 							<string>raiseMergeSheet:</string>
+							<string>removeAccount:</string>
+							<string>removeLabel:</string>
 							<string>removeTransaction:</string>
 							<string>toggleReportWindow:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -4066,6 +4116,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>configSheet</string>
 							<string>documentConfigController</string>
 							<string>drawer</string>
+							<string>labelCell</string>
 							<string>labelController</string>
 							<string>nameSortDescriptors</string>
 							<string>strongboxWindow</string>
@@ -4079,6 +4130,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>NSWindow</string>
 							<string>ZXDocumentConfigController</string>
 							<string>NSDrawer</string>
+							<string>id</string>
 							<string>ZXLabelController</string>
 							<string>NSArray</string>
 							<string>NSWindow</string>
@@ -4115,10 +4167,27 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				<object class="IBPartialClassDescription">
 					<string key="className">ZXLabelController</string>
 					<string key="superclassName">NSArrayController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">owner</string>
+						<string key="NS.object.0">id</string>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">ZXLabelController.h</string>
 					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">ZXOvalPopUpButtonCell</string>
+					<string key="superclassName">NSPopUpButtonCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">ZXOvalPopUpButtonCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">ZXOvalTextFieldCell</string>
+					<string key="superclassName">NSTextFieldCell</string>
+					<reference key="sourceIdentifier" ref="832955296"/>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">ZXToolbarAccountPopUpField</string>

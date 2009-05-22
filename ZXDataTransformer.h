@@ -1,7 +1,7 @@
 /*
- * Name: 	ZXReportSection.m
- * Project:	Strongbox
- * Created on:	2008-07-04
+ * Name: 	ZXDataTransformer.h
+ * Project:	Daemon
+ * Created on:	2008-03-13
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran
  *
@@ -18,33 +18,13 @@
  * --------------------------------------------------------------------------
  */
 
-#import "ZXReportSection.h"
+#import <Cocoa/Cocoa.h>
 
-
-@implementation ZXReportSection
-
-@synthesize color, amount, name;
-
-+ (ZXReportSection *)sectionWithColor:(NSColor *)newColor amount:(NSNumber *)newAmount name:(NSString *)newName
-{
-	return [[[ZXReportSection alloc] initWithColor:newColor amount:newAmount name:newName] autorelease];
-}
-
-- (ZXReportSection *)initWithColor:(NSColor *)newColor amount:(NSNumber *)newAmount name:(NSString *)newName
-{
-	if(self = [super init]) {
-		self.color = newColor;
-		self.amount = newAmount;
-		self.name = newName;
-	}
-	return self;
-}
-
-- (double)fractionForTotal:(double)totalAmount
-{
-	if(!((-0.0001 < totalAmount) && (totalAmount < 0.0001))) {
-		return self.amount.doubleValue / totalAmount;
-	}
-	return 0.0;
+//! Transformer used to store colors as data for CoreData
+/*!
+ Quick and easy subclass of NSValueTransformer. Can be used to encode and decode 
+ colors (or any other object for that matter) into NSData. Uses NSArchiver.
+ */
+@interface ZXDataTransformer : NSValueTransformer {
 }
 @end

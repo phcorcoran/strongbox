@@ -1,9 +1,9 @@
 /*
- * Name: 	ZXReportSection.m
+ * Name: 	ZXOvalPopUpButtonCell.h
  * Project:	Strongbox
- * Created on:	2008-07-04
+ * Created on:	22/05/09
  *
- * Copyright (C) 2008 Pierre-Hans Corcoran
+ * Copyright (C) 2009 Pierre-Hans
  *
  * --------------------------------------------------------------------------
  *  This program is  free software;  you can redistribute  it and/or modify it
@@ -18,33 +18,21 @@
  * --------------------------------------------------------------------------
  */
 
-#import "ZXReportSection.h"
+#import <Cocoa/Cocoa.h>
 
 
-@implementation ZXReportSection
-
-@synthesize color, amount, name;
-
-+ (ZXReportSection *)sectionWithColor:(NSColor *)newColor amount:(NSNumber *)newAmount name:(NSString *)newName
-{
-	return [[[ZXReportSection alloc] initWithColor:newColor amount:newAmount name:newName] autorelease];
+@interface ZXOvalPopUpButtonCell : NSPopUpButtonCell {
+	NSNumber *shouldDrawOval;
+	NSNumber *shouldDrawBorder;
+	NSNumber *shouldDrawRightOval;
+	NSNumber *shouldDrawLeftOval;
+	NSColor *ovalColor;
+	NSColor *borderColor;
 }
-
-- (ZXReportSection *)initWithColor:(NSColor *)newColor amount:(NSNumber *)newAmount name:(NSString *)newName
-{
-	if(self = [super init]) {
-		self.color = newColor;
-		self.amount = newAmount;
-		self.name = newName;
-	}
-	return self;
-}
-
-- (double)fractionForTotal:(double)totalAmount
-{
-	if(!((-0.0001 < totalAmount) && (totalAmount < 0.0001))) {
-		return self.amount.doubleValue / totalAmount;
-	}
-	return 0.0;
-}
+@property(copy) NSNumber *shouldDrawOval;
+@property(copy) NSNumber *shouldDrawBorder;
+@property(copy) NSNumber *shouldDrawRightOval;
+@property(copy) NSNumber *shouldDrawLeftOval;
+@property(copy) NSColor *ovalColor;
+@property(copy) NSColor *borderColor;
 @end

@@ -19,6 +19,7 @@
 	NSNumber *progressCount;
 	NSNumber *progressTotal;
 }
+- (void)main;
 - (IBAction)raiseMergeSheet:(id)sender;
 - (IBAction)endMergeSheet:(id)sender;
 - (IBAction)merge:(id)sender;

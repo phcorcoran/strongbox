@@ -6,14 +6,14 @@
  * Copyright (C) 2008 Pierre-Hans Corcoran
  *
  * --------------------------------------------------------------------------
- *  This program is free software; you can redistribute it and/or modify it
+ *  This program is  free software;  you can redistribute  it and/or modify it
  *  under the terms of the GNU General Public License (version 2) as published 
- *  by the Free Software Foundation. This program is distributed in the 
- *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even the 
- *  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *  See the GNU General Public License for more details. You should have 
- *  received a copy of the GNU General Public License along with this 
- *  program; if not, write to the Free Software Foundation, Inc., 51 
+ *  by  the  Free Software Foundation.  This  program  is  distributed  in the 
+ *  hope  that it will be useful,  but WITHOUT ANY WARRANTY;  without even the 
+ *  implied warranty of MERCHANTABILITY  or  FITNESS FOR A PARTICULAR PURPOSE.  
+ *  See  the  GNU General Public License  for  more  details.  You should have 
+ *  received  a  copy  of  the  GNU General Public License   along  with  this 
+ *  program;   if  not,  write  to  the  Free  Software  Foundation,  Inc., 51 
  *  Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * --------------------------------------------------------------------------
  */
@@ -71,25 +71,30 @@
 - (void)mergeWithAccounts:(NSArray *)allAccounts controller:(id)controller
 {
 	NSMutableArray *newAccounts = [allAccounts mutableCopy];
-	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Transaction" inManagedObjectContext:self.managedObjectContext];
+	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Transaction" 
+							     inManagedObjectContext:self.managedObjectContext];
 	
 	[newAccounts removeObjectIdenticalTo:self];
 	
-	NSPredicate *accountPredicate = [NSPredicate predicateWithFormat: @"account IN %@", newAccounts];
+	NSPredicate *accountPredicate = [NSPredicate predicateWithFormat:@"account IN %@", newAccounts];
 		
 	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 	[fetchRequest setEntity:entityDescription];
 	[fetchRequest setPredicate:accountPredicate];
 	NSError *error = nil;
-	NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest 
+								  error:&error];
 	if(array == nil) {
 		return;
 	}
-	[controller setValue:[NSNumber numberWithInt:[array count]] forKey:@"progressTotal"];
-	[controller setValue:[NSNumber numberWithInt:0] forKey:@"progressCount"];
+	[controller setValue:[NSNumber numberWithInt:[array count]] 
+		      forKey:@"progressTotal"];
+	[controller setValue:[NSNumber numberWithInt:0] 
+		      forKey:@"progressCount"];
 	int i = 0;
 	for(ZXTransactionMO *tx in array) {
-		[controller setValue:[NSNumber numberWithInt:i] forKey:@"progressCount"];
+		[controller setValue:[NSNumber numberWithInt:i] 
+			      forKey:@"progressCount"];
 		[controller updateView:self];
 		[tx setValue:self forKey:@"account"];
 		i += 1;
@@ -99,6 +104,7 @@
 		if(acc == self) continue;
 		[self.managedObjectContext deleteObject:acc];
 	}
-	[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountTotalDidChangeNotification object:self];
+	[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountTotalDidChangeNotification 
+							    object:self];
 }
 @end

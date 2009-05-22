@@ -6,14 +6,14 @@
  * Copyright (C) 2008 Pierre-Hans Corcoran
  *
  * --------------------------------------------------------------------------
- *  This program is free software; you can redistribute it and/or modify it
+ *  This program is  free software;  you can redistribute  it and/or modify it
  *  under the terms of the GNU General Public License (version 2) as published 
- *  by the Free Software Foundation. This program is distributed in the 
- *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even the 
- *  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *  See the GNU General Public License for more details. You should have 
- *  received a copy of the GNU General Public License along with this 
- *  program; if not, write to the Free Software Foundation, Inc., 51 
+ *  by  the  Free Software Foundation.  This  program  is  distributed  in the 
+ *  hope  that it will be useful,  but WITHOUT ANY WARRANTY;  without even the 
+ *  implied warranty of MERCHANTABILITY  or  FITNESS FOR A PARTICULAR PURPOSE.  
+ *  See  the  GNU General Public License  for  more  details.  You should have 
+ *  received  a  copy  of  the  GNU General Public License   along  with  this 
+ *  program;   if  not,  write  to  the  Free  Software  Foundation,  Inc., 51 
  *  Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * --------------------------------------------------------------------------
  */
@@ -107,13 +107,38 @@ static NSString *sharedNoLabelString = @"-";
 		id newLabel = [[owner labelController] newObject];
 		[newLabel setValue:[label valueForKey:@"Name of Label"] forKey:@"name"];
 		
-		id normalText = [label valueForKey:@"Normal Text Color of Label"];
+		id tmp = [label valueForKey:@"Normal Text Color of Label"];
 		
-		NSColor *color = [NSColor colorWithDeviceRed:[[normalText valueForKey:@"Red Component"] doubleValue]
-						       green:[[normalText valueForKey:@"Green Component"] doubleValue]
-							blue:[[normalText valueForKey:@"Blue Component"] doubleValue] 
-						       alpha:[[normalText valueForKey:@"Alpha Component"] doubleValue]];
+		NSColor *color = [NSColor colorWithDeviceRed:[[tmp valueForKey:@"Red Component"] doubleValue]
+						       green:[[tmp valueForKey:@"Green Component"] doubleValue]
+							blue:[[tmp valueForKey:@"Blue Component"] doubleValue] 
+						       alpha:[[tmp valueForKey:@"Alpha Component"] doubleValue]];
 		[newLabel setValue:color forKey:@"textColor"];
+		
+		tmp = [label valueForKey:@"Normal Background Color of Label"];
+		color = [NSColor colorWithDeviceRed:[[tmp valueForKey:@"Red Component"] doubleValue]
+						       green:[[tmp valueForKey:@"Green Component"] doubleValue]
+							blue:[[tmp valueForKey:@"Blue Component"] doubleValue] 
+						       alpha:[[tmp valueForKey:@"Alpha Component"] doubleValue]];
+		[newLabel setValue:color forKey:@"backgroundColor"];
+		
+		tmp = [label valueForKey:@"Reconciled Text Color of Label"];
+		color = [NSColor colorWithDeviceRed:[[tmp valueForKey:@"Red Component"] doubleValue]
+					      green:[[tmp valueForKey:@"Green Component"] doubleValue]
+					       blue:[[tmp valueForKey:@"Blue Component"] doubleValue] 
+					      alpha:[[tmp valueForKey:@"Alpha Component"] doubleValue]];
+		[newLabel setValue:color forKey:@"reconciledTextColor"];
+		
+		tmp = [label valueForKey:@"Reconciled Background Color of Label"];
+		color = [NSColor colorWithDeviceRed:[[tmp valueForKey:@"Red Component"] doubleValue]
+					      green:[[tmp valueForKey:@"Green Component"] doubleValue]
+					       blue:[[tmp valueForKey:@"Blue Component"] doubleValue] 
+					      alpha:[[tmp valueForKey:@"Alpha Component"] doubleValue]];
+		[newLabel setValue:color forKey:@"reconciledBackgroundColor"];
+		
+		tmp = [label valueForKey:@"Label Has Border"];
+		[newLabel setValue:tmp forKey:@"bordered"];
+		
 		[allNewLabels setValue:newLabel forKey:[newLabel valueForKey:@"name"]];
 	}
 	[allNewLabels setValue:[owner.labelController valueForKey:@"noLabel"] forKey:sharedNoLabelString];
@@ -170,5 +195,7 @@ static NSString *sharedNoLabelString = @"-";
 	[importationMessage setStringValue:@"Importation Message"];
 	[importerWindow display];
 	[[owner strongboxWindow] display];
+	
+	[[owner accountController] setSelectedObjects:[NSArray arrayWithObjects:newAccount, nil]];
 }
 @end

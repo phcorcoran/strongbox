@@ -6,14 +6,14 @@
  * Copyright (C) 2008 Pierre-Hans Corcoran
  *
  * --------------------------------------------------------------------------
- *  This program is free software; you can redistribute it and/or modify it
+ *  This program is  free software;  you can redistribute  it and/or modify it
  *  under the terms of the GNU General Public License (version 2) as published 
- *  by the Free Software Foundation. This program is distributed in the 
- *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even the 
- *  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *  See the GNU General Public License for more details. You should have 
- *  received a copy of the GNU General Public License along with this 
- *  program; if not, write to the Free Software Foundation, Inc., 51 
+ *  by  the  Free Software Foundation.  This  program  is  distributed  in the 
+ *  hope  that it will be useful,  but WITHOUT ANY WARRANTY;  without even the 
+ *  implied warranty of MERCHANTABILITY  or  FITNESS FOR A PARTICULAR PURPOSE.  
+ *  See  the  GNU General Public License  for  more  details.  You should have 
+ *  received  a  copy  of  the  GNU General Public License   along  with  this 
+ *  program;   if  not,  write  to  the  Free  Software  Foundation,  Inc., 51 
  *  Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * --------------------------------------------------------------------------
  */
@@ -58,14 +58,16 @@
 	
 	NSError *error = nil;
 	NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-	if(array == nil) {
-		return;
-	}
+	if(array == nil)  return;
+	
 	if([array count] < 1) {
 		[self add:self];
 	}
 	[self updateUsedNames];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(validatesNewAccountName:) name:ZXAccountNameDidChangeNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+						 selector:@selector(validatesNewAccountName:) 
+						     name:ZXAccountNameDidChangeNotification 
+						   object:nil];
 }
 
 //! Controls special cases of key-value changes
@@ -88,11 +90,27 @@
 - (void)awakeFromNib
 {
 	[super awakeFromNib];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recalculateBalance:) name:ZXAccountTotalDidChangeNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateGeneralMessage:) name:ZXAccountTotalDidChangeNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateGeneralMessage:) name:ZXActiveAccountDidChangeNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateGeneralMessage:) name:ZXAccountNameDidChangeNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateGeneralMessage:) name:ZXTransactionSelectionDidChangeNotification object:nil];
+	id nc = [NSNotificationCenter defaultCenter];
+	[nc addObserver:self 
+	       selector:@selector(recalculateBalance:) 
+		   name:ZXAccountTotalDidChangeNotification 
+		 object:nil];
+	[nc addObserver:self 
+	       selector:@selector(updateGeneralMessage:) 
+		   name:ZXAccountTotalDidChangeNotification 
+		 object:nil];
+	[nc addObserver:self 
+	       selector:@selector(updateGeneralMessage:) 
+		   name:ZXActiveAccountDidChangeNotification 
+		 object:nil];
+	[nc addObserver:self 
+	       selector:@selector(updateGeneralMessage:) 
+		   name:ZXAccountNameDidChangeNotification
+		 object:nil];
+	[nc addObserver:self 
+	       selector:@selector(updateGeneralMessage:) 
+		   name:ZXTransactionSelectionDidChangeNotification 
+		 object:nil];
 }
 
 - (void)recalculateBalance:(NSNotification *)note
@@ -111,7 +129,8 @@
 	id obj = [super newObject];
 	// FIXME: Hard-coded english
 	[obj specialSetName:[self uniqueNewName:@"New Account"]];
-	[self.usedNames setValue:[obj objectID] forKey:[obj valueForKey:@"name"]];
+	[self.usedNames setValue:[obj objectID] 
+			  forKey:[obj valueForKey:@"name"]];
 	return obj;
 }
 
@@ -181,6 +200,7 @@
 - (void)updateGeneralMessage:(NSNotification *)note
 {
 	static BOOL infiniteLoopBreaker = YES;
+	// We postone the update until a first account is created
 	if([self valueForKeyPath:@"selection.self"] == NSNoSelectionMarker) {
 		if(infiniteLoopBreaker) {
 			infiniteLoopBreaker = NO;

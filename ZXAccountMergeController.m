@@ -20,6 +20,11 @@
 	return self;
 }
 
+- (void)main
+{
+	[self raiseMergeSheet:self];
+}
+
 - (IBAction)raiseMergeSheet:(id)sender
 {
 	[NSApp beginSheet:mergeSheet 

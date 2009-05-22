@@ -6,14 +6,14 @@
  * Copyright (C) 2008 Pierre-Hans Corcoran
  *
  * --------------------------------------------------------------------------
- *  This program is free software; you can redistribute it and/or modify it
+ *  This program is  free software;  you can redistribute  it and/or modify it
  *  under the terms of the GNU General Public License (version 2) as published 
- *  by the Free Software Foundation. This program is distributed in the 
- *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even the 
- *  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *  See the GNU General Public License for more details. You should have 
- *  received a copy of the GNU General Public License along with this 
- *  program; if not, write to the Free Software Foundation, Inc., 51 
+ *  by  the  Free Software Foundation.  This  program  is  distributed  in the 
+ *  hope  that it will be useful,  but WITHOUT ANY WARRANTY;  without even the 
+ *  implied warranty of MERCHANTABILITY  or  FITNESS FOR A PARTICULAR PURPOSE.  
+ *  See  the  GNU General Public License  for  more  details.  You should have 
+ *  received  a  copy  of  the  GNU General Public License   along  with  this 
+ *  program;   if  not,  write  to  the  Free  Software  Foundation,  Inc., 51 
  *  Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * --------------------------------------------------------------------------
  */
@@ -29,7 +29,7 @@
 #import "ZXPrintTransactionView.h"
 #import "ZXReportWindowController.h"
 #import "ZXTransactionController.h"
-
+#import "ZXOvalTextFieldCell.h"
 
 
 @implementation ZXDocument
@@ -59,6 +59,10 @@
 	[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountControllerDidLoadNotification object:self];
 	id note = [NSNotification notificationWithName:ZXAccountTotalDidChangeNotification object:nil];
 	[[NSNotificationQueue defaultQueue] enqueueNotification:note postingStyle:NSPostWhenIdle];
+
+	id cell = [[transactionsView tableColumnWithIdentifier:@"label"] dataCell];
+	[cell addItemsWithTitles:[self valueForKeyPath:@"allLabels.name"]];
+	[self updateChangeCount:NSChangeCleared];
 }
 
 - (NSString *)windowNibName 
@@ -68,15 +72,12 @@
 
 #pragma mark Menu items actions
 
-- (IBAction)addTransaction:(id)sender
-{
-	[transactionController add:self];
-}
-
-- (IBAction)removeTransaction:(id)sender
-{
-	[transactionController remove:self];
-}
+- (IBAction)addTransaction:(id)sender {	[transactionController add:sender]; }
+- (IBAction)removeTransaction:(id)sender { [transactionController remove:sender]; }
+- (IBAction)addLabel:(id)sender { [labelController add:sender]; }
+- (IBAction)removeLabel:(id)sender { [labelController remove:sender]; }
+- (IBAction)addAccount:(id)sender { [accountController add:sender]; }
+- (IBAction)removeAccount:(id)sender { [accountController remove:sender]; }
 
 #pragma mark Control config window
 - (IBAction)raiseConfigSheet:(id)sender
@@ -100,8 +101,8 @@
 #pragma mark Control merge window
 - (IBAction)raiseMergeSheet:(id)sender
 {
-	mergeController = [[[ZXAccountMergeController alloc] initWithOwner:self] autorelease];
-	[mergeController raiseMergeSheet:sender];
+	id mergeController = [[[ZXAccountMergeController alloc] initWithOwner:self] autorelease];
+	[mergeController main];
 }
 
 
@@ -134,9 +135,11 @@
 {
 	NSEntityDescription *labelDescription = [NSEntityDescription entityForName:@"Label" 
 							    inManagedObjectContext:self.managedObjectContext];
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"obsolete == NO"];
 	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 	[fetchRequest setEntity:labelDescription];
 	[fetchRequest setSortDescriptors:self.nameSortDescriptors];
+	[fetchRequest setPredicate:pred];
 	
 	NSError *error = nil;
 	NSArray *allLabels = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
@@ -166,6 +169,82 @@
 	[oldCashboxImporter main];
 	for(id account in [accountController valueForKey:@"arrangedObjects"]) {
 		[account recalculateBalance:nil];
+	}
+}
+
+#pragma mark Table View Delegate Stuff
+
+- (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn*)tableColumn row:(int)row
+{
+	if(row >= [[transactionController arrangedObjects] count]) return;
+	id tx = [[transactionController arrangedObjects] objectAtIndex:row];
+	id label = [tx valueForKey:@"transactionLabel"];
+	BOOL reconciled = NO; //[tx valueForKey:@"reconciled"];
+	BOOL bordered = [[label valueForKey:@"bordered"] boolValue];
+	
+	NSColor *backgroundColor = nil;
+	NSColor *textColor = nil;
+	if (reconciled) {
+		backgroundColor = [label valueForKey:@"reconciledBackgroundColor"];
+		textColor = [label valueForKey:@"reconciledTextColor"];
+	} else {
+		backgroundColor = [label valueForKey:@"backgroundColor"];
+		textColor = [label valueForKey:@"textColor"];
+	}
+	
+	if(!textColor) textColor = [NSColor blackColor];
+	if(!backgroundColor) backgroundColor = [NSColor whiteColor];
+	
+	if ([cell isOvalCell]) {
+		[cell setValue:[NSNumber numberWithBool:YES]
+			forKey:@"shouldDrawOval"];
+		[cell setOvalColor:backgroundColor];
+		
+		BOOL shouldDrawBorder = NO;
+		if (bordered) { 
+			[cell setBorderColor:textColor];
+			shouldDrawBorder = YES;
+		}
+		[cell setValue:[NSNumber numberWithBool:shouldDrawBorder]
+			forKey:@"shouldDrawBorder"];
+		
+		NSArray *tableColumns = [tableView tableColumns];
+		int curColumn = [tableColumns indexOfObject:tableColumn];
+		BOOL shouldDrawLeft = YES, shouldDrawRight = YES;
+		if ((curColumn - 1 >= 0) && [[[tableColumns objectAtIndex:curColumn - 1] dataCell] isOvalCell]) {
+			shouldDrawLeft = NO;
+		}
+		if ((curColumn + 1 < [tableColumns count]) && [[[tableColumns objectAtIndex:curColumn + 1] dataCell] isOvalCell]) { 
+			shouldDrawRight = NO;
+		}
+		[cell setValue:[NSNumber numberWithBool:shouldDrawLeft]
+			forKey:@"shouldDrawLeftOval"];
+		[cell setValue:[NSNumber numberWithBool:shouldDrawRight]
+			forKey:@"shouldDrawRightOval"];
+	}
+	
+	if ([cell respondsToSelector:@selector(selectedItem)]) {
+		id tmp = [cell selectedItem];
+		id color = textColor;
+		
+		if([cell isHighlighted]) {
+			color = [textColor highlightWithLevel:0.2];
+		}
+
+		id font = [NSFont systemFontOfSize:[NSFont systemFontSize]];
+		NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:color, NSForegroundColorAttributeName, font, NSFontAttributeName, nil];
+		
+		NSAttributedString *as = [[NSAttributedString alloc] initWithString:[label valueForKey:@"name"] attributes:attributes];
+		NSImage *image = [[NSImage alloc] initWithSize:[as size]];
+			
+		[image lockFocus];
+		[as drawAtPoint:NSMakePoint(0, -1)];
+		[image unlockFocus];
+		
+		[tmp setImage:image];
+		[tmp setTitle:@""];
+		[image release];
+		[as release];
 	}
 }
 

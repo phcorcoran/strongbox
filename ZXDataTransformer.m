@@ -1,7 +1,7 @@
 /*
- * Name: 	ZXReportSection.m
- * Project:	Strongbox
- * Created on:	2008-07-04
+ * Name: 	ZXDataTransformer.m
+ * Project:	Daemon
+ * Created on:	2008-03-13
  *
  * Copyright (C) 2008 Pierre-Hans Corcoran
  *
@@ -18,33 +18,18 @@
  * --------------------------------------------------------------------------
  */
 
-#import "ZXReportSection.h"
+#import "ZXDataTransformer.h"
 
 
-@implementation ZXReportSection
-
-@synthesize color, amount, name;
-
-+ (ZXReportSection *)sectionWithColor:(NSColor *)newColor amount:(NSNumber *)newAmount name:(NSString *)newName
-{
-	return [[[ZXReportSection alloc] initWithColor:newColor amount:newAmount name:newName] autorelease];
+@implementation ZXDataTransformer
++ (Class)transformedValueClass { return [NSAttributedString class]; }
++ (BOOL)allowsReverseTransformation { return YES; }
+- (id)transformedValue:(id)value {
+	if(value == nil) return nil;
+	return [[[NSAttributedString alloc] initWithRTFD:value documentAttributes:nil] autorelease];
 }
-
-- (ZXReportSection *)initWithColor:(NSColor *)newColor amount:(NSNumber *)newAmount name:(NSString *)newName
-{
-	if(self = [super init]) {
-		self.color = newColor;
-		self.amount = newAmount;
-		self.name = newName;
-	}
-	return self;
-}
-
-- (double)fractionForTotal:(double)totalAmount
-{
-	if(!((-0.0001 < totalAmount) && (totalAmount < 0.0001))) {
-		return self.amount.doubleValue / totalAmount;
-	}
-	return 0.0;
+- (id)reverseTransformedValue:(id)value {
+	if(value == nil) return nil;
+	return [value RTFDFromRange:NSMakeRange(0, [value length]) documentAttributes:nil];
 }
 @end

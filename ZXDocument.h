@@ -6,21 +6,21 @@
  * Copyright (C) 2008 Pierre-Hans Corcoran
  *
  * --------------------------------------------------------------------------
- *  This program is free software; you can redistribute it and/or modify it
+ *  This program is  free software;  you can redistribute  it and/or modify it
  *  under the terms of the GNU General Public License (version 2) as published 
- *  by the Free Software Foundation. This program is distributed in the 
- *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even the 
- *  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *  See the GNU General Public License for more details. You should have 
- *  received a copy of the GNU General Public License along with this 
- *  program; if not, write to the Free Software Foundation, Inc., 51 
+ *  by  the  Free Software Foundation.  This  program  is  distributed  in the 
+ *  hope  that it will be useful,  but WITHOUT ANY WARRANTY;  without even the 
+ *  implied warranty of MERCHANTABILITY  or  FITNESS FOR A PARTICULAR PURPOSE.  
+ *  See  the  GNU General Public License  for  more  details.  You should have 
+ *  received  a  copy  of  the  GNU General Public License   along  with  this 
+ *  program;   if  not,  write  to  the  Free  Software  Foundation,  Inc., 51 
  *  Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * --------------------------------------------------------------------------
  */
 
 #import <Cocoa/Cocoa.h>
 
-@class ZXReportWindowController, ZXOldCashboxImporter, ZXTransactionController, ZXAccountController, ZXLabelController, ZXAccountMergeController, ZXDocumentConfigController;
+@class ZXReportWindowController, ZXOldCashboxImporter, ZXTransactionController, ZXAccountController, ZXLabelController, ZXDocumentConfigController;
 
 //! Central class of document architecture
 /*!
@@ -42,13 +42,11 @@
 	// Importer Stuff
 	ZXOldCashboxImporter *oldCashboxImporter;
 	
-	// Merge Stuff
-	ZXAccountMergeController *mergeController;
-	
 	// Misc
 	ZXReportWindowController *reportWindowController;
 	IBOutlet NSArray *transactionSortDescriptors;
 	IBOutlet NSArray *nameSortDescriptors;
+	IBOutlet id labelCell;
 	
 	NSDateFormatter *dateFormatter;
 }
@@ -65,6 +63,10 @@
 
 - (IBAction)addTransaction:(id)sender;
 - (IBAction)removeTransaction:(id)sender;
+- (IBAction)addLabel:(id)sender;
+- (IBAction)removeLabel:(id)sender;
+- (IBAction)addAccount:(id)sender;
+- (IBAction)removeAccount:(id)sender;
 
 - (IBAction)toggleReportWindow:(id)sender;
 

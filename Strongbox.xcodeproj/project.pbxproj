@@ -39,6 +39,8 @@
 		F1258FDE0DF4F56100F6BEF1 /* GeneralIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F1258FDD0DF4F56100F6BEF1 /* GeneralIcon.icns */; };
 		F12590500DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.m in Sources */ = {isa = PBXBuildFile; fileRef = F125904F0DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.m */; };
 		F12C1CC40E4B379000F037A1 /* ZXConfigWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F12C1CC30E4B379000F037A1 /* ZXConfigWindowDelegate.m */; };
+		F1369ABF0FC6BD82004F910D /* ZXOvalTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1369ABD0FC6BD82004F910D /* ZXOvalTextFieldCell.m */; };
+		F1369B720FC6CAEB004F910D /* ZXOvalPopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1369B710FC6CAEB004F910D /* ZXOvalPopUpButtonCell.m */; };
 		F14036CC0E4DE25D000FD8A5 /* ZXOldCashboxImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = F14036CB0E4DE25D000FD8A5 /* ZXOldCashboxImporter.m */; };
 		F14485120E2D3B6F000560FC /* ZXDocumentConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = F14485110E2D3B6F000560FC /* ZXDocumentConfigController.m */; };
 		F15BA3E70E4D79B400DD5F1E /* InspectorIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F15BA3E60E4D79B400DD5F1E /* InspectorIcon.png */; };
@@ -58,6 +60,7 @@
 		F1A6C9320E2A49BB00E2FD0F /* ReportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A6C9310E2A49BB00E2FD0F /* ReportWindow.xib */; };
 		F1ABF4670E40B6BE00ECF6D0 /* ZXLabelMO.m in Sources */ = {isa = PBXBuildFile; fileRef = F1ABF4660E40B6BE00ECF6D0 /* ZXLabelMO.m */; };
 		F1ABF46A0E40B75200ECF6D0 /* ZXLabelController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1ABF4690E40B75200ECF6D0 /* ZXLabelController.m */; };
+		F1C166D40FB384FD00A1247A /* ZXDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C166D20FB384FD00A1247A /* ZXDataTransformer.m */; };
 		F1C518420F22415F0021B5E9 /* ConfigWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1C518410F22415F0021B5E9 /* ConfigWindow.xib */; };
 		F1C8C8130E2500B100D7AC42 /* ZXTransactionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C8C8120E2500B100D7AC42 /* ZXTransactionController.m */; };
 		F1CEA3EB0DFA5416007B913F /* ZXReportGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1CEA3EA0DFA5416007B913F /* ZXReportGraphView.m */; };
@@ -107,6 +110,10 @@
 		F125904F0DF5142800F6BEF1 /* ZXToolbarAccountPopUpField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXToolbarAccountPopUpField.m; sourceTree = "<group>"; };
 		F12C1CC20E4B379000F037A1 /* ZXConfigWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXConfigWindowDelegate.h; sourceTree = "<group>"; };
 		F12C1CC30E4B379000F037A1 /* ZXConfigWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXConfigWindowDelegate.m; sourceTree = "<group>"; };
+		F1369ABD0FC6BD82004F910D /* ZXOvalTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = ZXOvalTextFieldCell.m; sourceTree = "<group>"; };
+		F1369ABE0FC6BD82004F910D /* ZXOvalTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = ZXOvalTextFieldCell.h; sourceTree = "<group>"; };
+		F1369B700FC6CAEB004F910D /* ZXOvalPopUpButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXOvalPopUpButtonCell.h; sourceTree = "<group>"; };
+		F1369B710FC6CAEB004F910D /* ZXOvalPopUpButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXOvalPopUpButtonCell.m; sourceTree = "<group>"; };
 		F14036CA0E4DE25D000FD8A5 /* ZXOldCashboxImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXOldCashboxImporter.h; sourceTree = "<group>"; };
 		F14036CB0E4DE25D000FD8A5 /* ZXOldCashboxImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXOldCashboxImporter.m; sourceTree = "<group>"; };
 		F14485100E2D3B6F000560FC /* ZXDocumentConfigController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDocumentConfigController.h; sourceTree = "<group>"; };
@@ -139,6 +146,8 @@
 		F1ABF4660E40B6BE00ECF6D0 /* ZXLabelMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXLabelMO.m; sourceTree = "<group>"; };
 		F1ABF4680E40B75200ECF6D0 /* ZXLabelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXLabelController.h; sourceTree = "<group>"; };
 		F1ABF4690E40B75200ECF6D0 /* ZXLabelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXLabelController.m; sourceTree = "<group>"; };
+		F1C166D20FB384FD00A1247A /* ZXDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = ZXDataTransformer.m; sourceTree = "<group>"; };
+		F1C166D30FB384FD00A1247A /* ZXDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = ZXDataTransformer.h; sourceTree = "<group>"; };
 		F1C518410F22415F0021B5E9 /* ConfigWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigWindow.xib; sourceTree = "<group>"; };
 		F1C8C8110E2500B100D7AC42 /* ZXTransactionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTransactionController.h; sourceTree = "<group>"; };
 		F1C8C8120E2500B100D7AC42 /* ZXTransactionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTransactionController.m; sourceTree = "<group>"; };
@@ -373,6 +382,12 @@
 		F1CEA3B10DFA52FE007B913F /* Transaction Stuff */ = {
 			isa = PBXGroup;
 			children = (
+				F1369B710FC6CAEB004F910D /* ZXOvalPopUpButtonCell.m */,
+				F1369B700FC6CAEB004F910D /* ZXOvalPopUpButtonCell.h */,
+				F1369ABD0FC6BD82004F910D /* ZXOvalTextFieldCell.m */,
+				F1369ABE0FC6BD82004F910D /* ZXOvalTextFieldCell.h */,
+				F1C166D20FB384FD00A1247A /* ZXDataTransformer.m */,
+				F1C166D30FB384FD00A1247A /* ZXDataTransformer.h */,
 				F1C8C8110E2500B100D7AC42 /* ZXTransactionController.h */,
 				F1C8C8120E2500B100D7AC42 /* ZXTransactionController.m */,
 				F1F7CB920D7E101E00B9DD1B /* ZXTransactionMO.h */,
@@ -544,6 +559,9 @@
 				F183353C0EF08BA60075A7C5 /* ZXReportView.m in Sources */,
 				F16A95CC0F218FB300DA4EAF /* ZXAccountToNameTransformer.m in Sources */,
 				F16A96A90F21B7B500DA4EAF /* ZXAccountMergeController.m in Sources */,
+				F1C166D40FB384FD00A1247A /* ZXDataTransformer.m in Sources */,
+				F1369ABF0FC6BD82004F910D /* ZXOvalTextFieldCell.m in Sources */,
+				F1369B720FC6CAEB004F910D /* ZXOvalPopUpButtonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

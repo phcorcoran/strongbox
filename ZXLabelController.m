@@ -6,14 +6,14 @@
  * Copyright (C) 2008 Pierre-Hans Corcoran
  *
  * --------------------------------------------------------------------------
- *  This program is free software; you can redistribute it and/or modify it
+ *  This program is  free software;  you can redistribute  it and/or modify it
  *  under the terms of the GNU General Public License (version 2) as published 
- *  by the Free Software Foundation. This program is distributed in the 
- *  hope that it will be useful, but WITHOUT ANY WARRANTY; without even the 
- *  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *  See the GNU General Public License for more details. You should have 
- *  received a copy of the GNU General Public License along with this 
- *  program; if not, write to the Free Software Foundation, Inc., 51 
+ *  by  the  Free Software Foundation.  This  program  is  distributed  in the 
+ *  hope  that it will be useful,  but WITHOUT ANY WARRANTY;  without even the 
+ *  implied warranty of MERCHANTABILITY  or  FITNESS FOR A PARTICULAR PURPOSE.  
+ *  See  the  GNU General Public License  for  more  details.  You should have 
+ *  received  a  copy  of  the  GNU General Public License   along  with  this 
+ *  program;   if  not,  write  to  the  Free  Software  Foundation,  Inc., 51 
  *  Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * --------------------------------------------------------------------------
  */
@@ -56,7 +56,9 @@ static NSString *sharedNoLabelString = @"-";
 /*! This object is unique for each document */
 - (void)setupNoLabelObject
 {
-	self.noLabel = [[[ZXLabelMO alloc] initWithEntity:[NSEntityDescription entityForName:@"Label" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext] autorelease];
+	self.noLabel = [[[ZXLabelMO alloc] initWithEntity:[NSEntityDescription entityForName:@"Label" 
+								      inManagedObjectContext:self.managedObjectContext] 
+			   insertIntoManagedObjectContext:self.managedObjectContext] autorelease];
 	[self.noLabel specialSetName:sharedNoLabelString];
 	[self.noLabel setValue:[NSNumber numberWithBool:YES] forKey:@"isImmutable"];
 	
@@ -83,25 +85,21 @@ static NSString *sharedNoLabelString = @"-";
 	
 	NSError *error = nil;
 	NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-	if(array == nil) {
-		return;
-	}
+	if(array == nil) return;
 		
 	if([array count] < 1) {
 		[self setupNoLabelObject];
 		[self addObject:noLabel];
+		[owner updateChangeCount:NSChangeCleared];
 	}
 	
 	[self updateUsedNames];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(validatesNewLabelName:) name:ZXLabelNameDidChangeNotification object:nil];
+	id nc = [NSNotificationCenter defaultCenter];
+	[nc addObserver:self 
+	       selector:@selector(validatesNewLabelName:) 
+		   name:ZXLabelDidChangeNotification 
+		 object:nil];
 }
-
-//- (void)setContent:(id)content
-//{
-//	[super setContent:content];
-//	[[NSNotificationCenter defaultCenter] postNotificationName:ZXLabelControllerDidLoadNotification 
-//							    object:self];
-//}
 
 //! Creates a new object
 /*! 
@@ -126,7 +124,7 @@ static NSString *sharedNoLabelString = @"-";
 - (void)validatesNewLabelName:(NSNotification *)aNotification
 {
 	id obj = [aNotification object];
-	if(![[self content] containsObject:obj]) return;
+	if(!obj || ![[self content] containsObject:obj]) return;
 	[obj specialSetName:[self uniqueNewName:[obj valueForKey:@"name"]]];
 	[self updateUsedNames];
 }
