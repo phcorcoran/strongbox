@@ -31,4 +31,6 @@
  */
 @interface ZXAppController : NSObject {
 }
++ (BOOL)shouldPostNotifications;
++ (void)setShouldPostNotifications:(BOOL)newVal;
 @end

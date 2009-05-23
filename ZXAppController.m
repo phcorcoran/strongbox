@@ -19,9 +19,16 @@
  */
 
 #import "ZXAppController.h"
-#import "ZXDocument.h"
+
+static BOOL shouldPostNotifications = YES;
 
 @implementation ZXAppController
++ (BOOL)shouldPostNotifications {
+	return shouldPostNotifications;
+}
++ (void)setShouldPostNotifications:(BOOL)newVal {
+	shouldPostNotifications = newVal;
+}
 
 //! Handles application behavior concerning untitled documents
 /*! 
@@ -41,7 +48,7 @@
  */
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	ZXDocument *documentOpened = nil;
+	id documentOpened = nil;
 	if([[[NSDocumentController sharedDocumentController] documents] count] > 0) return;
 	
 	id fileURLData = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastFileURL"];

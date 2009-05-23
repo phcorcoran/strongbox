@@ -20,6 +20,10 @@
 
 #import "ZXOldCashboxImporter.h"
 #import "ZXDocument.h"
+#import "ZXAppController.h"
+#import "ZXLabelMO.h"
+#import "ZXTransactionMO.h"
+#import "ZXAccountMO.h"
 
 static NSString *sharedNoLabelString = @"-";
 
@@ -57,24 +61,44 @@ static NSString *sharedNoLabelString = @"-";
 
 - (void)main
 {
+	NSLog(@"start");
 	[self raiseImporterSheet];
+	BOOL toRestore = [ZXAppController shouldPostNotifications];
+	[ZXAppController setShouldPostNotifications:NO];
+	
+	NSError *error = nil;
+	
+	[[owner managedObjectContext] save:&error];
+	
+	NSManagedObjectContext *importContext = [[NSManagedObjectContext alloc] init];
+	NSPersistentStoreCoordinator *coordinator = [[owner managedObjectContext] persistentStoreCoordinator];
+	[importContext setPersistentStoreCoordinator:coordinator];
+	[importContext setUndoManager:nil];
+	moc = importContext;
+	
 	allNewLabels = [NSMutableDictionary dictionary];
 	NSString *labelsPath = [NSString stringWithFormat:@"%@/Library/Application Support/Cashbox/Labels.plist", NSHomeDirectory()];
 	NSString *accountsPath = [NSString stringWithFormat:@"%@/Library/Application Support/Cashbox/Accounts/", NSHomeDirectory()];
 	
 	[self importLabelsFromFile:labelsPath];
+	[moc save:&error];
 	
 	NSDirectoryEnumerator *direnum = [[NSFileManager defaultManager]
 					  enumeratorAtPath:accountsPath];
 	NSString *pname;
-	while (pname = [direnum nextObject])
-	{
-		if ([[pname pathExtension] isEqualToString:@"plist"])
-		{
+	while (pname = [direnum nextObject]) {
+		if ([[pname pathExtension] isEqualToString:@"plist"]) {
+			NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 			[self importAccountFromFile:[NSString stringWithFormat:@"%@%@", accountsPath, pname]];
+			[moc save:&error];
+			[pool release];
 		}
 	}
 	[self endImporterSheet];
+	[ZXAppController setShouldPostNotifications:toRestore];
+	[moc save:&error];
+	[moc release];
+	NSLog(@"stop");
 }
 
 //! Imports labels from old cashbox app.
@@ -83,7 +107,7 @@ static NSString *sharedNoLabelString = @"-";
  */
 - (void)importLabelsFromFile:(NSString *)path
 {
-	NSArray *array = [NSArray arrayWithContentsOfFile:path];
+	NSArray *array = [[NSArray alloc] initWithContentsOfFile:path];
 	
 	int labelCount = [array count];
 	// FIXME: Hard-coded english
@@ -92,7 +116,7 @@ static NSString *sharedNoLabelString = @"-";
 	[progressIndicator setDoubleValue:0];
 	[importerWindow display];
 	[[owner strongboxWindow] display];
-	
+
 	int i = 0;
 	for(id label in array) {
 		i += 1;
@@ -104,7 +128,7 @@ static NSString *sharedNoLabelString = @"-";
 			[[owner strongboxWindow] display];
 		}
 		
-		id newLabel = [[owner labelController] newObject];
+		id newLabel = [NSEntityDescription insertNewObjectForEntityForName:@"Label" inManagedObjectContext:moc];
 		[newLabel setValue:[label valueForKey:@"Name of Label"] forKey:@"name"];
 		
 		id tmp = [label valueForKey:@"Normal Text Color of Label"];
@@ -141,7 +165,19 @@ static NSString *sharedNoLabelString = @"-";
 		
 		[allNewLabels setValue:newLabel forKey:[newLabel valueForKey:@"name"]];
 	}
-	[allNewLabels setValue:[owner.labelController valueForKey:@"noLabel"] forKey:sharedNoLabelString];
+	
+	id arr;
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	[fetchRequest setEntity:[NSEntityDescription entityForName:@"Label" 
+					    inManagedObjectContext:moc]];
+	NSError *error = nil;
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name LIKE %@)", sharedNoLabelString];
+	[fetchRequest setPredicate:pred];
+	arr = [moc executeFetchRequest:fetchRequest error:&error];
+	if([arr count] > 0) {
+		[allNewLabels setValue:[arr objectAtIndex:0] forKey:sharedNoLabelString];
+	}
+	[array release];
 }
 
 //! Imports the account from old cashbox app.
@@ -150,9 +186,9 @@ static NSString *sharedNoLabelString = @"-";
  */
 - (void)importAccountFromFile:(NSString *)path
 {
-	NSDictionary *account = [NSDictionary dictionaryWithContentsOfFile:path];
+	NSDictionary *account = [[NSDictionary alloc] initWithContentsOfFile:path];
 	
-	id newAccount = [[owner accountController] newObject];
+	id newAccount = [NSEntityDescription insertNewObjectForEntityForName:@"Account" inManagedObjectContext:moc];
 	[newAccount setValue:[account valueForKey:@"Account Name"] forKey:@"name"];
 	
 	NSArray *transactions = [account valueForKey:@"Transactions"];
@@ -176,13 +212,11 @@ static NSString *sharedNoLabelString = @"-";
 			[importerWindow display];
 			[[owner strongboxWindow] display];
 		}
-		
-		id newTransaction = [[owner transactionController] newObject];
+		id newTransaction = [NSEntityDescription insertNewObjectForEntityForName:@"Transaction" inManagedObjectContext:moc];
 		[newTransaction setValue:[transaction valueForKey:@"Date Column"] forKey:@"date"];
 		[newTransaction setValue:[transaction valueForKey:@"Deposit Column"] forKey:@"deposit"];
 		[newTransaction setValue:[transaction valueForKey:@"Withdrawal Column"] forKey:@"withdrawal"];
 		[newTransaction setValue:[transaction valueForKey:@"Description Column"] forKey:@"transactionDescription"];
-		[newTransaction setValue:[allNewLabels valueForKey:[transaction valueForKey:@"Label"]] forKey:@"transactionLabel"];
 		[newTransaction setValue:[allNewLabels valueForKey:[transaction valueForKey:@"Label"]] forKey:@"transactionLabel"];
 		if([transaction valueForKey:@"Label"] == nil) {
 			[newTransaction setValue:[allNewLabels valueForKey:sharedNoLabelString] forKey:@"transactionLabel"];
@@ -196,6 +230,7 @@ static NSString *sharedNoLabelString = @"-";
 	[importerWindow display];
 	[[owner strongboxWindow] display];
 	
-	[[owner accountController] setSelectedObjects:[NSArray arrayWithObjects:newAccount, nil]];
+	//[[owner accountController] setSelectedObjects:[NSArray arrayWithObjects:newAccount, nil]];
+	[account release];
 }
 @end

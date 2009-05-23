@@ -21,6 +21,7 @@
 #import "ZXLabelMO.h"
 #import "ZXLabelController.h"
 #import "ZXNotifications.h"
+#import "ZXAppController.h"
 
 
 @implementation ZXLabelMO
@@ -35,9 +36,9 @@
 	// "if([[self valueForKey:@"isImmutable"] boolValue])" to disable color change.
 	if([key isEqual:@"name"] && [[self valueForKey:@"isImmutable"] boolValue]) return;
 	[super setValue:value forKey:key];
-	if([key isEqual:@"name"]) {
+	if([key isEqual:@"name"] && [ZXAppController shouldPostNotifications]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:ZXLabelDidChangeNotification object:self];
-	} else if([key isEqual:@"obsolete"]) {
+	} else if([key isEqual:@"obsolete"] && [ZXAppController shouldPostNotifications]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:ZXTransactionLabelDidChangeNotification object:self];
 	}
 }

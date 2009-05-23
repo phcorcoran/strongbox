@@ -24,6 +24,7 @@
 #import "ZXDocument.h"
 #import "ZXNotifications.h"
 #import "ZXTransactionController.h"
+#import "ZXAppController.h"
 
 @interface ZXAccountController (Private)
 - (NSString *)uniqueNewName:(NSString *)newDesiredName;
@@ -77,7 +78,8 @@
 - (void)setValue:(id)newValue forKey:(id)key
 {
 	[super setValue:newValue forKey:key];
-	if([key isEqual:@"selectionIndex"] || [key isEqual:@"selectionIndexes"]) {
+	if(([key isEqual:@"selectionIndex"] || [key isEqual:@"selectionIndexes"]) && 
+	   [ZXAppController shouldPostNotifications]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:ZXActiveAccountDidChangeNotification object:self];
 	}
 }

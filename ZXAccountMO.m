@@ -22,6 +22,7 @@
 #import "ZXTransactionMO.h"
 #import "ZXNotifications.h"
 #import "ZXAccountMergeController.h"
+#import "ZXAppController.h"
 
 @implementation ZXAccountMO
 //! Posts a notification if name is changed
@@ -32,7 +33,7 @@
 - (void)setValue:(id)value forKey:(NSString *)key
 {
 	[super setValue:value forKey:key];
-	if([key isEqual:@"name"]) {
+	if([key isEqual:@"name"] && [ZXAppController shouldPostNotifications]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountNameDidChangeNotification object:self];
 	}
 }
@@ -104,7 +105,9 @@
 		if(acc == self) continue;
 		[self.managedObjectContext deleteObject:acc];
 	}
-	[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountTotalDidChangeNotification 
-							    object:self];
+	if([ZXAppController shouldPostNotifications]) {
+		[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountTotalDidChangeNotification 
+								    object:self];
+	}
 }
 @end

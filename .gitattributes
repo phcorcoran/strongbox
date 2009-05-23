@@ -1,2 +1,7 @@
 *.pbxproj -crlf -diff -merge
 *.xcodeproj -crlf -diff -merge
+*.xib -crlf -diff -merge
+*.nib -crlf -diff -merge
+*.perspectivev3 -crlf -diff -merge
+*.mode1v3 -crlf -diff -merge
+*.pbxuser -crlf -diff -merge

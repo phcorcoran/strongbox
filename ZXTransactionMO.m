@@ -21,6 +21,7 @@
 #import "ZXTransactionMO.h"
 #import "ZXLabelController.h"
 #import "ZXNotifications.h"
+#import "ZXAppController.h"
 
 static NSString *sharedNoLabelString = @"-";
 
@@ -36,6 +37,7 @@ static NSString *sharedNoLabelString = @"-";
  */
 - (void)setTransactionLabelName:(NSString *)newLabelName
 {
+	if(!newLabelName) return;
 	NSEntityDescription *labelDescription = [NSEntityDescription entityForName:@"Label" 
 							    inManagedObjectContext:self.managedObjectContext];
 	NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"(name like %@)", newLabelName];
@@ -83,9 +85,10 @@ static NSString *sharedNoLabelString = @"-";
 - (void)setValue:(id)newValue forKey:(id)key
 {
 	[super setValue:newValue forKey:key];
-	if([key isEqual:@"deposit"] || [key isEqual:@"withdrawal"] || [key isEqual:@"date"]) {
+	if(([key isEqual:@"deposit"] || [key isEqual:@"withdrawal"] || [key isEqual:@"date"]) &&
+		[ZXAppController shouldPostNotifications]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountTotalDidChangeNotification object:nil];
-	} else if([key isEqual:@"transactionLabel"]) {
+	} else if([key isEqual:@"transactionLabel"] && [ZXAppController shouldPostNotifications]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:ZXTransactionLabelDidChangeNotification object:self];
 	}
 }

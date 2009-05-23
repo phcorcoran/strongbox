@@ -48,8 +48,8 @@
 	BOOL leftOval = [shouldDrawLeftOval boolValue];
 	inner.size.width += 3;
 	inner.origin.x -= 1;
-	inner.origin.y -= 1;
-	inner.size.height += 1;
+	//inner.origin.y -= 1;
+	//inner.size.height += 1;
 	
 	if(([[ovalColor colorSpaceName] isEqual:@"NSCalibratedWhiteColorSpace"] && [ovalColor isEqual:[NSColor whiteColor]]) ||
 		([[ovalColor colorSpaceName] isEqual:@"NSDeviceRGBColorSpace"] && 
@@ -138,7 +138,8 @@
 	[shouldDrawRightOval release];
 	[shouldDrawLeftOval release];
 	[ovalColor release];
-	[borderColor release];
+	// This caused some crashes.
+	//[borderColor release];
 	[super dealloc];
 }
 @end

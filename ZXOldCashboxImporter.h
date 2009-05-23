@@ -37,6 +37,7 @@
 	IBOutlet NSProgressIndicator *progressIndicator;
 	IBOutlet NSTextField *importationMessage;
 	IBOutlet NSWindow *importerWindow;
+	NSManagedObjectContext *moc;
 }
 @property(assign) NSMutableDictionary *allNewLabels;
 @property(assign) NSWindow *importerWindow;

@@ -30,6 +30,7 @@
 #import "ZXReportWindowController.h"
 #import "ZXTransactionController.h"
 #import "ZXOvalTextFieldCell.h"
+#import "ZXOvalPopUpButtonCell.h"
 
 
 @implementation ZXDocument
@@ -63,6 +64,17 @@
 	id cell = [[transactionsView tableColumnWithIdentifier:@"label"] dataCell];
 	[cell addItemsWithTitles:[self valueForKeyPath:@"allLabels.name"]];
 	[self updateChangeCount:NSChangeCleared];
+	
+	//[[NSNotificationCenter defaultCenter] addObserver:transactionsView selector:@selector(reloadData) name:ZXTransactionViewDidLoadNotification object:nil];
+//	
+//	note = [NSNotification notificationWithName:ZXTransactionViewDidLoadNotification object:nil];
+//	[[NSNotificationQueue defaultQueue] enqueueNotification:note postingStyle:NSPostWhenIdle];
+	
+	[transactionsView performSelector:@selector(reloadData)
+			       withObject:nil 
+			       afterDelay:0.1];
+	
+	[strongboxWindow setContentBorderThickness:24.0 forEdge:NSMinYEdge];
 }
 
 - (NSString *)windowNibName 
@@ -174,9 +186,54 @@
 
 #pragma mark Table View Delegate Stuff
 
+- (NSCell *)tableView:(NSTableView *)tableView dataCellForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+	// Label column
+	if([[tableColumn identifier] isEqual:@"label"]) {
+		id cell = [[ZXOvalPopUpButtonCell alloc] initTextCell:@"" pullsDown:NO];
+
+		[cell setBordered:NO];
+		for(id label in [labelController arrangedObjects]) {
+			id item = [[cell menu] addItemWithTitle:[label valueForKey:@"name"] 
+					       action:NULL
+					keyEquivalent:@""];
+			NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[label valueForKey:@"textColor"], NSForegroundColorAttributeName, 
+						    [NSFont systemFontOfSize:[NSFont systemFontSize]], NSFontAttributeName, nil];
+			
+			NSAttributedString *as = [[NSAttributedString alloc] initWithString:[label valueForKey:@"name"] 
+										 attributes:attributes];
+			[item setAttributedTitle:as];
+			[as release];
+			
+			if([[label valueForKey:@"obsolete"] boolValue]) {
+				[item setHidden:YES];
+			}
+		}
+		[cell setEnabled:NO];
+		[cell setEditable:NO];
+		[cell setSelectable:NO];
+		return [cell autorelease];
+	}
+	
+	// All other columns
+	if(tableColumn) return [tableColumn dataCellForRow:row];
+	
+	// Separator in case tableColumn is nil
+	// Might be useful to separate by month
+	if(row == 5 && NO) {
+		id cell = [[NSButtonCell alloc] init];
+		[cell setTitle:@"AAAAAAA"];
+		[cell setBordered:NO];
+		return [cell autorelease];
+	}
+	return nil;
+}
+
 - (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn*)tableColumn row:(int)row
 {
 	if(row >= [[transactionController arrangedObjects] count]) return;
+	if(tableColumn == nil) return;
+	
 	id tx = [[transactionController arrangedObjects] objectAtIndex:row];
 	id label = [tx valueForKey:@"transactionLabel"];
 	BOOL reconciled = NO; //[tx valueForKey:@"reconciled"];
@@ -223,28 +280,9 @@
 			forKey:@"shouldDrawRightOval"];
 	}
 	
-	if ([cell respondsToSelector:@selector(selectedItem)]) {
-		id tmp = [cell selectedItem];
-		id color = textColor;
-		
-		if([cell isHighlighted]) {
-			color = [textColor highlightWithLevel:0.2];
-		}
-
-		id font = [NSFont systemFontOfSize:[NSFont systemFontSize]];
-		NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:color, NSForegroundColorAttributeName, font, NSFontAttributeName, nil];
-		
-		NSAttributedString *as = [[NSAttributedString alloc] initWithString:[label valueForKey:@"name"] attributes:attributes];
-		NSImage *image = [[NSImage alloc] initWithSize:[as size]];
-			
-		[image lockFocus];
-		[as drawAtPoint:NSMakePoint(0, -1)];
-		[image unlockFocus];
-		
-		[tmp setImage:image];
-		[tmp setTitle:@""];
-		[image release];
-		[as release];
+	if ([cell respondsToSelector:@selector(selectedItem)] && 
+	    [[label valueForKey:@"obsolete"] boolValue]) {
+		[cell setEnabled:NO];
 	}
 }
 
