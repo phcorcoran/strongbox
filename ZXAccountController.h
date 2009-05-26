@@ -39,8 +39,9 @@
 	IBOutlet NSString *generalMessage;
 	IBOutlet ZXDocument *owner;
 }
-@property (retain) NSMutableDictionary *usedNames;
-@property(assign) NSString *generalMessage;
+@property(retain) NSMutableDictionary *usedNames;
+@property(copy) NSString *generalMessage;
+@property(readonly) ZXDocument *owner;
 
 //! Forward recalculateBalance: message to selected account
 - (void)recalculateBalance:(NSNotification *)note;

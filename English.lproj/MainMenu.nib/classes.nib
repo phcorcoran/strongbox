@@ -14,6 +14,22 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
+			<string>NSString</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>NSApplication</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSResponder</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
 			<string>ZXReportView</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
@@ -65,21 +81,6 @@
 		<dict>
 			<key>ACTIONS</key>
 			<dict>
-				<key>addTransaction</key>
-				<string>id</string>
-				<key>removeTransaction</key>
-				<string>id</string>
-			</dict>
-			<key>CLASS</key>
-			<string>FirstResponder</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
-			<key>SUPERCLASS</key>
-			<string>NSObject</string>
-		</dict>
-		<dict>
-			<key>ACTIONS</key>
-			<dict>
 				<key>updateView</key>
 				<string>id</string>
 			</dict>
@@ -98,6 +99,21 @@
 			</dict>
 			<key>SUPERCLASS</key>
 			<string>ZXReportView</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>addTransaction</key>
+				<string>id</string>
+				<key>removeTransaction</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>FirstResponder</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
 		</dict>
 		<dict>
 			<key>CLASS</key>
@@ -135,6 +151,10 @@
 		<dict>
 			<key>ACTIONS</key>
 			<dict>
+				<key>addAccount</key>
+				<string>id</string>
+				<key>addLabel</key>
+				<string>id</string>
 				<key>addTransaction</key>
 				<string>id</string>
 				<key>endConfigSheet</key>
@@ -157,6 +177,10 @@
 				<string>id</string>
 				<key>raiseMergeSheet</key>
 				<string>id</string>
+				<key>removeAccount</key>
+				<string>id</string>
+				<key>removeLabel</key>
+				<string>id</string>
 				<key>removeTransaction</key>
 				<string>id</string>
 				<key>toggleInspector</key>
@@ -174,6 +198,8 @@
 				<string>ZXAccountController</string>
 				<key>configSheet</key>
 				<string>NSWindow</string>
+				<key>dateFormatter</key>
+				<string>NSDateFormatter</string>
 				<key>documentConfigController</key>
 				<string>ZXDocumentConfigController</string>
 				<key>drawer</key>
@@ -182,6 +208,8 @@
 				<string>NSDrawer</string>
 				<key>inspectorPanel</key>
 				<string>NSPanel</string>
+				<key>labelCell</key>
+				<string>id</string>
 				<key>labelController</key>
 				<string>ZXLabelController</string>
 				<key>mergeAccountController</key>
@@ -205,10 +233,28 @@
 			<string>NSPersistentDocument</string>
 		</dict>
 		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>checkForUpdates</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>SUUpdater</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
 			<key>CLASS</key>
 			<string>ZXLabelController</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>owner</key>
+				<string>id</string>
+			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSArrayController</string>
 		</dict>
@@ -219,11 +265,49 @@
 			<string>ObjC</string>
 			<key>OUTLETS</key>
 			<dict>
+				<key>generalMessage</key>
+				<string>NSString</string>
+				<key>owner</key>
+				<string>ZXDocument</string>
 				<key>transactionController</key>
 				<string>ZXTransactionController</string>
 			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSArrayController</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>endMergeSheet</key>
+				<string>id</string>
+				<key>merge</key>
+				<string>id</string>
+				<key>raiseMergeSheet</key>
+				<string>id</string>
+				<key>updateView</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>ZXAccountMergeController</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>mergeAccountController</key>
+				<string>NSArrayController</string>
+				<key>mergeMessage</key>
+				<string>NSTextField</string>
+				<key>mergeProgressSheet</key>
+				<string>NSWindow</string>
+				<key>mergeSheet</key>
+				<string>NSWindow</string>
+				<key>owner</key>
+				<string>id</string>
+				<key>progressIndicator</key>
+				<string>NSProgressIndicator</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
 		</dict>
 		<dict>
 			<key>CLASS</key>
@@ -258,6 +342,14 @@
 			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSObjectController</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>NSActionCell</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSCell</string>
 		</dict>
 		<dict>
 			<key>ACTIONS</key>

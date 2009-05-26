@@ -34,7 +34,7 @@
 
 
 @implementation ZXAccountController
-@synthesize usedNames, generalMessage;
+@synthesize usedNames, generalMessage, owner;
 
 - (id)init
 {
@@ -86,33 +86,30 @@
 
 //! Basic initialization
 /*!
- Registers to recalculate balances of selection when account total changes.
+ Registers to recalculate balances of selection when account total changes, or when active account changes.
+ Also, update the general message when account total or name changes, when active account changes or when transaction selection changes.
  \sa recalculateBalance:
+ \sa updateGeneralMessage:
  */
 - (void)awakeFromNib
 {
 	[super awakeFromNib];
 	id nc = [NSNotificationCenter defaultCenter];
-	[nc addObserver:self 
-	       selector:@selector(recalculateBalance:) 
-		   name:ZXAccountTotalDidChangeNotification 
-		 object:nil];
-	[nc addObserver:self 
-	       selector:@selector(updateGeneralMessage:) 
-		   name:ZXAccountTotalDidChangeNotification 
-		 object:nil];
-	[nc addObserver:self 
-	       selector:@selector(updateGeneralMessage:) 
-		   name:ZXActiveAccountDidChangeNotification 
-		 object:nil];
-	[nc addObserver:self 
-	       selector:@selector(updateGeneralMessage:) 
-		   name:ZXAccountNameDidChangeNotification
-		 object:nil];
-	[nc addObserver:self 
-	       selector:@selector(updateGeneralMessage:) 
-		   name:ZXTransactionSelectionDidChangeNotification 
-		 object:nil];
+	id arr = [NSArray arrayWithObjects:ZXAccountTotalDidChangeNotification, ZXActiveAccountDidChangeNotification, nil];
+	for(id note in arr) {
+		[nc addObserver:self 
+		       selector:@selector(recalculateBalance:) 
+			   name:note 
+			 object:nil];
+	}
+	
+	arr = [NSArray arrayWithObjects:ZXAccountTotalDidChangeNotification, ZXActiveAccountDidChangeNotification, ZXAccountNameDidChangeNotification, ZXTransactionSelectionDidChangeNotification, nil];
+	for(id note in arr) {
+		[nc addObserver:self 
+		       selector:@selector(updateGeneralMessage:) 
+			   name:note 
+			 object:nil];
+	}
 }
 
 - (void)recalculateBalance:(NSNotification *)note
@@ -218,25 +215,25 @@
 	if(note != nil && [[[owner transactionController] valueForKeyPath:@"selectionIndexes.count"] intValue] > 1) {
 		id partial, sum;
 		partial = [[owner transactionController] valueForKeyPath:@"selectionIndexes.count"];
-		int intSum = [[[owner transactionController] valueForKeyPath:@"selectedObjects.@sum.deposit"] intValue] - [[[owner transactionController] valueForKeyPath:@"selectedObjects.@sum.withdrawal"] intValue];
-		sum = [[ZXCurrencyFormatter currencyFormatter] stringFromNumber:[NSNumber numberWithInt:intSum]];
+		double doubleSum = [[[owner transactionController] valueForKeyPath:@"selectedObjects.@sum.deposit"] doubleValue] - [[[owner transactionController] valueForKeyPath:@"selectedObjects.@sum.withdrawal"] doubleValue];
+		sum = [[ZXCurrencyFormatter currencyFormatter] stringFromNumber:[NSNumber numberWithDouble:doubleSum]];
 		// FIXME: Hard-coded english
-		[self setValue:[NSString stringWithFormat:@"%@ of %@ transactions in %@. Subtotal: %@", partial, count, name, sum]
-			forKey:@"generalMessage"];
+		self.generalMessage = [NSString stringWithFormat:@"%@ of %@ transactions in %@. Subtotal: %@", partial, count, name, sum];
 	} else {
 		id balance;
 		balance = [self valueForKeyPath:@"selection.balance"];
 		if(!balance) balance = [NSNumber numberWithInt:0];
 		balance = [[ZXCurrencyFormatter currencyFormatter] stringFromNumber:balance];
 		// FIXME: Hard-coded english
-		[self setValue:[NSString stringWithFormat:@"%@ transactions in %@. Total: %@", count, name, balance]
-			forKey:@"generalMessage"];
+		self.generalMessage = [NSString stringWithFormat:@"%@ transactions in %@. Total: %@", count, name, balance];
 	}
 }
 
 - (void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[usedNames release];
+	[generalMessage release];
 	[super dealloc];
 }
 @end

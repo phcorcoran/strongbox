@@ -48,7 +48,7 @@
 	IBOutlet NSArray *nameSortDescriptors;
 	IBOutlet id labelCell;
 	
-	NSDateFormatter *dateFormatter;
+	IBOutlet NSDateFormatter *dateFormatter;
 }
 
 @property(readwrite, assign) NSWindow *strongboxWindow;
@@ -57,7 +57,7 @@
 @property(assign) ZXLabelController *labelController;
 @property(copy) NSArray *transactionSortDescriptors;
 @property(copy) NSArray *nameSortDescriptors;
-@property(retain) NSDateFormatter *dateFormatter;
+@property(assign) NSDateFormatter *dateFormatter;
 
 - (NSArray *)allLabels;
 

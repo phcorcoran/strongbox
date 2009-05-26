@@ -24,6 +24,7 @@
 #import "ZXAccountMergeController.h"
 #import "ZXDocumentConfigController.h"
 #import "ZXLabelController.h"
+#import "ZXLabelMO.h"
 #import "ZXNotifications.h"
 #import "ZXOldCashboxImporter.h"
 #import "ZXPrintTransactionView.h"
@@ -43,36 +44,32 @@
 	self.transactionSortDescriptors = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"date" 
 										ascending:NO] autorelease]];
 	self.nameSortDescriptors = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease]];
-	self.dateFormatter = [[[NSDateFormatter alloc] initWithDateFormat:@"%Y-%m-%d" 
-						     allowNaturalLanguage:NO] autorelease];
 	return self;
 }
 
 - (void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[transactionSortDescriptors release];
+	[nameSortDescriptors release];
 	[super dealloc];
 }
 
 - (void)windowControllerDidLoadNib:(NSWindowController *)windowController
 {
 	[super windowControllerDidLoadNib:windowController];
+	
 	[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountControllerDidLoadNotification object:self];
 	id note = [NSNotification notificationWithName:ZXAccountTotalDidChangeNotification object:nil];
 	[[NSNotificationQueue defaultQueue] enqueueNotification:note postingStyle:NSPostWhenIdle];
 
-	id cell = [[transactionsView tableColumnWithIdentifier:@"label"] dataCell];
-	[cell addItemsWithTitles:[self valueForKeyPath:@"allLabels.name"]];
+	//id cell = [[transactionsView tableColumnWithIdentifier:@"label"] dataCell];
+	//[cell addItemsWithTitles:[self valueForKeyPath:@"allLabels.name"]];
 	[self updateChangeCount:NSChangeCleared];
-	
-	//[[NSNotificationCenter defaultCenter] addObserver:transactionsView selector:@selector(reloadData) name:ZXTransactionViewDidLoadNotification object:nil];
-//	
-//	note = [NSNotification notificationWithName:ZXTransactionViewDidLoadNotification object:nil];
-//	[[NSNotificationQueue defaultQueue] enqueueNotification:note postingStyle:NSPostWhenIdle];
 	
 	[transactionsView performSelector:@selector(reloadData)
 			       withObject:nil 
-			       afterDelay:0.1];
+			       afterDelay:1.0];
 	
 	[strongboxWindow setContentBorderThickness:24.0 forEdge:NSMinYEdge];
 }
@@ -190,29 +187,8 @@
 {
 	// Label column
 	if([[tableColumn identifier] isEqual:@"label"]) {
-		id cell = [[ZXOvalPopUpButtonCell alloc] initTextCell:@"" pullsDown:NO];
-
-		[cell setBordered:NO];
-		for(id label in [labelController arrangedObjects]) {
-			id item = [[cell menu] addItemWithTitle:[label valueForKey:@"name"] 
-					       action:NULL
-					keyEquivalent:@""];
-			NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[label valueForKey:@"textColor"], NSForegroundColorAttributeName, 
-						    [NSFont systemFontOfSize:[NSFont systemFontSize]], NSFontAttributeName, nil];
-			
-			NSAttributedString *as = [[NSAttributedString alloc] initWithString:[label valueForKey:@"name"] 
-										 attributes:attributes];
-			[item setAttributedTitle:as];
-			[as release];
-			
-			if([[label valueForKey:@"obsolete"] boolValue]) {
-				[item setHidden:YES];
-			}
-		}
-		[cell setEnabled:NO];
-		[cell setEditable:NO];
-		[cell setSelectable:NO];
-		return [cell autorelease];
+		id tx = [[transactionController arrangedObjects] objectAtIndex:row];
+		return [labelController popUpCellWithTransaction:tx];
 	}
 	
 	// All other columns
@@ -290,11 +266,7 @@
 
 - (IBAction)exportToCSV:(id)sender
 {
-	if(!self.dateFormatter) {
-		self.dateFormatter = [[[NSDateFormatter alloc] initWithDateFormat:@"%Y-%m-%d" 
-							   allowNaturalLanguage:NO] autorelease];
-	}
-	id name = [NSString stringWithFormat:@"%@ %@", [accountController valueForKeyPath:@"selection.name"], [self.dateFormatter stringFromDate:[NSDate date]]];
+	id name = [NSString stringWithFormat:@"%@ %@", [accountController valueForKeyPath:@"selection.name"], [dateFormatter stringFromDate:[NSDate date]]];
 	id panel = [NSSavePanel savePanel];
 	[panel setRequiredFileType:@"csv"];
 	[panel beginSheetForDirectory:nil 
@@ -311,11 +283,11 @@
 	
 	NSMutableString *ret = [NSMutableString string];
 	id account = [accountController valueForKey:@"selection"];
-	[ret appendString:[NSString stringWithFormat:@"%@,%@\n", [account valueForKey:@"name"], [[self.dateFormatter stringFromDate:[NSDate date]] csvExport]]];
+	[ret appendString:[NSString stringWithFormat:@"%@,%@\n", [account valueForKey:@"name"], [dateFormatter stringFromDate:[NSDate date]]]];
 	// FIXME: Hard-coded english
 	[ret appendString:@"Date,Label,Description,Withdrawal,Deposit,Balance\n"];
 	for(id tx in [transactionController valueForKey:@"arrangedObjects"]) {
-		NSString *date = [[dateFormatter stringFromDate:[tx valueForKey:@"date"]] csvExport];
+		NSString *date = [dateFormatter stringFromDate:[tx valueForKey:@"date"]];
 		NSString *labelName = [[tx valueForKeyPath:@"transactionLabel.name"] csvExport];
 		NSString *description = [[tx valueForKey:@"transactionDescription"] csvExport];
 		if(!labelName) labelName = @"\"\"";

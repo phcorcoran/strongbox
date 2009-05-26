@@ -21,6 +21,7 @@
 #import "ZXLabelController.h"
 #import "ZXLabelMO.h"
 #import "ZXNotifications.h"
+#import "ZXOvalPopUpButtonCell.h"
 
 static NSString *sharedNoLabelString = @"-";
 
@@ -173,8 +174,40 @@ static NSString *sharedNoLabelString = @"-";
 
 - (IBAction)remove:(id)sender
 {
+	for(id obj in [self selectedObjects]) {
+		if([[obj valueForKey:@"name"] isEqual:sharedNoLabelString]) return;
+	}
 	[super remove:sender];
 	[self updateUsedNames];
+}
+
+- (NSArray *)coloredNames
+{
+	id labels = [self arrangedObjects];
+	id ret = [NSMutableArray arrayWithCapacity:[labels count]];
+	for(id label in labels) {
+		if([[label valueForKey:@"obsolete"] boolValue]) continue;
+		[ret addObject:[label coloredName]];
+	}
+	return ret;
+}
+
+- (ZXOvalPopUpButtonCell *)popUpCellWithTransaction:(id)tx
+{
+	id cell = [[ZXOvalPopUpButtonCell alloc] initTextCell:@"" pullsDown:NO];
+	if([[self arrangedObjects] count] < 1) return nil;
+	
+	[cell setBordered:NO];
+	for(ZXLabelMO *label in [self arrangedObjects]) {
+		id item = [[cell menu] addItemWithTitle:[label valueForKey:@"name"] action:NULL keyEquivalent:@""];
+		[item setAttributedTitle:[label coloredName]];
+		if([[label valueForKey:@"obsolete"] boolValue]) {
+			[item setHidden:YES];
+		}
+		[item setAction:@selector(setTransactionLabelFromPopUp:)];
+		[item setTarget:tx];
+	}
+	return [cell autorelease];
 }
 
 - (void)dealloc
@@ -182,5 +215,4 @@ static NSString *sharedNoLabelString = @"-";
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super dealloc];
 }
-
 @end

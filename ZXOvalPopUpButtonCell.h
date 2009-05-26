@@ -3,7 +3,7 @@
  * Project:	Strongbox
  * Created on:	22/05/09
  *
- * Copyright (C) 2009 Pierre-Hans
+ * Copyright (C) 2009 Pierre-Hans Corcoran
  *
  * --------------------------------------------------------------------------
  *  This program is  free software;  you can redistribute  it and/or modify it
@@ -16,6 +16,11 @@
  *  program;   if  not,  write  to  the  Free  Software  Foundation,  Inc., 51 
  *  Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * --------------------------------------------------------------------------
+ */
+
+/*
+ * Original File WYOvalTextFieldCell.h by Whitney Young
+ * Copyright (C) 2004  Whitney Young
  */
 
 #import <Cocoa/Cocoa.h>

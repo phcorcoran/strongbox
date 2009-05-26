@@ -85,6 +85,7 @@
 - (void)updateCurrentAccountName
 {
 	[[self content] setValue:[accountController valueForKeyPath:@"selection.name"] forKey:@"currentAccountName"];
+	[[accountController owner] updateChangeCount:NSChangeUndone];
 }
 
 - (void)dealloc

@@ -27,6 +27,7 @@
  */
 @interface ZXLabelMO : NSManagedObject {
 }
+@property(readonly) NSAttributedString *coloredName;
 //! Used to set a label name without posting notification.
 - (void)specialSetName:(NSString *)newName;
 @end

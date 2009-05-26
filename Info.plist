@@ -38,7 +38,7 @@
 	<key>CFBundleIconFile</key>
 	<string>StrongboxIcon</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.StrongboxApp</string>
+	<string>org.ironie.dravick.Strongbox</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -46,14 +46,20 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.1.2</string>
+	<string>0.1.3</string>
 	<key>CFBundleSignature</key>
-	<string>????</string>
+	<string>STBX</string>
 	<key>CFBundleVersion</key>
-	<string>afe1a97c</string>
+	<string>131</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUFeedURL</key>
+	<string>http://dravick.ironie.org/strongbox/appcast.xml</string>
+	<key>SUScheduledCheckInterval</key>
+	<integer>86400</integer>
+	<key>SUShowReleaseNotes</key>
+	<true/>
 </dict>
 </plist>

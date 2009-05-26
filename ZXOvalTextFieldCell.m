@@ -52,10 +52,10 @@
 	//inner.size.height += 1;
 	
 	if(([[ovalColor colorSpaceName] isEqual:@"NSCalibratedWhiteColorSpace"] && [ovalColor isEqual:[NSColor whiteColor]]) ||
-		([[ovalColor colorSpaceName] isEqual:@"NSDeviceRGBColorSpace"] && 
-		 [ovalColor redComponent] > 0.99 && 
-		 [ovalColor greenComponent] > 0.99 && 
-		 [ovalColor blueComponent] > 0.99)) {
+		(([[ovalColor colorSpaceName] isEqual:@"NSDeviceRGBColorSpace"] || [[ovalColor colorSpaceName] isEqual:@"NSCalibratedRGBColorSpace"]) && 
+		 [ovalColor redComponent] > 0.9 && 
+		 [ovalColor greenComponent] > 0.9 && 
+		 [ovalColor blueComponent] > 0.9)) {
 		NSRange r = [(NSTableView *)controlView rowsInRect:cellFrame];
 		id colors = [NSColor controlAlternatingRowBackgroundColors];
 		ovalColor = [colors objectAtIndex:r.location % 2];

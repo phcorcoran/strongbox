@@ -1,3 +1,3 @@
 #!/bin/bash
 
-git log | head -n 1 | python -c "import plistlib; f = plistlib.readPlist('info.plist'); f['CFBundleVersion'] = raw_input()[7:15]; plistlib.writePlist(f, 'info.plist')"
+python -c "import plistlib; f = plistlib.readPlist('Info.plist'); f['CFBundleVersion'] = str(int(f['CFBundleVersion']) + 1); plistlib.writePlist(f, 'Info.plist')"

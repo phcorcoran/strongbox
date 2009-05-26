@@ -149,68 +149,68 @@
 	count = [arr count];
 	for(i = 0; i < count; i++) {
 		NSRect txRect = [self rectForTransaction:i + 4];
-		if(NSIntersectsRect(r, txRect)) {
-			float wText = txRect.size.width - 270;
-			if(wText < 0) wText = 0;
-			id obj = [arr objectAtIndex:i];
-			
-			NSColor *c = [obj valueForKeyPath:@"transactionLabel.textColor"];
-			NSRect tmp;
-			double v;
-			float x = txRect.origin.x, a = 0;
-			
-			id colorAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
-			if(c != nil) {
-				[colorAttributes setObject:c forKey:NSForegroundColorAttributeName];
-			}
-			
-			a = 60.0;
-			id date = [df stringFromDate:[obj valueForKey:@"date"]];
-			tmp = NSMakeRect(x, txRect.origin.y, a, txRect.size.height);
-			[date drawWithRect:tmp options:NSLineBreakByTruncatingTail attributes:colorAttributes];
-			x += a + 10.0;
-			
-			a = 2*wText / 5;
-			id labelName = [obj valueForKeyPath:@"transactionLabel.name"];
-			tmp = NSMakeRect(x, txRect.origin.y, a, txRect.size.height);
-			[labelName drawWithRect:tmp options:NSLineBreakByTruncatingTail attributes:colorAttributes];
-			x += a + 10.0;
-			
-			a = wText - a;
-			id desc = [obj valueForKey:@"transactionDescription"];
-			tmp = NSMakeRect(x, txRect.origin.y, a, txRect.size.height);
-			[desc drawWithRect:tmp options:NSLineBreakByTruncatingTail attributes:colorAttributes];
-			x += a + 10.0;
-			
-			a = 50.0;
-			v = [[obj valueForKey:@"withdrawal"] doubleValue];
-			if(!(-0.001 < v && v < 0.001)) {
-				id withdrawal = [nf stringFromNumber:[obj valueForKey:@"withdrawal"]];
-				tmp = NSMakeRect(x, txRect.origin.y, a, txRect.size.height);
-				[withdrawal drawWithRect:tmp options:NSLineBreakByTruncatingTail attributes:attributes];
-			}
-			x += a + 10.0;
-			
-			a = 50.0;
-			v = [[obj valueForKey:@"deposit"] doubleValue];
-			if(!(-0.001 < v && v < 0.001)) {
-				id deposit = [nf stringFromNumber:[obj valueForKey:@"deposit"]];
-				tmp = NSMakeRect(x, txRect.origin.y, a, txRect.size.height);
-				[deposit drawWithRect:tmp options:NSLineBreakByTruncatingTail attributes:attributes];
-			}
-			x += a + 10.0;
-			
-			a = 60.0;
-			if([[obj valueForKey:@"balance"] doubleValue] < 0) {
-				[colorAttributes setObject:[NSColor redColor] forKey:NSForegroundColorAttributeName];
-			} else {
-				[colorAttributes setObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName];
-			}
-			[colorAttributes setObject:rightStyle forKey:NSParagraphStyleAttributeName];
-			id balance = [nf stringFromNumber:[obj valueForKey:@"balance"]];
-			tmp = NSMakeRect(x, txRect.origin.y, a, txRect.size.height);
-			[balance drawWithRect:tmp options:NSLineBreakByTruncatingTail attributes:colorAttributes];
+		if(!NSIntersectsRect(r, txRect)) continue;
+		
+		float wText = txRect.size.width - 270;
+		if(wText < 0) wText = 0;
+		id obj = [arr objectAtIndex:i];
+		
+		NSColor *c = [obj valueForKeyPath:@"transactionLabel.textColor"];
+		NSRect tmp;
+		double v;
+		float x = txRect.origin.x, a = 0;
+		
+		id colorAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
+		if(c != nil) {
+			[colorAttributes setObject:c forKey:NSForegroundColorAttributeName];
 		}
+		
+		a = 60.0;
+		id date = [df stringFromDate:[obj valueForKey:@"date"]];
+		tmp = NSMakeRect(x, txRect.origin.y, a, txRect.size.height);
+		[date drawWithRect:tmp options:NSLineBreakByTruncatingTail attributes:colorAttributes];
+		x += a + 10.0;
+		
+		a = 2*wText / 5;
+		id labelName = [obj valueForKeyPath:@"transactionLabel.name"];
+		tmp = NSMakeRect(x, txRect.origin.y, a, txRect.size.height);
+		[labelName drawWithRect:tmp options:NSLineBreakByTruncatingTail attributes:colorAttributes];
+		x += a + 10.0;
+		
+		a = wText - a;
+		id desc = [obj valueForKey:@"transactionDescription"];
+		tmp = NSMakeRect(x, txRect.origin.y, a, txRect.size.height);
+		[desc drawWithRect:tmp options:NSLineBreakByTruncatingTail attributes:colorAttributes];
+		x += a + 10.0;
+		
+		a = 50.0;
+		v = [[obj valueForKey:@"withdrawal"] doubleValue];
+		if(!(-0.001 < v && v < 0.001)) {
+			id withdrawal = [nf stringFromNumber:[obj valueForKey:@"withdrawal"]];
+			tmp = NSMakeRect(x, txRect.origin.y, a, txRect.size.height);
+			[withdrawal drawWithRect:tmp options:NSLineBreakByTruncatingTail attributes:attributes];
+		}
+		x += a + 10.0;
+		
+		a = 50.0;
+		v = [[obj valueForKey:@"deposit"] doubleValue];
+		if(!(-0.001 < v && v < 0.001)) {
+			id deposit = [nf stringFromNumber:[obj valueForKey:@"deposit"]];
+			tmp = NSMakeRect(x, txRect.origin.y, a, txRect.size.height);
+			[deposit drawWithRect:tmp options:NSLineBreakByTruncatingTail attributes:attributes];
+		}
+		x += a + 10.0;
+		
+		a = 60.0;
+		if([[obj valueForKey:@"balance"] doubleValue] < 0) {
+			[colorAttributes setObject:[NSColor redColor] forKey:NSForegroundColorAttributeName];
+		} else {
+			[colorAttributes setObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName];
+		}
+		[colorAttributes setObject:rightStyle forKey:NSParagraphStyleAttributeName];
+		id balance = [nf stringFromNumber:[obj valueForKey:@"balance"]];
+		tmp = NSMakeRect(x, txRect.origin.y, a, txRect.size.height);
+		[balance drawWithRect:tmp options:NSLineBreakByTruncatingTail attributes:colorAttributes];
 	}
 	
 }

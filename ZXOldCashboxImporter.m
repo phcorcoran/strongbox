@@ -21,9 +21,6 @@
 #import "ZXOldCashboxImporter.h"
 #import "ZXDocument.h"
 #import "ZXAppController.h"
-#import "ZXLabelMO.h"
-#import "ZXTransactionMO.h"
-#import "ZXAccountMO.h"
 
 static NSString *sharedNoLabelString = @"-";
 
@@ -61,24 +58,30 @@ static NSString *sharedNoLabelString = @"-";
 
 - (void)main
 {
-	NSLog(@"start");
+	[[NSNotificationCenter defaultCenter] addObserver:owner.managedObjectContext 
+						 selector:@selector(mergeChangesFromContextDidSaveNotification:) 
+						     name:NSManagedObjectContextDidSaveNotification 
+						   object:nil];
 	[self raiseImporterSheet];
 	BOOL toRestore = [ZXAppController shouldPostNotifications];
 	[ZXAppController setShouldPostNotifications:NO];
 	
 	NSError *error = nil;
 	
-	[[owner managedObjectContext] save:&error];
-	
-	NSManagedObjectContext *importContext = [[NSManagedObjectContext alloc] init];
-	NSPersistentStoreCoordinator *coordinator = [[owner managedObjectContext] persistentStoreCoordinator];
+	id importContext = [[NSManagedObjectContext alloc] init];
+	id coordinator = [[owner managedObjectContext] persistentStoreCoordinator];
+	[coordinator addPersistentStoreWithType:NSInMemoryStoreType 
+				  configuration:nil 
+					    URL:nil 
+					options:nil 
+					  error:&error];
 	[importContext setPersistentStoreCoordinator:coordinator];
 	[importContext setUndoManager:nil];
 	moc = importContext;
 	
 	allNewLabels = [NSMutableDictionary dictionary];
-	NSString *labelsPath = [NSString stringWithFormat:@"%@/Library/Application Support/Cashbox/Labels.plist", NSHomeDirectory()];
-	NSString *accountsPath = [NSString stringWithFormat:@"%@/Library/Application Support/Cashbox/Accounts/", NSHomeDirectory()];
+	NSString *labelsPath = [[NSString stringWithFormat:@"~/Library/Application Support/Cashbox/Labels.plist"] stringByExpandingTildeInPath];
+	NSString *accountsPath = [[NSString stringWithFormat:@"~/Library/Application Support/Cashbox/Accounts/"] stringByExpandingTildeInPath];
 	
 	[self importLabelsFromFile:labelsPath];
 	[moc save:&error];
@@ -86,10 +89,10 @@ static NSString *sharedNoLabelString = @"-";
 	NSDirectoryEnumerator *direnum = [[NSFileManager defaultManager]
 					  enumeratorAtPath:accountsPath];
 	NSString *pname;
-	while (pname = [direnum nextObject]) {
+	while(pname = [direnum nextObject]) {
 		if ([[pname pathExtension] isEqualToString:@"plist"]) {
 			NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-			[self importAccountFromFile:[NSString stringWithFormat:@"%@%@", accountsPath, pname]];
+			[self importAccountFromFile:[NSString stringWithFormat:@"%@/%@", accountsPath, pname]];
 			[moc save:&error];
 			[pool release];
 		}
@@ -98,7 +101,7 @@ static NSString *sharedNoLabelString = @"-";
 	[ZXAppController setShouldPostNotifications:toRestore];
 	[moc save:&error];
 	[moc release];
-	NSLog(@"stop");
+	[owner.accountController setSelectionIndex:0];
 }
 
 //! Imports labels from old cashbox app.
@@ -108,6 +111,11 @@ static NSString *sharedNoLabelString = @"-";
 - (void)importLabelsFromFile:(NSString *)path
 {
 	NSArray *array = [[NSArray alloc] initWithContentsOfFile:path];
+	if(!array) {
+		// FIXME: Real error message needed
+		NSLog(@"Could not load labels file at %@.", path);
+		return;
+	}
 	
 	int labelCount = [array count];
 	// FIXME: Hard-coded english
@@ -187,6 +195,11 @@ static NSString *sharedNoLabelString = @"-";
 - (void)importAccountFromFile:(NSString *)path
 {
 	NSDictionary *account = [[NSDictionary alloc] initWithContentsOfFile:path];
+	if(!account) {
+		// FIXME: Real error message needed
+		NSLog(@"Could not load account file at %@.", path);
+		return;
+	}
 	
 	id newAccount = [NSEntityDescription insertNewObjectForEntityForName:@"Account" inManagedObjectContext:moc];
 	[newAccount setValue:[account valueForKey:@"Account Name"] forKey:@"name"];
@@ -223,14 +236,6 @@ static NSString *sharedNoLabelString = @"-";
 		}
 		[newTransaction setValue:newAccount forKey:@"account"];
 	}
-	
-	[progressIndicator setDoubleValue:0];
-	[progressIndicator setMaxValue:1];
-	[importationMessage setStringValue:@"Importation Message"];
-	[importerWindow display];
-	[[owner strongboxWindow] display];
-	
-	//[[owner accountController] setSelectedObjects:[NSArray arrayWithObjects:newAccount, nil]];
 	[account release];
 }
 @end

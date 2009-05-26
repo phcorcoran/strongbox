@@ -20,7 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class ZXLabelMO;
+@class ZXLabelMO, ZXOvalPopUpButtonCell;
 
 //! General controller code for labels.
 /*!
@@ -46,4 +46,6 @@
 }
 @property (retain) NSMutableDictionary *usedNames;
 @property (retain) ZXLabelMO *noLabel;
+@property(readonly) NSArray *coloredNames;
+- (ZXOvalPopUpButtonCell *)popUpCellWithTransaction:(id)label;
 @end

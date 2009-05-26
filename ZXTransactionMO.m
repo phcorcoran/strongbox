@@ -31,6 +31,12 @@ static NSString *sharedNoLabelString = @"-";
 //! Forward method for transactionLabel.name
 - (NSString *)transactionLabelName { return [self valueForKeyPath:@"transactionLabel.name"]; }
 
+//! Action for label pop-up cell.
+/*!
+ Sets the transaction label of the transaction to the title of the sender
+ */
+- (IBAction)setTransactionLabelFromPopUp:(id)sender { [self setTransactionLabelName:[sender title]]; }
+
 //! Sets new _label_ for transaction, based on name.
 /*!
  Fetch the required label based on name, and sets new label for transaction.
@@ -47,7 +53,7 @@ static NSString *sharedNoLabelString = @"-";
 	[fetchRequest setFetchLimit:1];
 	NSError *error = nil;
 	NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-	if(array == nil) {
+	if(array == nil || [array count] < 1) {
 		return;
 	}
 	[self setValue:[array objectAtIndex:0] forKey:@"transactionLabel"];

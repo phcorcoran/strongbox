@@ -25,6 +25,17 @@
 
 
 @implementation ZXLabelMO
+- (void)awakeFromInsert
+{
+	[super awakeFromInsert];
+	[self setValue:[NSColor blackColor] forKey:@"textColor"];
+	[self setValue:[NSColor whiteColor] forKey:@"backgroundColor"];
+	id lightGray = [NSColor colorWithCalibratedWhite:0.50 alpha:1];
+	id darkGray = [NSColor colorWithCalibratedWhite:0.33 alpha:1];
+	[self setValue:darkGray forKey:@"reconciledTextColor"];
+	[self setValue:lightGray forKey:@"reconciledBackgroundColor"];
+}
+
 //! Controls special cases of key-value changes
 /*!
  Prevents the name change of immutable labels (e.g. "no-label" label). Posts a
@@ -34,7 +45,7 @@
 {
 	// The "-" label name is immutable. Could be changed to only 
 	// "if([[self valueForKey:@"isImmutable"] boolValue])" to disable color change.
-	if([key isEqual:@"name"] && [[self valueForKey:@"isImmutable"] boolValue]) return;
+	if([[self valueForKey:@"isImmutable"] boolValue]) return;
 	[super setValue:value forKey:key];
 	if([key isEqual:@"name"] && [ZXAppController shouldPostNotifications]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:ZXLabelDidChangeNotification object:self];
@@ -45,5 +56,14 @@
 - (void)specialSetName:(NSString *)newName
 {
 	[super setValue:newName forKey:@"name"];
+}
+
+- (NSAttributedString *)coloredName
+{
+	NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[self valueForKey:@"textColor"], NSForegroundColorAttributeName, 
+				    [NSFont systemFontOfSize:[NSFont systemFontSize]], NSFontAttributeName, nil];
+	NSAttributedString *as = [[NSAttributedString alloc] initWithString:[self valueForKey:@"name"] 
+								 attributes:attributes];
+	return [as autorelease];
 }
 @end
