@@ -29,7 +29,7 @@
  */
 @interface ZXPrintTransactionView : NSView {
 	ZXDocument *owner;
-	NSMutableDictionary *attributes;
+	NSMutableDictionary *attributes, *rightAttr;
 	
 	NSMutableParagraphStyle *centeredStyle, *rightStyle;
 	NSSize paperSize;

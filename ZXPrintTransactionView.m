@@ -48,16 +48,19 @@
 	subtitleRect = [self rectForTransaction:2];
 	subtitleRect.size.height = 2*VSPACE;
 	
-	attributes = [[NSMutableDictionary alloc] init];
-	[attributes setObject:[NSFont fontWithName:@"Helvetica" size:10.0] 
-		       forKey:NSFontAttributeName];
-	
 	rightStyle = [[NSMutableParagraphStyle alloc] init];
 	[rightStyle setParagraphStyle:[NSParagraphStyle defaultParagraphStyle]];
 	[rightStyle setAlignment:NSRightTextAlignment];
 	centeredStyle = [[NSMutableParagraphStyle alloc] init];
 	[centeredStyle setParagraphStyle:[NSParagraphStyle defaultParagraphStyle]];
 	[centeredStyle setAlignment:NSCenterTextAlignment];
+	
+	attributes = [[NSMutableDictionary alloc] init];
+	[attributes setObject:[NSFont fontWithName:@"Helvetica" size:10.0] 
+		       forKey:NSFontAttributeName];
+	rightAttr = [[NSMutableDictionary alloc] initWithDictionary:attributes];
+	[rightAttr setObject:rightStyle 
+		      forKey:NSParagraphStyleAttributeName];
 	return self;	
 }
 
@@ -183,13 +186,13 @@
 		[desc drawWithRect:tmp options:NSLineBreakByTruncatingTail attributes:colorAttributes];
 		x += a + 10.0;
 		
-		a = 50.0;
+		id attr = attributes;
+		a = 100.0;
 		v = [[obj valueForKey:@"amount"] doubleValue];
-		if(!(-0.001 < v && v < 0.001)) {
-			id amount = [nf stringFromNumber:[obj valueForKey:@"amount"]];
-			tmp = NSMakeRect(x, txRect.origin.y, a, txRect.size.height);
-			[amount drawWithRect:tmp options:NSLineBreakByTruncatingTail attributes:attributes];
-		}
+		if(v < 0) attr = rightAttr;
+		id amount = [nf stringFromNumber:[obj valueForKey:@"amount"]];
+		tmp = NSMakeRect(x, txRect.origin.y, a, txRect.size.height);
+		[amount drawWithRect:tmp options:NSLineBreakByTruncatingTail attributes:attr];
 		x += a + 10.0;
 		
 		a = 60.0;
@@ -211,6 +214,7 @@
 	[attributes release];
 	[centeredStyle release];
 	[rightStyle release];
+	[rightAttr release];
 	[super dealloc];
 }
 @end
