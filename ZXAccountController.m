@@ -213,10 +213,9 @@
 	count = [self valueForKeyPath:@"selection.transactions.@count"];
 	name = [self valueForKeyPath:@"selection.name"];
 	if(note != nil && [[[owner transactionController] valueForKeyPath:@"selectionIndexes.count"] intValue] > 1) {
-		id partial, sum;
-		partial = [[owner transactionController] valueForKeyPath:@"selectionIndexes.count"];
-		double doubleSum = [[[owner transactionController] valueForKeyPath:@"selectedObjects.@sum.deposit"] doubleValue] - [[[owner transactionController] valueForKeyPath:@"selectedObjects.@sum.withdrawal"] doubleValue];
-		sum = [[ZXCurrencyFormatter currencyFormatter] stringFromNumber:[NSNumber numberWithDouble:doubleSum]];
+		id partial = [[owner transactionController] valueForKeyPath:@"selectionIndexes.count"];
+		id sum = [[owner transactionController] valueForKeyPath:@"selectedObjects.@sum.amount"];
+		sum = [[ZXCurrencyFormatter currencyFormatter] stringFromNumber:sum];
 		// FIXME: Hard-coded english
 		self.generalMessage = [NSString stringWithFormat:@"%@ of %@ transactions in %@. Subtotal: %@", partial, count, name, sum];
 	} else {

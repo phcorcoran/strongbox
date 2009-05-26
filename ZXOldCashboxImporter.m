@@ -227,8 +227,8 @@ static NSString *sharedNoLabelString = @"-";
 		}
 		id newTransaction = [NSEntityDescription insertNewObjectForEntityForName:@"Transaction" inManagedObjectContext:moc];
 		[newTransaction setValue:[transaction valueForKey:@"Date Column"] forKey:@"date"];
-		[newTransaction setValue:[transaction valueForKey:@"Deposit Column"] forKey:@"deposit"];
-		[newTransaction setValue:[transaction valueForKey:@"Withdrawal Column"] forKey:@"withdrawal"];
+		double amount = [[transaction valueForKey:@"Deposit Column"] doubleValue] - [[transaction valueForKey:@"Withdrawal Column"] doubleValue];
+		[newTransaction setValue:[NSNumber numberWithDouble:amount] forKey:@"amount"];
 		[newTransaction setValue:[transaction valueForKey:@"Description Column"] forKey:@"transactionDescription"];
 		[newTransaction setValue:[allNewLabels valueForKey:[transaction valueForKey:@"Label"]] forKey:@"transactionLabel"];
 		if([transaction valueForKey:@"Label"] == nil) {

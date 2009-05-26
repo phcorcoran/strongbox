@@ -184,20 +184,11 @@
 		x += a + 10.0;
 		
 		a = 50.0;
-		v = [[obj valueForKey:@"withdrawal"] doubleValue];
+		v = [[obj valueForKey:@"amount"] doubleValue];
 		if(!(-0.001 < v && v < 0.001)) {
-			id withdrawal = [nf stringFromNumber:[obj valueForKey:@"withdrawal"]];
+			id amount = [nf stringFromNumber:[obj valueForKey:@"amount"]];
 			tmp = NSMakeRect(x, txRect.origin.y, a, txRect.size.height);
-			[withdrawal drawWithRect:tmp options:NSLineBreakByTruncatingTail attributes:attributes];
-		}
-		x += a + 10.0;
-		
-		a = 50.0;
-		v = [[obj valueForKey:@"deposit"] doubleValue];
-		if(!(-0.001 < v && v < 0.001)) {
-			id deposit = [nf stringFromNumber:[obj valueForKey:@"deposit"]];
-			tmp = NSMakeRect(x, txRect.origin.y, a, txRect.size.height);
-			[deposit drawWithRect:tmp options:NSLineBreakByTruncatingTail attributes:attributes];
+			[amount drawWithRect:tmp options:NSLineBreakByTruncatingTail attributes:attributes];
 		}
 		x += a + 10.0;
 		

@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.02">
+<archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.03">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">9F33</string>
-		<string key="IBDocument.InterfaceBuilderVersion">672</string>
-		<string key="IBDocument.AppKitVersion">949.34</string>
-		<string key="IBDocument.HIToolboxVersion">352.00</string>
+		<string key="IBDocument.SystemVersion">9J61</string>
+		<string key="IBDocument.InterfaceBuilderVersion">677</string>
+		<string key="IBDocument.AppKitVersion">949.46</string>
+		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="2"/>
 			<integer value="85"/>
+			<integer value="2"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<string>com.apple.InterfaceBuilderKit</string>
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+		</object>
+		<object class="NSMutableDictionary" key="IBDocument.Metadata">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -325,7 +334,7 @@
 										<bool key="EncodedWithXMLCoder">YES</bool>
 										<object class="NSArray">
 											<bool key="EncodedWithXMLCoder">YES</bool>
-											<integer value="0"/>
+											<integer value="0" id="8"/>
 											<object class="NSBitmapImageRep">
 												<object class="NSData" key="NSTIFFRepresentation">
 													<bytes key="NS.bytes">TU0AKgAAAAoAAAANAQAAAwAAAAEAAQAAAQEAAwAAAAEAAQAAAQIAAwAAAAIACAAIAQMAAwAAAAEAAQAA
@@ -589,37 +598,62 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<object class="NSMutableArray" key="dict.values">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<integer value="1" id="9"/>
-						<object class="NSAttributedString" id="37599542">
-							<string key="NSString">$ 0.00</string>
-							<object class="NSDictionary" key="NSAttributes" id="978866448">
+						<object class="NSAttributedString" id="932752549">
+							<string key="NSString">$0.00</string>
+							<object class="NSDictionary" key="NSAttributes" id="842981767">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSArray" key="dict.sortedKeys">
+								<object class="NSMutableArray" key="dict.sortedKeys">
 									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSColor</string>
+									<string>NSFont</string>
+									<string>NSOriginalFont</string>
+									<string>NSParagraphStyle</string>
 								</object>
 								<object class="NSMutableArray" key="dict.values">
 									<bool key="EncodedWithXMLCoder">YES</bool>
+									<object class="NSColor">
+										<int key="NSColorSpace">6</int>
+										<string key="NSCatalogName">System</string>
+										<string key="NSColorName">textColor</string>
+										<reference key="NSColor" ref="122367077"/>
+									</object>
+									<reference ref="26"/>
+									<reference ref="26"/>
+									<object class="NSMutableParagraphStyle">
+										<int key="NSAlignment">4</int>
+										<int key="NSLineBreakMode">2</int>
+										<nil key="NSTabStops"/>
+									</object>
 								</object>
 							</object>
 						</object>
 						<string>.</string>
 						<integer value="1000" id="710187063"/>
 						<string>,</string>
-						<string>-$ #,##0.00</string>
-						<string>$ #,##0.00</string>
-						<integer value="1"/>
+						<string>-$#,##0.00</string>
+						<string>$#,##0.00</string>
+						<boolean value="YES"/>
 					</object>
 				</object>
-				<string key="NS.positiveformat">$ #,##0.00</string>
-				<string key="NS.negativeformat">-$ #,##0.00</string>
+				<string key="NS.positiveformat">$#,##0.00</string>
+				<string key="NS.negativeformat">-$#,##0.00</string>
 				<nil key="NS.positiveattrs"/>
 				<nil key="NS.negativeattrs"/>
-				<reference key="NS.zero" ref="37599542"/>
+				<reference key="NS.zero" ref="932752549"/>
 				<object class="NSAttributedString" key="NS.nil">
 					<string key="NSString"/>
 				</object>
 				<object class="NSAttributedString" key="NS.nan">
 					<string key="NSString">NaN</string>
-					<reference key="NSAttributes" ref="978866448"/>
+					<object class="NSDictionary" key="NSAttributes" id="199845963">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
+					</object>
 				</object>
 				<object class="NSDecimalNumberPlaceholder" key="NS.min" id="278589127">
 					<int key="NS.exponent">0</int>
@@ -656,39 +690,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<reference ref="9"/>
 						<object class="NSAttributedString" id="755119148">
 							<string key="NSString">0.0%</string>
-							<object class="NSDictionary" key="NSAttributes">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSColor</string>
-									<string>NSFont</string>
-									<string>NSOriginalFont</string>
-									<string>NSParagraphStyle</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<object class="NSColor">
-										<int key="NSColorSpace">6</int>
-										<string key="NSCatalogName">System</string>
-										<string key="NSColorName">textColor</string>
-										<reference key="NSColor" ref="122367077"/>
-									</object>
-									<reference ref="26"/>
-									<reference ref="26"/>
-									<object class="NSMutableParagraphStyle">
-										<int key="NSAlignment">4</int>
-										<int key="NSLineBreakMode">2</int>
-										<nil key="NSTabStops"/>
-									</object>
-								</object>
-							</object>
+							<reference key="NSAttributes" ref="842981767"/>
 						</object>
 						<string>.</string>
 						<reference ref="710187063"/>
 						<string>,</string>
 						<string>-0.0%</string>
 						<string>0.0%</string>
-						<integer value="0" id="6"/>
+						<boolean value="NO"/>
 					</object>
 				</object>
 				<string key="NS.positiveformat">0.0%</string>
@@ -701,7 +710,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				</object>
 				<object class="NSAttributedString" key="NS.nan">
 					<string key="NSString">NaN</string>
-					<reference key="NSAttributes" ref="978866448"/>
+					<reference key="NSAttributes" ref="199845963"/>
 				</object>
 				<reference key="NS.min" ref="278589127"/>
 				<reference key="NS.max" ref="278589127"/>
@@ -1384,7 +1393,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>{{106, 149}, {492, 323}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{106, 149}, {492, 323}}</string>
-					<reference ref="6"/>
+					<reference ref="8"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1416,6 +1425,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
+					<string key="className">NSActionCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">ZXOvalTextFieldCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
@@ -1424,7 +1440,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">ZXReportGraphView</string>
-					<string key="superclassName">NSView</string>
+					<string key="superclassName">ZXReportView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">ZXReportGraphView.h</string>
@@ -1432,7 +1448,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">ZXReportHistView</string>
-					<string key="superclassName">NSView</string>
+					<string key="superclassName">ZXReportView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">ZXReportHistView.h</string>
@@ -1440,7 +1456,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">ZXReportTextView</string>
-					<string key="superclassName">NSControl</string>
+					<string key="superclassName">ZXReportView</string>
 					<object class="NSMutableDictionary" key="actions">
 						<string key="NS.key.0">updateView:</string>
 						<string key="NS.object.0">id</string>
@@ -1463,6 +1479,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">ZXReportTextView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">ZXReportView</string>
+					<string key="superclassName">NSControl</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">ZXReportView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -1522,7 +1546,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 			</object>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.LastKnownRelativeProjectPath">Cashbox.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../Strongbox.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 	</data>
 </archive>

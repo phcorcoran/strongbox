@@ -191,6 +191,18 @@
 		return [labelController popUpCellWithTransaction:tx];
 	}
 	
+	// Amount column
+	if([[tableColumn identifier] isEqual:@"amount"]) {
+		id cell = [tableColumn dataCellForRow:row];
+		id tx = [[transactionController arrangedObjects] objectAtIndex:row];
+		NSTextAlignment ta = NSLeftTextAlignment;
+		if([[tx valueForKey:@"amount"] doubleValue] < 0) {
+			ta = NSRightTextAlignment;
+		}
+		[cell setAlignment:ta];
+		return cell;
+	}
+	
 	// All other columns
 	if(tableColumn) return [tableColumn dataCellForRow:row];
 	
@@ -203,6 +215,11 @@
 		return [cell autorelease];
 	}
 	return nil;
+}
+
+- (void)tableViewColumnDidMove:(NSNotification *)aNotification
+{
+	[transactionsView setNeedsDisplay:YES];
 }
 
 - (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn*)tableColumn row:(int)row
@@ -256,8 +273,7 @@
 			forKey:@"shouldDrawRightOval"];
 	}
 	
-	if ([cell respondsToSelector:@selector(selectedItem)] && 
-	    [[label valueForKey:@"obsolete"] boolValue]) {
+	if ([cell respondsToSelector:@selector(selectedItem)] && [[label valueForKey:@"obsolete"] boolValue]) {
 		[cell setEnabled:NO];
 	}
 }
@@ -285,18 +301,17 @@
 	id account = [accountController valueForKey:@"selection"];
 	[ret appendString:[NSString stringWithFormat:@"%@,%@\n", [account valueForKey:@"name"], [dateFormatter stringFromDate:[NSDate date]]]];
 	// FIXME: Hard-coded english
-	[ret appendString:@"Date,Label,Description,Withdrawal,Deposit,Balance\n"];
+	[ret appendString:@"Date,Label,Description,Amount,Balance\n"];
 	for(id tx in [transactionController valueForKey:@"arrangedObjects"]) {
 		NSString *date = [dateFormatter stringFromDate:[tx valueForKey:@"date"]];
 		NSString *labelName = [[tx valueForKeyPath:@"transactionLabel.name"] csvExport];
 		NSString *description = [[tx valueForKey:@"transactionDescription"] csvExport];
 		if(!labelName) labelName = @"\"\"";
 		if(!description) description = @"\"\"";
-		double withdrawal = [[tx valueForKey:@"withdrawal"] doubleValue];
-		double deposit = [[tx valueForKey:@"deposit"] doubleValue];
+		double amount = [[tx valueForKey:@"amount"] doubleValue];
 		double balance = [[tx valueForKey:@"balance"] doubleValue];
-		[ret appendString:[NSString stringWithFormat:@"%@,%@,%@,%.2f,%.2f,%.2f\n", 
-				   date, labelName, description, withdrawal, deposit, balance]];
+		[ret appendString:[NSString stringWithFormat:@"%@,%@,%@,%.2f,%.2f\n", 
+				   date, labelName, description, amount, balance]];
 	}
 	
 	[ret writeToURL:[sheet URL] 

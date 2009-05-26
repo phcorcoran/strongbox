@@ -62,7 +62,7 @@
 	
 	double balance = 0;
 	for(id obj in array) {
-		double add = [[obj valueForKey:@"deposit"] doubleValue] - [[obj valueForKey:@"withdrawal"] doubleValue];
+		double add = [[obj valueForKey:@"amount"] doubleValue];
 		balance += add;
 		[obj setValue:[NSNumber numberWithDouble:balance] forKey:@"balance"];
 	}

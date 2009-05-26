@@ -138,63 +138,44 @@ enum {
 
 - (NSNumber *)parseLabelAmount:(id)label
 {
-	id currentAccountName, curAccount;
 	id labelAmount = [NSNumber numberWithInt:0];
-	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Transaction" 
-							     inManagedObjectContext:self.owner.managedObjectContext];
-	NSPredicate *totalPredicate;
+	id txDesc = [NSEntityDescription entityForName:@"Transaction" 
+				inManagedObjectContext:self.owner.managedObjectContext];
+	NSPredicate *totalPredicate = nil;
+	NSArray *dateArray = [NSArray arrayWithObjects:self.reportStartDate, self.reportEndDate, nil];
+	int tag = [reportTypePopUpButton selectedTag];
+	id predString = @"(transactionLabel == %@) AND (date BETWEEN %@)";
+	id curAccount = [self.owner.accountController valueForKeyPath:@"selection.self"];
+	if(tag == ZXAllAccountsDepositsReportType) {
+		predString = [NSString stringWithFormat:@"%@ AND (amount > 0)", predString];
+		totalPredicate = [NSPredicate predicateWithFormat:predString, label, dateArray];
+	} else if(tag == ZXAllAccountsWithdrawalsReportType) {
+		predString = [NSString stringWithFormat:@"%@ AND (amount < 0)", predString];
+		totalPredicate = [NSPredicate predicateWithFormat:predString, label, dateArray];
+	} else if(tag == ZXActiveAccountDepositsReportType) {
+		predString = [NSString stringWithFormat:@"%@ AND (account == %%@) AND (amount > 0)", predString];
+		totalPredicate = [NSPredicate predicateWithFormat:predString, label, dateArray, curAccount];
+	} else if(tag == ZXActiveAccountWithdrawalsReportType) {
+		predString = [NSString stringWithFormat:@"%@ AND (account == %%@) AND (amount < 0)", predString];
+		totalPredicate = [NSPredicate predicateWithFormat:predString, label, dateArray, curAccount];
+	}
+	
 	NSFetchRequest *fetchRequest;
 	NSError *error;
 	NSArray *array;
-	NSArray *dateArray = [NSArray arrayWithObjects:self.reportStartDate, self.reportEndDate, nil];
-	switch([reportTypePopUpButton selectedTag]) {
-		case ZXAllAccountsDepositsReportType:
-		case ZXAllAccountsWithdrawalsReportType:
-			totalPredicate = [NSPredicate predicateWithFormat:@"(transactionLabel == %@) AND (date BETWEEN %@)", label, dateArray];
-			
-			fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-			[fetchRequest setEntity:entityDescription];
-			[fetchRequest setPredicate:totalPredicate];
-			error = nil;
-			array = [self.owner.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-			if(array == nil) {
-				// FIXME: Exception management to be done
-				return nil;
-			}
-			if([reportTypePopUpButton selectedTag] == ZXAllAccountsDepositsReportType) {
-				labelAmount = [array valueForKeyPath:@"@sum.deposit"];
-			} else {
-				labelAmount = [array valueForKeyPath:@"@sum.withdrawal"];
-			}
-			
-			break;
-			
-		case ZXActiveAccountDepositsReportType:
-		case ZXActiveAccountWithdrawalsReportType:
-			curAccount = [self.owner.accountController valueForKeyPath:@"selection.self"];
-			currentAccountName = [curAccount valueForKey:@"name"];
-			
-			totalPredicate = [NSPredicate predicateWithFormat:@"(account == %@) AND (transactionLabel == %@) AND (date BETWEEN %@)", curAccount, label, dateArray];
-			
-			fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-			[fetchRequest setEntity:entityDescription];
-			[fetchRequest setPredicate:totalPredicate];
-			error = nil;
-			array = [self.owner.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-			if(array == nil) {
-				// FIXME: Exception management to be done
-				return nil;
-			}
-			if([reportTypePopUpButton selectedTag] == ZXActiveAccountDepositsReportType) {
-				labelAmount = [array valueForKeyPath:@"@sum.deposit"];
-			} else {
-				labelAmount = [array valueForKeyPath:@"@sum.withdrawal"];
-			}
-			break;
-		default:
-			break;
+	
+	fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+	[fetchRequest setEntity:txDesc];
+	[fetchRequest setPredicate:totalPredicate];
+	error = nil;
+	array = [self.owner.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	if(array == nil) {
+		// FIXME: Exception management to be done
+		return nil;
 	}
-	return labelAmount;
+	double val = [[array valueForKeyPath:@"@sum.amount"] doubleValue];
+	if(val < 0) val *= -1;
+	return [NSNumber numberWithDouble:val];
 }
 
 - (void)parseReportDates
