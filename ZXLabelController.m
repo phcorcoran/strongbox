@@ -57,12 +57,10 @@ static NSString *sharedNoLabelString = @"-";
 /*! This object is unique for each document */
 - (void)setupNoLabelObject
 {
-	self.noLabel = [[[ZXLabelMO alloc] initWithEntity:[NSEntityDescription entityForName:@"Label" 
-								      inManagedObjectContext:self.managedObjectContext] 
-			   insertIntoManagedObjectContext:self.managedObjectContext] autorelease];
+	self.noLabel = [NSEntityDescription insertNewObjectForEntityForName:@"Label" 
+						     inManagedObjectContext:self.managedObjectContext];
 	[self.noLabel specialSetName:sharedNoLabelString];
 	[self.noLabel setValue:[NSNumber numberWithBool:YES] forKey:@"isImmutable"];
-	
 }
 
 - (id)init
@@ -80,18 +78,24 @@ static NSString *sharedNoLabelString = @"-";
 - (void)prepareContent
 {
 	[super prepareContent];
+	[[owner managedObjectContext] processPendingChanges];
+	[[owner undoManager] disableUndoRegistration];
 	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 	[fetchRequest setEntity:[NSEntityDescription entityForName:@"Label" 
 					    inManagedObjectContext:self.managedObjectContext]];
 	
 	NSError *error = nil;
 	NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-	if(array == nil) return;
+	if(array == nil) {
+		// FIXME: Real error management needed.
+		[[owner undoManager] enableUndoRegistration];
+		NSLog(@"Could not load labels: %@", error);
+		return;
+	}
 		
 	if([array count] < 1) {
 		[self setupNoLabelObject];
 		[self addObject:noLabel];
-		[owner updateChangeCount:NSChangeCleared];
 	}
 	
 	[self updateUsedNames];
@@ -100,6 +104,8 @@ static NSString *sharedNoLabelString = @"-";
 	       selector:@selector(validatesNewLabelName:) 
 		   name:ZXLabelDidChangeNotification 
 		 object:nil];
+	[[owner managedObjectContext] processPendingChanges];
+	[[owner undoManager] enableUndoRegistration];
 }
 
 //! Creates a new object
@@ -213,6 +219,8 @@ static NSString *sharedNoLabelString = @"-";
 - (void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[noLabel release];
+	[usedNames release];
 	[super dealloc];
 }
 @end

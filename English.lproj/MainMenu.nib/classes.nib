@@ -81,6 +81,21 @@
 		<dict>
 			<key>ACTIONS</key>
 			<dict>
+				<key>addTransaction</key>
+				<string>id</string>
+				<key>removeTransaction</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>FirstResponder</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
 				<key>updateView</key>
 				<string>id</string>
 			</dict>
@@ -99,21 +114,6 @@
 			</dict>
 			<key>SUPERCLASS</key>
 			<string>ZXReportView</string>
-		</dict>
-		<dict>
-			<key>ACTIONS</key>
-			<dict>
-				<key>addTransaction</key>
-				<string>id</string>
-				<key>removeTransaction</key>
-				<string>id</string>
-			</dict>
-			<key>CLASS</key>
-			<string>FirstResponder</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
-			<key>SUPERCLASS</key>
-			<string>NSObject</string>
 		</dict>
 		<dict>
 			<key>CLASS</key>
@@ -247,19 +247,6 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
-			<string>ZXLabelController</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
-			<key>OUTLETS</key>
-			<dict>
-				<key>owner</key>
-				<string>id</string>
-			</dict>
-			<key>SUPERCLASS</key>
-			<string>NSArrayController</string>
-		</dict>
-		<dict>
-			<key>CLASS</key>
 			<string>ZXAccountController</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
@@ -271,6 +258,19 @@
 				<string>ZXDocument</string>
 				<key>transactionController</key>
 				<string>ZXTransactionController</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSArrayController</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>ZXLabelController</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>owner</key>
+				<string>id</string>
 			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSArrayController</string>

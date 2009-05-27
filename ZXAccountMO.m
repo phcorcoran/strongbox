@@ -25,6 +25,8 @@
 #import "ZXAppController.h"
 
 @implementation ZXAccountMO
+@synthesize balance;
+
 //! Posts a notification if name is changed
 /*!
  Use specialSetName: to avoid notification posting.
@@ -60,13 +62,13 @@
 		return;
 	}
 	
-	double balance = 0;
+	double sum = 0;
 	for(id obj in array) {
 		double add = [[obj valueForKey:@"amount"] doubleValue];
-		balance += add;
-		[obj setValue:[NSNumber numberWithDouble:balance] forKey:@"balance"];
+		sum += add;
+		[obj setValue:[NSNumber numberWithDouble:sum] forKey:@"balance"];
 	}
-	[self setValue:[NSNumber numberWithDouble:balance] forKey:@"balance"];
+	[self setValue:[NSNumber numberWithDouble:sum] forKey:@"balance"];
 }
 
 - (void)mergeWithAccounts:(NSArray *)allAccounts controller:(id)controller
@@ -110,4 +112,11 @@
 								    object:self];
 	}
 }
+
+- (void)dealloc
+{
+	[balance release];
+	[super dealloc];
+}
+
 @end

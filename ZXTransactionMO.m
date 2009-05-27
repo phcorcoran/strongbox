@@ -27,6 +27,7 @@ static NSString *sharedNoLabelString = @"-";
 
 @implementation ZXTransactionMO
 @dynamic transactionLabelName;
+@synthesize balance;
 
 //! Forward method for transactionLabel.name
 - (NSString *)transactionLabelName { return [self valueForKeyPath:@"transactionLabel.name"]; }
@@ -97,5 +98,12 @@ static NSString *sharedNoLabelString = @"-";
 		[[NSNotificationCenter defaultCenter] postNotificationName:ZXTransactionLabelDidChangeNotification object:self];
 	}
 }
+
+- (void)dealloc
+{
+	[balance release];
+	[super dealloc];
+}
+
 
 @end

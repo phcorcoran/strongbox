@@ -58,33 +58,19 @@ static NSString *sharedNoLabelString = @"-";
 
 - (void)main
 {
-	[[NSNotificationCenter defaultCenter] addObserver:owner.managedObjectContext 
-						 selector:@selector(mergeChangesFromContextDidSaveNotification:) 
-						     name:NSManagedObjectContextDidSaveNotification 
-						   object:nil];
 	[self raiseImporterSheet];
 	BOOL toRestore = [ZXAppController shouldPostNotifications];
 	[ZXAppController setShouldPostNotifications:NO];
 	
 	NSError *error = nil;
 	
-	id importContext = [[NSManagedObjectContext alloc] init];
-	id coordinator = [[owner managedObjectContext] persistentStoreCoordinator];
-	[coordinator addPersistentStoreWithType:NSInMemoryStoreType 
-				  configuration:nil 
-					    URL:nil 
-					options:nil 
-					  error:&error];
-	[importContext setPersistentStoreCoordinator:coordinator];
-	[importContext setUndoManager:nil];
-	moc = importContext;
+	moc = [owner managedObjectContext];
 	
 	allNewLabels = [NSMutableDictionary dictionary];
 	NSString *labelsPath = [[NSString stringWithFormat:@"~/Library/Application Support/Cashbox/Labels.plist"] stringByExpandingTildeInPath];
 	NSString *accountsPath = [[NSString stringWithFormat:@"~/Library/Application Support/Cashbox/Accounts/"] stringByExpandingTildeInPath];
 	
 	[self importLabelsFromFile:labelsPath];
-	[moc save:&error];
 	
 	NSDirectoryEnumerator *direnum = [[NSFileManager defaultManager]
 					  enumeratorAtPath:accountsPath];
@@ -93,15 +79,34 @@ static NSString *sharedNoLabelString = @"-";
 		if ([[pname pathExtension] isEqualToString:@"plist"]) {
 			NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 			[self importAccountFromFile:[NSString stringWithFormat:@"%@/%@", accountsPath, pname]];
-			[moc save:&error];
 			[pool release];
 		}
 	}
-	[self endImporterSheet];
 	[ZXAppController setShouldPostNotifications:toRestore];
-	[moc save:&error];
-	[moc release];
 	[owner.accountController setSelectionIndex:0];
+	
+	// The transactions with no label have a nil transactionLabel property
+	// We fix that now before returning
+	id txDesc = [NSEntityDescription entityForName:@"Transaction" inManagedObjectContext:owner.managedObjectContext];
+	id noLabel = [owner.labelController valueForKey:@"noLabel"];
+	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+	[fetchRequest setEntity:txDesc];
+	
+	error = nil;
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"transactionLabel = nil"];
+	[fetchRequest setPredicate:pred];
+	id array = [owner.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	if(array == nil) {
+		// FIXME: Do some real error management here.
+		NSLog(@"fetch request failed with error: %@", error);
+		return;
+	}
+	for(id tx in array) {
+		[tx setValue:noLabel forKey:@"transactionLabel"];
+		[owner.managedObjectContext refreshObject:tx mergeChanges:YES];
+	}
+
+	[self endImporterSheet];
 }
 
 //! Imports labels from old cashbox app.
@@ -173,18 +178,6 @@ static NSString *sharedNoLabelString = @"-";
 		
 		[allNewLabels setValue:newLabel forKey:[newLabel valueForKey:@"name"]];
 	}
-	
-	id arr;
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	[fetchRequest setEntity:[NSEntityDescription entityForName:@"Label" 
-					    inManagedObjectContext:moc]];
-	NSError *error = nil;
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name LIKE %@)", sharedNoLabelString];
-	[fetchRequest setPredicate:pred];
-	arr = [moc executeFetchRequest:fetchRequest error:&error];
-	if([arr count] > 0) {
-		[allNewLabels setValue:[arr objectAtIndex:0] forKey:sharedNoLabelString];
-	}
 	[array release];
 }
 
@@ -231,9 +224,6 @@ static NSString *sharedNoLabelString = @"-";
 		[newTransaction setValue:[NSNumber numberWithDouble:amount] forKey:@"amount"];
 		[newTransaction setValue:[transaction valueForKey:@"Description Column"] forKey:@"transactionDescription"];
 		[newTransaction setValue:[allNewLabels valueForKey:[transaction valueForKey:@"Label"]] forKey:@"transactionLabel"];
-		if([transaction valueForKey:@"Label"] == nil) {
-			[newTransaction setValue:[allNewLabels valueForKey:sharedNoLabelString] forKey:@"transactionLabel"];
-		}
 		[newTransaction setValue:newAccount forKey:@"account"];
 	}
 	[account release];

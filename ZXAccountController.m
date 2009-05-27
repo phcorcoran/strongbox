@@ -21,7 +21,6 @@
 #import "ZXAccountController.h"
 #import "ZXAccountMO.h"
 #import "ZXCurrencyFormatter.h"
-#import "ZXDocument.h"
 #import "ZXNotifications.h"
 #import "ZXTransactionController.h"
 #import "ZXAppController.h"
@@ -53,22 +52,31 @@
 - (void)prepareContent
 {
 	[super prepareContent];
+	[[owner managedObjectContext] processPendingChanges];
+	[[owner undoManager] disableUndoRegistration];
 	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 	[fetchRequest setEntity:[NSEntityDescription entityForName:@"Account" 
 					    inManagedObjectContext:self.managedObjectContext]];
 	
 	NSError *error = nil;
 	NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-	if(array == nil)  return;
+	if(array == nil) {
+		// FIXME: Real error management needed.
+		[[owner undoManager] enableUndoRegistration];
+		NSLog(@"Could not load accounts: %@", error);
+		return;
+	}
 	
 	if([array count] < 1) {
-		[self add:self];
+		[[self newObject] autorelease];
 	}
 	[self updateUsedNames];
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 						 selector:@selector(validatesNewAccountName:) 
 						     name:ZXAccountNameDidChangeNotification 
 						   object:nil];
+	[[owner managedObjectContext] processPendingChanges];
+	[[owner undoManager] enableUndoRegistration];
 }
 
 //! Controls special cases of key-value changes
@@ -114,9 +122,13 @@
 
 - (void)recalculateBalance:(NSNotification *)note
 {
+	[[owner managedObjectContext] processPendingChanges];
+	[[owner undoManager] disableUndoRegistration];
 	if([self valueForKeyPath:@"selection.self"] != NSNoSelectionMarker) {
 		[[self valueForKeyPath:@"selection.self"] recalculateBalance:note];
 	}
+	[[owner managedObjectContext] processPendingChanges];
+	[[owner undoManager] enableUndoRegistration];
 }
 
 //! Creates a new object
@@ -209,12 +221,13 @@
 	}
 	infiniteLoopBreaker = YES;
 	
+	id controller = [owner valueForKey:@"transactionController"];
 	id count, name;
 	count = [self valueForKeyPath:@"selection.transactions.@count"];
 	name = [self valueForKeyPath:@"selection.name"];
-	if(note != nil && [[[owner transactionController] valueForKeyPath:@"selectionIndexes.count"] intValue] > 1) {
-		id partial = [[owner transactionController] valueForKeyPath:@"selectionIndexes.count"];
-		id sum = [[owner transactionController] valueForKeyPath:@"selectedObjects.@sum.amount"];
+	if(note != nil && [[controller valueForKeyPath:@"selectionIndexes.count"] intValue] > 1) {
+		id partial = [controller valueForKeyPath:@"selectionIndexes.count"];
+		id sum = [controller valueForKeyPath:@"selectedObjects.@sum.amount"];
 		sum = [[ZXCurrencyFormatter currencyFormatter] stringFromNumber:sum];
 		// FIXME: Hard-coded english
 		self.generalMessage = [NSString stringWithFormat:@"%@ of %@ transactions in %@. Subtotal: %@", partial, count, name, sum];

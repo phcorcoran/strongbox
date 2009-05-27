@@ -25,7 +25,9 @@
  Prevents duplicate names in accounts. Also manages the balance calculation.
  */
 @interface ZXAccountMO : NSManagedObject {
+	IBOutlet NSNumber *balance;
 }
+@property(copy) NSNumber *balance;
 //! Sets the name of the account avoiding verification
 /*! 
  Verify that no duplicates exist in the controller before using that method.

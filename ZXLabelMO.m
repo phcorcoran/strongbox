@@ -43,9 +43,8 @@
  */
 - (void)setValue:(id)value forKey:(NSString *)key
 {
-	// The "-" label name is immutable. Could be changed to only 
-	// "if([[self valueForKey:@"isImmutable"] boolValue])" to disable color change.
-	if([[self valueForKey:@"isImmutable"] boolValue]) return;
+	// No change is allowed on a immutable label, except to unprotect it.
+	if([[self valueForKey:@"isImmutable"] boolValue] && ![key isEqual:@"isImmutable"]) return;
 	[super setValue:value forKey:key];
 	if([key isEqual:@"name"] && [ZXAppController shouldPostNotifications]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:ZXLabelDidChangeNotification object:self];

@@ -31,6 +31,8 @@
 	 This solved the problem.
 	 */
 	IBOutlet NSString *transactionLabelName;
+	IBOutlet NSNumber *balance;
 }
 @property(copy) NSString *transactionLabelName;
+@property(retain) NSNumber *balance;
 @end

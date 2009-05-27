@@ -20,8 +20,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class ZXDocument;
-
 //! General controller code for accounts.
 /*!
  Subclass of NSArrayController. Contains all the accounts and ensures no duplicate
@@ -37,11 +35,11 @@
 	 */
 	NSMutableDictionary *usedNames;
 	IBOutlet NSString *generalMessage;
-	IBOutlet ZXDocument *owner;
+	IBOutlet id owner;
 }
 @property(retain) NSMutableDictionary *usedNames;
 @property(copy) NSString *generalMessage;
-@property(readonly) ZXDocument *owner;
+@property(readonly) id owner;
 
 //! Forward recalculateBalance: message to selected account
 - (void)recalculateBalance:(NSNotification *)note;

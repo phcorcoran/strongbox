@@ -28,6 +28,7 @@
  account, so that next time the document is opened this selection remains.
  */
 @interface ZXDocumentConfigController : NSObjectController {
+	IBOutlet id owner;
 	IBOutlet ZXAccountController *accountController;
 }
 //! Updates the name of the current account name

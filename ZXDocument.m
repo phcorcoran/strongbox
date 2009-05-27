@@ -34,6 +34,7 @@
 #import "ZXOvalPopUpButtonCell.h"
 
 
+
 @implementation ZXDocument
 
 @synthesize strongboxWindow, accountController, transactionSortDescriptors, nameSortDescriptors, transactionController, labelController, dateFormatter;
@@ -63,8 +64,6 @@
 	id note = [NSNotification notificationWithName:ZXAccountTotalDidChangeNotification object:nil];
 	[[NSNotificationQueue defaultQueue] enqueueNotification:note postingStyle:NSPostWhenIdle];
 
-	//id cell = [[transactionsView tableColumnWithIdentifier:@"label"] dataCell];
-	//[cell addItemsWithTitles:[self valueForKeyPath:@"allLabels.name"]];
 	[self updateChangeCount:NSChangeCleared];
 	
 	[transactionsView performSelector:@selector(reloadData)
@@ -134,7 +133,8 @@
 // Write the last saved document to preference so it is opened automatically next time.
 - (BOOL)writeSafelyToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError **)outError
 {
-	[[[NSUserDefaultsController sharedUserDefaultsController] values] setValue:[absoluteURL absoluteString] forKey:@"lastFileURL"];
+	id dict = [[NSUserDefaultsController sharedUserDefaultsController] values];
+	[dict setValue:[absoluteURL absoluteString] forKey:@"lastFileURL"];
 	return [super writeSafelyToURL:absoluteURL ofType:typeName forSaveOperation:saveOperation error:outError];
 }
 
@@ -176,9 +176,8 @@
 {
 	oldCashboxImporter = [[[ZXOldCashboxImporter alloc] initWithOwner:self] autorelease];
 	[oldCashboxImporter main];
-	for(id account in [accountController valueForKey:@"arrangedObjects"]) {
-		[account recalculateBalance:nil];
-	}
+	id arr = [accountController arrangedObjects];
+	[arr makeObjectsPerformSelector:@selector(recalculateBalance:) withObject:nil];
 }
 
 #pragma mark Table View Delegate Stuff
@@ -217,8 +216,7 @@
 	return nil;
 }
 
-- (void)tableViewColumnDidMove:(NSNotification *)aNotification
-{
+- (void)tableViewColumnDidMove:(NSNotification *)aNotification {
 	[transactionsView setNeedsDisplay:YES];
 }
 
@@ -298,8 +296,6 @@
 	if(returnCode != NSOKButton) return;
 	
 	NSMutableString *ret = [NSMutableString string];
-	id account = [accountController valueForKey:@"selection"];
-	[ret appendString:[NSString stringWithFormat:@"%@,%@\n", [account valueForKey:@"name"], [dateFormatter stringFromDate:[NSDate date]]]];
 	// FIXME: Hard-coded english
 	[ret appendString:@"Date,Label,Description,Amount,Balance\n"];
 	for(id tx in [transactionController valueForKey:@"arrangedObjects"]) {
