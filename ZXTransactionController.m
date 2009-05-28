@@ -19,28 +19,21 @@
  */
 
 #import "ZXTransactionController.h"
-#import "ZXNotifications.h"
-#import "ZXAppController.h"
+#import "ZXNotification.h"
 
 @implementation ZXTransactionController
 
 - (IBAction)add:(id)sender {
 	[super add:sender];
-	id note = [NSNotification notificationWithName:ZXAccountTotalDidChangeNotification 
-						object:nil];
-	if([ZXAppController shouldPostNotifications]) {
-		[[NSNotificationQueue defaultQueue] enqueueNotification:note 
-							   postingStyle:NSPostWhenIdle];
-	}
+	[ZXNotification enqueueNotificationName:ZXAccountTotalDidChangeNotification 
+					 object:nil 
+				   postingStyle:NSPostWhenIdle];
 }
 - (IBAction)remove:(id)sender {
 	[super remove:sender];
-	id note = [NSNotification notificationWithName:ZXAccountTotalDidChangeNotification 
-						object:nil];
-	if([ZXAppController shouldPostNotifications]) {
-		[[NSNotificationQueue defaultQueue] enqueueNotification:note 
-							   postingStyle:NSPostWhenIdle];
-	}
+	[ZXNotification enqueueNotificationName:ZXAccountTotalDidChangeNotification 
+					 object:nil 
+				   postingStyle:NSPostWhenIdle];
 }
 
 -(BOOL)isACompletion:(NSString *)aString
@@ -78,10 +71,9 @@
 - (void)setValue:(id)newValue forKey:(id)key
 {
 	[super setValue:newValue forKey:key];
-	if(([key isEqual:@"selectionIndex"] || [key isEqual:@"selectionIndexes"]) && 
-	   [ZXAppController shouldPostNotifications]) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:ZXTransactionSelectionDidChangeNotification 
-								    object:self];
+	if([key isEqual:@"selectionIndex"] || [key isEqual:@"selectionIndexes"]) {
+		[ZXNotification postNotificationName:ZXTransactionSelectionDidChangeNotification 
+					      object:self];
 	}
 }
 

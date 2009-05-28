@@ -19,12 +19,46 @@
  */
 
 static NSString *ZXAccountControllerDidLoadNotification = @"AccountControllerDidLoad";
+static NSString *ZXLabelControllerDidLoadNotification = @"LabelControllerDidLoad";
 static NSString *ZXAccountNameDidChangeNotification = @"AccountNameDidChange";
 static NSString *ZXAccountTotalDidChangeNotification = @"AccountTotalDidChange";
 static NSString *ZXActiveAccountDidChangeNotification = @"ActiveAccountDidChange";
-static NSString *ZXLabelControllerDidLoadNotification = @"LabelControllerDidLoad";
 static NSString *ZXLabelDidChangeNotification = @"LabelDidChange";
 static NSString *ZXTransactionLabelDidChangeNotification = @"TransactionLabelDidChange";
 static NSString *ZXTransactionSelectionDidChangeNotification = @"TransactionSelectionDidChange";
 static NSString *ZXTransactionViewDidLoadNotification = @"TransactionViewDidLoad";
+
+//! Manage notifications
+/*!
+ Convenience class to manage notifications. It allows to disable notifications 
+ application-wide, without modification to the code.
+ */
+@interface ZXNotification : NSObject {
+}
+//! Returns YES if notifications should be posted, NO otherwise.
+/*!
+ Should almost always return YES, except when during a batch import or batch 
+ change of some sort
+ \sa setShouldPostNotifications:
+ */
++ (BOOL)shouldPostNotifications;
+//! Enable or disable notification posting application-wide.
+/*!
+ It is a good idea to disable notifications during a batch import or something
+ similar
+ \sa shouldPostNotifications
+ */
++ (void)setShouldPostNotifications:(BOOL)newVal;
+//! Forward method to +[NSNotificationCenter defaultCenter] if notifications are enabled.
++ (void)postNotificationName:(NSString *)name object:(id)object;
+//! Forward method to +[NSNotificationQueue defaultQueue] if notifications are enabled.
++ (void)enqueueNotification:(id)note postingStyle:(NSPostingStyle)style;
+//! Convenience method to enqueue notifications
+/*!
+ Create notification with given name and object and calls enqueueNotification:postingStyle:
+ \sa enqueueNotification:postingStyle:
+ */
++ (void)enqueueNotificationName:(NSString *)name object:(id)object postingStyle:(NSPostingStyle)style;
+@end
+
 

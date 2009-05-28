@@ -21,9 +21,8 @@
 #import "ZXAccountController.h"
 #import "ZXAccountMO.h"
 #import "ZXCurrencyFormatter.h"
-#import "ZXNotifications.h"
+#import "ZXNotification.h"
 #import "ZXTransactionController.h"
-#import "ZXAppController.h"
 
 @interface ZXAccountController (Private)
 - (NSString *)uniqueNewName:(NSString *)newDesiredName;
@@ -87,10 +86,9 @@
 - (void)setValue:(id)newValue forKey:(id)key
 {
 	[super setValue:newValue forKey:key];
-	if(([key isEqual:@"selectionIndex"] || [key isEqual:@"selectionIndexes"]) && 
-	   [ZXAppController shouldPostNotifications]) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:ZXActiveAccountDidChangeNotification 
-								    object:self];
+	if([key isEqual:@"selectionIndex"] || [key isEqual:@"selectionIndexes"]) {
+		[ZXNotification postNotificationName:ZXActiveAccountDidChangeNotification 
+					      object:self];
 	}
 }
 
@@ -220,8 +218,8 @@
 	if([self valueForKeyPath:@"selection.self"] == NSNoSelectionMarker) {
 		if(infiniteLoopBreaker) {
 			infiniteLoopBreaker = NO;
-			[[NSNotificationQueue defaultQueue] enqueueNotification:note 
-								   postingStyle:NSPostWhenIdle];
+			[ZXNotification enqueueNotification:note 
+					       postingStyle:NSPostWhenIdle];
 		}
 		return;
 	}

@@ -74,6 +74,7 @@
 		F1F7CAE70D7B8D4700B9DD1B /* InspectorIcon_old.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CAE50D7B8D4700B9DD1B /* InspectorIcon_old.png */; };
 		F1F7CAE80D7B8D4700B9DD1B /* StatIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CAE60D7B8D4700B9DD1B /* StatIcon.png */; };
 		F1F7CB940D7E101E00B9DD1B /* ZXTransactionMO.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F7CB930D7E101E00B9DD1B /* ZXTransactionMO.m */; };
+		F1FB10430FCE5B170044D26E /* ZXNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FB10420FCE5B170044D26E /* ZXNotification.m */; };
 		F1FDCA820DB2620D003FFBAB /* ZXReportWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FDCA810DB2620D003FFBAB /* ZXReportWindowController.m */; };
 /* End PBXBuildFile section */
 
@@ -169,7 +170,7 @@
 		F1C8C8120E2500B100D7AC42 /* ZXTransactionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTransactionController.m; sourceTree = "<group>"; };
 		F1CEA3E90DFA5416007B913F /* ZXReportGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReportGraphView.h; sourceTree = "<group>"; };
 		F1CEA3EA0DFA5416007B913F /* ZXReportGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXReportGraphView.m; sourceTree = "<group>"; };
-		F1CEA5DD0DFA6E2A007B913F /* ZXNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXNotifications.h; sourceTree = "<group>"; };
+		F1CEA5DD0DFA6E2A007B913F /* ZXNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXNotification.h; sourceTree = "<group>"; };
 		F1DA7F2A0E2E0C1600D05BB4 /* ZXAccountMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAccountMO.h; sourceTree = "<group>"; };
 		F1DA7F2B0E2E0C1600D05BB4 /* ZXAccountMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAccountMO.m; sourceTree = "<group>"; };
 		F1EB03BB0EDA3D1700921513 /* ZXReportHistView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReportHistView.h; sourceTree = "<group>"; };
@@ -181,6 +182,7 @@
 		F1F7CAE60D7B8D4700B9DD1B /* StatIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatIcon.png; sourceTree = "<group>"; };
 		F1F7CB920D7E101E00B9DD1B /* ZXTransactionMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTransactionMO.h; sourceTree = "<group>"; };
 		F1F7CB930D7E101E00B9DD1B /* ZXTransactionMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTransactionMO.m; sourceTree = "<group>"; };
+		F1FB10420FCE5B170044D26E /* ZXNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXNotification.m; sourceTree = "<group>"; };
 		F1FDCA800DB2620D003FFBAB /* ZXReportWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReportWindowController.h; sourceTree = "<group>"; };
 		F1FDCA810DB2620D003FFBAB /* ZXReportWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXReportWindowController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -254,7 +256,8 @@
 				F18171840D89FE4400482919 /* ZXAppController.h */,
 				2A37F4ACFDCFA73011CA2CEA /* ZXDocument.m */,
 				2A37F4AEFDCFA73011CA2CEA /* ZXDocument.h */,
-				F1CEA5DD0DFA6E2A007B913F /* ZXNotifications.h */,
+				F1FB10420FCE5B170044D26E /* ZXNotification.m */,
+				F1CEA5DD0DFA6E2A007B913F /* ZXNotification.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 				F1C166D40FB384FD00A1247A /* ZXDataTransformer.m in Sources */,
 				F1369ABF0FC6BD82004F910D /* ZXOvalTextFieldCell.m in Sources */,
 				F1369B720FC6CAEB004F910D /* ZXOvalPopUpButtonCell.m in Sources */,
+				F1FB10430FCE5B170044D26E /* ZXNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

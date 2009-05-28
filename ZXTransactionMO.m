@@ -20,8 +20,7 @@
 
 #import "ZXTransactionMO.h"
 #import "ZXLabelController.h"
-#import "ZXNotifications.h"
-#import "ZXAppController.h"
+#import "ZXNotification.h"
 
 static NSString *sharedNoLabelString = @"-";
 
@@ -69,7 +68,8 @@ static NSString *sharedNoLabelString = @"-";
 - (void)didChangeValueForKey:(NSString *)key
 {
 	[super didChangeValueForKey:key];
-	if([key isEqual:@"account"]) {
+	// Not exactly a notification, but still.
+	if([key isEqual:@"account"] && [ZXNotification shouldPostNotifications]) {
 		[self setValue:[self valueForKeyPath:@"account.balance"] 
 			forKey:@"balance"];
 	}
@@ -94,14 +94,12 @@ static NSString *sharedNoLabelString = @"-";
 - (void)setValue:(id)newValue forKey:(id)key
 {
 	[super setValue:newValue forKey:key];
-	if(([key isEqual:@"amount"] || [key isEqual:@"date"]) && 
-	   [ZXAppController shouldPostNotifications]) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountTotalDidChangeNotification 
-								    object:nil];
-	} else if([key isEqual:@"transactionLabel"] && 
-		  [ZXAppController shouldPostNotifications]) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:ZXTransactionLabelDidChangeNotification 
-								    object:self];
+	if([key isEqual:@"amount"] || [key isEqual:@"date"]) {
+		[ZXNotification postNotificationName:ZXAccountTotalDidChangeNotification 
+					      object:nil];
+	} else if([key isEqual:@"transactionLabel"]) {
+		[ZXNotification postNotificationName:ZXTransactionLabelDidChangeNotification 
+					      object:self];
 	}
 }
 
@@ -110,6 +108,4 @@ static NSString *sharedNoLabelString = @"-";
 	[balance release];
 	[super dealloc];
 }
-
-
 @end

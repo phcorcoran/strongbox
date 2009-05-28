@@ -50,7 +50,7 @@
 	<key>CFBundleSignature</key>
 	<string>STBX</string>
 	<key>CFBundleVersion</key>
-	<string>295</string>
+	<string>363</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

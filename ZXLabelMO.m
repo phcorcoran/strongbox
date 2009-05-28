@@ -20,8 +20,7 @@
 
 #import "ZXLabelMO.h"
 #import "ZXLabelController.h"
-#import "ZXNotifications.h"
-#import "ZXAppController.h"
+#import "ZXNotification.h"
 
 
 @implementation ZXLabelMO
@@ -46,12 +45,12 @@
 	// No change is allowed on a immutable label, except to unprotect it.
 	if([[self valueForKey:@"isImmutable"] boolValue] && ![key isEqual:@"isImmutable"]) return;
 	[super setValue:value forKey:key];
-	if([key isEqual:@"name"] && [ZXAppController shouldPostNotifications]) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:ZXLabelDidChangeNotification 
-								    object:self];
-	} else if([key isEqual:@"obsolete"] && [ZXAppController shouldPostNotifications]) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:ZXTransactionLabelDidChangeNotification 
-								    object:self];
+	if([key isEqual:@"name"]) {
+		[ZXNotification postNotificationName:ZXLabelDidChangeNotification 
+					      object:self];
+	} else if([key isEqual:@"obsolete"]) {
+		[ZXNotification postNotificationName:ZXTransactionLabelDidChangeNotification
+					      object:self];
 	}
 }
 - (void)specialSetName:(NSString *)newName

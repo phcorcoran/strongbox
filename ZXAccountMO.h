@@ -40,11 +40,4 @@
  Sets the new balance for the account AND for each transactions.
  */
 - (void)recalculateBalance:(NSNotification *)note;
-
-//! Merge current account with another one
-/*!
- Current account is updated during the operation, collecting all the transactions.
- All other accounts involved are removed.
- */
-- (void)mergeWithAccounts:(NSArray *)newAccounts controller:(id)controller;
 @end

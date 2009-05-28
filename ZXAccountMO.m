@@ -20,9 +20,7 @@
 
 #import "ZXAccountMO.h"
 #import "ZXTransactionMO.h"
-#import "ZXNotifications.h"
-#import "ZXAccountMergeController.h"
-#import "ZXAppController.h"
+#import "ZXNotification.h"
 
 @implementation ZXAccountMO
 @synthesize balance;
@@ -35,9 +33,9 @@
 - (void)setValue:(id)value forKey:(NSString *)key
 {
 	[super setValue:value forKey:key];
-	if([key isEqual:@"name"] && [ZXAppController shouldPostNotifications]) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountNameDidChangeNotification 
-								    object:self];
+	if([key isEqual:@"name"]) {
+		[ZXNotification postNotificationName:ZXAccountNameDidChangeNotification 
+					      object:self];
 	}
 }
 
@@ -74,52 +72,9 @@
 	[self setValue:[NSNumber numberWithDouble:sum] forKey:@"balance"];
 }
 
-- (void)mergeWithAccounts:(NSArray *)allAccounts controller:(id)controller
-{
-	NSMutableArray *newAccounts = [allAccounts mutableCopy];
-	id entityDescription = [NSEntityDescription entityForName:@"Transaction" 
-					   inManagedObjectContext:[self managedObjectContext]];
-	
-	[newAccounts removeObjectIdenticalTo:self];
-	
-	NSPredicate *accountPredicate = [NSPredicate predicateWithFormat:@"account IN %@", newAccounts];
-		
-	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-	[fetchRequest setEntity:entityDescription];
-	[fetchRequest setPredicate:accountPredicate];
-	NSError *error = nil;
-	NSArray *array = [[self managedObjectContext] executeFetchRequest:fetchRequest 
-								  error:&error];
-	if(array == nil) {
-		return;
-	}
-	[controller setValue:[NSNumber numberWithInt:[array count]] 
-		      forKey:@"progressTotal"];
-	[controller setValue:[NSNumber numberWithInt:0] 
-		      forKey:@"progressCount"];
-	int i = 0;
-	for(ZXTransactionMO *tx in array) {
-		[controller setValue:[NSNumber numberWithInt:i] 
-			      forKey:@"progressCount"];
-		[controller updateView:self];
-		[tx setValue:self forKey:@"account"];
-		i += 1;
-	}
-	[controller updateView:self];
-	for(id acc in newAccounts) {
-		if(acc == self) continue;
-		[self.managedObjectContext deleteObject:acc];
-	}
-	if([ZXAppController shouldPostNotifications]) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountTotalDidChangeNotification 
-								    object:self];
-	}
-}
-
 - (void)dealloc
 {
 	[balance release];
 	[super dealloc];
 }
-
 @end

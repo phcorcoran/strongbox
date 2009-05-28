@@ -8,7 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-
+//! Controller for account merging
+/*! 
+ Merges two or more accounts together.
+ */
 @interface ZXAccountMergeController : NSObject {
 	id owner;
 	IBOutlet NSArrayController *mergeAccountController;
@@ -19,9 +22,20 @@
 	NSNumber *progressCount;
 	NSNumber *progressTotal;
 }
+//! Starts the merging routine
+/*! 
+ First step is raising the selection sheet, then merge, then exit.
+ */
 - (void)main;
 - (IBAction)raiseMergeSheet:(id)sender;
 - (IBAction)endMergeSheet:(id)sender;
 - (IBAction)merge:(id)sender;
+
+//! Merge current account with others
+/*!
+ Current account is updated during the operation, collecting all the transactions.
+ All other accounts involved are removed.
+ */
+- (void)mergeAccount:(id)account withAccounts:(NSArray *)allAccounts;
 - (void)updateView:(id)sender;
 @end

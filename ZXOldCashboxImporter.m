@@ -20,7 +20,7 @@
 
 #import "ZXOldCashboxImporter.h"
 #import "ZXDocument.h"
-#import "ZXAppController.h"
+#import "ZXNotification.h"
 
 static NSString *sharedNoLabelString = @"-";
 
@@ -59,8 +59,8 @@ static NSString *sharedNoLabelString = @"-";
 - (void)main
 {
 	[self raiseImporterSheet];
-	BOOL toRestore = [ZXAppController shouldPostNotifications];
-	[ZXAppController setShouldPostNotifications:NO];
+	BOOL toRestore = [ZXNotification shouldPostNotifications];
+	[ZXNotification setShouldPostNotifications:NO];
 	
 	NSError *error = nil;
 	
@@ -84,7 +84,7 @@ static NSString *sharedNoLabelString = @"-";
 			[pool release];
 		}
 	}
-	[ZXAppController setShouldPostNotifications:toRestore];
+	[ZXNotification setShouldPostNotifications:toRestore];
 	[owner.accountController setSelectionIndex:0];
 	
 	// The transactions with no label have a nil transactionLabel property
@@ -106,7 +106,6 @@ static NSString *sharedNoLabelString = @"-";
 	}
 	for(id tx in array) {
 		[tx setValue:noLabel forKey:@"transactionLabel"];
-		[owner.managedObjectContext refreshObject:tx mergeChanges:YES];
 	}
 
 	[self endImporterSheet];

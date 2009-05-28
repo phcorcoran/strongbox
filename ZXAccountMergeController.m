@@ -9,6 +9,7 @@
 #import "ZXAccountMergeController.h"
 #import "ZXAccountMO.h"
 #import "ZXDocument.h"
+#import "ZXNotification.h"
 
 
 @implementation ZXAccountMergeController
@@ -17,6 +18,7 @@
 	self = [super init];
 	owner = newOwner;
 	[NSBundle loadNibNamed:@"MergeWindow" owner:self];
+	[progressIndicator setUsesThreadedAnimation:YES];
 	return self;
 }
 
@@ -48,18 +50,76 @@
 	    modalDelegate:self 
 	   didEndSelector:nil 
 	      contextInfo:NULL];
-	ZXAccountMO *current = [owner valueForKeyPath:@"accountController.selection.self"];
-	[current mergeWithAccounts:[self valueForKeyPath:@"mergeAccountController.selectedObjects"]
-			controller:self];
+	id current = [owner valueForKeyPath:@"accountController.selection.self"];
+	[self mergeAccount:current
+	      withAccounts:[self valueForKeyPath:@"mergeAccountController.selectedObjects"]];
 	[mergeProgressSheet orderOut:sender];
 	[NSApp endSheet:mergeProgressSheet returnCode:1];
 }
+
+- (void)mergeAccount:(id)account withAccounts:(NSArray *)allAccounts
+{
+	BOOL toRestore = [ZXNotification shouldPostNotifications];
+	[ZXNotification setShouldPostNotifications:NO];
+	
+	id moc = [owner managedObjectContext];
+	
+	NSMutableArray *newAccounts = [allAccounts mutableCopy];
+	id accDesc = [NSEntityDescription entityForName:@"Transaction" 
+				 inManagedObjectContext:moc];
+	
+	[newAccounts removeObjectIdenticalTo:account];
+	
+	id pred = [NSPredicate predicateWithFormat:@"account IN %@", newAccounts];
+	
+	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+	[fetchRequest setEntity:accDesc];
+	[fetchRequest setPredicate:pred];
+	NSError *error = nil;
+	NSArray *array = [moc executeFetchRequest:fetchRequest error:&error];
+	if(array == nil) {
+		return;
+	}
+	[self setValue:[NSNumber numberWithInt:[array count]] 
+		forKey:@"progressTotal"];
+	[self setValue:[NSNumber numberWithInt:0] 
+		forKey:@"progressCount"];
+	// This may seem convoluted, but the overhead of setting the account
+	// property directly to the new account is unexplainably high.
+	// Instead, we remove the tx from old account and add it to a list
+	// then we set the new account without triggering any action
+	// then we set the new list as the transactions of the new account
+	// In my case, the difference on 600 txs was from ~30s to ~1s for a merge.
+	int i = 0;
+	id tmp = [[[account valueForKey:@"transactions"] mutableCopy] autorelease];
+	if(!tmp) return;
+	for(id tx in array) {
+		if(i % 100 == 0) {
+			[self setValue:[NSNumber numberWithInt:i] 
+				forKey:@"progressCount"];
+			[self updateView:self];
+		}
+		[tx setValue:nil forKey:@"account"];
+		[tx setPrimitiveValue:account forKey:@"account"];
+		[tmp addObject:tx];
+		i += 1;
+	}
+	[account setValue:tmp forKey:@"transactions"];
+	[self updateView:self];
+	for(id acc in newAccounts) {
+		if(acc == self) continue;
+		[moc deleteObject:acc];
+	}
+	[ZXNotification setShouldPostNotifications:toRestore];
+	[ZXNotification postNotificationName:ZXAccountTotalDidChangeNotification 
+				      object:self];
+}
+
 
 - (void)updateView:(id)sender
 {
 	// FIXME: Hard-coded english
 	[mergeMessage setStringValue:[NSString stringWithFormat:@"Merging %@ of %@ transactions", progressCount, progressTotal]];
-	[mergeProgressSheet display];
-	[[owner strongboxWindow] display];
+	[mergeProgressSheet displayIfNeeded];
 }
 @end

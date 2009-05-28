@@ -25,7 +25,7 @@
 #import "ZXDocumentConfigController.h"
 #import "ZXLabelController.h"
 #import "ZXLabelMO.h"
-#import "ZXNotifications.h"
+#import "ZXNotification.h"
 #import "ZXOldCashboxImporter.h"
 #import "ZXPrintTransactionView.h"
 #import "ZXReportWindowController.h"
@@ -65,12 +65,11 @@
 {
 	[super windowControllerDidLoadNib:windowController];
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountControllerDidLoadNotification 
-							    object:self];
-	id note = [NSNotification notificationWithName:ZXAccountTotalDidChangeNotification 
-						object:nil];
-	[[NSNotificationQueue defaultQueue] enqueueNotification:note 
-						   postingStyle:NSPostWhenIdle];
+	[ZXNotification postNotificationName:ZXAccountControllerDidLoadNotification 
+				      object:self];
+	[ZXNotification enqueueNotificationName:ZXAccountTotalDidChangeNotification 
+					 object:self 
+				   postingStyle:NSPostWhenIdle];
 
 	[self updateChangeCount:NSChangeCleared];
 	
@@ -119,6 +118,8 @@
 {
 	id mergeController = [[[ZXAccountMergeController alloc] initWithOwner:self] autorelease];
 	[mergeController main];
+	id arr = [accountController arrangedObjects];
+	[arr makeObjectsPerformSelector:@selector(recalculateBalance:) withObject:nil];
 }
 
 
