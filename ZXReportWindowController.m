@@ -21,7 +21,7 @@
 #import "ZXReportWindowController.h"
 #import "ZXDocument.h"
 #import "ZXLabelController.h"
-#import "ZXNotifications.h"
+#import "ZXNotification.h"
 #import "ZXReportGraphView.h"
 #import "ZXReportHistView.h"
 #import "ZXReportSection.h"

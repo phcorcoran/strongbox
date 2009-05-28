@@ -40,8 +40,8 @@
 	{
 		// FIXME: Magic error message
 		id attr = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor redColor], @"NSColor", nil];
-		id string = [[NSAttributedString alloc] initWithString:@"No Information Available" 
-							    attributes:attr];
+		NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"No Information Available" 
+									     attributes:attr];
 		NSPoint p = NSMakePoint((rect.size.width - [string size].width) / 2,rect.size.height - 20);
 		[string drawAtPoint:p];
 		[string release];

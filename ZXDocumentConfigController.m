@@ -19,7 +19,7 @@
  */
 
 #import "ZXDocumentConfigController.h"
-#import "ZXNotifications.h"
+#import "ZXNotification.h"
 #import "ZXAccountController.h"
 
 @interface ZXDocumentConfigController (Private)

@@ -20,7 +20,7 @@
 
 #import "ZXLabelController.h"
 #import "ZXLabelMO.h"
-#import "ZXNotifications.h"
+#import "ZXNotification.h"
 #import "ZXOvalPopUpButtonCell.h"
 
 static NSString *sharedNoLabelString = @"-";

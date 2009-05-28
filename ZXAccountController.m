@@ -94,8 +94,10 @@
 
 //! Basic initialization
 /*!
- Registers to recalculate balances of selection when account total changes, or when active account changes.
- Also, update the general message when account total or name changes, when active account changes or when transaction selection changes.
+ Registers to recalculate balances of selection when account total changes, or 
+ when active account changes.
+ Also, update the general message when account total or name changes, when 
+ active account changes or when transaction selection changes.
  \sa recalculateBalance:
  \sa updateGeneralMessage:
  */
@@ -103,7 +105,8 @@
 {
 	[super awakeFromNib];
 	id nc = [NSNotificationCenter defaultCenter];
-	id arr = [NSArray arrayWithObjects:ZXAccountTotalDidChangeNotification, ZXActiveAccountDidChangeNotification, nil];
+	id arr = [NSArray arrayWithObjects:ZXAccountTotalDidChangeNotification, 
+		  ZXActiveAccountDidChangeNotification, nil];
 	for(id note in arr) {
 		[nc addObserver:self 
 		       selector:@selector(recalculateBalance:) 
