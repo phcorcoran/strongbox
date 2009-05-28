@@ -45,15 +45,16 @@ static NSString *sharedNoLabelString = @"-";
 - (void)setTransactionLabelName:(NSString *)newLabelName
 {
 	if(!newLabelName) return;
-	NSEntityDescription *labelDescription = [NSEntityDescription entityForName:@"Label" 
-							    inManagedObjectContext:self.managedObjectContext];
+	id labelDesc = [NSEntityDescription entityForName:@"Label" 
+				   inManagedObjectContext:[self managedObjectContext]];
 	NSPredicate *namePredicate = [NSPredicate predicateWithFormat:@"(name like %@)", newLabelName];
 	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-	[fetchRequest setEntity:labelDescription];
+	[fetchRequest setEntity:labelDesc];
 	[fetchRequest setPredicate:namePredicate];
 	[fetchRequest setFetchLimit:1];
 	NSError *error = nil;
-	NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	NSArray *array = [[self managedObjectContext] executeFetchRequest:fetchRequest 
+								    error:&error];
 	if(array == nil || [array count] < 1) {
 		return;
 	}
@@ -69,7 +70,8 @@ static NSString *sharedNoLabelString = @"-";
 {
 	[super didChangeValueForKey:key];
 	if([key isEqual:@"account"]) {
-		[self setValue:[self valueForKeyPath:@"account.balance"] forKey:@"balance"];
+		[self setValue:[self valueForKeyPath:@"account.balance"] 
+			forKey:@"balance"];
 	}
 }
 
@@ -92,10 +94,14 @@ static NSString *sharedNoLabelString = @"-";
 - (void)setValue:(id)newValue forKey:(id)key
 {
 	[super setValue:newValue forKey:key];
-	if(([key isEqual:@"amount"] || [key isEqual:@"date"]) && [ZXAppController shouldPostNotifications]) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountTotalDidChangeNotification object:nil];
-	} else if([key isEqual:@"transactionLabel"] && [ZXAppController shouldPostNotifications]) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:ZXTransactionLabelDidChangeNotification object:self];
+	if(([key isEqual:@"amount"] || [key isEqual:@"date"]) && 
+	   [ZXAppController shouldPostNotifications]) {
+		[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountTotalDidChangeNotification 
+								    object:nil];
+	} else if([key isEqual:@"transactionLabel"] && 
+		  [ZXAppController shouldPostNotifications]) {
+		[[NSNotificationCenter defaultCenter] postNotificationName:ZXTransactionLabelDidChangeNotification 
+								    object:self];
 	}
 }
 

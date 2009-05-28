@@ -27,7 +27,6 @@ static NSString *sharedNoLabelString = @"-";
 
 @interface ZXLabelController (Private)
 - (void)validatesNewLabelName:(NSNotification *)aNotification;
-- (void)setupNoLabelObject;
 - (NSString *)uniqueNewName:(NSString *)newDesiredName;
 - (void)updateUsedNames;
 @end
@@ -41,26 +40,17 @@ static NSString *sharedNoLabelString = @"-";
 		id array;
 		NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 		[fetchRequest setEntity:[NSEntityDescription entityForName:@"Label" 
-						    inManagedObjectContext:self.managedObjectContext]];
+						    inManagedObjectContext:[self managedObjectContext]]];
 		
 		NSError *error = nil;
 		NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name LIKE %@)", sharedNoLabelString];
 		[fetchRequest setPredicate:pred];
-		array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+		array = [[self managedObjectContext] executeFetchRequest:fetchRequest 
+								   error:&error];
 		if(array == nil) return nil;
 		self.noLabel = [array objectAtIndex:0];
 	}
 	return noLabel;
-}
-
-//! Initialization of the "no-label" object
-/*! This object is unique for each document */
-- (void)setupNoLabelObject
-{
-	self.noLabel = [NSEntityDescription insertNewObjectForEntityForName:@"Label" 
-						     inManagedObjectContext:self.managedObjectContext];
-	[self.noLabel specialSetName:sharedNoLabelString];
-	[self.noLabel setValue:[NSNumber numberWithBool:YES] forKey:@"isImmutable"];
 }
 
 - (id)init
@@ -82,10 +72,11 @@ static NSString *sharedNoLabelString = @"-";
 	[[owner undoManager] disableUndoRegistration];
 	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 	[fetchRequest setEntity:[NSEntityDescription entityForName:@"Label" 
-					    inManagedObjectContext:self.managedObjectContext]];
+					    inManagedObjectContext:[self managedObjectContext]]];
 	
 	NSError *error = nil;
-	NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	NSArray *array = [[self managedObjectContext] executeFetchRequest:fetchRequest 
+								    error:&error];
 	if(array == nil) {
 		// FIXME: Real error management needed.
 		[[owner undoManager] enableUndoRegistration];
@@ -94,8 +85,9 @@ static NSString *sharedNoLabelString = @"-";
 	}
 		
 	if([array count] < 1) {
-		[self setupNoLabelObject];
-		[self addObject:noLabel];
+		self.noLabel = [[self newObject] autorelease];
+		[noLabel specialSetName:sharedNoLabelString];
+		[noLabel setValue:[NSNumber numberWithBool:YES] forKey:@"isImmutable"];
 	}
 	
 	[self updateUsedNames];
@@ -160,13 +152,14 @@ static NSString *sharedNoLabelString = @"-";
  */
 - (void)updateUsedNames
 {
-	NSEntityDescription *desc = [NSEntityDescription entityForName:@"Label" 
-						inManagedObjectContext:self.managedObjectContext];
+	id desc = [NSEntityDescription entityForName:@"Label" 
+			      inManagedObjectContext:[self managedObjectContext]];
 	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 	[fetchRequest setEntity:desc];
 	
 	NSError *error = nil;
-	NSArray *allLabels = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	NSArray *allLabels = [[self managedObjectContext] executeFetchRequest:fetchRequest 
+									error:&error];
 	if(allLabels == nil) {
 		return;
 	}
@@ -205,7 +198,9 @@ static NSString *sharedNoLabelString = @"-";
 	
 	[cell setBordered:NO];
 	for(ZXLabelMO *label in [self arrangedObjects]) {
-		id item = [[cell menu] addItemWithTitle:[label valueForKey:@"name"] action:NULL keyEquivalent:@""];
+		id item = [[cell menu] addItemWithTitle:[label valueForKey:@"name"] 
+						 action:NULL 
+					  keyEquivalent:@""];
 		[item setAttributedTitle:[label coloredName]];
 		if([[label valueForKey:@"obsolete"] boolValue]) {
 			[item setHidden:YES];

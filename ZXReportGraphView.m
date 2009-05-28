@@ -24,20 +24,26 @@
 @implementation ZXReportGraphView
 - (void)drawRect:(NSRect)rect
 {
-	float radius = (rect.size.width < rect.size.height) ? rect.size.width / 2: rect.size.height / 2;
+	float radius = rect.size.height / 2;
+	if(rect.size.width < rect.size.height) {
+		radius = rect.size.width / 2;
+	}
 	NSPoint center = NSMakePoint(radius, rect.size.height - radius);
 	NSBezierPath *path;
 	double currentAngle = 90;
 	
-	id sortDesc = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"amount" ascending:YES] autorelease]];
+	id sortDesc = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"amount" 
+									    ascending:YES] autorelease]];
 	[allSections sortUsingDescriptors:sortDesc];
 	
 	if ([allSections count] < 1)
 	{
-//FIXME: Magic error message
-		NSAttributedString *string = [[NSAttributedString alloc] initWithString:@"No Information Available"
-									     attributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSColor redColor], @"NSColor", nil, nil]];
-		[string drawAtPoint:NSMakePoint((rect.size.width - [string size].width) / 2,rect.size.height - 20)];
+		// FIXME: Magic error message
+		id attr = [NSDictionary dictionaryWithObjectsAndKeys:[NSColor redColor], @"NSColor", nil];
+		id string = [[NSAttributedString alloc] initWithString:@"No Information Available" 
+							    attributes:attr];
+		NSPoint p = NSMakePoint((rect.size.width - [string size].width) / 2,rect.size.height - 20);
+		[string drawAtPoint:p];
 		[string release];
 		return;
 	}
@@ -50,7 +56,11 @@
 		[section.color set];
 		path = [NSBezierPath bezierPath];
 		[path moveToPoint:center];
-		[path appendBezierPathWithArcWithCenter:center radius:radius startAngle:currentAngle endAngle:endAngle clockwise:YES];	
+		[path appendBezierPathWithArcWithCenter:center 
+						 radius:radius 
+					     startAngle:currentAngle 
+					       endAngle:endAngle 
+					      clockwise:YES];	
 		[path closePath];
 		[path fill];
 		[[NSColor whiteColor] set];

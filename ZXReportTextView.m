@@ -56,8 +56,9 @@ enum {
 	[self clearAllSubviews];
 	int count = 1;
 	for(ZXReportSection *section in allSections) {
-		// Magic rect
-		NSTextField *text = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 600, 20)];
+		// FIXME: Magic rect
+		NSRect r = NSMakeRect(0, 0, 600, 20);
+		NSTextField *text = [[NSTextField alloc] initWithFrame:r];
 		[text setBordered:NO];
 		[text setEditable:NO];
 		[text setSelectable:NO];
@@ -110,14 +111,15 @@ enum {
 		amount = [currencyFormatter stringFromNumber:section.amount];
 	} else {
 		double totalAmount = [[self valueForKeyPath:@"allSections.@sum.amount"] doubleValue];
-		amount = [percentFormatter stringFromNumber:[NSNumber numberWithDouble:[section fractionForTotal:totalAmount] * 100.0]];
+		amount = [NSNumber numberWithDouble:[section fractionForTotal:totalAmount] * 100.0];
+		amount = [percentFormatter stringFromNumber:amount];
 	}
 	// FIXME: Hard-coded string
 	NSString *content = [NSString stringWithFormat:@"%@: %@", section.name, amount];
 	
-	NSAttributedString *string = [[NSAttributedString alloc] initWithString:content
-								     attributes:[NSDictionary dictionaryWithObjectsAndKeys:section.color
-										 , @"NSColor", nil, nil]];
+	id attr = [NSDictionary dictionaryWithObjectsAndKeys:section.color, @"NSColor", nil];
+	id string = [[NSAttributedString alloc] initWithString:content 
+						    attributes:attr];
 	return [string autorelease];
 }
 

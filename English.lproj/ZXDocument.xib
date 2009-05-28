@@ -9,7 +9,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="1091"/>
-			<integer value="30"/>
+			<integer value="23"/>
 			<integer value="171"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -41,7 +41,7 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{79, 158}, {656, 534}}</string>
 				<int key="NSWTFlags">536870912</int>
-				<string key="NSWindowTitle">Cashbox</string>
+				<string key="NSWindowTitle">Strongbox</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<object class="NSToolbar" key="NSViewClass" id="302925540">
 					<object class="NSMutableString" key="NSToolbarIdentifier">

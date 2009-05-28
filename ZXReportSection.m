@@ -20,6 +20,8 @@
 
 #import "ZXReportSection.h"
 
+#define EPSILON 0.0001
+
 
 @implementation ZXReportSection
 
@@ -27,7 +29,9 @@
 
 + (ZXReportSection *)sectionWithColor:(NSColor *)newColor amount:(NSNumber *)newAmount name:(NSString *)newName
 {
-	return [[[ZXReportSection alloc] initWithColor:newColor amount:newAmount name:newName] autorelease];
+	return [[[ZXReportSection alloc] initWithColor:newColor 
+						amount:newAmount 
+						  name:newName] autorelease];
 }
 
 - (ZXReportSection *)initWithColor:(NSColor *)newColor amount:(NSNumber *)newAmount name:(NSString *)newName
@@ -42,7 +46,7 @@
 
 - (double)fractionForTotal:(double)totalAmount
 {
-	if(!((-0.0001 < totalAmount) && (totalAmount < 0.0001))) {
+	if(!((-EPSILON < totalAmount) && (totalAmount < EPSILON))) {
 		return self.amount.doubleValue / totalAmount;
 	}
 	return 0.0;

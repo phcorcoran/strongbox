@@ -37,14 +37,19 @@
 
 @implementation ZXDocument
 
-@synthesize strongboxWindow, accountController, transactionSortDescriptors, nameSortDescriptors, transactionController, labelController, dateFormatter;
+@synthesize strongboxWindow, nameSortDescriptors, transactionSortDescriptors;
+@synthesize accountController, transactionController, labelController;
+@synthesize dateFormatter;
 
 - (id)init
 {
 	self = [super init];
-	self.transactionSortDescriptors = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"date" 
-										ascending:NO] autorelease]];
-	self.nameSortDescriptors = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease]];
+	id tmp = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"date" 
+								       ascending:NO] autorelease]];
+	self.transactionSortDescriptors = tmp;
+	tmp = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"name" 
+								    ascending:YES] autorelease]];
+	self.nameSortDescriptors = tmp;
 	return self;
 }
 
@@ -60,9 +65,12 @@
 {
 	[super windowControllerDidLoadNib:windowController];
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountControllerDidLoadNotification object:self];
-	id note = [NSNotification notificationWithName:ZXAccountTotalDidChangeNotification object:nil];
-	[[NSNotificationQueue defaultQueue] enqueueNotification:note postingStyle:NSPostWhenIdle];
+	[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountControllerDidLoadNotification 
+							    object:self];
+	id note = [NSNotification notificationWithName:ZXAccountTotalDidChangeNotification 
+						object:nil];
+	[[NSNotificationQueue defaultQueue] enqueueNotification:note 
+						   postingStyle:NSPostWhenIdle];
 
 	[self updateChangeCount:NSChangeCleared];
 	
@@ -131,28 +139,36 @@
 }
 
 // Write the last saved document to preference so it is opened automatically next time.
-- (BOOL)writeSafelyToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError **)outError
+- (BOOL)writeSafelyToURL:(NSURL *)absoluteURL 
+		  ofType:(NSString *)typeName 
+	forSaveOperation:(NSSaveOperationType)saveOperation 
+		   error:(NSError **)outError
 {
 	id dict = [[NSUserDefaultsController sharedUserDefaultsController] values];
 	[dict setValue:[absoluteURL absoluteString] forKey:@"lastFileURL"];
-	return [super writeSafelyToURL:absoluteURL ofType:typeName forSaveOperation:saveOperation error:outError];
+	return [super writeSafelyToURL:absoluteURL 
+				ofType:typeName 
+		      forSaveOperation:saveOperation 
+				 error:outError];
 }
 
 #pragma mark Other stuff
 
 - (NSArray *)allLabels
 {
-	NSEntityDescription *labelDescription = [NSEntityDescription entityForName:@"Label" 
-							    inManagedObjectContext:self.managedObjectContext];
+	id labelDesc = [NSEntityDescription entityForName:@"Label" 
+				   inManagedObjectContext:self.managedObjectContext];
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"obsolete == NO"];
 	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-	[fetchRequest setEntity:labelDescription];
+	[fetchRequest setEntity:labelDesc];
 	[fetchRequest setSortDescriptors:self.nameSortDescriptors];
 	[fetchRequest setPredicate:pred];
 	
 	NSError *error = nil;
-	NSArray *allLabels = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	NSArray *allLabels = [[self managedObjectContext] executeFetchRequest:fetchRequest 
+									error:&error];
 	if(allLabels == nil) {
+		// FIXME: Real error management needed.
 		return nil;
 	}
 	return allLabels;
@@ -220,7 +236,10 @@
 	[transactionsView setNeedsDisplay:YES];
 }
 
-- (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn*)tableColumn row:(int)row
+- (void)tableView:(NSTableView *)tableView 
+  willDisplayCell:(id)cell 
+   forTableColumn:(NSTableColumn*)tableColumn 
+	      row:(int)row
 {
 	if(row >= [[transactionController arrangedObjects] count]) return;
 	if(tableColumn == nil) return;
@@ -259,11 +278,17 @@
 		NSArray *tableColumns = [tableView tableColumns];
 		int curColumn = [tableColumns indexOfObject:tableColumn];
 		BOOL shouldDrawLeft = YES, shouldDrawRight = YES;
-		if ((curColumn - 1 >= 0) && [[[tableColumns objectAtIndex:curColumn - 1] dataCell] isOvalCell]) {
-			shouldDrawLeft = NO;
+		if (curColumn - 1 >= 0) {
+			id prevCell = [[tableColumns objectAtIndex:curColumn - 1] dataCell];
+			if([prevCell isOvalCell]) {
+				shouldDrawLeft = NO;
+			}
 		}
-		if ((curColumn + 1 < [tableColumns count]) && [[[tableColumns objectAtIndex:curColumn + 1] dataCell] isOvalCell]) { 
-			shouldDrawRight = NO;
+		if (curColumn + 1 < [tableColumns count]) { 
+			id nextCell = [[tableColumns objectAtIndex:curColumn + 1] dataCell];
+			if([nextCell isOvalCell]) {
+				shouldDrawRight = NO;
+			}
 		}
 		[cell setValue:[NSNumber numberWithBool:shouldDrawLeft]
 			forKey:@"shouldDrawLeftOval"];
@@ -271,7 +296,8 @@
 			forKey:@"shouldDrawRightOval"];
 	}
 	
-	if ([cell respondsToSelector:@selector(selectedItem)] && [[label valueForKey:@"obsolete"] boolValue]) {
+	if ([cell respondsToSelector:@selector(selectedItem)] && 
+	    [[label valueForKey:@"obsolete"] boolValue]) {
 		[cell setEnabled:NO];
 	}
 }
@@ -280,7 +306,11 @@
 
 - (IBAction)exportToCSV:(id)sender
 {
-	id name = [NSString stringWithFormat:@"%@ %@", [accountController valueForKeyPath:@"selection.name"], [dateFormatter stringFromDate:[NSDate date]]];
+	id accountName = [accountController valueForKeyPath:@"selection.name"];
+	id date = [dateFormatter stringFromDate:[NSDate date]];
+	// We make a path, so we don't really want any slashes.
+	date = [date stringByReplacingOccurrencesOfString:@"/" withString:@"-"];
+	id name = [NSString stringWithFormat:@"%@ %@", accountName, date];
 	id panel = [NSSavePanel savePanel];
 	[panel setRequiredFileType:@"csv"];
 	[panel beginSheetForDirectory:nil 

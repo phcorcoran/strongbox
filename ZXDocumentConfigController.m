@@ -38,13 +38,14 @@
 	[[owner managedObjectContext] processPendingChanges];
 	[[owner undoManager] disableUndoRegistration];
 	// FIXME: Check if that is necessary
-	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"DocumentConfig" 
-							    inManagedObjectContext:self.managedObjectContext];
+	id docDesc = [NSEntityDescription entityForName:@"DocumentConfig" 
+				 inManagedObjectContext:[self managedObjectContext]];
 	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-	[fetchRequest setEntity:entityDescription];
+	[fetchRequest setEntity:docDesc];
 	[fetchRequest setFetchLimit:1];
 	NSError *error = nil;
-	NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	NSArray *array = [[self managedObjectContext] executeFetchRequest:fetchRequest 
+								    error:&error];
 	if(array == nil) {
 		// FIXME: Some real error management needed.
 		[[owner undoManager] enableUndoRegistration];
@@ -57,7 +58,10 @@
 	} else {
 		[self setContent:[array objectAtIndex:0]];
 	}
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setAccountSelection:) name:ZXAccountControllerDidLoadNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+						 selector:@selector(setAccountSelection:) 
+						     name:ZXAccountControllerDidLoadNotification 
+						   object:nil];
 	[[owner managedObjectContext] processPendingChanges];
 	[[owner undoManager] enableUndoRegistration];
 }
@@ -81,8 +85,9 @@
 	id arr = [accountController valueForKey:@"arrangedObjects"];
 
 	id selectedAccount = nil;
+	id curAccountName = [[self content] valueForKey:@"currentAccountName"];
 	for(id account in arr) {
-		if([[account valueForKey:@"name"] isEqual:[[self content] valueForKey:@"currentAccountName"]]) {
+		if([[account valueForKey:@"name"] isEqual:curAccountName]) {
 			selectedAccount = account;
 			break;
 		}
@@ -99,7 +104,8 @@
 
 - (void)updateCurrentAccountName
 {
-	[[self content] setValue:[accountController valueForKeyPath:@"selection.name"] forKey:@"currentAccountName"];
+	[[self content] setValue:[accountController valueForKeyPath:@"selection.name"] 
+			  forKey:@"currentAccountName"];
 }
 
 - (void)dealloc

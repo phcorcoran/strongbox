@@ -26,10 +26,12 @@
 + (BOOL)allowsReverseTransformation { return YES; }
 - (id)transformedValue:(id)value {
 	if(value == nil) return nil;
-	return [[[NSAttributedString alloc] initWithRTFD:value documentAttributes:nil] autorelease];
+	return [[[NSAttributedString alloc] initWithRTFD:value 
+				      documentAttributes:nil] autorelease];
 }
 - (id)reverseTransformedValue:(id)value {
 	if(value == nil) return nil;
-	return [value RTFDFromRange:NSMakeRange(0, [value length]) documentAttributes:nil];
+	return [value RTFDFromRange:NSMakeRange(0, [value length]) 
+		 documentAttributes:nil];
 }
 @end

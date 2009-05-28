@@ -20,7 +20,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class ZXReportWindowController, ZXOldCashboxImporter, ZXTransactionController, ZXAccountController, ZXLabelController, ZXDocumentConfigController;
+@class ZXReportWindowController, ZXOldCashboxImporter, ZXTransactionController;
+@class ZXAccountController, ZXLabelController, ZXDocumentConfigController;
 
 //! Central class of document architecture
 /*!

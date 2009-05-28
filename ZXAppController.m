@@ -56,7 +56,10 @@ static BOOL shouldPostNotifications = YES;
 		NSError *error = nil;
 		NSURL *fileURL = [NSURL URLWithString:fileURLData];
 		if(fileURL != nil && [[NSFileManager defaultManager] fileExistsAtPath:[fileURL path]]) {
-			documentOpened = [[NSDocumentController sharedDocumentController] openDocumentWithContentsOfURL:fileURL display:YES error:&error];
+			id dc = [NSDocumentController sharedDocumentController];
+			documentOpened = [dc openDocumentWithContentsOfURL:fileURL 
+								   display:YES 
+								     error:&error];
 		}
 	}
 	if(documentOpened == nil) {

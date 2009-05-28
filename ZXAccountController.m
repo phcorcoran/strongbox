@@ -56,10 +56,11 @@
 	[[owner undoManager] disableUndoRegistration];
 	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 	[fetchRequest setEntity:[NSEntityDescription entityForName:@"Account" 
-					    inManagedObjectContext:self.managedObjectContext]];
+					    inManagedObjectContext:[self managedObjectContext]]];
 	
 	NSError *error = nil;
-	NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	NSArray *array = [[self managedObjectContext] executeFetchRequest:fetchRequest 
+								    error:&error];
 	if(array == nil) {
 		// FIXME: Real error management needed.
 		[[owner undoManager] enableUndoRegistration];
@@ -88,7 +89,8 @@
 	[super setValue:newValue forKey:key];
 	if(([key isEqual:@"selectionIndex"] || [key isEqual:@"selectionIndexes"]) && 
 	   [ZXAppController shouldPostNotifications]) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:ZXActiveAccountDidChangeNotification object:self];
+		[[NSNotificationCenter defaultCenter] postNotificationName:ZXActiveAccountDidChangeNotification 
+								    object:self];
 	}
 }
 
@@ -111,7 +113,8 @@
 			 object:nil];
 	}
 	
-	arr = [NSArray arrayWithObjects:ZXAccountTotalDidChangeNotification, ZXActiveAccountDidChangeNotification, ZXAccountNameDidChangeNotification, ZXTransactionSelectionDidChangeNotification, nil];
+	arr = [NSArray arrayWithObjects:ZXAccountTotalDidChangeNotification, ZXActiveAccountDidChangeNotification, 
+	       ZXAccountNameDidChangeNotification, ZXTransactionSelectionDidChangeNotification, nil];
 	for(id note in arr) {
 		[nc addObserver:self 
 		       selector:@selector(updateGeneralMessage:) 
@@ -184,20 +187,22 @@
  */
 - (void)updateUsedNames
 {
-	NSEntityDescription *desc = [NSEntityDescription entityForName:@"Account" 
-						inManagedObjectContext:self.managedObjectContext];
+	id desc = [NSEntityDescription entityForName:@"Account" 
+			      inManagedObjectContext:[self managedObjectContext]];
 	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 	[fetchRequest setEntity:desc];
 	
 	NSError *error = nil;
-	NSArray *allAccounts = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	NSArray *allAccounts = [[self managedObjectContext] executeFetchRequest:fetchRequest 
+									  error:&error];
 	if(allAccounts == nil) {
 		return;
 	}
-	NSMutableDictionary *usedNamesDict = [NSMutableDictionary dictionaryWithCapacity:[allAccounts count]];
+	id usedNamesDict = [NSMutableDictionary dictionaryWithCapacity:[allAccounts count]];
 	for(id account in allAccounts) {
 		if([account valueForKey:@"name"] == nil) continue;
-		[usedNamesDict setValue:[account objectID] forKey:[account valueForKey:@"name"]];
+		[usedNamesDict setValue:[account objectID] 
+				 forKey:[account valueForKey:@"name"]];
 	}
 	self.usedNames = usedNamesDict;
 }
@@ -215,7 +220,8 @@
 	if([self valueForKeyPath:@"selection.self"] == NSNoSelectionMarker) {
 		if(infiniteLoopBreaker) {
 			infiniteLoopBreaker = NO;
-			[[NSNotificationQueue defaultQueue] enqueueNotification:note postingStyle:NSPostWhenIdle];
+			[[NSNotificationQueue defaultQueue] enqueueNotification:note 
+								   postingStyle:NSPostWhenIdle];
 		}
 		return;
 	}

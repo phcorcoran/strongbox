@@ -47,9 +47,11 @@
 	if([[self valueForKey:@"isImmutable"] boolValue] && ![key isEqual:@"isImmutable"]) return;
 	[super setValue:value forKey:key];
 	if([key isEqual:@"name"] && [ZXAppController shouldPostNotifications]) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:ZXLabelDidChangeNotification object:self];
+		[[NSNotificationCenter defaultCenter] postNotificationName:ZXLabelDidChangeNotification 
+								    object:self];
 	} else if([key isEqual:@"obsolete"] && [ZXAppController shouldPostNotifications]) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:ZXTransactionLabelDidChangeNotification object:self];
+		[[NSNotificationCenter defaultCenter] postNotificationName:ZXTransactionLabelDidChangeNotification 
+								    object:self];
 	}
 }
 - (void)specialSetName:(NSString *)newName
@@ -59,10 +61,10 @@
 
 - (NSAttributedString *)coloredName
 {
-	NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[self valueForKey:@"textColor"], NSForegroundColorAttributeName, 
+	id attr = [NSDictionary dictionaryWithObjectsAndKeys:[self valueForKey:@"textColor"], NSForegroundColorAttributeName, 
 				    [NSFont systemFontOfSize:[NSFont systemFontSize]], NSFontAttributeName, nil];
-	NSAttributedString *as = [[NSAttributedString alloc] initWithString:[self valueForKey:@"name"] 
-								 attributes:attributes];
+	id as = [[NSAttributedString alloc] initWithString:[self valueForKey:@"name"] 
+						attributes:attr];
 	return [as autorelease];
 }
 @end

@@ -36,7 +36,8 @@
 {
 	[super setValue:value forKey:key];
 	if([key isEqual:@"name"] && [ZXAppController shouldPostNotifications]) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountNameDidChangeNotification object:self];
+		[[NSNotificationCenter defaultCenter] postNotificationName:ZXAccountNameDidChangeNotification 
+								    object:self];
 	}
 }
 
@@ -47,17 +48,19 @@
 
 - (void)recalculateBalance:(NSNotification *)note
 {
-	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Transaction" inManagedObjectContext:self.managedObjectContext];
-	
+	id txDesc = [NSEntityDescription entityForName:@"Transaction" 
+				inManagedObjectContext:[self managedObjectContext]];
 	NSPredicate *balancePredicate = [NSPredicate predicateWithFormat: @"account == %@", self];
-	id dateSort = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES] autorelease]];
+	id dateSort = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"date" 
+									    ascending:YES] autorelease]];
 	
 	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-	[fetchRequest setEntity:entityDescription];
+	[fetchRequest setEntity:txDesc];
 	[fetchRequest setPredicate:balancePredicate];
 	[fetchRequest setSortDescriptors:dateSort];
 	NSError *error = nil;
-	NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	NSArray *array = [[self managedObjectContext] executeFetchRequest:fetchRequest 
+								    error:&error];
 	if(array == nil) {
 		return;
 	}
@@ -74,8 +77,8 @@
 - (void)mergeWithAccounts:(NSArray *)allAccounts controller:(id)controller
 {
 	NSMutableArray *newAccounts = [allAccounts mutableCopy];
-	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Transaction" 
-							     inManagedObjectContext:self.managedObjectContext];
+	id entityDescription = [NSEntityDescription entityForName:@"Transaction" 
+					   inManagedObjectContext:[self managedObjectContext]];
 	
 	[newAccounts removeObjectIdenticalTo:self];
 	
@@ -85,7 +88,7 @@
 	[fetchRequest setEntity:entityDescription];
 	[fetchRequest setPredicate:accountPredicate];
 	NSError *error = nil;
-	NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest 
+	NSArray *array = [[self managedObjectContext] executeFetchRequest:fetchRequest 
 								  error:&error];
 	if(array == nil) {
 		return;

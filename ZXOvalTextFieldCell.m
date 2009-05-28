@@ -51,8 +51,10 @@
 	//inner.origin.y -= 1;
 	//inner.size.height += 1;
 	
-	if(([[ovalColor colorSpaceName] isEqual:@"NSCalibratedWhiteColorSpace"] && [ovalColor isEqual:[NSColor whiteColor]]) ||
-		(([[ovalColor colorSpaceName] isEqual:@"NSDeviceRGBColorSpace"] || [[ovalColor colorSpaceName] isEqual:@"NSCalibratedRGBColorSpace"]) && 
+	if(([[ovalColor colorSpaceName] isEqual:@"NSCalibratedWhiteColorSpace"] && 
+	    [ovalColor isEqual:[NSColor whiteColor]]) ||
+		(([[ovalColor colorSpaceName] isEqual:@"NSDeviceRGBColorSpace"] || 
+		  [[ovalColor colorSpaceName] isEqual:@"NSCalibratedRGBColorSpace"]) && 
 		 [ovalColor redComponent] > 0.9 && 
 		 [ovalColor greenComponent] > 0.9 && 
 		 [ovalColor blueComponent] > 0.9)) {

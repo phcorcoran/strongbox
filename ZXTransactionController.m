@@ -61,7 +61,9 @@
 		return nil;
 	
 	for(NSString *candidate in [self valueForKeyPath:@"arrangedObjects.transactionDescription"]) {
-		if ([[candidate commonPrefixWithString:prefix options:NSCaseInsensitiveSearch] length] == [prefix length]) {
+		int length = [[candidate commonPrefixWithString:prefix 
+							options:NSCaseInsensitiveSearch] length];
+		if (length == [prefix length]) {
 			completion = candidate;
 			break;
 		}
@@ -78,7 +80,8 @@
 	[super setValue:newValue forKey:key];
 	if(([key isEqual:@"selectionIndex"] || [key isEqual:@"selectionIndexes"]) && 
 	   [ZXAppController shouldPostNotifications]) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:ZXTransactionSelectionDidChangeNotification object:self];
+		[[NSNotificationCenter defaultCenter] postNotificationName:ZXTransactionSelectionDidChangeNotification 
+								    object:self];
 	}
 }
 

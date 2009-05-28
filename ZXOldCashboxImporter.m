@@ -67,18 +67,20 @@ static NSString *sharedNoLabelString = @"-";
 	moc = [owner managedObjectContext];
 	
 	allNewLabels = [NSMutableDictionary dictionary];
-	NSString *labelsPath = [[NSString stringWithFormat:@"~/Library/Application Support/Cashbox/Labels.plist"] stringByExpandingTildeInPath];
-	NSString *accountsPath = [[NSString stringWithFormat:@"~/Library/Application Support/Cashbox/Accounts/"] stringByExpandingTildeInPath];
+	id labelsPath = @"~/Library/Application Support/Cashbox/Labels.plist";
+	id accountsPath = @"~/Library/Application Support/Cashbox/Accounts/";
+	labelsPath = [labelsPath stringByExpandingTildeInPath];
+	accountsPath = [accountsPath stringByExpandingTildeInPath];
 	
 	[self importLabelsFromFile:labelsPath];
 	
-	NSDirectoryEnumerator *direnum = [[NSFileManager defaultManager]
-					  enumeratorAtPath:accountsPath];
+	id direnum = [[NSFileManager defaultManager] enumeratorAtPath:accountsPath];
 	NSString *pname;
 	while(pname = [direnum nextObject]) {
 		if ([[pname pathExtension] isEqualToString:@"plist"]) {
 			NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-			[self importAccountFromFile:[NSString stringWithFormat:@"%@/%@", accountsPath, pname]];
+			id path = [NSString stringWithFormat:@"%@/%@", accountsPath, pname];
+			[self importAccountFromFile:path];
 			[pool release];
 		}
 	}
@@ -87,7 +89,8 @@ static NSString *sharedNoLabelString = @"-";
 	
 	// The transactions with no label have a nil transactionLabel property
 	// We fix that now before returning
-	id txDesc = [NSEntityDescription entityForName:@"Transaction" inManagedObjectContext:owner.managedObjectContext];
+	id txDesc = [NSEntityDescription entityForName:@"Transaction" 
+				inManagedObjectContext:owner.managedObjectContext];
 	id noLabel = [owner.labelController valueForKey:@"noLabel"];
 	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 	[fetchRequest setEntity:txDesc];
@@ -124,7 +127,8 @@ static NSString *sharedNoLabelString = @"-";
 	
 	int labelCount = [array count];
 	// FIXME: Hard-coded english
-	[importationMessage setStringValue:[NSString stringWithFormat:@"Importing Labels... 0 of %d", labelCount]];
+	id message = [NSString stringWithFormat:@"Importing Labels... 0 of %d", labelCount];
+	[importationMessage setStringValue:message];
 	[progressIndicator setMaxValue:labelCount];
 	[progressIndicator setDoubleValue:0];
 	[importerWindow display];
@@ -135,13 +139,15 @@ static NSString *sharedNoLabelString = @"-";
 		i += 1;
 		if(i % 5 == 0) {
 			// FIXME: Hard-coded english
-			[importationMessage setStringValue:[NSString stringWithFormat:@"Importing Labels... %d of %d", i, labelCount]];
+			message = [NSString stringWithFormat:@"Importing Labels... %d of %d", i, labelCount];
+			[importationMessage setStringValue:message];
 			[progressIndicator setDoubleValue:i];
 			[importerWindow display];
 			[[owner strongboxWindow] display];
 		}
 		
-		id newLabel = [NSEntityDescription insertNewObjectForEntityForName:@"Label" inManagedObjectContext:moc];
+		id newLabel = [NSEntityDescription insertNewObjectForEntityForName:@"Label" 
+							    inManagedObjectContext:moc];
 		[newLabel setValue:[label valueForKey:@"Name of Label"] forKey:@"name"];
 		
 		id tmp = [label valueForKey:@"Normal Text Color of Label"];
@@ -194,7 +200,8 @@ static NSString *sharedNoLabelString = @"-";
 		return;
 	}
 	
-	id newAccount = [NSEntityDescription insertNewObjectForEntityForName:@"Account" inManagedObjectContext:moc];
+	id newAccount = [NSEntityDescription insertNewObjectForEntityForName:@"Account" 
+						      inManagedObjectContext:moc];
 	[newAccount setValue:[account valueForKey:@"Account Name"] forKey:@"name"];
 	
 	NSArray *transactions = [account valueForKey:@"Transactions"];
@@ -202,7 +209,8 @@ static NSString *sharedNoLabelString = @"-";
 	
 	NSInteger txCount = [transactions count];
 	// FIXME: Hard-coded english
-	[importationMessage setStringValue:[NSString stringWithFormat:@"Importing %@ ... 0 of %d transactions", accountName, txCount]];
+	id message = [NSString stringWithFormat:@"Importing %@ ... 0 of %d transactions", accountName, txCount];
+	[importationMessage setStringValue:message];
 	[progressIndicator setMaxValue:txCount];
 	[progressIndicator setDoubleValue:0];
 	[importerWindow display];
@@ -213,18 +221,27 @@ static NSString *sharedNoLabelString = @"-";
 		i += 1;
 		if(i % 20 == 0) {
 			// FIXME: Hard-coded english
-			[importationMessage setStringValue:[NSString stringWithFormat:@"Importing %@ ... %d of %d transactions", accountName, i, txCount]];
+			message = [NSString stringWithFormat:@"Importing %@ ... %d of %d transactions", accountName, i, txCount];
+			[importationMessage setStringValue:message];
 			[progressIndicator setDoubleValue:i];
 			[importerWindow display];
 			[[owner strongboxWindow] display];
 		}
-		id newTransaction = [NSEntityDescription insertNewObjectForEntityForName:@"Transaction" inManagedObjectContext:moc];
-		[newTransaction setValue:[transaction valueForKey:@"Date Column"] forKey:@"date"];
-		double amount = [[transaction valueForKey:@"Deposit Column"] doubleValue] - [[transaction valueForKey:@"Withdrawal Column"] doubleValue];
-		[newTransaction setValue:[NSNumber numberWithDouble:amount] forKey:@"amount"];
-		[newTransaction setValue:[transaction valueForKey:@"Description Column"] forKey:@"transactionDescription"];
-		[newTransaction setValue:[allNewLabels valueForKey:[transaction valueForKey:@"Label"]] forKey:@"transactionLabel"];
-		[newTransaction setValue:newAccount forKey:@"account"];
+		id newTransaction = [NSEntityDescription insertNewObjectForEntityForName:@"Transaction" 
+								  inManagedObjectContext:moc];
+		[newTransaction setValue:[transaction valueForKey:@"Date Column"] 
+				  forKey:@"date"];
+		double deposit = [[transaction valueForKey:@"Deposit Column"] doubleValue];
+		double withdrawal = [[transaction valueForKey:@"Withdrawal Column"] doubleValue];
+		double amount = deposit - withdrawal;
+		[newTransaction setValue:[NSNumber numberWithDouble:amount] 
+				  forKey:@"amount"];
+		[newTransaction setValue:[transaction valueForKey:@"Description Column"] 
+				  forKey:@"transactionDescription"];
+		[newTransaction setValue:[allNewLabels valueForKey:[transaction valueForKey:@"Label"]] 
+				  forKey:@"transactionLabel"];
+		[newTransaction setValue:newAccount 
+				  forKey:@"account"];
 	}
 	[account release];
 }
